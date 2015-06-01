@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   validates_presence_of :name, :city, :url
+  # belongs_to :user
 
   # Geocoding
   geocoded_by :city
