@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %title Coffee and Power
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+    %link{rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"}
+    %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Montserrat:400,700"}
+    %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Kaushan+Script"}
+    %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"}
+    %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"}
+    = javascript_include_tag 'tile.stamen'
+
+  %body#page-top.index
+    #wrap
+      
+      .notifications
+        - if notice
+          #notice_wrapper
+            %p.alert.alert-dismissable= notice
+            %span.close{type: "button", data: {dismiss:"alert"}}
+              %i.fa.fa-times
+        - elsif alert
+          #alert_wrapper
+            %p.alert.alert-dismissable= alert
+            %span.close{type: "button", data: {dismiss:"alert"}}
+              %i.fa.fa-times
+      =yield
+      
