@@ -1,4 +1,4 @@
-class EventController < ApplicationController
+class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_event, only: [:show, :edit, :update, :destroy]
   
@@ -28,5 +28,4 @@ class EventController < ApplicationController
     @event = event.find(params[:id])
     # @event = event.friendly.find(params[:id])
   end
-
 end
