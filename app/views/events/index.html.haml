@@ -1,0 +1,5 @@
+%h1 Event index
+-@events.each do |event|
+  %p= event.name
+  %p= event.address
+  %p= link_to "Ignite" + event.name, event.url
