@@ -9,6 +9,6 @@ class Event < ActiveRecord::Base
       obj.country = geo.country
     end
   end
-  after_validation :geocode, if: :address_changed?
-  after_validation :reverse_geocode, if: :address_changed?
+  after_validation :geocode, if: :city_changed?
+  after_validation :reverse_geocode, if: :city_changed?
 end
