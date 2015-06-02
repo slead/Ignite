@@ -7,6 +7,8 @@ class EventsController < ApplicationController
   end
 
   def show
+    @videos = @event.videos
+
   end
 
   def edit
@@ -25,7 +27,7 @@ class EventsController < ApplicationController
   end
 
   def find_event
-    @event = event.find(params[:id])
-    # @event = event.friendly.find(params[:id])
+    #@event = Event.find(params[:id])
+    @event = Event.friendly.find(params[:id])
   end
 end

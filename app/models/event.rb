@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   validates_presence_of :name, :city, :url
+  has_many :videos
   # belongs_to :user
 
   # Geocoding
@@ -12,4 +13,8 @@ class Event < ActiveRecord::Base
   end
   after_validation :geocode, if: :city_changed?
   after_validation :reverse_geocode, if: :city_changed?
+
+  # Friendly IDs in the URL
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
 end
