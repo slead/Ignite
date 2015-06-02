@@ -2,7 +2,6 @@
 %html
   %head
     %title Ignite. Enlighten us, but make it quick
-    = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
     %link{rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"}
@@ -10,6 +9,7 @@
     %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Kaushan+Script"}
     %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"}
     %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"}
+    = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'tile.stamen'
 
   %body#page-top.index
@@ -23,7 +23,9 @@
             %span.icon-bar
             %span.icon-bar
 
-          =link_to "Ignite", root_path, {:class => "navbar-brand"}
+          =link_to root_path, {:class => "navbar-brand"} do
+            Ignite
+            %small Enlighten us, but make it quick
 
         #navbar.navbar-collapse.collapse
           %ul.nav.navbar-nav.navbar-right

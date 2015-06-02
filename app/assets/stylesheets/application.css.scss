@@ -7,6 +7,8 @@
 //= depend_on_asset "layers-2x.png"
  */
 
+@import 'bootstrap.css';
+
 html, body {
   height: 100%;
 }
@@ -37,4 +39,6 @@ html, body {
   }
 }
 
-@import 'bootstrap.css';
+small {
+  font-size: 60%;
+}

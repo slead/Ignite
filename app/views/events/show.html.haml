@@ -5,3 +5,7 @@
         Ignite
         = @event.name
       =link_to @event.url
+
+      %h4 Featured videos
+      - @videos.each do |video|
+        %p= video.url
