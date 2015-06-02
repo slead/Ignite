@@ -28,11 +28,11 @@
         #navbar.navbar-collapse.collapse
           %ul.nav.navbar-nav.navbar-right
             %li
-              =link_to "About Ignite", "#"
+              =link_to "About Ignite", "about#index"
             %li
-              =link_to "Find an Ignite", "#"
+              =link_to "Find an Ignite", "events#index"
             %li
-              =link_to "Start an Ignite", "#" 
+              =link_to "Start an Ignite", "start#index"
       
       .notifications
         - if notice
@@ -45,5 +45,5 @@
             %p.alert.alert-dismissable= alert
             %span.close{type: "button", data: {dismiss:"alert"}}
               %i.fa.fa-times
-      =yield
+    =yield
       
