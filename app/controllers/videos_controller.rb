@@ -1,5 +1,13 @@
 class VideosController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :find_video, only: [:show, :edit, :update, :destroy]
+ 
   def index
+    @videos = Video.all
+  end
+
+  def new
+    @video = current_user.videos.build
   end
 
   def show
@@ -9,8 +17,23 @@ class VideosController < ApplicationController
   end
 
   def create
+    @video = current_user.videos.build(video_params)
   end
 
   def destroy
+    @video.destroy
+    flash[:notice] = "Video #{@video.title} deleted successfully."
+    redirect_to root_path
   end
+
+private
+
+  def video_params
+    params.require(:video).permit(:title, :description, :url)
+  end
+
+  def find_video
+    @video = Video.find(params[:id])
+  end
+
 end

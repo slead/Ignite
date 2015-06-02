@@ -1,0 +1,8 @@
+.container.top-150
+  .row 
+    .col-md-8.col-md-offset-2
+      .panel
+        .panel-heading Edit video
+        .panel-body
+          = render 'form'
+      = link_to "Cancel", video_path,  class: "btn btn-default"
