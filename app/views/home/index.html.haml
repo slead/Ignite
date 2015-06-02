@@ -1,6 +1,14 @@
-%h1 Home page
--@events.each do |event|
-  %p= event.name
-  %p= "#{event.city}, #{event.state}, #{event.country}"
-  %p= link_to "Ignite" + event.name, event.url
-  %hr
+#banner
+  =image_tag "http://www.ignitesydney.com/wp-content/uploads/2014/04/Ignite-76031.png"
+
+.container
+  .row
+    .col-md-12
+      %h1 Home page
+      -@events.each do |event|
+        .row
+          .col-md-6
+            %p= event.name
+            %p= "#{event.city}, #{event.state}, #{event.country}"
+            %p= link_to "Ignite" + event.name, event.url
+        %hr

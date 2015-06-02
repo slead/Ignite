@@ -13,7 +13,26 @@
     = javascript_include_tag 'tile.stamen'
 
   %body#page-top.index
-    #wrap
+    %nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          %button.navbar-toggle.collapsed{"data-target" => "#navbar", "data-toggle" => "collapse", "type" => "button", "aria-expanded" => "false", "aria-controls" => "navbar"}
+
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+
+          =link_to "Ignite", root_path, {:class => "navbar-brand"}
+
+        #navbar.navbar-collapse.collapse
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              =link_to "About Ignite", "#"
+            %li
+              =link_to "Find an Ignite", "#"
+            %li
+              =link_to "Start an Ignite", "#" 
       
       .notifications
         - if notice
