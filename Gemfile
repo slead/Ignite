@@ -14,6 +14,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 group :development do
   gem 'spring'
   gem 'byebug', '~> 4.0.5'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 gem 'devise', '~> 3.4.1'
