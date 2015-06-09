@@ -5,3 +5,24 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+events = Event.create!([
+{
+  name:'Ignite Athens',
+  city:'Athens',
+  country: 'Greece',
+  url:'http://www.igniteathens.gr'
+},
+{
+  name:'Ignite Barrie',
+  city:'Barrie',
+  country: 'Canada',
+  url:'http://ignitebarrie.com/'
+},
+{
+  name:'Ignite Sydney',
+  city:'Sydney',
+  country: 'Australia',
+  url:'http://ignitesydney.com/'
+}
+])

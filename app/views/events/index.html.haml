@@ -6,5 +6,5 @@
         .row
           %p= event.name
           %p= "#{event.city}, #{event.state}, #{event.country}"
-          %p= link_to "Ignite" + event.name, event.url
+          %p= link_to event.name, event.url
         %hr
