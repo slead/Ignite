@@ -18,6 +18,18 @@ class VideosController < ApplicationController
 
   def create
     @video = current_user.videos.build(video_params)
+    if @video.save
+      flash[:notice] = "video #{@video.title} added successfully."
+      redirect_to @video
+    else
+      errors = []
+      @video.errors.full_messages.each do |msg|
+        errors << msg
+      end
+      flash.now[:error] = errors
+      render 'new'
+    end
+
   end
 
   def destroy
