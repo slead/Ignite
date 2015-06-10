@@ -150,13 +150,19 @@ events = Event.create!([
 
 videos = Video.create!([
   {  
-    id: 3, title: "What if you say Yes to everything?", url: "https://www.youtube.com/watch?v=InYTkTKSBfo", event_id: 22
+    title: "What if you say Yes to everything?", url: "https://www.youtube.com/watch?v=InYTkTKSBfo", event_id: 22
   },
   {
-    id: 1, title: "How to get 5 million people to read your comic", url: "https://www.youtube.com/watch?v=QYyJZOHgpco", event_id: 22
+    title: "How to get 5 million people to read your comic", url: "https://www.youtube.com/watch?v=QYyJZOHgpco", event_id: 22
   },
   {
-    id: 2, title: "Save the planet, eat a bug", url: "https://www.youtube.com/watch?v=QSs27t8nPlM", event_id: 22
+    title: "Save the planet, eat a bug", url: "https://www.youtube.com/watch?v=QSs27t8nPlM", event_id: 22
+  },
+  {
+    title: "Life lessons from industrial design", url: "https://www.youtube.com/watch?v=pur9MMxBTfQ", event_id: 28
+  },
+  {
+    title: "Notes from a grateful dickhead", url: "https://www.youtube.com/watch?v=8Td8zLMWU4Y", event_id: 28
   }
 ])
 

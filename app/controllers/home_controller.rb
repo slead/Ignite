@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @events = Event.all.order(:name)
+    @videos = Video.all.order(:created_at)
   end
 
   def show

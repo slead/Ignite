@@ -5,12 +5,8 @@
   .row
     .col-md-12
       %h1 Home page
-      -@events.each do |event|
+      -@videos.each do |video|
         .row
           .col-md-6
-            %p= link_to event.name, event
-            - if not event.state.blank?
-              %p= "#{event.city}, #{event.state}, #{event.country}"
-            - else
-              %p= "#{event.city}, #{event.country}"
+            %p= link_to video.title, video
         %hr
