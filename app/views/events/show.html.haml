@@ -1,10 +1,12 @@
 .container
   .row
     .col.md-12
-      %h1
-        Ignite
-        = @event.name
-      =link_to @event.url
+      %h1= @event.name
+      - if not @event.state.blank?
+        %p= "#{@event.city}, #{@event.state}, #{@event.country}"
+      - else
+        %p= "#{@event.city}, #{@event.country}"
+      %p= link_to "Visit website", @event.url
 
       %h4 Featured videos
       - @videos.each do |video|
