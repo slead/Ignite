@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @events = Event.all
+    @events = Event.all.order(:name)
   end
 
   def show
