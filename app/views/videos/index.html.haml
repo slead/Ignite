@@ -11,4 +11,7 @@
   .row
     .col-md-12
       - @tags.each do |tag|
-        %p= link_to tag.name, videos_path(tag: tag.name)
+        %button.btn.btn-default
+          =link_to tag.name.titleize, videos_path(tag: tag.name)
+      %button.btn.btn-default
+        =link_to "Clear", videos_path
