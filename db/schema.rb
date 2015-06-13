@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613023439) do
+ActiveRecord::Schema.define(version: 20150613063108) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150613023439) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "slug"
+    t.integer  "user_id"
   end
 
   create_table "friendly_id_slugs", force: true do |t|
@@ -44,6 +45,14 @@ ActiveRecord::Schema.define(version: 20150613023439) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tags_videos", id: false, force: true do |t|
+    t.integer "video_id"
+    t.integer "tag_id"
+  end
+
+  add_index "tags_videos", ["tag_id"], name: "index_videos_tags_on_tag_id"
+  add_index "tags_videos", ["video_id"], name: "index_videos_tags_on_video_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -74,13 +83,5 @@ ActiveRecord::Schema.define(version: 20150613023439) do
   end
 
   add_index "videos", ["event_id"], name: "index_videos_on_event_id"
-
-  create_table "videos_tags", id: false, force: true do |t|
-    t.integer "video_id"
-    t.integer "tag_id"
-  end
-
-  add_index "videos_tags", ["tag_id"], name: "index_videos_tags_on_tag_id"
-  add_index "videos_tags", ["video_id"], name: "index_videos_tags_on_video_id"
 
 end
