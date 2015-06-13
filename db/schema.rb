@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613063108) do
+ActiveRecord::Schema.define(version: 20150613232319) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 20150613063108) do
 
   add_index "tags_videos", ["tag_id"], name: "index_videos_tags_on_tag_id"
   add_index "tags_videos", ["video_id"], name: "index_videos_tags_on_video_id"
+
+  create_table "upcomings", force: true do |t|
+    t.string   "name"
+    t.integer  "event_id"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

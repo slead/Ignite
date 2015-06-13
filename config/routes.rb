@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :videos
+  resources :upcoming
 
   get ':content', to: 'content#show'
 
