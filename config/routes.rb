@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :videos
   end
 
+  resources :videos
+
   get ':content', to: 'content#show'
 
   root to: "content#home"
