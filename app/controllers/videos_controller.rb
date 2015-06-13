@@ -25,8 +25,16 @@ class VideosController < ApplicationController
       flash.now[:error] = @video.errors.map(&:full_messages)
       render 'new'
     end
-
   end
+
+  def update
+    if @video.update(video_params)
+      redirect_to @video
+    else
+      render 'edit'
+    end
+  end
+
 
   def destroy
     @video.destroy
@@ -41,7 +49,6 @@ private
   end
 
   def find_video
-    # @video = Video.find(params[:id])
     @video = Video.friendly.find(params[:id])
   end
 
