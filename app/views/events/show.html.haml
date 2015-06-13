@@ -1,6 +1,6 @@
 .container
   .row
-    .col.md-12
+    .col-md-12
       %h1= @event.name
       - if not @event.state.blank?
         %p= "#{@event.city}, #{@event.state}, #{@event.country}"
@@ -8,12 +8,13 @@
         %p= "#{@event.city}, #{@event.country}"
       %p= link_to "Visit website", @event.url
 
-    - if @videos.exists?
-      %h4 Featured videos
-      - @videos.each do |video|
-        %p= link_to video.title, video
-        %p= video.url
-        %hr
+      - if @videos.exists?
+        %h4 Featured videos
+        - @videos.each do |video|
+          %iframe{src: video.url, width: '100%', height: '400px'}
+          %p.small.right= link_to "View on YouTube", video.url
+          %p= link_to video.title, video
+          %hr
 
     - if user_signed_in?
       .user
