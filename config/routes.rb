@@ -5,9 +5,8 @@ Rails.application.routes.draw do
   resources :events do
     resources :videos
   end
-  resources :about
-  resources :start
-  resources :videos
 
-  root to: "home#index"
+  get ':content', to: 'content#show'
+
+  root to: "content#home"
 end

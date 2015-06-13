@@ -22,11 +22,7 @@ class VideosController < ApplicationController
       flash[:notice] = "video #{@video.title} added successfully."
       redirect_to @video
     else
-      errors = []
-      @video.errors.full_messages.each do |msg|
-        errors << msg
-      end
-      flash.now[:error] = errors
+      flash.now[:error] = @video.errors.map(&:full_messages)
       render 'new'
     end
 
