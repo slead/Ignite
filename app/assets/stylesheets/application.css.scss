@@ -40,8 +40,12 @@ html, body {
   }
 }
 
-small {
+small, .small {
   font-size: 60%;
+}
+
+.grey {
+  color: #727272;
 }
 
 .user {
