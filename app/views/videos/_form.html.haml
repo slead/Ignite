@@ -2,5 +2,5 @@
   .form-group
     =f.input :title,  input_html: { class: 'form-control' }, placeholder: "Enter the video's title"
     =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL"
-    =f.input :tags, input_html: { class: 'form-control' }, placeholder: "Enter the tags"
+    =f.collection_select :tags, Tag.all, :id, :name, { prompt: "Choose a tag" }
   =f.submit class: "btn btn-warning"

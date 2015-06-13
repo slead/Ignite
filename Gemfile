@@ -1,5 +1,5 @@
-source 'https://rubygems.org'
-
+# source 'https://rubygems.org'
+source 'http://rubygems'
 
 gem 'rails', '4.1.7'
 gem 'sqlite3'

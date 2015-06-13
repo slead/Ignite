@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613012000) do
+ActiveRecord::Schema.define(version: 20150613021140) do
 
   create_table "abouts", force: true do |t|
     t.datetime "created_at"
@@ -89,5 +89,10 @@ ActiveRecord::Schema.define(version: 20150613012000) do
   end
 
   add_index "videos", ["event_id"], name: "index_videos_on_event_id"
+
+  create_table "videos_tags", id: false, force: true do |t|
+    t.integer "video_id"
+    t.integer "tag_id"
+  end
 
 end
