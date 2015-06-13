@@ -41,7 +41,8 @@ private
   end
 
   def find_video
-    @video = Video.find(params[:id])
+    # @video = Video.find(params[:id])
+    @video = Video.friendly.find(params[:id])
   end
 
 end

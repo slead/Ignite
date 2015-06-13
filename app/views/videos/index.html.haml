@@ -3,6 +3,6 @@
     .col-md-12
       %h1 Videos
       - @videos.each do |video|
-        %p= video.title
+        %p= link_to video.title, video
         %p= video.url
         %hr
