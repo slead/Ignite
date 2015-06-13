@@ -12,10 +12,12 @@ class EventsController < ApplicationController
   end
 
   def show
+    @videos = @event.videos
   end
 
   def new
     @event = current_user.events.build
+    # @event = Event.new
   end
 
   def edit
