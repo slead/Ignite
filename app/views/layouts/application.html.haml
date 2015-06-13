@@ -51,10 +51,16 @@
     =yield
 
     %footer
-      #hr
       .row
-        .col-md-12.center
-          %h4 Footer stuff
-          %br
-          %p.small Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla.
-          %p.small Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Curabitur blandit tempus porttitor.
+        .col-md-3
+          %ul
+            %li= link_to "Dapibus Lorem Inceptos Vulputate", root_path
+            %li= link_to "Cras Quam Risus Parturient Ligula", root_path
+            %li= link_to "Mattis Etiam Dapibus Egestas", root_path
+            %li= link_to "Purus Fermentum Euismod Ligula Pharetra", root_path
+        .col-md-4.col-md-offset-1.map
+          %p.center Map goes here
+        .col-md-3.col-md-offset-1
+          %h4 About Ignite
+          %pPraesent commodo cursus magna, vel scelerisque nisl consectetur et. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          %p Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Donec ullamcorper nulla non metus auctor fringilla.
