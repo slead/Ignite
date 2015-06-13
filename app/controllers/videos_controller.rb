@@ -8,7 +8,13 @@ class VideosController < ApplicationController
   end
  
   def index
-    @videos = Video.all
+    if params[:tag_id].blank?
+      @videos = Video.all
+    else
+      @tag = Tag.find_by(id: params[:tag_id])
+      @videos = @tag.videos
+    end
+    @tags = Tag.all
   end
 
   def new

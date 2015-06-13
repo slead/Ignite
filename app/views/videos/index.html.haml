@@ -6,3 +6,9 @@
         %p= link_to video.title, video
         %p= video.url
         %hr
+
+.container
+  .row
+    .col-md-12
+      - @tags.each do |tag|
+        %p= link_to tag.name, videos_path(tag_id: tag.id)
