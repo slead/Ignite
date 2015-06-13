@@ -11,12 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613021140) do
-
-  create_table "abouts", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20150613023439) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -43,16 +38,6 @@ ActiveRecord::Schema.define(version: 20150613021140) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
-
-  create_table "homes", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "starts", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "tags", force: true do |t|
     t.string   "name"
@@ -94,5 +79,8 @@ ActiveRecord::Schema.define(version: 20150613021140) do
     t.integer "video_id"
     t.integer "tag_id"
   end
+
+  add_index "videos_tags", ["tag_id"], name: "index_videos_tags_on_tag_id"
+  add_index "videos_tags", ["video_id"], name: "index_videos_tags_on_video_id"
 
 end
