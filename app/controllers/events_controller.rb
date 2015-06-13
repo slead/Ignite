@@ -2,28 +2,56 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_event, only: [:show, :edit, :update, :destroy]
   
+  rescue_from ActiveRecord::RecordNotFound do
+    flash[:notice] = "Sorry, that event does not exist"
+    redirect_to action: :index
+  end
+
   def index
     @events = Event.all.order(:name)
   end
 
   def show
-    @videos = @event.videos
+    @events = @event.events
+  end
 
+  def new
+    @event = current_user.events.build
+    # @event = Event.new
   end
 
   def edit
   end
 
   def create
+    @event = current_user.events.build(event_params)
+    if @event.save
+      flash[:notice] = "event #{@event.title} added successfully."
+      redirect_to @event
+    else
+      flash.now[:error] = @event.errors.map(&:full_messages)
+      render 'new'
+    end
+  end
+
+  def update
+    if @event.update(event_params)
+      redirect_to @event
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    @event.destroy
+    flash[:notice] = "event #{@event.title} deleted successfully."
+    redirect_to root_path
   end
 
   private
 
   def event_params
-    params.require(:event).permit(:name, :address, :url)
+    params.require(:event).permit(:name, :city, :country, :url)
   end
 
   def find_event

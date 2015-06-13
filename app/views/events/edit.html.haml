@@ -1,0 +1,9 @@
+.container.top-150
+  .row 
+    .col-md-8.col-md-offset-2
+      .panel
+        .panel-heading Edit event
+        .panel-body
+          = render 'form'
+      = link_to "Cancel", event_path,  class: "btn btn-default"
+      = link_to "Delete", event_path(@event), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this event?"}

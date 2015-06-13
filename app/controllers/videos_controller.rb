@@ -1,6 +1,11 @@
 class VideosController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_video, only: [:show, :edit, :update, :destroy]
+
+  rescue_from ActiveRecord::RecordNotFound do
+    flash[:notice] = 'Sorry, that video does not exist'
+    redirect_to action: :index
+  end
  
   def index
     @videos = Video.all
