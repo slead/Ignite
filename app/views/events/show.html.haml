@@ -8,6 +8,9 @@
         %p= "#{@event.city}, #{@event.country}"
       %p= link_to "Visit website", @event.url
 
+    - if @videos.exists?
       %h4 Featured videos
       - @videos.each do |video|
+        %p= video.title
         %p= video.url
+        %hr

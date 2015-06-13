@@ -3,4 +3,5 @@
     .col-md-12
       %h1 Videos
       - @videos.each do |video|
+        %p= video.title
         %p= video.url
