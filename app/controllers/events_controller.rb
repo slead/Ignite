@@ -12,12 +12,10 @@ class EventsController < ApplicationController
   end
 
   def show
-    @events = @event.events
   end
 
   def new
     @event = current_user.events.build
-    # @event = Event.new
   end
 
   def edit
@@ -26,10 +24,14 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.build(event_params)
     if @event.save
-      flash[:notice] = "event #{@event.title} added successfully."
+      flash[:notice] = "event #{@event.name} added successfully."
       redirect_to @event
     else
-      flash.now[:error] = @event.errors.map(&:full_messages)
+      errors = []
+      @event.errors.full_messages.each do |msg|
+        errors << msg
+      end
+      flash.now[:notice] = errors
       render 'new'
     end
   end
