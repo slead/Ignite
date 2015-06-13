@@ -2,5 +2,6 @@
   .form-group
     =f.input :title,  input_html: { class: 'form-control' }, placeholder: "Enter the video's title"
     =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL"
+    =f.collection_select :event_id, Event.all, :id, :name, prompt: "Filmed at..."
     =f.collection_check_boxes :tag_ids, Tag.all, :id, :name
   =f.submit class: "btn btn-warning"
