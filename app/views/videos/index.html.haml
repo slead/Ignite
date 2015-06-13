@@ -1,15 +1,18 @@
 .container
   .row
-    .col-md-12
+    .col-md-8.col-md-offset-3
       %h1 Videos
       - @videos.each do |video|
-        %p= link_to video.title, video
-        %p= video.url
+        %iframe{src: video.url, width: '600px', height: '400px'}
+        %h3= link_to video.title, video
+        %h4
+          Filmed at
+          = link_to video.event.name, video.event
         %hr
 
 .container
   .row
-    .col-md-12
+    .col-md-8.col-md-offset-3.center
       - @tags.each do |tag|
         %button.btn.btn-default
           =link_to tag.name.titleize, videos_path(tag: tag.name)

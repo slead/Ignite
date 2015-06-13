@@ -33,6 +33,8 @@
             %li
               =link_to "Find an Ignite", "/events"
             %li
+              =link_to "Browse videos", videos_path
+            %li
               =link_to "Start an Ignite", "/start"
       
       .notifications
@@ -47,4 +49,12 @@
             %span.close{type: "button", data: {dismiss:"alert"}}
               %i.fa.fa-times
     =yield
-      
+
+    %footer
+      #hr
+      .row
+        .col-md-12.center
+          %h4 Footer stuff
+          %br
+          %p.small Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla.
+          %p.small Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Curabitur blandit tempus porttitor.
