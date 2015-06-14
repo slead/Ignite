@@ -4,8 +4,8 @@ class ContentController < ApplicationController
   end
 
   def home
-    @first_video = Video.first
-    @videos = Video.all.offset(1).limit(8).order(:created_at)
+    @first_video = Video.last
+    @videos = Video.all.offset(1).limit(8).order('created_at DESC')
     @upcomings = Upcoming.where('date > ?', Date.yesterday).limit(12).order('date ASC')
   end
 
