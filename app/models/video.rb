@@ -1,4 +1,5 @@
 class Video < ActiveRecord::Base
+  validates_presence_of :title, :event, :url
   belongs_to :event
   belongs_to :user
   has_and_belongs_to_many :tags

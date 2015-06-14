@@ -71,6 +71,10 @@ small, .small {
   bottom: 15px;
 }
 
+.top-50 {
+  margin-top: 50px;
+}
+
 footer {
   margin-top: 50px;
   background-color: #e9e9e9;
@@ -103,4 +107,8 @@ a:active,
 a.active {
     outline: 0;
     text-decoration: none;
+}
+
+li.current {
+  background-color: #e9e9e9;
 }

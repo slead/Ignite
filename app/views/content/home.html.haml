@@ -26,7 +26,7 @@
         %ul
           -@upcomings.each do |upcoming|
             %li
-              = link_to upcoming.name, upcoming.event
+              = link_to upcoming.name, event_page_path(upcoming.event)
               = "(#{upcoming.date.to_formatted_s(:rfc822)})"
         %p.bottom= link_to "Let us know about an upcoming event!", root_path
 
