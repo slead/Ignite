@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   resources :videos
   resources :upcomings
 
-  get ':content', to: 'content#show'
+  get '/about', to: 'content#about', as: :about #=> about_path
+  get '/start', to: 'content#start', as: :start #=> about_path
+
+  get '/:id', to: 'events#show', as: :event_page
 
   root to: "content#home"
+
 end

@@ -10,7 +10,7 @@
               = "- #{event.city}, #{event.state}, #{event.country}"
             - else
               = "- #{event.city}, #{event.country}"
-          %p= link_to event.url
+          %p= link_to event.name, event_page_path(event)
           -if event.upcomings.count > 0
             %p
               Next event:
