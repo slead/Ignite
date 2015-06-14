@@ -3,14 +3,14 @@
 
 .container
   .row
-    .col-md-6
+    .col-md-9
       %h3 Latest video
       %iframe{src: @first_video.url, width: '100%', height: '400px'}
       %h4= link_to @first_video.title, @first_video
       %p
         Filmed at
         = link_to @first_video.event.name, @first_video.event
-    .col-md-4.col-md-offset-2
+    .col-md-3
       %h3 Upcoming events
       %ul
       -@upcomings.each do |upcoming|
@@ -20,17 +20,15 @@
   .row
     .col-md-12
       %h4 Recent videos
-      -@videos.each do |video|
-        .row
-          .col-md-8.col-md-offset-2
-            %iframe{src: video.url, width: '100%', height: '400px'}
-            %h3= link_to video.title, video
-            %h4
-              Filmed at
-              = link_to video.event.name, video.event
-            %hr
-
-.container
   .row
-    .col-md-3.center
-      %h4= link_to "Browse all videos", videos_path
+    -@videos.each do |video|
+      .col-md-3
+        %iframe{src: video.url, width: '100%', height: '250px'}
+        %p= link_to video.title, video
+        %p.grey
+          Filmed at
+          = link_to video.event.name, video.event
+        %hr
+  .row
+    .col-md-12
+      %h5= link_to "Browse all videos", videos_path
