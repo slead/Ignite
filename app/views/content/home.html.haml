@@ -1,5 +1,16 @@
-#banner
-  =image_tag "header-bg.png"
+%header
+  .container
+    .intro-text
+      .intro-heading Ignite is a series of fun, five-minute presentations
+      .intro-lead-in
+        Ignite events are held in cities around the world.
+      .intro-lead-in
+        =link_to "Find an Ignite", events_path
+        near you,
+        =link_to "browse videos", videos_path
+        or
+        =link_to "start your own", start_path
+        !
 
 .container
   .row
