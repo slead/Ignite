@@ -7,11 +7,11 @@
       - else
         %p= "#{@event.city}, #{@event.country}"
       %p= link_to @event.url
-      -if @event.upcomings.count > 0
+      -if @upcomings.count > 0
         %p
           Next event:
-          = @event.upcomings.first.name
-          = "(#{@event.upcomings.first.date})"
+          = @upcomings.first.name
+          = "(#{@upcomings.first.date})"
 
   - if @videos.exists?
     .row

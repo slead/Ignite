@@ -13,6 +13,7 @@ class EventsController < ApplicationController
 
   def show
     @videos = @event.videos
+    @upcomings = @event.upcomings.where('date > ?', Date.yesterday)
   end
 
   def new
