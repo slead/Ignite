@@ -10,7 +10,7 @@
 
     -if not @video.tags.empty?
       .row 
-        .col-md-8.col-md-offset-3
+        .col-md-8
           .tags
             %i.fa.fa-tag
             %span= @video.tags.map(&:name).join(", ").titleize

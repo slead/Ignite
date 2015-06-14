@@ -55,6 +55,7 @@ small, .small {
 .tags {
   font-size: 80%;
   color: #727272;
+  margin-left: 15px;
 }
 
 .center {
@@ -63,6 +64,11 @@ small, .small {
 
 .right {
   text-align: right;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 15px;
 }
 
 footer {
@@ -88,4 +94,13 @@ footer {
 
 .about, .start {
   min-height: 600px;
+}
+
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+    outline: 0;
+    text-decoration: none;
 }
