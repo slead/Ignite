@@ -3,8 +3,22 @@
 
 .container
   .row
+    .col-md-6
+      %h3 Latest video
+      %iframe{src: @first_video.url, width: '100%', height: '400px'}
+      %h4= link_to @first_video.title, @first_video
+      %p
+        Filmed at
+        = link_to @first_video.event.name, @first_video.event
+    .col-md-4.col-md-offset-2
+      %h3 Upcoming events
+      %ul
+      -@upcomings.each do |upcoming|
+        %li= link_to upcoming.name, upcoming.event
+
+  .row
     .col-md-12
-      %h1 Featured Videos
+      %h4 Recent videos
       -@videos.each do |video|
         .row
           .col-md-8.col-md-offset-2

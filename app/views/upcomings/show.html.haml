@@ -3,3 +3,11 @@
     .col-md-12
       %h4= @upcoming.name
       %p= @upcoming.date
+      
+  - if user_signed_in?
+    .row
+      .user
+      = link_to edit_upcoming_path(@upcoming), class: "light btn-edit" do
+        %i.fa.fa-pencil-square-o
+      = link_to upcoming_path(@upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming event?"} do
+        %i.fa.fa-times
