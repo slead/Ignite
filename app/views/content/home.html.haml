@@ -9,7 +9,7 @@
       %h4= link_to @first_video.title, @first_video
       %p
         Filmed at
-        = link_to @first_video.event.name, @first_video.event
+        = link_to @first_video.event.name, event_page_path(@first_video.event)
     .col-md-3.sidebar
       .social.center
         = link_to "https://twitter.com/ignite" do
@@ -40,7 +40,7 @@
         %p= link_to video.title, video
         %p.grey
           Filmed at
-          = link_to video.event.name, video.event
+          = link_to video.event.name, event_page_path(video.event)
         %hr
   .row
     .col-md-12

@@ -9,7 +9,7 @@
         %h4= link_to video.title, video
         %span
           Filmed at
-          = link_to video.event.name, video.event
+          = link_to video.event.name, event_page_path(video.event)
         %hr
 
 .container
