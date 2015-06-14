@@ -4,10 +4,16 @@
       %h1 Event index
       -@events.each do |event|
         .row
-          %p= link_to event.name, event
-          - if not event.state.blank?
-            %p= "#{event.city}, #{event.state}, #{event.country}"
-          - else
-            %p= "#{event.city}, #{event.country}"
-          %p= link_to "Visit site", event.url
+          %p
+            = link_to event.name, event
+            - if not event.state.blank?
+              = "- #{event.city}, #{event.state}, #{event.country}"
+            - else
+              = "- #{event.city}, #{event.country}"
+          %p= link_to event.url
+          -if event.upcomings.count > 0
+            %p
+              Next event:
+              = event.upcomings.first.name
+              = "(#{event.upcomings.first.date})"
         %hr
