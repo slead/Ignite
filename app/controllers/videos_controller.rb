@@ -22,14 +22,7 @@ class VideosController < ApplicationController
   end
 
   def show
-    @related_videos = []
-    @video.tags.each do |tag|
-      tag.videos.each do |related_video|
-        if related_video != @video
-          @related_videos << related_video
-        end
-      end
-    end
+    @related_videos = @video.related_videos.pop(4)
   end
 
   def edit
