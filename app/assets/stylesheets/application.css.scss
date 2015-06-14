@@ -75,6 +75,17 @@ footer {
   }
 }
 
+.sidebar {
+  height: 400px;
+  margin-top: 55px;
+  padding: 15px;
+  background-color: #e9e9e9;
+  border: 1px solid black;
+  li {
+    list-style-type: none;
+  }
+}
+
 .about, .start {
   min-height: 600px;
 }

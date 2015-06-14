@@ -10,13 +10,21 @@
       %p
         Filmed at
         = link_to @first_video.event.name, @first_video.event
-    .col-md-3
-      %h3 Upcoming events
-      %ul
-      -@upcomings.each do |upcoming|
-        %li
-          = link_to upcoming.name, upcoming.event
-          = "(#{upcoming.date.to_formatted_s(:rfc822)})"
+    .col-md-3.sidebar
+      .social.center
+        %i.fa.fa-facebook
+        %i.fa.fa-twitter
+        %i.fa.fa-google-plus
+        %i.fa.fa-youtube
+
+      .upcoming  
+        %h3.center Upcoming events
+        %ul
+          -@upcomings.each do |upcoming|
+            %li
+              = link_to upcoming.name, upcoming.event
+              = "(#{upcoming.date.to_formatted_s(:rfc822)})"
+
   .row
     .col-md-12
       %h4 Recent videos

@@ -7,6 +7,11 @@
       - else
         %p= "#{@event.city}, #{@event.country}"
       %p= link_to "Visit website", @event.url
+      -if @event.upcomings.count > 0
+        %p
+          Next event:
+          = @event.upcomings.first.name
+          = "(#{@event.upcomings.first.date})"
 
       - if @videos.exists?
         %h4 Featured videos
