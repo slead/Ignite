@@ -6,7 +6,7 @@ class ContentController < ApplicationController
   def home
     @first_video = Video.first
     @videos = Video.all.offset(1).limit(10).order(:created_at)
-    @upcomings = Upcoming.all.limit(10).order('date DESC')
+    @upcomings = Upcoming.all.limit(10).order('date ASC')
   end
 
   def content_params

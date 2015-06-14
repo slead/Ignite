@@ -14,8 +14,9 @@
       %h3 Upcoming events
       %ul
       -@upcomings.each do |upcoming|
-        %li= link_to upcoming.name, upcoming.event
-
+        %li
+          = link_to upcoming.name, upcoming.event
+          = "(#{upcoming.date.to_formatted_s(:rfc822)})"
   .row
     .col-md-12
       %h4 Recent videos

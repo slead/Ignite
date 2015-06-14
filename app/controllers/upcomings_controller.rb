@@ -8,7 +8,7 @@ class UpcomingsController < ApplicationController
   end
 
   def index
-    @upcomings = Upcoming.all.order('date DESC')
+    @upcomings = Upcoming.all.order('date ASC')
   end
 
   def show
