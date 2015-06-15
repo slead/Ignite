@@ -73,6 +73,7 @@ GEM
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
     geocoder (1.2.8)
+    google-analytics-rails (0.0.6)
     haml (4.0.6)
       tilt
     hashie (3.4.1)
@@ -135,9 +136,6 @@ GEM
       activemodel
       elasticsearch (>= 1)
       hashie
-    seed_dump (3.2.2)
-      activerecord (~> 4)
-      activesupport (~> 4)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -183,6 +181,7 @@ DEPENDENCIES
   font-awesome-rails (~> 4.3.0.0)
   friendly_id (~> 5.1.0)
   geocoder (~> 1.2.8)
+  google-analytics-rails
   haml (~> 4.0.6)
   jbuilder (~> 2.0)
   jquery-rails
@@ -193,7 +192,6 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   searchkick (~> 0.8.7)
-  seed_dump
   simple_form (~> 3.1.0)
   spring
   sqlite3
