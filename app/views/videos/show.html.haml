@@ -12,8 +12,8 @@
       %p
         Filmed at
         = link_to @video.event.name, event_page_path(@video.event)
-      %iframe{src: @video.url, width: '100%', height: '800px'}
-      %p.small.right= link_to "View on YouTube", @video.url
+      .embed-container
+        =embed(@video.url)
 
     -if not @video.tags.empty?
       .row 
