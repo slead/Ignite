@@ -1,5 +1,4 @@
-# source 'https://rubygems.org'
-source 'http://rubygems'
+source 'https://rubygems.org'
 
 gem 'rails', '4.1.7'
 gem 'sqlite3'
@@ -29,3 +28,4 @@ gem 'simple_form', '~> 3.1.0'
 gem 'utf8_enforcer_workaround', '~> 1.1.0'
 gem 'will_paginate', '~> 3.0.7'
 gem 'will_paginate-bootstrap', '~> 1.0.1'
+gem 'seed_dump'

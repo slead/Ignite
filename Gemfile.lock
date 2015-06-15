@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems/
+  remote: https://rubygems.org/
   specs:
     actionmailer (4.1.7)
       actionpack (= 4.1.7)
@@ -129,6 +129,9 @@ GEM
       activemodel
       elasticsearch (>= 1)
       hashie
+    seed_dump (3.2.2)
+      activerecord (~> 4)
+      activesupport (~> 4)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -182,6 +185,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   searchkick (~> 0.8.7)
+  seed_dump
   simple_form (~> 3.1.0)
   spring
   sqlite3
