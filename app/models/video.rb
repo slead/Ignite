@@ -8,6 +8,10 @@ class Video < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, :use => :slugged
 
+  def should_generate_new_friendly_id?
+    title_changed?
+  end
+
   def related_videos
     #Find videos which share the same tag(s)
 
