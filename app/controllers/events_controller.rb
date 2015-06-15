@@ -8,7 +8,36 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all.order(:name)
+    @geojson = Array.new
+    if params[:bbox].present?
+      #Find events which fall within the current map extent
+      bbox = params[:bbox].split(",").map(&:to_f)
+      @events = Event.within_bounding_box(bbox).order(:name)
+    else
+      @events = Event.all.order(:name)  
+    end
+    # Make a JSON object from the events, to add to the map
+    @geojson += @events.collect do |event|
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [event.longitude, event.latitude]
+        },
+        properties: {
+          type: "event",
+          id: event.id,
+          name: event.name,
+          city: event.city,
+          country: event.country,
+          url: event.slug
+        }
+      }
+    end
+    respond_to do |format|
+      format.html
+      format.json { render json: @geojson }  # respond with the created JSON object
+    end
   end
 
   def show
