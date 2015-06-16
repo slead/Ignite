@@ -2,14 +2,14 @@
   .row 
     .col-md-12
       %h3= @video.title
-      %h4.video_title
+      %h4.title
       -if not @video.speaker_name.blank?
         - if not @video.speaker_url.blank?
           by
           = link_to @video.speaker_name, @video.speaker_url
         - else
           = "by #{@video.speaker_name}"
-      %p.video_subtitle
+      %p.subtitle
         Filmed at
         = link_to @video.event.name, event_page_path(@video.event)
       .embed-container
