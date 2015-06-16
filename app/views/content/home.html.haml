@@ -10,7 +10,6 @@
         =link_to "browse videos", videos_path
         or
         =link_to "start your own", start_path
-        !
 
 .container
   .row
@@ -50,7 +49,7 @@
       .col-md-3
         .embed-container
           =embed(video.url)
-        %p= link_to truncate(video.title, length: 40), video
+        %p= link_to truncate(video.title, length: 35), video
         %p.grey
           Filmed at
           = link_to video.event.name, event_page_path(video.event)

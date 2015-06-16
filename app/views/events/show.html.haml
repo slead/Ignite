@@ -21,7 +21,7 @@
           .embed-container
             =embed(video.url)
           %p.small.right= link_to "View on YouTube", video.url
-          %p= link_to video.title, video
+          %p= link_to truncate(video.title, length: 60), video
           -if not video.speaker_name.blank?
             - if not video.speaker_url.blank?
               %P
