@@ -15,6 +15,11 @@ html, body {
   background-color: #ffffff;
 }
 
+body {
+  /*To avoid the fixed header*/
+  margin-top: 70px;
+}
+
 h1, h2, h3, h4, h5, h6, p, a {
   font-family: Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
