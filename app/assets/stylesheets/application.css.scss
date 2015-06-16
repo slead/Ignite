@@ -229,3 +229,16 @@ header .intro-text {
 .video_subtitle {
   font-size: 80%;
 }
+
+.paginate {
+  text-align: center;
+  font-size: 60%;
+}
+
+.pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  z-index: 2;
+  color: #000;
+  cursor: default;
+  background-color: #e9e9e9;
+  border-color: #dddddd;
+}

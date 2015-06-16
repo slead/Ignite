@@ -29,6 +29,8 @@
               - else
                 = video.speaker_name
           %hr
+    .row.paginate
+      = will_paginate @videos, renderer: BootstrapPagination::Rails
 
     - if user_signed_in?
       .user

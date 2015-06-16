@@ -9,10 +9,10 @@ class VideosController < ApplicationController
  
   def index
     if params[:tag].blank?
-      @videos = Video.all
+      @videos = Video.all.paginate(:page => params[:page], :per_page => 8)
     else
       @tag = Tag.find_by(name: params[:tag])
-      @videos = @tag.videos
+      @videos = @tag.videos.paginate(:page => params[:page], :per_page => 8)
     end
     @tags = Tag.all.order(:name)
   end

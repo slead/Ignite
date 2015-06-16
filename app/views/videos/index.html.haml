@@ -17,6 +17,9 @@
           at
           = link_to video.event.name, event_page_path(video.event)
         %hr
+  .row.paginate
+    = will_paginate @videos, renderer: BootstrapPagination::Rails
+%hr
 
 .container
   .row
