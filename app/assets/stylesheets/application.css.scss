@@ -131,10 +131,6 @@ a.active {
     color: red;
 }
 
-.navbar-default .navbar-nav > li > a:hover {
-  color: red;
-}
-
 li.current {
   background-color: #e9e9e9;
 }
@@ -183,6 +179,10 @@ header .intro-text {
   }
 }
 
+.navbar {
+  padding-right: 15px;
+}
+
 @media(min-width:768px) {
     header .intro-text {
         padding-top: 300px;
@@ -210,8 +210,15 @@ header .intro-text {
         font-weight: 700;
         line-height: 75px;
     }
+
+    .navbar {
+      padding-right: 15px;
+    }
 }
 
+.navbar-default .navbar-nav > li > a:hover {
+  color: red;
+}
 .navbar, .navbar-default{
   background-color: #000;
   border: 0px;
