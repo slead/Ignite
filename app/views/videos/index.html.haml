@@ -23,10 +23,10 @@
 
 .container
   .row
-    %p.center (The tag search needs some work...)
+    %p.center Filter
     .col-md-8.col-md-offset-2.center
       - @tags.each do |tag|
-        %button.btn.btn-default
+        %button.btn.btn-default.tags
           =link_to tag.name.titleize, videos_path(tag: tag.name)
-      %button.btn.btn-default
+      %button.btn.btn-default.tags
         =link_to "Clear", videos_path
