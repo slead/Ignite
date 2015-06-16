@@ -65,17 +65,25 @@ ready = function() {
 
         // Create a new text entry for each event
         var html = '';
-        for (var idx = 0; idx <geojson.length; idx++) {
-          if (idx % 4 == 0) {
-            html += "<div class='row'>";
-          }
-          event = geojson[idx].properties;
-          html += "<div class='col-md-3 col-sm-3 col-xs-3 event_content' id='" + event.id + "''>";
-          html += "<div><h4 class='title'><a href=" + event.url + ">" + event.name + "<span class='link-spanner'></span></a></h2></div>";
-          html += "<div><p class='subtitle'>" + event.city + ", " + event.country + "</h4></div>";
+        if (geojson.length == 0) {
+          html += "<div class='row'>";
+          html += "<div class='col-md-6 col-md-offset-4 event_content'>";
+          html += "<div><h4>No Ignites found here.</h4></div>";
+          html += "<div><p><a href='#'>Tell us</a> about an existing Ignite, or learn how you can <a href='start'>start your own</a>!</p></div>";
           html += "</div>"; // event_content
-          if (idx % 4 == 3) {
-            html += "</div>"
+        } else {
+          for (var idx = 0; idx <geojson.length; idx++) {
+            if (idx % 4 == 0) {
+              html += "<div class='row'>";
+            }
+            event = geojson[idx].properties;
+            html += "<div class='col-md-3 col-sm-3 col-xs-3 event_content' id='" + event.id + "''>";
+            html += "<div><h4 class='title'><a href=" + event.url + ">" + event.name + "<span class='link-spanner'></span></a></h4></div>";
+            html += "<div><p class='subtitle'>" + event.city + ", " + event.country + "</p></div>";
+            html += "</div>"; // event_content
+            if (idx % 4 == 3) {
+              html += "</div>"
+            }
           }
         }
         $("#results").html(html);
