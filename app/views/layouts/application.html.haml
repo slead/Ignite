@@ -10,9 +10,7 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
     %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Montserrat:400,700"}
-    %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Kaushan+Script"}
-    %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"}
-    %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"}
+    %link{rel: "stylesheet", href: "http://fonts.googleapis.com/css?family=Raleway:400,700"}
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'tile.stamen'
     = analytics_init if Rails.env.production?
@@ -29,7 +27,7 @@
             %span.icon-bar
 
           =link_to root_path, {:class => "navbar-brand"} do
-            Ignite
+            = image_tag 'ignite_logo.png', :style => "margin-top: -15px;"
             %small Enlighten us, but make it quick
 
         #navbar.navbar-collapse.collapse
@@ -76,5 +74,5 @@
           %p Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Donec ullamcorper nulla non metus auctor fringilla.
     .row.sponsors
       .col-md-8.col-md-offset-2.center
-        %h4 Sponsors
-        %p information on our amazing sponsors will go here
+        %h4 Founding sponsor
+        = link_to image_tag( 'oreilly_logo.png'), 'http://www.oreilly.com'

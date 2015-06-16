@@ -15,6 +15,10 @@ html, body {
   background-color: #ffffff;
 }
 
+h1, h2, h3, h4, h5, h6, p, a {
+  font-family: Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
 #notice_wrapper, #alert_wrapper {
   position: absolute;
   top: 0;
@@ -154,16 +158,20 @@ header .intro-text {
   .intro-lead-in {
     background: none repeat scroll 0 0 rgba(59, 59, 59, 0.8);
     margin-bottom: 25px;
-    font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 22px;
-    font-style: italic;
     line-height: 22px;
+    a {
+      font-family: Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      color: white;
+      text-decoration: underline;
+    }
   }
   .intro-heading {
     background: none repeat scroll 0 0 rgba(59, 59, 59, 0.8);
     margin-bottom: 25px;
     text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Montserrat","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 50px;
     font-weight: 700;
     line-height: 50px;
@@ -178,10 +186,15 @@ header .intro-text {
 
     header .intro-text .intro-lead-in {
         margin-bottom: 25px;
-        font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-family: "Montserrat","Helvetica Neue",Helvetica,Arial,sans-serif;
         font-size: 25px;
-        font-style: italic;
+        /*font-style: italic;*/
         line-height: 40px;
+        a {
+          font-family: Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif;
+          color: white;
+          text-decoration: underline;
+        }
     }
 
     header .intro-text .intro-heading {
