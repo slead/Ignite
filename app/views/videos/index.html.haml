@@ -8,15 +8,13 @@
         .embed-container
           =embed(video.url)
         %h4.video_title= link_to truncate(video.title, length: 60), video
-        -if not video.speaker_name.blank?
-          - if not video.speaker_url.blank?
-            %P
-              by
+        %p.video_subtitle
+          -if not video.speaker_name.blank?
+            - if not video.speaker_url.blank?
               = link_to video.speaker_name, video.speaker_url
-          - else
-            %p= "by #{video.speaker_name}"
-        %span.video_filmed_at
-          Filmed at
+            - else
+              = "#{video.speaker_name}"
+          at
           = link_to video.event.name, event_page_path(video.event)
         %hr
 

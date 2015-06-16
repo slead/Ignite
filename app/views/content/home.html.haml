@@ -18,8 +18,9 @@
       .embed-container
         =embed(@first_video.url)
       %h4.video_title= link_to truncate(@first_video.title, length: 100), @first_video
-      %p.video_filmed_at
-        Filmed at
+      %p.video_subtitle
+        =@first_video.speaker_name
+        at
         = link_to @first_video.event.name, event_page_path(@first_video.event)
     .col-md-3.sidebar
       .social.center
@@ -50,8 +51,9 @@
         .embed-container
           =embed(video.url)
         %p.video_title= link_to truncate(video.title, length: 35), video
-        %p.video_filmed_at
-          Filmed at
+        %p.video_subtitle
+          = video.speaker_name
+          at
           = link_to video.event.name, event_page_path(video.event)
         %hr
   .row
