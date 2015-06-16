@@ -4,6 +4,6 @@
     =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL"
     =f.input :speaker_name, input_html: { class: 'form-control' }, placeholder: "Enter the speaker's name"
     =f.input :speaker_url, input_html: { class: 'form-control' }, placeholder: "Enter the speaker's URL (eg Twitter, blog, etc)"
-    =f.collection_select :event_id, Event.all, :id, :name, prompt: "Filmed at...", required: :true
-    =f.collection_check_boxes :tag_ids, Tag.all, :id, :name
+    =f.collection_select :event_id, Event.all.order(:name), :id, :name, prompt: "Filmed at...", required: :true
+    =f.collection_check_boxes :tag_ids, Tag.all.order(:name), :id, :name
   =f.submit class: "btn btn-warning"
