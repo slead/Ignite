@@ -14,7 +14,7 @@ class VideosController < ApplicationController
       @tag = Tag.find_by(name: params[:tag])
       @videos = @tag.videos
     end
-    @tags = Tag.all
+    @tags = Tag.all.order(:name)
   end
 
   def new
