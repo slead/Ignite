@@ -147,25 +147,25 @@ header {
 }
 
 header .intro-text {
-    padding-top: 100px;
-    padding-bottom: 50px;
-}
-
-header .intro-text .intro-lead-in {
+  padding-top: 100px;
+  padding-bottom: 50px;
+  .intro-lead-in {
+    background: none repeat scroll 0 0 rgba(59, 59, 59, 0.8);
     margin-bottom: 25px;
     font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 22px;
     font-style: italic;
     line-height: 22px;
-}
-
-header .intro-text .intro-heading {
+  }
+  .intro-heading {
+    background: none repeat scroll 0 0 rgba(59, 59, 59, 0.8);
     margin-bottom: 25px;
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 50px;
     font-weight: 700;
     line-height: 50px;
+  }
 }
 
 @media(min-width:768px) {
