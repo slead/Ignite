@@ -17,7 +17,7 @@
     .row
       %h4 Featured videos
       - @videos.each do |video|
-        .col-md-6
+        .col-md-6.col-sm-12.col-xs-12
           .embed-container
             =embed(video.url)
           %p.video_title= link_to truncate(video.title, length: 60), video

@@ -70,7 +70,7 @@ ready = function() {
             html += "<div class='row'>";
           }
           event = geojson[idx].properties;
-          html += "<div class='col-md-4 event_content' id='" + event.id + "''>";
+          html += "<div class='col-md-4 col-sm-4 col-xs-4 event_content' id='" + event.id + "''>";
           html += "<div class='name'><h4><a href=" + event.url + ">" + event.name + "<span class='link-spanner'></span></a></h2></div>";
           html += "<div class='city'><p>" + event.city + "," + event.country + "</h4></div>";
           html += "</div>"; // event_content
