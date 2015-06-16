@@ -6,7 +6,7 @@
         %p= "#{@event.city}, #{@event.state}, #{@event.country}"
       - else
         %p= "#{@event.city}, #{@event.country}"
-      %p= link_to @event.url
+      %p= link_to @event.url, @event.url
       -if @upcomings.count > 0
         %p
           Next event:
