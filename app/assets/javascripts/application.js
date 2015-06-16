@@ -25,6 +25,24 @@ function pageLoad() {
       $(this).remove();
     })
   }, 4500)
+
+  // When hovering over the event's text content, open its map infoWindow
+  $( "body" ).delegate( ".event_content", "mouseenter", function() {
+    $(this).addClass("active");
+    eventID = this.id
+    jsonLayer.eachLayer(function (layer) {
+      if(eventID == layer.feature.properties.id) {
+        console.log(eventID);
+        layer.openPopup()
+      }
+    });
+
+
+  });
+
+  $( "body" ).delegate( ".event_content", "mouseleave", function() {
+    $(this).removeClass("active");
+  });
 }
 
 $(document).ready(pageLoad);
