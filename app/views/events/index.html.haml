@@ -4,24 +4,3 @@
 
   .row
     #results.col-md-12
-
-  / .row
-  /   .col-md-12
-  /     %h1 Find an Ignite
-  /     %p (this page will be converted into a map)
-  /   %hr  
-  /     -@events.each do |event|
-  /       .row
-  /         %p
-  /           = link_to event.name, event_page_path(event)
-  /           - if not event.state.blank?
-  /             = "- #{event.city}, #{event.state}, #{event.country}"
-  /           - else
-  /             = "- #{event.city}, #{event.country}"
-  /         %p= link_to event.url, event.url
-  /         -if event.upcomings.count  0
-  /           %p
-  /             Next event:
-  /             = event.upcomings.first.name
-  /             = "(#{event.upcomings.first.date})"
-  /       %hr
