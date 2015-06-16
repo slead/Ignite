@@ -10,7 +10,7 @@
 ####Out of scope for the site:
   * to be a repository for every Ignite video
   * to promote any particular city’s Ignite
-  * to host the videos (they should be on YouTube, Vimeo, etc)
+  * to host the videos (they should be on YouTube)
 
 The site needs to be low-maintenance and largely self-supporting, without onerous demands once it’s set up. To that that end, there is no user registration (aside from administrators), no voting, no comments, no speaker bios, etc.
 
@@ -18,6 +18,4 @@ The site needs to be low-maintenance and largely self-supporting, without onerou
 
 Only the best videos should be listed on the Global Ignite site. They will be chosen by the moderators, including from submissions by each city. New videos should be added at least once a week.
 
-The videos on the site should be uploaded and hosted by each individual city, e.g. on their own YouTube or Vimeo page, and only linked on the Global Ignite page. This way, maintenance/moderation of the videos is the responsibility of the original city.
-
-This approach will also preserve any page views/comments already existing on each video.
+The videos on the site should be uploaded and hosted by each individual city on their own YouTube, and linked on the Global Ignite page. This way, maintenance/moderation of the videos is the responsibility of the original city. This approach will also preserve any page views/comments already existing on each video.
