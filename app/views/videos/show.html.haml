@@ -38,4 +38,4 @@
       - @related_videos.each do |related_video|
         .col-md-3
           %iframe{src: related_video.url, width: '100%', height: '250px'}
-          %p= link_to related_video.title, related_video
+          %p= link_to truncate(related_video.title, length: 40), related_video

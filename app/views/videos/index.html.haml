@@ -7,7 +7,7 @@
       .col-md-6
         .embed-container
           =embed(video.url)
-        %h4= link_to video.title, video
+        %h4= link_to truncate(video.title, length: 60), video
         -if not video.speaker_name.blank?
           - if not video.speaker_url.blank?
             %P
