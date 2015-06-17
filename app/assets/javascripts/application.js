@@ -17,6 +17,7 @@
 //= require leaflet
 
 function pageLoad() {
+  console.log("page load")
   setTimeout(function() {
     $('#notice_wrapper').fadeOut("slow", function() {
       $(this).remove();
@@ -44,20 +45,25 @@ function pageLoad() {
     $(this).removeClass("active");
   });
 
-  // hide .navbar first
-  $(".navbar").hide();
-  
-  // fade in .navbar
-  $(function () {
-    $(window).scroll(function () {
-            // set distance user needs to scroll before we fadeIn navbar
-      if ($(this).scrollTop() > 150) {
-        $('.navbar').fadeIn();
-      } else {
-        $('.navbar').fadeOut();
-      }
+  // Hide/show the navbar on the homepage (only)
+  if(window.location.pathname == "/") {
+    $(".navbar").hide();
+    
+    // fade in .navbar
+    $(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 150) {
+          $('.navbar').fadeIn();
+        } else {
+          $('.navbar').fadeOut();
+        }
+      });
     });
-  });
+
+  } else {
+    $(".navbar").show();
+    $(window).unbind('scroll');
+  }
 }
 
 $(document).ready(pageLoad);
