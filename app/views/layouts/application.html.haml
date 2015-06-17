@@ -55,22 +55,26 @@
 
     %footer
       .row
-        .col-md-3
+        .col-md-2.col-md-offset-1
+          %h4.center Links
           %ul
             %li= link_to "Contact Us", root_path
-            %li= link_to "Find an Ignite", root_path
-            %li= link_to "Browse videos", root_path
-            %li= link_to "Start an Ignite", root_path
-            %li= link_to "Dapibus Lorem Inceptos Vulputate", root_path
-            %li= link_to "Cras Quam Risus Parturient Ligula", root_path
-            %li= link_to "Mattis Etiam Dapibus Egestas", root_path
-            %li= link_to "Purus Fermentum Euismod Ligula Pharetra", root_path
+            %li= link_to "Find an Ignite", events_path
+            %li= link_to "Browse videos", videos_path
+            %li= link_to "Start an Ignite", start_path
+            %li= link_to "Become an Ignite sponsor", root_path
         .col-md-4.col-md-offset-1.map
-          %p.center Map goes here
+          %h4.center Find your local Ignite
+          = link_to image_tag( 'map.png'), events_path
         .col-md-3.col-md-offset-1
-          %h4 About Ignite
-          %p Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-          %p Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Donec ullamcorper nulla non metus auctor fringilla.
+          %h4.center About Ignite
+          %p Ignite is all about fast and fun presentations. Seakers must build their presentations with 20 slides, each of which is shown for 15 seconds, giving each speaker 5 minutes of fame.
+          %p The first Ignite took place in Seattle in 2006, and since then the event has become an international phenomenon.
+          %p Ignite is a trademark of O'Reilly Publishing and is used with permission.
+          %p
+            Read
+            =link_to "more", about_path
+            about Ignite.
     .row.sponsors
       .col-md-8.col-md-offset-2.center
         %h4 Founding sponsor
