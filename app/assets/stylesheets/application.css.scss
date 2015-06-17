@@ -23,6 +23,9 @@ body {
 h1, h2, h3, h4, h5, h6, p, a {
   font-family: Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+img {
+  max-width: 100%;
+}
 
 #notice_wrapper, #alert_wrapper {
   position: absolute;
@@ -110,7 +113,7 @@ footer {
   height: 400px;
   margin-top: 55px;
   padding: 15px;
-  background-color: lightgrey;
+  background-color: #e9e9e9;
   border: 1px solid black;
   li {
     list-style-type: none;
@@ -139,43 +142,18 @@ li a {
   color: red;
 }
 
-header {
-    text-align: center;
-    color: #fff;
-    background-attachment: scroll;
-    background-image: url(../images/header-bg.png);
-    margin-top: -20px;
-    background-position: center center;
-    background-repeat: none;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-}
-
-header .intro-text {
-  padding-top: 100px;
-  padding-bottom: 50px;
-  .intro-lead-in {
-    background: none repeat scroll 0 0 rgba(59, 59, 59, 0.8);
-    margin-bottom: 25px;
-    font-family: Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 22px;
-    line-height: 22px;
-    a {
-      font-family: Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif;
-      color: white;
-      text-decoration: underline;
-    }
-  }
-  .intro-heading {
-    background: none repeat scroll 0 0 rgba(59, 59, 59, 0.8);
-    margin-bottom: 25px;
+.promo-home {
+  background-color: #e9e9e9;
+  background-size: cover;
+  margin-top: -20px;
+  min-height: 250px;
+  padding-top: 50px;
+  margin-bottom: 25px;
+  h1 {
     text-transform: uppercase;
-    font-family: "Montserrat","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 50px;
-    font-weight: 700;
-    line-height: 50px;
+  }
+  p {
+    font-size: 125%;
   }
 }
 
@@ -184,32 +162,6 @@ header .intro-text {
 }
 
 @media(min-width:768px) {
-    header .intro-text {
-        padding-top: 300px;
-        padding-bottom: 200px;
-    }
-
-    header .intro-text .intro-lead-in {
-        margin-bottom: 25px;
-        font-family: "Montserrat","Helvetica Neue",Helvetica,Arial,sans-serif;
-        font-size: 25px;
-        /*font-style: italic;*/
-        line-height: 40px;
-        a {
-          font-family: Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif;
-          color: white;
-          text-decoration: underline;
-        }
-    }
-
-    header .intro-text .intro-heading {
-        margin-bottom: 50px;
-        text-transform: uppercase;
-        font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-        font-size: 50px;
-        font-weight: 700;
-        line-height: 75px;
-    }
 
     .navbar {
       padding-right: 15px;

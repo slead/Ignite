@@ -1,15 +1,18 @@
-%header
+%section.promo-home
   .container
-    .intro-text
-      .intro-heading Ignite is a series of fun, five-minute presentations
-      .intro-lead-in
-        Ignite events are held in cities around the world.
-      .intro-lead-in
+    .row
+      .col-md-9.col-sm-12.col-xs-12
+        %h1 Ignite is a series of speedy presentations
+        %p Presenters get 20 slides, which automatically advance every 15 seconds. The result is a fast and fun presentation which lasts just 5 minutes.
+        %p Ignite events are held in cities around the world.
         =link_to "Find an Ignite", events_path
         near you,
-        =link_to "browse videos", videos_path
+        =link_to "browse Ignite videos", videos_path
         or
-        =link_to "start your own", start_path
+        =link_to "start a new Ignite", start_path
+        in your city.
+      .col-md-3.hidden-sm.hidden-xs
+        = link_to image_tag( 'ignite-logo_large.png'), about_path 
 
 .container
   .row
