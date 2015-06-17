@@ -134,7 +134,7 @@ a:active,
 a.active {
     outline: 0;
     text-decoration: none;
-    color: #de1f26;
+    color: #ff0000;
 }
 
 li.current {
@@ -142,17 +142,17 @@ li.current {
 }
 
 li a {
-  color: #de1f26;
+  color: #ff0000;
 }
 
 .promo-home {
+  // background-color: #e9e9e9;
   background-color: #000;
   background-size: cover;
-  margin-top: -70px;
+  margin-top: -20px;
   min-height: 250px;
   padding-top: 50px;
   margin-bottom: 25px;
-  padding-bottom: 50px;
   h1 {
     text-transform: uppercase;
     font-size: 30px;
@@ -161,6 +161,9 @@ li a {
   p {
     font-size: 125%;
     color: #808080;
+  }
+  a {
+    color: #de1f26;
   }
 }
 
@@ -176,7 +179,7 @@ li a {
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-  color: #de1f26;
+  color: #ff0000;
 }
 .navbar, .navbar-default{
   background-color: #000;
