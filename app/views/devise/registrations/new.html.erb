@@ -1,25 +1,9 @@
 <div class="container top-150">  
   <div class="row">
     <div class="col-md-6 col-md-offset-3 panel">
-      <h2>Sign up</h2>
+      <h2>Sign up is disabled</h2>
 
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= f.error_notification %>
-
-        <div class="form-inputs">
-          <%= f.input :email, required: true, autofocus: true %>
-          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
-          <%= f.input :password_confirmation, required: true %>
-        </div>
-
-        <div class="form-actions">
-          <%= f.button :submit, "Sign up", class: "btn-warning" %>
-        </div>
-      <% end %>
-
-      <div class="wrapper">
-        <%= render "devise/shared/links" %>
-      </div>
+      
     </div>
   </div>
 </div>

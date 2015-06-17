@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :videos
   end
 
+
+  resources :admin
   resources :videos
   resources :upcomings
 

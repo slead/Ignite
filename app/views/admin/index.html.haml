@@ -1,0 +1,9 @@
+.container
+  .row
+    .col-md-12
+      .admin
+        %h1 Admin page
+        %h4 Videos
+        %ul
+        -@videos.each do |video|
+          %li= video.title
