@@ -32,10 +32,12 @@
 
         #navbar.navbar-collapse.collapse
           %ul.nav.navbar-nav.navbar-right
+            -if user_signed_in?
+              %li= link_to "Admin", admin_path
             =nav_link("About Ignite", "/about")
             =nav_link "Find an Ignite", "/events"
             =nav_link "Browse videos", videos_path
-            = nav_link "Start an Ignite", "/start"
+            =nav_link "Start an Ignite", "/start"
       
       .notifications
         - if notice
