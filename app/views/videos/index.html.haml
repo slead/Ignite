@@ -6,10 +6,10 @@
   .row.top-50
     .col-md-8.col-md-offset-2.center
       - @tags.each do |tag|
-        %button{:class => 'btn btn-default tags', :id => "tag_" + tag.name}
-          =link_to tag.name.titleize, videos_path(tag: tag.name)
-      %button.btn.btn-default.btn-clear.tags
-        =link_to "Clear", videos_path
+        =link_to videos_path(tag: tag.name) do
+          %btn.btn.btn-default{:id => "tag_" + tag.name}= tag.name.titleize
+      =link_to videos_path do
+        %btn.btn.btn-default Clear
   .row.top-50
     - @videos.each do |video|
       .col-md-6
