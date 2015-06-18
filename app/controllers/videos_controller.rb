@@ -14,7 +14,7 @@ class VideosController < ApplicationController
       @tag = Tag.find_by(name: params[:tag])
       @videos = @tag.videos.paginate(:page => params[:page], :per_page => 8)
     end
-    @tags = Tag.all.order(:name)
+    @tags = Tag.where(major: true).order(:name)
   end
 
   def new
