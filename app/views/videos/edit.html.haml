@@ -5,5 +5,10 @@
         .panel-heading Edit video
         .panel-body
           = render 'form'
-      = link_to "Cancel", video_path,  class: "btn btn-default"
-      = link_to "Delete", video_path(@video), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this video?"}
+      %hr
+        %button.btn
+          = link_to "Back to video page", video_path
+        %button.btn
+          = link_to "Delete video", video_path(@video), method: :delete, data: {confirm: "Are you sure you want to delete this video?"}
+        %button.btn
+          = link_to "Back to Admin page", admin_path

@@ -5,7 +5,9 @@
         .panel-heading Add a new video
         .panel-body
           = render 'form'
-          = link_to "Cancel", root_path,  class: "btn btn-default"
+        %hr
+        %button.btn
+          = link_to "Back to Admin page", admin_path
   .row
     .col-md-8.col-md-offset-2
       %p Note that we are only looking for very high quality videos on this site. This means:
