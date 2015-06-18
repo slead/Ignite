@@ -3,13 +3,15 @@
     .col-md-8.col-md-offset-2
       %h2.center Featured Ignite videos
   %hr
-  .row.top-50
-    .col-md-8.col-md-offset-2.center
+  .row
+    .col-md-12.right
+      =link_to videos_path do
+        %btn.btn.btn-default.tags#clear-filter
+          %i.fa.fa-times
+          remove filter
       - @tags.each do |tag|
         =link_to videos_path(tag: tag.name) do
           %btn.btn.btn-default.tags{:id => "tag_" + tag.name}= tag.name.titleize
-      =link_to videos_path do
-        %btn.btn.btn-default.tags Clear
   .row.top-50
     - @videos.each do |video|
       .col-md-6

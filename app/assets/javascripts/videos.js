@@ -2,7 +2,12 @@ var ready;
 ready = function() {
   $(".tags").removeClass("active");
   var tag = getUrlParameter("tag");
-  $("#tag_" + tag).addClass("active");
+  if (tag != undefined) {
+    $("#tag_" + tag).addClass("active");
+    $("#clear-filter").show();
+  } else {
+    $("#clear-filter").hide();
+  }
 }
 
 function getUrlParameter(sParam)
