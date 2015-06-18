@@ -4,8 +4,6 @@ class AdminController < ApplicationController
   def index
     @videos = Video.all
     @events = Event.all
-    @tags = Tag.all
-    @users = User.all
   end
 
 end

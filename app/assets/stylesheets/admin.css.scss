@@ -1,6 +1,13 @@
 // Place all the styles related to the admin controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.admin {
-  min-height: 500px;
+
+i {
+  color: #727272;
+}
+
+h2 button {
+  display: inline-block;
+  font-size: 0.5em;
+  margin-left: 25px;
 }

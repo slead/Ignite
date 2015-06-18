@@ -1,20 +1,67 @@
 = javascript_include_tag 'jQuery.dataTables.min'
 
-.container
+.container-fluid
   .row
-    .col-md-12
-      .admin
-        %h1 Admin page
-        %h4 Videos
-        %table#videos
+    .col-md-10.col-md-offset-1
+      %h2
+        Videos
+        %button
+          =link_to "Add new video", new_video_path
+      %hr
+      %table#videos
+        %thead
+          %tr
+            %th Event
+            %th Title
+            %th URL
+            %th Presenter
+            %th Presenter URL
+            %th Uploaded
+            %th Tags
+            %th
+            %th
+        %tbody
+          -@videos.each do |video|
+            %tr
+              %td= video.event.name
+              %td= video.title
+              %td= video.url
+              %td= video.speaker_name
+              %td= video.speaker_url
+              %td= video.created_at.to_date
+              %td= video.tags.map(&:name)
+              %td
+                =link_to edit_video_path(video), class: "light btn-edit" do
+                  %i.fa.fa-pencil-square-o
+              %td
+                =link_to video_path(video), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this video?"} do 
+                  %i.fa.fa-times
+
+      .top-50
+        %h2
+          Events
+          %button
+            =link_to "Add new event", new_event_path
+        %hr
+        %table#events
           %thead
             %tr
-              %th Title
+              %th Name
+              %th City
+              %th State
+              %th Country
               %th URL
-              %th Presenter
+              %th
           %tbody
-            -@videos.each do |video|
+            -@events.each do |event|
               %tr
-                %td= video.title
-                %td= video.url
-                %td= video.speaker_name
+                %td= event.name
+                %td= event.city
+                %td= event.state
+                %td= event.country
+                %td= event.url
+                %td
+                  =link_to edit_event_path(event), class: "light btn-edit" do
+                    %i.fa.fa-pencil-square-o
+                  =link_to event_path(event), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this event?"} do 
+                    %i.fa.fa-times
