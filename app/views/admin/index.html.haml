@@ -6,6 +6,15 @@
       .admin
         %h1 Admin page
         %h4 Videos
-        %ul
-        -@videos.each do |video|
-          %li= video.title
+        %table#videos
+          %thead
+            %tr
+              %th Title
+              %th URL
+              %th Presenter
+          %tbody
+            -@videos.each do |video|
+              %tr
+                %td= video.title
+                %td= video.url
+                %td= video.speaker_name
