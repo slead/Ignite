@@ -12,6 +12,7 @@
     %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Raleway:400,700"}
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'tile.stamen'
+    = javascript_include_tag 'https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js'
     = analytics_init if Rails.env.production?
 
   %body#page-top.index
