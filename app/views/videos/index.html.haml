@@ -1,22 +1,19 @@
 .container
   .row
-    .col-md-12
-      = form_tag videos_path, class: "form-inline", method: :get do
-        .input-group.input-group-lg
-          - if params[:query].present?
-            .input-group-btn
-              = link_to "clear", videos_path, class: "btn btn-default"
-          = text_field_tag :query, params[:query], class: "form-control", id: "search", autocomplete: "off"
-          .input-group-btn
-            = submit_tag "Search", class: "btn btn-primary"
-
-.container
-  .row
     .col-md-8.col-md-offset-2
       %h2.center Featured Ignite videos
   %hr
   .row
-    .col-md-12.right
+    .col-md-6
+      = form_tag videos_path, class: "form-inline", method: :get do
+        .input-group
+          = text_field_tag :query, params[:query], class: "form-control", id: "search", autocomplete: "off"
+          .input-group-btn
+            - if params[:query].present?
+              = link_to videos_path, class: "btn btn-default" do
+                %i.fa.fa-times
+            = submit_tag "Search", class: "btn btn-default"
+    .col-md-6.right
       =link_to videos_path do
         %btn.btn.btn-default.tags#clear-filter
           %i.fa.fa-times
