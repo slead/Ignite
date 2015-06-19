@@ -8,6 +8,13 @@ ready = function() {
   } else {
     $("#clear-filter").hide();
   }
+
+  $(function() {
+    return $('#search').typeahead({
+      name: "video",
+      remote: "/videos/autocomplete?query=%QUERY"
+    });
+  });   
 }
 
 function getUrlParameter(sParam)
@@ -22,7 +29,7 @@ function getUrlParameter(sParam)
             return sParameterName[1];
         }
     }
-}          
+}       
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :autocomplete]
   before_action :find_video, only: [:show, :edit, :update, :destroy]
 
   rescue_from ActiveRecord::RecordNotFound do
@@ -8,11 +8,14 @@ class VideosController < ApplicationController
   end
  
   def index
-    if params[:tag].blank?
-      @videos = Video.all.paginate(:page => params[:page], :per_page => 8)
-    else
+
+    if params[:query].present?
+      @videos = Video.search(params[:query], page: params[:page], :per_page => 8)
+    elsif params[:tag].present?
       @tag = Tag.find_by(name: params[:tag])
       @videos = @tag.videos.paginate(:page => params[:page], :per_page => 8)
+    else
+      @videos = Video.all.paginate(:page => params[:page], :per_page => 8)
     end
     @tags = Tag.where(major: true).order(:name)
   end
@@ -53,6 +56,10 @@ class VideosController < ApplicationController
     @video.destroy
     flash[:notice] = "Video #{@video.title} deleted successfully."
     redirect_to root_path
+  end
+
+  def autocomplete
+    render json: Video.search(params[:query], autocomplete: true, limit: 10).map(&:title)
   end
 
 private
