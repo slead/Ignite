@@ -35,7 +35,6 @@
           %ul.nav.navbar-nav.navbar-right
             -if user_signed_in?
               %li= link_to "Admin", admin_path
-            =nav_link("About Ignite", "/about")
             =nav_link "Find an Ignite", "/events"
             =nav_link "Browse videos", videos_path
             =nav_link "Start an Ignite", "/start"
@@ -71,10 +70,7 @@
           %p Ignite is all about fast and fun presentations. Seakers must build their presentations with 20 slides, each of which is shown for 15 seconds, giving each speaker 5 minutes of fame.
           %p The first Ignite took place in Seattle in 2006, and since then the event has become an international phenomenon.
           %p Ignite is a trademark of O'Reilly Publishing and is used with permission.
-          %p
-            Read
-            =link_to "more", about_path
-            about Ignite.
+
     .row.sponsors
       .col-md-8.col-md-offset-2.center
         %h4 Founding sponsor
