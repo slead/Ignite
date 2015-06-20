@@ -51,9 +51,9 @@
 
       .top-50
         %h2
-          Events
+          Ignites
           %button
-            =link_to "Add new event", new_event_path
+            =link_to "Add new Ignite", new_event_path
         %hr
         %table#events
           %thead
@@ -75,5 +75,30 @@
                 %td
                   =link_to edit_event_path(event), class: "light btn-edit" do
                     %i.fa.fa-pencil-square-o
-                  =link_to event_path(event), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this event?"} do 
+                  =link_to event_path(event), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this Ignite?"} do 
+                    %i.fa.fa-times
+
+      .top-50
+        %h2
+          Upcoming Events
+          %button
+            =link_to "Add new upcoming event", new_upcoming_path
+        %hr
+        %table#upcoming
+          %thead
+            %tr
+              %th Name
+              %th Ignite
+              %th Date
+              %th
+          %tbody
+            -@upcomings.each do |upcoming|
+              %tr
+                %td= upcoming.name
+                %td= upcoming.event.name
+                %td= upcoming.date
+                %td
+                  =link_to edit_upcoming_path(upcoming), class: "light btn-edit" do
+                    %i.fa.fa-pencil-square-o
+                  =link_to upcoming_path(upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming event?"} do 
                     %i.fa.fa-times

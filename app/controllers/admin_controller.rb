@@ -4,6 +4,7 @@ class AdminController < ApplicationController
   def index
     @videos = Video.all
     @events = Event.all
+    @upcomings = Upcoming.all
   end
 
 end

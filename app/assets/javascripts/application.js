@@ -55,6 +55,12 @@ function pageLoad() {
     ]
   });
 
+  $('#upcoming').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [3] }
+    ]
+  });
+
   // Hide/show the navbar on the homepage (only)
   if(window.location.pathname == "/") {
     $(".navbar").hide();
