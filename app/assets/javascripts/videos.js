@@ -9,12 +9,6 @@ ready = function() {
     $("#clear-filter").hide();
   }
 
-  $(function() {
-    return $('#search').typeahead({
-      name: "video",
-      remote: "/videos/autocomplete?query=%QUERY"
-    });
-  });   
 }
 
 function getUrlParameter(sParam)

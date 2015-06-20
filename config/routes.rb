@@ -6,14 +6,7 @@ Rails.application.routes.draw do
     resources :videos
   end
 
-  # resources :videos, except: [:index]
-  resources :videos do
-    collection do
-      post :import
-      get :autocomplete
-    end
-  end
-
+  resources :videos
   resources :upcomings
 
   get '/admin', to: 'admin#index', as: :admin #=> admin_path

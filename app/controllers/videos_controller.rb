@@ -58,10 +58,6 @@ class VideosController < ApplicationController
     redirect_to root_path
   end
 
-  def autocomplete
-    render json: Video.search(params[:query], autocomplete: true, limit: 10).map(&:title)
-  end
-
 private
 
   def video_params
