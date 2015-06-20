@@ -45,7 +45,7 @@ function pageLoad() {
   // Enable datatables on the admin page
   $('#videos').dataTable({
     "columnDefs": [
-      { "orderable": false, "targets": [6,7,8] }
+      { "orderable": false, "targets": [2,6,7,8] }
     ]
   });
 
