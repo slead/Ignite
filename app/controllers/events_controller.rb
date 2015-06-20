@@ -58,7 +58,7 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
     if @event.save
       flash[:notice] = "event #{@event.name} added successfully."
-      redirect_to @event
+      redirect_to admin_path
     else
       errors = []
       @event.errors.full_messages.each do |msg|
@@ -80,7 +80,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     flash[:notice] = "event #{@event.name} deleted successfully."
-    redirect_to root_path
+    redirect_to admin_path
   end
 
   private

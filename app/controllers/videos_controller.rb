@@ -36,7 +36,7 @@ class VideosController < ApplicationController
     @video = current_user.videos.build(video_params)
     if @video.save
       flash[:notice] = "video #{@video.title} added successfully."
-      redirect_to @video
+      redirect_to admin_path
     else
       flash[:notice] = @video.errors.full_messages
       render 'new'
@@ -55,7 +55,7 @@ class VideosController < ApplicationController
   def destroy
     @video.destroy
     flash[:notice] = "Video #{@video.title} deleted successfully."
-    redirect_to root_path
+    redirect_to admin_path
   end
 
 private

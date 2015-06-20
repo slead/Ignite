@@ -25,7 +25,7 @@ class UpcomingsController < ApplicationController
     @upcoming = current_user.upcomings.build(upcoming_params)
     if @upcoming.save
       flash[:notice] = "Upcoming event #{@upcoming.name} added successfully."
-      redirect_to @upcoming
+      redirect_to admin_path
     else
       errors = []
       @upcoming.errors.full_messages.each do |msg|
@@ -47,7 +47,7 @@ class UpcomingsController < ApplicationController
   def destroy
     @upcoming.destroy
     flash[:notice] = "Upcoming event #{@upcoming.name} deleted successfully."
-    redirect_to root_path
+    redirect_to admin_path
   end
 
   private
