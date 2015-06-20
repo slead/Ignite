@@ -1,5 +1,13 @@
 .container-fluid
   .row
+    .col-md-3.col-md-offset-1
+      %ul
+        %li= link_to "Change your password", edit_user_registration_path
+        %li= link_to('Logout', destroy_user_session_path, :method => :delete)
+  %hr
+
+.container-fluid
+  .row
     .col-md-10.col-md-offset-1
       %h2
         Videos
