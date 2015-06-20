@@ -24,8 +24,7 @@
   .row.top-50
     - @videos.each do |video|
       .col-md-6
-        .embed-container
-          =embed(video.url)
+        =link_to thumbnail(video.url), video
         %h4.title= link_to truncate(video.title, length: 60), video
         %p.subtitle
           -if not video.speaker_name.blank?

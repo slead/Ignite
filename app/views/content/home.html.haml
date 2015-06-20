@@ -52,8 +52,7 @@
   .row
     -@videos.each do |video|
       .col-md-3
-        .embed-container
-          =embed(video.url)
+        =link_to thumbnail(video.url), video
         %p.title= link_to truncate(video.title, length: 35), video
         %p.subtitle
           = video.speaker_name
