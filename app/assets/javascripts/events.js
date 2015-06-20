@@ -35,8 +35,9 @@ ready = function() {
     extent = leafletMap.getBounds();
     var northEast = extent._northEast.wrap();
     var southWest = extent._southWest.wrap();
+    currentZoom = leafletMap.getZoom();
 
-    url = "events.json?bbox=" + southWest.lat + "," + southWest.lng + "," + northEast.lat + "," + northEast.lng;
+    url = "events.json?bbox=" + southWest.lat + "," + southWest.lng + "," + northEast.lat + "," + northEast.lng + "&zoom=" + currentZoom;
     $.ajax({
       dataType: 'text',
       url: url,
