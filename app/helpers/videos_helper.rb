@@ -8,6 +8,6 @@ module VideosHelper
   def thumbnail(youtube_url)
     # Generate an image from the thumbnail, based on the YouTube URL
     youtube_id = youtube_url.split("=").last
-    content_tag(:image, nil, src: "//img.youtube.com/vi/#{youtube_id}/0.jpg")
+    content_tag(:image, nil, src: "//img.youtube.com/vi/#{youtube_id}/maxresdefault.jpg")
   end
 end
