@@ -23,3 +23,27 @@ The videos on the site should be uploaded and hosted by each individual city on 
 ####Videos must be in HD format
 
 Only videos at 720p or 1080p resolution should be loaded. This is becuase the video thumbnails assume HD resolution (and we should only be promoting high quallity videos anyway.)
+
+###Site code
+
+To recreate the site on your local machine:
+
+ * ensure that Rails 4.x is installed (http://guides.rubyonrails.org/getting_started.html)
+ * clone the site from GitHub, and change to this directory on your local machine
+ * run bundle install to install the required Ruby gems
+ * run rake db:migrate to create the database
+ * run rake db:reset to populate the database with some sample events and videos
+ * run rails server to start the server
+ * open http://localhost:3000/ to view the site
+
+###Site administration
+
+The default admin username is _admin@ignitetalks.io_ with password _password_. This allows access to the Admin console at http://localhost:3000/admin
+
+From this panel, the administrator can add, edit and delete the Videos, Events (e.g. Ignite Seattle) and Upcoming Events (e.g. Ignite Seattle 27)
+
+###Deploy to Heroku
+
+To publish the site on Heroku, follow the instructions at https://devcenter.heroku.com/articles/getting-started-with-rails4
+
+To deploy the Heroku site to http://www.ignitetalks.io/ follow the instructions at http://stackoverflow.com/a/25925332/906814
