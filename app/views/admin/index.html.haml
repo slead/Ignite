@@ -14,8 +14,7 @@
   .container-fluid
     .row
       .col-md-10.col-md-offset-1
-        %h2
-          Draft Videos
+        %h2  Draft Videos
         %hr
         %table#draft_videos
           %thead
@@ -139,3 +138,9 @@
                       %i.fa.fa-pencil-square-o
                     =link_to upcoming_path(upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming event?"} do 
                       %i.fa.fa-times
+- else
+  .container-fluid
+    .row
+      .col-md-10.col-md-offset-1
+        %h2 Ignites you have proposed
+        %p will go here

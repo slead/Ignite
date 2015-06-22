@@ -33,23 +33,23 @@
 
         #navbar.navbar-collapse.collapse
           %ul.nav.navbar-nav.navbar-right
-            -if user_signed_in?
+            -if user_signed_in? and current_user.admin?
               %li= link_to "Admin", admin_path
             =nav_link "Find an Ignite", "/events"
             =nav_link "Browse videos", videos_path
             =nav_link "Start an Ignite", "/start"
       
-      .notifications
-        - if notice
-          #notice_wrapper
-            %p.alert.alert-dismissable= notice
-            %span.close{type: "button", data: {dismiss:"alert"}}
-              %i.fa.fa-times
-        - elsif alert
-          #alert_wrapper
-            %p.alert.alert-dismissable= alert
-            %span.close{type: "button", data: {dismiss:"alert"}}
-              %i.fa.fa-times
+    .notifications
+      - if notice
+        #notice_wrapper
+          %p.alert.alert-dismissable= notice
+          %span.close{type: "button", data: {dismiss:"alert"}}
+            %i.fa.fa-times
+      - elsif alert
+        #alert_wrapper
+          %p.alert.alert-dismissable= alert
+          %span.close{type: "button", data: {dismiss:"alert"}}
+            %i.fa.fa-times
     =yield
   %hr
     .row.sponsors
