@@ -1,6 +1,6 @@
 #IgniteTalks.io
 
-###Purpose of this site
+##Purpose of this site
 
   * to promote the Ignite brand
   * to showcase examples of the best videos
@@ -14,17 +14,17 @@
 
 The site needs to be low-maintenance and largely self-supporting, without onerous demands once it’s set up. To that that end, there is no user registration (aside from administrators), no voting, no comments, no speaker bios, etc.
 
-###Videos
+##Videos
 
 Only the best videos should be listed on the Global Ignite site. They will be chosen by the moderators, including from submissions by each city. 
 
-The videos on the site should be uploaded and hosted by each individual city on their own YouTube, and linked on the Global Ignite page. This way, maintenance/moderation of the videos is the responsibility of the original city. This approach will also preserve any page views/comments already existing on each video.
+The videos on the site should be uploaded and hosted by each individual city on their own YouTube page, and linked on the Global Ignite page. This way, maintenance/moderation of the videos is the responsibility of the original city. This approach will also preserve any page views already existing on each video.
 
 ####Videos must be in HD format
 
 Only videos at 720p or 1080p resolution should be loaded. This is becuase the video thumbnails assume HD resolution (and we should only be promoting high quallity videos anyway.)
 
-###Site code
+##Site code
 
 To recreate the site on your local machine:
 
@@ -36,13 +36,13 @@ To recreate the site on your local machine:
  * run rails server to start the server
  * open http://localhost:3000/ to view the site
 
-###Site administration
+##Site administration
 
 The default admin username is _admin@ignitetalks.io_ with password _password_. This allows access to the Admin console at http://localhost:3000/admin
 
 From this panel, the administrator can add, edit and delete the Videos, Events (e.g. Ignite Seattle) and Upcoming Events (e.g. Ignite Seattle 27)
 
-###Deploy to Heroku
+##Deploy to Heroku
 
 To publish the site on Heroku, follow the instructions at https://devcenter.heroku.com/articles/getting-started-with-rails4
 
