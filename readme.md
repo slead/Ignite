@@ -37,7 +37,7 @@ To recreate the site on your local machine:
 
 ##Site administration
 
-The default admin username is _admin@ignitetalks.io_ with password _password_. This allows access to the Admin console at http://localhost:3000/admin
+The default admin username is _admin@ignitetalks.io_ with password _password_. This allows access to the Admin console at [http://localhost:3000/admin](http://localhost:3000/admin)
 
 From this panel, the administrator can add, edit and delete the Videos, Events (e.g. Ignite Seattle) and Upcoming Events (e.g. Ignite Seattle 27)
 
