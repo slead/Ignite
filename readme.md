@@ -30,11 +30,10 @@ To recreate the site on your local machine:
 
  * ensure that Rails 4.x is installed (http://guides.rubyonrails.org/getting_started.html)
  * clone the site from GitHub, and change to this directory on your local machine
- * run bundle install to install the required Ruby gems
- * run rake db:migrate to create the database
- * run rake db:reset to populate the database with some sample events and videos
- * run rails server to start the server
- * open http://localhost:3000/ to view the site
+ * run _rake db:migrate_ to create the database
+ * run _rake db:reset_ to populate the database with some sample events and videos
+ * run _rails server_ to start the server
+ * open [http://localhost:3000](http://localhost:3000) to view the site
 
 ##Site administration
 
