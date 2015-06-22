@@ -6,12 +6,11 @@ Rails.application.routes.draw do
     resources :videos
   end
 
-  # resources :admin
   resources :videos
   resources :upcomings
 
   get '/admin', to: 'admin#index', as: :admin #=> admin_path
-  get '/about', to: 'content#about', as: :about #=> about_path
+  # get '/about', to: 'content#about', as: :about #=> about_path
   get '/start', to: 'content#start', as: :start #=> about_path
   get '/:id', to: 'events#show', as: :event_page
 

@@ -1,18 +1,23 @@
 .container.top-150
+  .row
+    .col-md-8.col-md-offset-2
+      .well
+        %h4 Before you upload a video...
+        %p Note that we are only looking for very high quality videos on this site. This means:
+        %ul
+          %li the videos must have high production values, ideally with multiple cameras, and be mixed professionally
+          %li videos *must* be HD (720p or higher resolution)
+          %li sound quality must be good, without distracting background noise
+          %li presenters should not be using notes
+          %li slides should contain minimal text, and no bullet points
+        %p Only clever, funny, thought-provoking or just generally interesting videos should be uploaded to IgniteTalks.io! Anything else can still go on the individual Ignite's YouTube channel.
+        %p Please actually watch the video all the way through before you upload it.
   .row 
     .col-md-8.col-md-offset-2
       .panel
-        .panel-heading Add a new video
+        .h4 Add a new video
         .panel-body
           = render 'form'
         %hr
         %button.btn
           = link_to "Back to Admin page", admin_path
-  .row
-    .col-md-8.col-md-offset-2
-      %p Note that we are only looking for very high quality videos on this site. This means:
-      %ul
-        %li the videos must have high production values, ideally with multiple cameras, and be mixed professionally
-        %li sound quality must be good, without distracting background noise
-        %li presenters should not be using notes
-        %li slides should contain minimal text, and no bullet points

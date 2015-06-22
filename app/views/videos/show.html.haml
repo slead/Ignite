@@ -18,7 +18,7 @@
     -if not @video.tags.empty?
       .row 
         .col-md-8
-          .tags
+          .tags.left-15
             %i.fa.fa-tag
             %span= @video.tags.map(&:name).join(", ").titleize
 
@@ -37,6 +37,5 @@
     .row
       - @related_videos.each do |related_video|
         .col-md-3
-          .embed-container
-            =embed(related_video.url)
-          %p= link_to truncate(related_video.title, length: 35), related_video
+          =link_to thumbnail(related_video.url), related_video
+          %p.top-5= link_to truncate(related_video.title, length: 35), related_video

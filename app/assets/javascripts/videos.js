@@ -2,7 +2,13 @@ var ready;
 ready = function() {
   $(".tags").removeClass("active");
   var tag = getUrlParameter("tag");
-  $("#tag_" + tag).addClass("active");
+  if (tag != undefined) {
+    $("#tag_" + tag).addClass("active");
+    $("#clear-filter").show();
+  } else {
+    $("#clear-filter").hide();
+  }
+
 }
 
 function getUrlParameter(sParam)
@@ -17,7 +23,7 @@ function getUrlParameter(sParam)
             return sParameterName[1];
         }
     }
-}          
+}       
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

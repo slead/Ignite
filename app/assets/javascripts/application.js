@@ -36,12 +36,29 @@ function pageLoad() {
         layer.openPopup()
       }
     });
-
-
   });
 
   $( "body" ).delegate( ".event_content", "mouseleave", function() {
     $(this).removeClass("active");
+  });
+
+  // Enable datatables on the admin page
+  $('#videos').dataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [2,6,7,8] }
+    ]
+  });
+
+  $('#events').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [4,5] }
+    ]
+  });
+
+  $('#upcoming').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [3] }
+    ]
   });
 
   // Hide/show the navbar on the homepage (only)

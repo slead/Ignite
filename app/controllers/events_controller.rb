@@ -9,7 +9,9 @@ class EventsController < ApplicationController
 
   def index
     @geojson = Array.new
-    if params[:bbox].present?
+    if params[:zoom].present? and params[:zoom].to_i < 3
+      @events = Event.all.order(:name)
+    elsif params[:bbox].present?
       #Find events which fall within the current map extent
       bbox = params[:bbox].split(",").map(&:to_f)
       @events = Event.within_bounding_box(bbox).order(:name)
@@ -56,7 +58,7 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
     if @event.save
       flash[:notice] = "event #{@event.name} added successfully."
-      redirect_to @event
+      redirect_to admin_path
     else
       errors = []
       @event.errors.full_messages.each do |msg|
@@ -78,7 +80,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     flash[:notice] = "event #{@event.name} deleted successfully."
-    redirect_to root_path
+    redirect_to admin_path
   end
 
   private
