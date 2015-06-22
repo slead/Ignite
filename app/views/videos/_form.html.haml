@@ -1,10 +1,18 @@
 = simple_form_for(@video, html: { class: 'form' })  do |f|
   .form-group
-    =f.select :status, [['published', 'published'], ['draft', 'draft']]
+    %p
+      Status:
+      =f.select :status, [['published', 'published'], ['draft', 'draft']]
+    %hr
     =f.input :title,  input_html: { class: 'form-control' }, placeholder: "Enter the video's title"
-    =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL"
+    =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL (in the format https://www.youtube.com/watch?v=YOUTUBE_ID)"
     =f.input :speaker_name, input_html: { class: 'form-control' }, placeholder: "Enter the speaker's name"
     =f.input :speaker_url, input_html: { class: 'form-control' }, placeholder: "Enter the speaker's URL (eg Twitter, blog, etc)"
-    =f.collection_select :event_id, Event.all.order(:name), :id, :name, prompt: "Filmed at...", required: :true
-    =f.collection_check_boxes :tag_ids, Tag.all.order(:name), :id, :name
+    %hr
+    %p
+      Ignite event:
+      =f.collection_select :event_id, Event.all.order(:name), :id, :name, prompt: "Filmed at...", required: :true
+    %p
+      Tags:
+      =f.collection_check_boxes :tag_ids, Tag.all.order(:name), :id, :name
   =f.submit class: "btn btn-warning"

@@ -2,9 +2,13 @@
   .row 
     .col-md-8.col-md-offset-2
       .panel
-        .panel-heading Edit video
+        %h4.left-15 Edit video
         .panel-body
           = render 'form'
+  .row
+    .col-md-8.col-md-offset-2
+      .embed-container
+        =embed(@video.url)
       %hr
         %button.btn
           = link_to "Back to video page", video_path
