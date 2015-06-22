@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618060803) do
+ActiveRecord::Schema.define(version: 20150622063959) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20150618060803) do
     t.string   "slug"
     t.string   "speaker_name"
     t.string   "speaker_url"
+    t.string   "status"
   end
 
   add_index "videos", ["event_id"], name: "index_videos_on_event_id"
