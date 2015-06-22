@@ -49,6 +49,12 @@ function pageLoad() {
     ]
   });
 
+  $('#draft_videos').dataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [2,6,7,8] }
+    ]
+  });
+
   $('#events').DataTable({
     "columnDefs": [
       { "orderable": false, "targets": [4,5] }

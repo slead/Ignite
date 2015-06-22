@@ -14,7 +14,7 @@
   .row
     .col-md-10.col-md-offset-1
       %h2
-        Videos
+        Published Videos
         %button
           =link_to "Add new video", new_video_path
       %hr
@@ -47,6 +47,41 @@
                   %i.fa.fa-pencil-square-o
               %td
                 =link_to video_path(video), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this video?"} do 
+                  %i.fa.fa-times
+  .row
+    .col-md-10.col-md-offset-1
+      %h2
+        Draft Videos
+      %hr
+      %table#draft_videos
+        %thead
+          %tr
+            %th Event
+            %th Title
+            %th Watch
+            %th Presenter
+            %th Presenter URL
+            %th Uploaded
+            %th Tags
+            %th
+            %th
+        %tbody
+          -@draft_videos.each do |draft_video|
+            %tr
+              %td= draft_video.event.name
+              %td= link_to draft_video.title, draft_video
+              %td.center
+                = link_to draft_video.url, :target => "_blank" do
+                  %i.fa.fa-play-circle
+              %td= draft_video.speaker_name
+              %td= draft_video.speaker_url
+              %td= draft_video.created_at.to_date
+              %td= draft_video.tags.map(&:name)
+              %td
+                =link_to edit_video_path(draft_video), class: "light btn-edit" do
+                  %i.fa.fa-pencil-square-o
+              %td
+                =link_to video_path(draft_video), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this draft video?"} do 
                   %i.fa.fa-times
 
       .top-50
