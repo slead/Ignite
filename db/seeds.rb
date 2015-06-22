@@ -16,11 +16,11 @@ Upcoming.create!([
   {name: "Ignite Seattle 27", event_id: 2, date: "2018-08-16", user_id: 1},
 ])
 Video.create!([
-  {title: "How to get 5 million people to read your web comic", url: "https://www.youtube.com/embed/QYyJZOHgpco", event_id: 1, user_id: 1, slug: "how-to-get-5-million-people-to-read-your-comic", speaker_name: "Matthew Inman", speaker_url: "http://www.theoatmeal.com"},
-  {title: "Save the planet, eat a bug", url: "https://www.youtube.com/embed/QSs27t8nPlM", event_id: 1, user_id: 1, slug: "save-the-planet-eat-a-bug", speaker_name: "Virginia Emery", speaker_url: ""},
-  {title: "What if you say Yes to everything?", url: "https://www.youtube.com/embed/InYTkTKSBfo", event_id: 1, user_id: 1, slug: "what-if-you-say-yes-to-everything", speaker_name: "Jen Kellum Nausin", speaker_url: ""},
-  {title: "Life lessons from industrial design", url: "https://www.youtube.com/embed/pur9MMxBTfQ", event_id: 2, user_id: 1, slug: "life-lessons-from-industrial-design", speaker_name: "Lily Kolle", speaker_url: ""},
-  {title: "Notes from a grateful dickhead", url: "https://www.youtube.com/embed/8Td8zLMWU4Y", event_id: 2, user_id: 1, slug: "notes-from-a-grateful-dickhead", speaker_name: "Stephen Lead", speaker_url: "http://www.stephenlead.com"}
+  {title: "How to get 5 million people to read your web comic", url: "https://www.youtube.com/watch?v=QYyJZOHgpco", event_id: 1, user_id: 1, slug: "how-to-get-5-million-people-to-read-your-comic", speaker_name: "Matthew Inman", speaker_url: "http://www.theoatmeal.com"},
+  {title: "Save the planet, eat a bug", url: "https://www.youtube.com/watch?v=QSs27t8nPlM", event_id: 1, user_id: 1, slug: "save-the-planet-eat-a-bug", speaker_name: "Virginia Emery", speaker_url: ""},
+  {title: "What if you say Yes to everything?", url: "https://www.youtube.com/watch?v=InYTkTKSBfo", event_id: 1, user_id: 1, slug: "what-if-you-say-yes-to-everything", speaker_name: "Jen Kellum Nausin", speaker_url: ""},
+  {title: "Life lessons from industrial design", url: "https://www.youtube.com/watch?v=pur9MMxBTfQ", event_id: 2, user_id: 1, slug: "life-lessons-from-industrial-design", speaker_name: "Lily Kolle", speaker_url: ""},
+  {title: "Notes from a grateful dickhead", url: "https://www.youtube.com/watch?v=8Td8zLMWU4Y", event_id: 2, user_id: 1, slug: "notes-from-a-grateful-dickhead", speaker_name: "Stephen Lead", speaker_url: "http://www.stephenlead.com"}
 ])
 
 Tag::HABTM_Videos.create!([

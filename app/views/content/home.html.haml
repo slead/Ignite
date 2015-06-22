@@ -44,7 +44,7 @@
             %li
               = link_to upcoming.name, event_page_path(upcoming.event)
               = "(#{upcoming.date.to_formatted_s(:rfc822)})"
-        %p.bottom= link_to "Let us know about an upcoming event!", root_path
+        %p.bottom-15.absolute= link_to "Let us know about an upcoming event!", root_path
 
   .row
     .col-md-12

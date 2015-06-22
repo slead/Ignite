@@ -79,6 +79,10 @@ small, .small {
   }
 }
 
+.absolute {
+  position: absolute;
+}
+
 .center {
   text-align: center;
 }
@@ -87,13 +91,16 @@ small, .small {
   text-align: right;
 }
 
-.bottom {
-  position: absolute;
-  bottom: 15px;
+.bottom-15 {
+  margin-bottom: 15px;
 }
 
 .top-5 {
   margin-top: 5px;
+}
+
+.top-15 {
+  margin-top: 15px;
 }
 
 .top-50 {
