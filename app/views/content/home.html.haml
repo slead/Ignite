@@ -60,5 +60,7 @@
           = link_to video.event.name, event_page_path(video.event)
 
   .row.top-50
-    .col-md-12
+    .col-md-2
       %h5= link_to "Browse all videos", videos_path
+    .col-md-4
+      %h5= link_to "Suggest an Ignite video for this site", new_video_path

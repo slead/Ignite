@@ -2,7 +2,10 @@
   .row
     .col-md-8.col-md-offset-2
       .well
-        %h4 Before you upload a video...
+        -if current_user.admin?
+          %h4 Before you upload a video...
+        -else
+          %h4 Thanks for proposing an Ignite video...
         %p Note that we are only looking for very high quality videos on this site. This means:
         %ul
           %li the videos must have high production values, ideally with multiple cameras, and be mixed professionally
@@ -11,7 +14,7 @@
           %li presenters should not be using notes
           %li slides should contain minimal text, and no bullet points
         %p Only clever, funny, thought-provoking or just generally interesting videos should be uploaded to IgniteTalks.io! Anything else can still go on the individual Ignite's YouTube channel.
-        %p Please actually watch the video all the way through before you upload it.
+        %p Please actually watch the video all the way through to ensure the quality remains high.
   .row 
     .col-md-8.col-md-offset-2
       .panel
@@ -19,5 +22,6 @@
         .panel-body
           = render 'form'
         %hr
-        %button.btn
-          = link_to "Back to Admin page", admin_path
+        -if current_user.admin?
+          %button.btn
+            = link_to "Back to Admin page", admin_path
