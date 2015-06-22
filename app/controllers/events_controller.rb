@@ -43,7 +43,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @videos = @event.videos.paginate(:page => params[:page], :per_page => 8)
+    @videos = @event.videos.where(status: 'published').paginate(:page => params[:page], :per_page => 8)
     @upcomings = @event.upcomings.where('date > ?', Date.yesterday)
   end
 

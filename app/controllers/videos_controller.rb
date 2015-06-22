@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-  # before_action :authenticate_user!, except: [:index, :autocomplete] #:show,
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :find_video, only: [:show, :edit, :update, :destroy]
 
   rescue_from ActiveRecord::RecordNotFound do
@@ -13,7 +13,7 @@ class VideosController < ApplicationController
       @videos = Video.where(status: 'published').search(params[:query], page: params[:page], :per_page => 8)
     elsif params[:tag].present?
       @tag = Tag.find_by(name: params[:tag])
-      @videos = @tag.videos.paginate(:page => params[:page], :per_page => 8)
+      @videos = @tag.videos.where(status: 'published').paginate(:page => params[:page], :per_page => 8)
     else
       @videos = Video.where(status: 'published').paginate(:page => params[:page], :per_page => 8)
     end
@@ -21,11 +21,7 @@ class VideosController < ApplicationController
   end
 
   def new
-    if user_signed_in?
-      @video = current_user.videos.build
-    else
-      @video = Video.new
-    end
+    @video = current_user.videos.build
   end
 
   def show
@@ -37,7 +33,8 @@ class VideosController < ApplicationController
   end
 
   def create
-    if user_signed_in?
+    if current_user.admin?
+      # If the current user is an administrator, create the video normally. It's immediately published.
       @video = current_user.videos.build(video_params)
       @video.status = 'published'
       if @video.save
@@ -48,12 +45,12 @@ class VideosController < ApplicationController
         render 'new'
       end
     else
+      # If this user is not an admin, flag the video as a draft. It won't show on public pages until published
       @video = Video.create(video_params)
-      @video.user_id = -9999
       @video.status = 'draft'
       if @video.save
         flash[:notice] = "Thanks for submitting a video. We'll check it out ASAP!"
-        redirect_to root_path
+        redirect_to videos_path
       else
         flash[:notice] = @video.errors.full_messages
         render 'new'

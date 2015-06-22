@@ -6,9 +6,9 @@ Event.create!([
   {name: "Ignite Sydney", url: "http://www.ignitesydney.com", city: "Sydney", state: "New South Wales", country: "Australia", latitude: -33.8674869, longitude: 151.2069902, slug: "ignite-sydney", user_id: nil}
 ])
 Tag.create!([
-  {name: "technology"},
-  {name: "health"},
-  {name: "politics"}
+  {name: "technology", major: true},
+  {name: "health", major: true},
+  {name: "politics", major: true}
 ])
 
 Upcoming.create!([
