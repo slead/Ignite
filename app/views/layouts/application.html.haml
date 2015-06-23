@@ -72,11 +72,11 @@
         .col-md-2.col-md-offset-1
           %h4.center Links
           %ul
-            %li= link_to "Contact Us", root_path
+            %li= link_to "Contact Us", contact_path
             %li= link_to "Find an Ignite", events_path
             %li= link_to "Browse videos", videos_path
             %li= link_to "Start an Ignite", start_path
-            %li= link_to "Become an Ignite sponsor", root_path
+            %li= link_to "Become a sponsor", contact_path
         .col-md-4.col-md-offset-1.map
           %h4.center Find your local Ignite
           = link_to image_tag( 'map.png'), events_path
