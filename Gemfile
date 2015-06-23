@@ -18,6 +18,7 @@ group :development do
 end
 
 gem 'devise', '~> 3.4.1'
+gem 'devise-bootstrap-views'
 gem 'font-awesome-rails', '~> 4.3.0.0'
 gem 'friendly_id', '~> 5.1.0'
 gem 'geocoder', '~> 1.2.8'
