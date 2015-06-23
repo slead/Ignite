@@ -1,5 +1,10 @@
 = simple_form_for(@upcoming, html: { class: 'form' })  do |f|
   .form-group
+    - if current_user.admin?
+      %h4 Status
+      .btn-group
+        = f.collection_radio_buttons :status, [['published', 'published'] ,['draft', 'draft'],['rejected', 'rejected']], :first, :last,  :input_html => {style:'display:block', class: "radio"}
+    %hr
     =f.input :name,  input_html: { class: 'form-control' }, placeholder: "Enter the event's name (eg Ignite Seattle 15)"
     =f.collection_select :event_id, Event.all.order(:name), :id, :name, prompt: "Choose the Ignite/city"
     =f.input :date,  input_html: { class: 'form-control' }, placeholder: "Enter the event's date (DDMMYYYY)"

@@ -1,5 +1,6 @@
 User.create!([
   {email: "admin@ignitetalks.io", password: "password", admin: "true"}
+  {email: "test@ignitetalks.io", password: "password"}
 ])
 Event.create!([
   {name: "Ignite Seattle", url: "http://igniteseattle.com", city: "Seattle", state: "Washington", country: "United States", latitude: 47.6062095, longitude: -122.3320708, slug: "ignite-seattle", user_id: 1, status: 'published'},
@@ -12,8 +13,8 @@ Tag.create!([
 ])
 
 Upcoming.create!([
-  {name: "Ignite Sydney 15", event_id: 1, date: "2018-06-01", user_id: 1},
-  {name: "Ignite Seattle 27", event_id: 2, date: "2018-08-16", user_id: 1}
+  {name: "Ignite Sydney 15", event_id: 1, date: "2018-06-01", user_id: 1, status: 'published'},
+  {name: "Ignite Seattle 27", event_id: 2, date: "2018-08-16", user_id: 1, status: 'published'}
 ])
   
 Video.create!([

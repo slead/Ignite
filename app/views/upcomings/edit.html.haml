@@ -2,7 +2,14 @@
   .row 
     .col-md-8.col-md-offset-2
       .panel
-        .panel-heading Edit upcoming event
+        %h3.left-15 Edit upcoming event
         .panel-body
           = render 'form'
           = link_to "Cancel", root_path,  class: "btn btn-default"
+  .row
+    .col-md-8.col-md-offset-2
+      %hr
+      %button.btn
+        = link_to "Delete upcoming event", upcoming_path(@upcoming), method: :delete, data: {confirm: "Are you sure you want to delete this upcming event?"}
+      %button.btn
+        = link_to "Back to Admin page", admin_path

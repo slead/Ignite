@@ -12,4 +12,13 @@ h2 button {
   margin-left: 25px;
 }
 
+#admin_videos, #admin_upcomings {
+  background-color: #e9e9e9;
+}
+
+.admin_panel {
+  padding-bottom: 50px;
+}
+
+
 @import 'https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css';
