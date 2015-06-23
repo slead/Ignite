@@ -1,7 +1,7 @@
 = simple_form_for(@video, html: { class: 'form' })  do |f|
   .form-group
     - if current_user.admin?
-      %h4 Status:
+      %h4 Status
       .btn-group
         = f.collection_radio_buttons :status, [['published', 'published'] ,['draft', 'draft'],['rejected', 'rejected']], :first, :last,  :input_html => {style:'display:block', class: "radio"}
     %hr
