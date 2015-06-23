@@ -10,7 +10,8 @@ class VideosController < ApplicationController
   def index
 
     if params[:query].present?
-      @videos = Video.where(status: 'published').search(params[:query], page: params[:page], :per_page => 8)
+      puts params
+      @videos = Video.search(params[:query], where:{status: 'published'}, page: params[:page], :per_page => 8)
     elsif params[:tag].present?
       @tag = Tag.find_by(name: params[:tag])
       @videos = @tag.videos.where(status: 'published').paginate(:page => params[:page], :per_page => 8)
