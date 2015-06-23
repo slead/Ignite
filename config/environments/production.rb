@@ -78,4 +78,22 @@ Rails.application.configure do
 
   # Google Analytics
   GA.tracker = "UA-64086594-1"
+
+  # Devise
+  config.action_mailer.default_url_options = { :host => 'rocky-sierra-8674.herokuapp.com' }
+  Rails.application.routes.default_url_options[:host] = 'rocky-sierra-8674.herokuapp.com'
+
+  # Disable delivery errors, bad email addresses will be ignored
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'rocky-sierra-8674.heroku.com' }
+  ActionMailer::Base.smtp_settings = {
+    :address    => "smtp.sendgrid.net",
+    :port       => 25,
+    :user_name  => ENV['SENDGRID_USERNAME'],
+    :password   => ENV['SENDGRID_PASSWORD'],
+    :domain     => ENV['SENDGRID_DOMAIN'],
+    :authentication  => :plain
+  }
+
 end
