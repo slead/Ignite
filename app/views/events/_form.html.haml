@@ -11,3 +11,5 @@
     =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the event's homepage (eg http://www.igniteseattle.com)"
     =f.input :twitter_name, input_html: { class: 'form-control' }, placeholder: "Enter the Twitter name (eg @igniteseattle)"
   =f.submit class: "btn btn-warning"
+  =link_to root_path do
+    %btn.btn.btn-default Cancel

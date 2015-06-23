@@ -13,8 +13,10 @@
     %hr
     %p
       Ignite event:
-      =f.collection_select :event_id, Event.all.order(:name), :id, :name, prompt: "Filmed at...", required: :true
+      =f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
     %p
       Tags:
       =f.collection_check_boxes :tag_ids, Tag.all.order(:name), :id, :name
   =f.submit class: "btn btn-warning"
+  =link_to root_path do
+    %btn.btn.btn-default Cancel
