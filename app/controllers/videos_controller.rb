@@ -34,31 +34,22 @@ class VideosController < ApplicationController
   end
 
   def create
+    @video = current_user.videos.build(video_params)
     if current_user.admin?
       # If the current user is an administrator, create the video normally. It's immediately published.
-      @video = current_user.videos.build(video_params)
       @video.status = 'published'
-      if @video.save
+    else
+      # If this user is not an admin, flag the video as a draft. It won't show on public pages until published
+      @video.status = 'draft'
+    end
+
+    if @video.save
         flash[:notice] = "video #{@video.title} added successfully."
         redirect_to admin_path
       else
         flash[:notice] = @video.errors.full_messages
         render 'new'
-      end
-    else
-      # If this user is not an admin, flag the video as a draft. It won't show on public pages until published
-      @video = Video.create(video_params)
-      @video.status = 'draft'
-      if @video.save
-        flash[:notice] = "Thanks for submitting a video. We'll check it out ASAP!"
-        redirect_to root_path
-      else
-        flash[:notice] = @video.errors.full_messages
-        render 'new'
-      end
-    end
-
-    
+      end    
   end
 
   def update
