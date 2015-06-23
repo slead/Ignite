@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :name, :city, :url
   has_many :videos, dependent: :destroy
   has_many :upcomings, dependent: :destroy
-  # belongs_to :user #TODO: configure this
+  belongs_to :user
 
   # Geocoding
   geocoded_by :city
