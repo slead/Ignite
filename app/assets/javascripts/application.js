@@ -61,6 +61,12 @@ function pageLoad() {
     ]
   });
 
+  $('#draft_events').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [4,5] }
+    ]
+  });
+
   $('#upcoming').DataTable({
     "columnDefs": [
       { "orderable": false, "targets": [3] }

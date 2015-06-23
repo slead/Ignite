@@ -1,5 +1,5 @@
 User.create!([
-  {email: "admin@ignitetalks.io", password: "password"}
+  {email: "admin@ignitetalks.io", password: "password", admin: "true"}
 ])
 Event.create!([
   {name: "Ignite Seattle", url: "http://igniteseattle.com", city: "Seattle", state: "Washington", country: "United States", latitude: 47.6062095, longitude: -122.3320708, slug: "ignite-seattle", user_id: 1, status: 'published'},
