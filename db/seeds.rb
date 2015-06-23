@@ -2,8 +2,8 @@ User.create!([
   {email: "admin@ignitetalks.io", password: "password"}
 ])
 Event.create!([
-  {name: "Ignite Seattle", url: "http://igniteseattle.com", city: "Seattle", state: "Washington", country: "United States", latitude: 47.6062095, longitude: -122.3320708, slug: "ignite-seattle", user_id: 1},
-  {name: "Ignite Sydney", url: "http://www.ignitesydney.com", city: "Sydney", state: "New South Wales", country: "Australia", latitude: -33.8674869, longitude: 151.2069902, slug: "ignite-sydney", user_id: 1}
+  {name: "Ignite Seattle", url: "http://igniteseattle.com", city: "Seattle", state: "Washington", country: "United States", latitude: 47.6062095, longitude: -122.3320708, slug: "ignite-seattle", user_id: 1, status: 'published'},
+  {name: "Ignite Sydney", url: "http://www.ignitesydney.com", city: "Sydney", state: "New South Wales", country: "Australia", latitude: -33.8674869, longitude: 151.2069902, slug: "ignite-sydney", user_id: 1, status: 'published'}
 ])
 Tag.create!([
   {name: "technology", major: true},
@@ -13,8 +13,9 @@ Tag.create!([
 
 Upcoming.create!([
   {name: "Ignite Sydney 15", event_id: 1, date: "2018-06-01", user_id: 1},
-  {name: "Ignite Seattle 27", event_id: 2, date: "2018-08-16", user_id: 1},
+  {name: "Ignite Seattle 27", event_id: 2, date: "2018-08-16", user_id: 1}
 ])
+  
 Video.create!([
   {title: "How to get 5 million people to read your web comic", url: "https://www.youtube.com/watch?v=QYyJZOHgpco", event_id: 1, user_id: 1, slug: "how-to-get-5-million-people-to-read-your-comic", speaker_name: "Matthew Inman", speaker_url: "http://www.theoatmeal.com", status: 'published'},
   {title: "Save the planet, eat a bug", url: "https://www.youtube.com/watch?v=QSs27t8nPlM", event_id: 1, user_id: 1, slug: "save-the-planet-eat-a-bug", speaker_name: "Virginia Emery", speaker_url: "", status: 'published'},

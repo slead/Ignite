@@ -70,7 +70,7 @@ ready = function() {
           html += "<div class='row'>";
           html += "<div class='col-md-6 col-md-offset-4 event_content'>";
           html += "<div><h4>No Ignites found here.</h4></div>";
-          html += "<div><p><a href='#'>Tell us</a> about an existing Ignite, or learn how you can <a href='start'>start your own</a>!</p></div>";
+          html += "<div><p><a href='/events/new'>Tell us</a> about an existing Ignite, or learn how you can <a href='start'>start your own</a>!</p></div>";
           html += "</div>"; // event_content
         } else {
           for (var idx = 0; idx <geojson.length; idx++) {

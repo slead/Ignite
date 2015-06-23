@@ -10,13 +10,13 @@ class EventsController < ApplicationController
   def index
     @geojson = Array.new
     if params[:zoom].present? and params[:zoom].to_i < 3
-      @events = Event.all.order(:name)
+      @events = Event.where(status: 'published').order(:name)
     elsif params[:bbox].present?
       #Find events which fall within the current map extent
       bbox = params[:bbox].split(",").map(&:to_f)
-      @events = Event.within_bounding_box(bbox).order(:name)
+      @events = Event.where(status: 'published').within_bounding_box(bbox).order(:name)
     else
-      @events = Event.all.order(:name)  
+      @events = Event.where(status: 'published').all.order(:name)  
     end
     # Make a JSON object from the events, to add to the map
     @geojson += @events.collect do |event|
@@ -55,23 +55,38 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.events.build(event_params)
-    if @event.save
-      flash[:notice] = "event #{@event.name} added successfully."
-      redirect_to admin_path
-    else
-      errors = []
-      @event.errors.full_messages.each do |msg|
-        errors << msg
+    if current_user.admin?
+      # If the current user is an administrator, create the event normally. It's immediately published.
+      @event = current_user.events.build(event_params)
+      @event.status = 'published'
+      if @event.save
+        flash[:notice] = "event #{@event.name} added successfully."
+        redirect_to admin_path
+      else
+        errors = []
+        @event.errors.full_messages.each do |msg|
+          errors << msg
+        end
+        flash.now[:notice] = errors
+        render 'new'
       end
-      flash.now[:notice] = errors
-      render 'new'
+    else
+      # If this user is not an admin, flag the event as a draft. It won't show on public pages until published
+      @event = Event.create(event_params)
+      @event.status = 'draft'
+      if @event.save
+        flash[:notice] = "Thanks for submitting an event. We'll load it ASAP!"
+        redirect_to root_path
+      else
+        flash[:notice] = @event.errors.full_messages
+        render 'new'
+      end
     end
   end
 
   def update
     if @event.update(event_params)
-      redirect_to @event
+      redirect_to admin_path
     else
       render 'edit'
     end
@@ -79,14 +94,14 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    flash[:notice] = "event #{@event.name} deleted successfully."
+    flash[:notice] = "Event #{@event.name} deleted successfully."
     redirect_to admin_path
   end
 
   private
 
   def event_params
-    params.require(:event).permit(:name, :city, :country, :url)
+    params.require(:event).permit(:name, :city, :country, :url, :status)
   end
 
   def find_event

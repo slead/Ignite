@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150622092251) do
+ActiveRecord::Schema.define(version: 20150623033915) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150622092251) do
     t.float    "longitude"
     t.string   "slug"
     t.integer  "user_id"
+    t.string   "status"
   end
 
   create_table "friendly_id_slugs", force: true do |t|

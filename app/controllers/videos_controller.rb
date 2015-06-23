@@ -51,7 +51,7 @@ class VideosController < ApplicationController
       @video.status = 'draft'
       if @video.save
         flash[:notice] = "Thanks for submitting a video. We'll check it out ASAP!"
-        redirect_to videos_path
+        redirect_to root_path
       else
         flash[:notice] = @video.errors.full_messages
         render 'new'
