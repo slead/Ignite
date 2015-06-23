@@ -102,6 +102,7 @@
                 %th State
                 %th Country
                 %th URL
+                %th Twitter
                 %th
             %tbody
               -@draft_events.each do |draft_event|
@@ -111,6 +112,7 @@
                   %td= draft_event.state
                   %td= draft_event.country
                   %td= link_to draft_event.url, draft_event.url, :target => "_blank"
+                  %td= draft_event.twitter_name
                   %td
                     =link_to edit_event_path(draft_event), class: "light btn-edit" do
                       %i.fa.fa-pencil-square-o
@@ -132,6 +134,7 @@
                 %th State
                 %th Country
                 %th URL
+                %th Twitter
                 %th
             %tbody
               -@events.each do |event|
@@ -141,6 +144,7 @@
                   %td= event.state
                   %td= event.country
                   %td= link_to event.url, event.url, :target => "_blank"
+                  %td= event.twitter_name
                   %td
                     =link_to edit_event_path(event), class: "light btn-edit" do
                       %i.fa.fa-pencil-square-o

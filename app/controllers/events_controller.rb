@@ -101,7 +101,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :city, :country, :url, :status)
+    params.require(:event).permit(:name, :city, :country, :url, :status, :twitter_name)
   end
 
   def find_event

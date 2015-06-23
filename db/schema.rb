@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623051754) do
+ActiveRecord::Schema.define(version: 20150623092803) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20150623051754) do
     t.string   "slug"
     t.integer  "user_id"
     t.string   "status"
+    t.string   "twitter_name"
   end
 
   create_table "friendly_id_slugs", force: true do |t|

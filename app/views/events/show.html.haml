@@ -7,8 +7,12 @@
       - else
         %p= "#{@event.city}, #{@event.country}"
       %p= link_to @event.url, @event.url
+      - if not @event.twitter_name.blank?
+        = link_to "https://www.twitter.com/#{@event.twitter_name}" do
+          %i.fa.fa-twitter.fa-2x
+          =@event.twitter_name
       -if @upcomings.count > 0
-        %p
+        %p.top-50
           Next event:
           = @upcomings.first.name
           = "(#{@upcomings.first.date})"

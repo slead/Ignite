@@ -13,8 +13,8 @@ Tag.create!([
 ])
 
 Upcoming.create!([
-  {name: "Ignite Sydney 15", event_id: 1, date: "2018-06-01", user_id: 1, status: 'published'},
-  {name: "Ignite Seattle 27", event_id: 2, date: "2018-08-16", user_id: 1, status: 'published'}
+  {name: "Ignite Sydney 15", event_id: 1, date: "2018-06-01", user_id: 1, status: 'published', twitter_name: '@IgniteSydney'},
+  {name: "Ignite Seattle 27", event_id: 2, date: "2018-08-16", user_id: 1, status: 'published', twitter_name: '@IgniteSeattle'}
 ])
   
 Video.create!([
