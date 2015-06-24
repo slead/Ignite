@@ -7,7 +7,7 @@ module VideosHelper
 
   def thumbnail(youtube_id)
     # Generate an image from the thumbnail, based on the YouTube ID. This assumes a HD video, which we don't currently check programatically.
-    content_tag(:image, nil, src: "//img.youtube.com/vi/#{youtube_id}/maxresdefault.jpg")
+    content_tag(:image, nil, src: "//img.youtube.com/vi/#{youtube_id}/maxresdefault.jpg", class: "thumb")
   end
   
 end
