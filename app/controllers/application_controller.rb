@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
 
   after_filter :store_location
 
+  Yt.configure do |config|
+    config.api_key = 'AIzaSyCPOAgGgCNBrHB1trDKtv6rdjWpzObqxLM'
+  end
+
   private
     def store_location
       session[:return_to] = request.fullpath

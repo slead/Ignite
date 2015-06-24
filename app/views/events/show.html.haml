@@ -22,7 +22,7 @@
       %h4.left-15 Featured videos
       - @videos.each do |video|
         .col-md-6.col-sm-12.col-xs-12
-          =link_to thumbnail(video.url), video
+          =link_to thumbnail(video.uid), video
           %p.title= link_to truncate(video.title, length: 60), video
           %p.subtitle
             by

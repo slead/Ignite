@@ -17,13 +17,13 @@
       .stats.right
         - if not @video.views.nil?
           %i.fa.fa-youtube-play
-          %span.right-15= @video.views
+          %span.right-15= number_with_delimiter(@video.views, :delimiter => ',')
         - if not @video.likes.nil?
           %i.fa.fa-thumbs-o-up
-          %span.right-15= @video.likes
+          %span.right-15= number_with_delimiter(@video.likes, :delimiter => ',')
         - if not @video.dislikes.nil?
           %i.fa.fa-thumbs-o-down.left-5
-          = @video.dislikes
+          = number_with_delimiter(@video.dislikes, :delimiter => ',')
 
     -if not @video.tags.empty?
       .row 
@@ -47,7 +47,7 @@
     .row
       - @related_videos.each do |related_video|
         .col-md-3
-          =link_to thumbnail(related_video.url), related_video
+          =link_to thumbnail(related_video.uid), related_video
           %p.title= link_to truncate(related_video.title, length: 35), related_video
           %p.subtitle
             -if not related_video.speaker_name.blank?
@@ -57,3 +57,4 @@
                 = related_video.speaker_name
             at
             = link_to related_video.event.name, event_page_path(related_video.event)
+          

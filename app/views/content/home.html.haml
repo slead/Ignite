@@ -29,13 +29,13 @@
       .video_rating-large
         - if not @first_video.views.nil?
           %i.fa.fa-youtube-play
-          %span.right-15= @first_video.views
+          %span.right-15= number_with_delimiter(@first_video.views, :delimiter => ',')
         - if not @first_video.likes.nil?
           %i.fa.fa-thumbs-o-up
-          %span.right-15= @first_video.likes
+          %span.right-15= number_with_delimiter(@first_video.likes, :delimiter => ',')
         - if not @first_video.dislikes.nil?
           %i.fa.fa-thumbs-o-down.left-5
-          = @first_video.dislikes
+          = number_with_delimiter(@first_video.dislikes, :delimiter => ',')
 
     .col-md-3.sidebar.col-sm-12
       .social.center
@@ -65,7 +65,7 @@
   .row
     -@videos.each do |video|
       .col-md-3
-        =link_to thumbnail(video.url), video
+        =link_to thumbnail(video.uid), video
         %p.title= link_to truncate(video.title, length: 35), video
         %p.subtitle
           = video.speaker_name

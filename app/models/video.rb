@@ -7,10 +7,6 @@ class Video < ActiveRecord::Base
   has_and_belongs_to_many :tags
   searchkick
 
-  Yt.configure do |config|
-    config.api_key = 'AIzaSyCPOAgGgCNBrHB1trDKtv6rdjWpzObqxLM'
-  end
-
   before_create -> do
     YT_LINK_FORMAT = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/i
     uid = url.match(YT_LINK_FORMAT)
