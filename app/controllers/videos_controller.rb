@@ -1,6 +1,7 @@
 class VideosController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_video, only: [:show, :edit, :update, :destroy]
+  before_action :find_video, only: [:show, :edit, :update, :destroy, :update_stats]
+  before_action :update_youtube_stats, only: [:show]
 
   rescue_from ActiveRecord::RecordNotFound do
     flash[:notice] = 'Sorry, that video does not exist'
@@ -75,6 +76,17 @@ private
 
   def find_video
     @video = Video.friendly.find(params[:id])
+  end
+
+  def update_youtube_stats
+    #Update the view, like and dislike counts
+    unless @video.uid.nil?
+      video = Yt::Video.new id: @video.uid
+      @video.views = video.view_count
+      @video.likes = video.like_count
+      @video.dislikes = video.dislike_count
+      @video.save
+    end
   end
 
 end
