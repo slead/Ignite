@@ -26,7 +26,7 @@
         =@first_video.speaker_name
         at
         = link_to @first_video.event.name, event_page_path(@first_video.event)
-      .video_rating
+      .video_rating_below.hidden-xs
         %i.fa.fa-youtube-play
         %span.right-15= number_with_delimiter(@first_video.views, :delimiter => ',')
         %i.fa.fa-thumbs-o-up
