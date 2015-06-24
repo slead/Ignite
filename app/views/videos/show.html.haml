@@ -14,16 +14,15 @@
         = link_to @video.event.name, event_page_path(@video.event)
       .embed-container
         =embed(@video.url)
-      .view_count
+      .stats.right
         - if not @video.views.nil?
-          %i.fa.fa-play
-          = @video.views
-      .rating.right  
+          %i.fa.fa-youtube-play
+          %span.right-15= @video.views
         - if not @video.likes.nil?
           %i.fa.fa-thumbs-o-up
-          = @video.likes
+          %span.right-15= @video.likes
         - if not @video.dislikes.nil?
-          %i.fa.fa-thumbs-o-down
+          %i.fa.fa-thumbs-o-down.left-5
           = @video.dislikes
 
     -if not @video.tags.empty?

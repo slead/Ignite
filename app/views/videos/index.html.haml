@@ -38,6 +38,16 @@
               = "#{video.speaker_name}"
           at
           = link_to video.event.name, event_page_path(video.event)
+          .stats.right
+            - if not video.views.nil?
+              %i.fa.fa-youtube-play
+              %span.right-15= video.views
+            - if not video.likes.nil?
+              %i.fa.fa-thumbs-o-up
+              %span.right-15= video.likes
+            - if not video.dislikes.nil?
+              %i.fa.fa-thumbs-o-down.left-5
+              = video.dislikes
         %hr
   .row.paginate
     = will_paginate @videos, renderer: BootstrapPagination::Rails

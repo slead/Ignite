@@ -279,3 +279,17 @@ label {
   color: red;
   font-weight: bold;
 }
+
+.video_rating {
+  text-align: right;
+  position: absolute;
+  right: 15px;
+  bottom: 50px;
+}
+
+.video_rating-large {
+  text-align: right;
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+}
