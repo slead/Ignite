@@ -120,6 +120,10 @@ small, .small {
   margin-left: 15px;
 }
 
+.right-5 {
+  margin-right: 5px;
+}
+
 .right-15 {
   margin-right: 15px;
 }
@@ -283,13 +287,18 @@ label {
 .video_rating {
   text-align: right;
   position: absolute;
-  right: 15px;
-  bottom: 50px;
+  right: 18px;
+  bottom: 88px;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.85);
 }
 
-.video_rating-large {
+.video_rating_small {
   text-align: right;
   position: absolute;
-  right: 15px;
-  bottom: 15px;
+  right: 16px;
+  bottom: 46px;
+  padding: 3px;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 0.7em;
 }
