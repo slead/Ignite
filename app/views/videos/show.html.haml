@@ -44,7 +44,7 @@
     .row
       - @related_videos.each do |related_video|
         .col-md-3
-          =link_to thumbnail(related_video.uid), related_video
+          =link_to thumbnail(related_video, 'video_rating_small'), related_video
           %p.title= link_to truncate(related_video.title, length: 35), related_video
           %p.subtitle
             -if not related_video.speaker_name.blank?
@@ -54,11 +54,4 @@
                 = related_video.speaker_name
             at
             = link_to related_video.event.name, event_page_path(related_video.event)
-          .video_rating_small
-            %i.fa.fa-youtube-play
-            %span.right-5= number_with_delimiter(related_video.views, :delimiter => ',')
-            %i.fa.fa-thumbs-o-up
-            %span.right-5= number_with_delimiter(related_video.likes, :delimiter => ',')
-            %i.fa.fa-thumbs-o-down.left-5
-            = number_with_delimiter(related_video.dislikes, :delimiter => ',')
           

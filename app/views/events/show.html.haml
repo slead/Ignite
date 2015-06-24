@@ -22,7 +22,7 @@
       %h4.left-15 Featured videos
       - @videos.each do |video|
         .col-md-6.col-sm-12.col-xs-12
-          =link_to thumbnail(video.uid), video
+          =link_to thumbnail(video, 'video_rating_large'), video
           %p.title= link_to truncate(video.title, length: 60), video
           %p.subtitle
             by
@@ -31,16 +31,6 @@
                 = link_to video.speaker_name, video.speaker_url
               - else
                 = video.speaker_name
-          .video_rating
-            - if not video.views.nil?
-              %i.fa.fa-youtube-play
-              %span.right-15= video.views
-            - if not video.likes.nil?
-              %i.fa.fa-thumbs-o-up
-              %span.right-15= video.likes
-            - if not video.dislikes.nil?
-              %i.fa.fa-thumbs-o-down.left-5
-              = video.dislikes
           %hr
     .row.paginate
       = will_paginate @videos, renderer: BootstrapPagination::Rails

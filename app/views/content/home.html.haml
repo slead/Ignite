@@ -27,15 +27,12 @@
         at
         = link_to @first_video.event.name, event_page_path(@first_video.event)
       .video_rating
-        - if not @first_video.views.nil?
-          %i.fa.fa-youtube-play
-          %span.right-15= number_with_delimiter(@first_video.views, :delimiter => ',')
-        - if not @first_video.likes.nil?
-          %i.fa.fa-thumbs-o-up
-          %span.right-15= number_with_delimiter(@first_video.likes, :delimiter => ',')
-        - if not @first_video.dislikes.nil?
-          %i.fa.fa-thumbs-o-down.left-5
-          = number_with_delimiter(@first_video.dislikes, :delimiter => ',')
+        %i.fa.fa-youtube-play
+        %span.right-15= number_with_delimiter(@first_video.views, :delimiter => ',')
+        %i.fa.fa-thumbs-o-up
+        %span.right-15= number_with_delimiter(@first_video.likes, :delimiter => ',')
+        %i.fa.fa-thumbs-o-down.left-5
+        = number_with_delimiter(@first_video.dislikes, :delimiter => ',')
 
     .col-md-3.sidebar.col-sm-12
       .social.center
@@ -65,19 +62,12 @@
   .row
     -@videos.each do |video|
       .col-md-3
-        =link_to thumbnail(video.uid), video
+        =link_to thumbnail(video, 'video_rating_small'), video
         %p.title= link_to truncate(video.title, length: 35), video
         %p.subtitle
           = video.speaker_name
           at
           = link_to video.event.name, event_page_path(video.event)
-        .video_rating_small
-          %i.fa.fa-youtube-play
-          %span.right-5= number_with_delimiter(video.views, :delimiter => ',')
-          %i.fa.fa-thumbs-o-up
-          %span.right-5= number_with_delimiter(video.likes, :delimiter => ',')
-          %i.fa.fa-thumbs-o-down.left-5
-          = number_with_delimiter(video.dislikes, :delimiter => ',')
 
   .row.top-50
     .col-md-2

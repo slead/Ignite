@@ -28,7 +28,7 @@
   .row.top-50
     - @videos.each do |video|
       .col-md-6
-        =link_to thumbnail(video.uid), video
+        =link_to thumbnail(video, 'video_rating_large'), video
         %h4.title= link_to truncate(video.title, length: 60), video
         %p.subtitle
           -if not video.speaker_name.blank?
@@ -38,13 +38,7 @@
               = "#{video.speaker_name}"
           at
           = link_to video.event.name, event_page_path(video.event)
-          .video_rating
-            %i.fa.fa-youtube-play
-            %span.right-15= number_with_delimiter(video.views, :delimiter => ',')
-            %i.fa.fa-thumbs-o-up
-            %span.right-15= number_with_delimiter(video.likes, :delimiter => ',')
-            %i.fa.fa-thumbs-o-down.left-5
-            = number_with_delimiter(video.dislikes, :delimiter => ',')
+
         %hr
   .row.paginate
     = will_paginate @videos, renderer: BootstrapPagination::Rails

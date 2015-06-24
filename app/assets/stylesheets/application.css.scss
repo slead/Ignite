@@ -289,21 +289,24 @@ label {
   font-weight: bold;
 }
 
-.video_rating {
+.video_rating_large {
   text-align: right;
   position: absolute;
   right: 18px;
   bottom: 88px;
   padding: 5px;
   background: rgba(255, 255, 255, 0.85);
+  color: #000000;
+  font-size: 0.8em;
 }
 
 .video_rating_small {
   text-align: right;
   position: absolute;
   right: 16px;
-  bottom: 46px;
+  bottom: 50px;
   padding: 3px;
   background: rgba(255, 255, 255, 0.85);
   font-size: 0.7em;
+  color: #000000;
 }
