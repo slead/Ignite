@@ -13,7 +13,7 @@
         Filmed at
         = link_to @video.event.name, event_page_path(@video.event)
       .embed-container
-        =embed(@video.url)
+        =embed(@video.uid)
       .stats.right
         - if not @video.views.nil?
           %i.fa.fa-youtube-play
