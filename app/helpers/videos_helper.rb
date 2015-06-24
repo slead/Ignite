@@ -20,5 +20,4 @@ module VideosHelper
       end
     end
   end
-  
 end
