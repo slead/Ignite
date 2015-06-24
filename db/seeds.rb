@@ -4,7 +4,7 @@ User.create!([
 ])
 Event.create!([
   {name: "Ignite Seattle", url: "http://igniteseattle.com", city: "Seattle", state: "Washington", country: "United States", latitude: 47.6062095, longitude: -122.3320708, slug: "ignite-seattle", user_id: 1, status: 'published'},
-  {name: "Ignite Sydney", url: "http://www.ignitesydney.com", city: "Sydney", state: "New South Wales", country: "Australia", latitude: -33.8674869, longitude: 151.2069902, slug: "ignite-sydney", user_id: 1, status: 'published'}
+  {name: "Ignite Sydney", url: "http://www.ignitesydney.com", city: "Sydney", state: "New South Wales", country: "Australia", latitude: -33.8674869, longitude: 151.2069902, slug: "ignite-sydney", user_id: 1, status: 'published', twitter_name: 'ignitesydney'}
 ])
 Tag.create!([
   {name: "technology", major: true},
@@ -13,8 +13,8 @@ Tag.create!([
 ])
 
 Upcoming.create!([
-  {name: "Ignite Sydney 15", event_id: 1, date: "2018-06-01", user_id: 1, status: 'published', twitter_name: '@IgniteSydney'},
-  {name: "Ignite Seattle 27", event_id: 2, date: "2018-08-16", user_id: 1, status: 'published', twitter_name: '@IgniteSeattle'}
+  {name: "Ignite Sydney 15", event_id: 1, date: "2018-06-01", user_id: 1, status: 'published'},
+  {name: "Ignite Seattle 27", event_id: 2, date: "2018-08-16", user_id: 1, status: 'published'}
 ])
   
 Video.create!([
