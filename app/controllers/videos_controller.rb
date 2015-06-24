@@ -71,7 +71,7 @@ class VideosController < ApplicationController
 private
 
   def video_params
-    params.require(:video).permit(:title, :description, :url, :event_id, :status, :speaker_name, :speaker_url, tag_ids: [])
+    params.require(:video).permit(:title, :description, :url, :event_id, :status, :speaker_name, :speaker_url, :uid, tag_ids: [])
   end
 
   def find_video
