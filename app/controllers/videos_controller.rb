@@ -8,9 +8,7 @@ class VideosController < ApplicationController
   end
  
   def index
-
     if params[:query].present?
-      puts params
       @videos = Video.search(params[:query], where:{status: 'published'}, page: params[:page], :per_page => 8)
     elsif params[:tag].present?
       @tag = Tag.find_by(name: params[:tag])
@@ -70,7 +68,7 @@ class VideosController < ApplicationController
 private
 
   def video_params
-    params.require(:video).permit(:title, :description, :url, :event_id, :status, :speaker_name, :speaker_url, tag_ids: [])
+    params.require(:video).permit(:title, :description, :url, :event_id, :status, :speaker_name, :speaker_url, :likes, :dislikes, tag_ids: [])
   end
 
   def find_video
