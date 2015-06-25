@@ -63,11 +63,7 @@ class EventsController < ApplicationController
         flash[:notice] = "event #{@event.name} added successfully."
         redirect_to admin_path
       else
-        errors = []
-        @event.errors.full_messages.each do |msg|
-          errors << msg
-        end
-        flash.now[:notice] = errors
+        flash.now[:notice] = @event.errors.full_messages.to_sentence
         render 'new'
       end
     else

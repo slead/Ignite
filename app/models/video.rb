@@ -15,13 +15,13 @@ class Video < ActiveRecord::Base
    
     video = Yt::Video.new id: self.uid
     if self.uid.to_s.length != 11
-      self.errors.add(:link, 'is invalid.')
+      self.errors.add(:error, ' - YouTube ID is invalid.')
       false
     elsif not video.hd?
-      self.errors.add(:link, 'Only HD videos are supported')
+      self.errors.add(:error, ' - only HD videos are supported')
       false
     elsif Video.where(uid: self.uid).any?
-      self.errors.add(:link, 'This video has already been added to IgniteTalks.io!')
+      self.errors.add(:error, '- this video has already been added to IgniteTalks.io!')
       false
     else
       begin

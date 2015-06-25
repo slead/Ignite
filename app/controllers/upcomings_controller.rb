@@ -27,11 +27,7 @@ class UpcomingsController < ApplicationController
       flash[:notice] = "Upcoming event #{@upcoming.name} added successfully."
       redirect_to admin_path
     else
-      errors = []
-      @upcoming.errors.full_messages.each do |msg|
-        errors << msg
-      end
-      flash.now[:notice] = errors
+      flash.now[:notice] = @upcoming.errors.full_messages.to_sentence
       render 'new'
     end
   end

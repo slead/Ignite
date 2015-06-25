@@ -50,7 +50,7 @@ class VideosController < ApplicationController
         flash[:notice] = "video #{@video.title} added successfully."
         redirect_to admin_path
       else
-        flash[:notice] = @video.errors.full_messages
+        flash[:notice] = @video.errors.full_messages.to_sentence
         render 'new'
       end    
   end
