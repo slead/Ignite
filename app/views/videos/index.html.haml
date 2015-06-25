@@ -22,6 +22,14 @@
         %btn.btn.btn-default.tags#clear-filter
           %i.fa.fa-times
           remove filter
+      =link_to videos_path(sort: "views") do
+        %btn.btn.btn-default.tags{:id => "tag_views"}
+          %i.fa.fa-youtube-play
+          = "views"
+      =link_to videos_path(sort: "likes") do
+        %btn.btn.btn-default.tags{:id => "tag_likes"}
+          %i.fa.fa-thumbs-o-up
+          = "likes"
       - @tags.each do |tag|
         =link_to videos_path(tag: tag.name) do
           %btn.btn.btn-default.tags{:id => "tag_" + tag.name}= tag.name.titleize

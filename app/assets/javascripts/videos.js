@@ -2,8 +2,10 @@ var ready;
 ready = function() {
   $(".tags").removeClass("active");
   var tag = getUrlParameter("tag");
-  if (tag != undefined) {
+  var sort = getUrlParameter("sort");
+  if (tag != undefined || sort != undefined) {
     $("#tag_" + tag).addClass("active");
+    $("#tag_" + sort).addClass("active");
     $("#clear-filter").show();
   } else {
     $("#clear-filter").hide();

@@ -16,6 +16,8 @@ class VideosController < ApplicationController
     elsif params[:tag].present?
       @tag = Tag.find_by(name: params[:tag])
       @videos = @tag.videos.where(status: 'published').paginate(:page => params[:page], :per_page => 8)
+    elsif params[:sort].present? and params[:sort] == 'likes' || params[:sort] == 'views'
+      @videos = Video.where(status: 'published').order("#{params[:sort]} DESC").paginate(:page => params[:page], :per_page => 8)
     else
       @videos = Video.where(status: 'published').paginate(:page => params[:page], :per_page => 8)
     end
