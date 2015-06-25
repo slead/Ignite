@@ -13,14 +13,24 @@ class Video < ActiveRecord::Base
     uid = url.match(YT_LINK_FORMAT)
     self.uid = uid[2] if uid && uid[2]
    
+    video = Yt::Video.new id: self.uid
     if self.uid.to_s.length != 11
       self.errors.add(:link, 'is invalid.')
       false
+    elsif not video.hd?
+      self.errors.add(:link, 'Only HD videos are supported')
+      false
     elsif Video.where(uid: self.uid).any?
-      self.errors.add(:link, 'is not unique.')
+      self.errors.add(:link, 'This video has already been added to IgniteTalks.io!')
       false
     else
-      get_video_info
+      begin
+        self.likes = video.like_count
+        self.dislikes = video.dislike_count
+        self.views = video.view_count
+      rescue
+        self.likes = 0 ; self.dislikes = 0 ; self.views = 0
+      end
     end
   end
 
@@ -42,16 +52,4 @@ class Video < ActiveRecord::Base
     #uniq removes duplicates
   end
 
-  private
- 
-  def get_video_info
-    begin
-      video = Yt::Video.new id: uid
-      self.likes = video.like_count
-      self.dislikes = video.dislike_count
-      self.views = video.view_count
-    rescue
-      self.likes = 0 ; self.dislikes = 0 ; self.views = 0
-    end
-  end
 end
