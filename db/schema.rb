@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150624045226) do
+ActiveRecord::Schema.define(version: 20150629052637) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20150624045226) do
     t.integer  "likes"
     t.integer  "dislikes"
     t.integer  "views"
+    t.text     "description"
   end
 
   add_index "videos", ["event_id"], name: "index_videos_on_event_id"
