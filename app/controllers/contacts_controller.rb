@@ -6,7 +6,6 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(params[:contact])
-    byebug
     @contact.request = request
     if @contact.deliver
       flash.now[:error] = nil
