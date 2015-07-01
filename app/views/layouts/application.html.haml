@@ -6,6 +6,7 @@
     %meta{'name' => 'description', :content => 'Ignite is a series of 5-minute presentations, where each presenter must use 20 slides, which auto-advance every 15 seconds. Ignite events take place all over the world.'}/
     %meta{'name' => 'author', :content => 'Stephen Lead'}/
     %meta{'name' => 'contact', :content => 'http://www.stephenlead.com'}/
+    %meta{'name' => 'google-site-verification', :content => 'lrXVGG6ASnzX9QfLh11oCCsR0XduLmTQgzpxtOaKCGk'}/
 
     %title Ignite. Enlighten us, but make it quick
     = javascript_include_tag 'application'
@@ -71,12 +72,22 @@
       .row
         .col-md-2.col-md-offset-1
           %h4.center Links
-          %ul
+          %ul.contact
             %li= link_to "Contact Us", contact_path
             %li= link_to "Find an Ignite", events_path
             %li= link_to "Browse videos", videos_path
             %li= link_to "Start an Ignite", start_path
             %li= link_to "Become a sponsor", contact_path
+          %span.social
+            = link_to "https://twitter.com/ignitetalks" do
+              %i.fa.fa-twitter.fa-2x
+            = link_to "https://www.facebook.com/ignitetalks" do
+              %i.fa.fa-facebook.fa-2x
+            = link_to "https://plus.google.com/ignite" do
+              %i.fa.fa-google-plus.fa-2x
+            = link_to "https://www.youtube.com/ignite" do
+              %i.fa.fa-youtube.fa-2x
+
         .col-md-4.col-md-offset-1.map
           %h4.center Find your local Ignite
           = link_to image_tag( 'map.png'), events_path
