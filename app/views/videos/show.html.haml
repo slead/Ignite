@@ -29,6 +29,11 @@
             %i.fa.fa-tag
             %span= @video.tags.map(&:name).join(", ").titleize
 
+    -if not @video.description.blank?
+      .row 
+        .col-md-12
+          %p.top-50.left-15= @video.description
+
   - if user_signed_in?
     .row.right
       .col-md-8.user

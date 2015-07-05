@@ -28,6 +28,9 @@ class Video < ActiveRecord::Base
         self.likes = video.like_count
         self.dislikes = video.dislike_count
         self.views = video.view_count
+        if self.description.blank?
+          self.description = video.description
+        end
       rescue
         self.likes = 0 ; self.dislikes = 0 ; self.views = 0
       end
