@@ -1,7 +1,10 @@
 .container.event
   .row
     .col-md-12
-      %h1= @event.name
+      %h1
+        = @event.name
+        -if @event.status == 'draft'
+          (draft)
       - if not @event.state.blank?
         %p= "#{@event.city}, #{@event.state}, #{@event.country}"
       - else

@@ -1,7 +1,10 @@
 .container.top-150
   .row 
     .col-md-12
-      %h4= @upcoming.name
+      %h4
+        = @upcoming.name
+        -if @upcoming.status == 'draft'
+          (draft)
       %p= @upcoming.date
       
   - if user_signed_in?

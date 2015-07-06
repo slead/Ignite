@@ -1,7 +1,10 @@
 .container.top-150
   .row 
     .col-md-12
-      %h3= @video.title
+      %h3
+        = @video.title
+        -if @video.status == 'draft'
+          (draft)
       %h4.title
       -if not @video.speaker_name.blank?
         - if not @video.speaker_url.blank?
