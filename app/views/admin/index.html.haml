@@ -1,8 +1,8 @@
 .container-fluid
   .row
-    .col-md-6
-      %h1.left-15 Ignite Talks admin panel
-    .col-md-1.col-md-offset-4
+    .col-md-6.col-md-offset-1
+      %h1 Ignite Talks admin panel
+    .col-md-1.col-md-offset-3
       .btn-group.top-15
         %button{:type => "button", :class => "btn btn-default dropdown-toggle", "data-toggle" => "dropdown"}
           =current_user.email
@@ -13,11 +13,20 @@
 
 - if current_user.admin?
   .container-fluid
+    .row
+      .col-md-6.col-md-offset-1
+        %h4
+          Published
+          %input{ :type => "checkbox", :id => "chkPublished", :class => "bootstrapSwitch", :checked => "checked"}
+          %span.left-15
+            Draft
+            %input{ :type => "checkbox", :id => "chkDrafts", :class => "bootstrapSwitch"}
+
+
     #admin_videos.admin_panel
-      .row.top-50
+      .row.top-50.draft
         .col-md-10.col-md-offset-1
-          %h2 Videos
-          %h4 Drafts
+          %h4 Draft videos
           %hr
           %table#draft_videos
             %thead
@@ -50,7 +59,7 @@
                     =link_to video_path(draft_video), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this draft video?"} do 
                       %i.fa.fa-times
 
-      .row.top-50
+      .row.top-50.published
         .col-md-10.col-md-offset-1
           %h4
             Published Videos
@@ -89,10 +98,9 @@
                       %i.fa.fa-times
 
     #admin_events.admin_panel
-      .row
+      .row.draft
         .col-md-10.col-md-offset-1
-          %h2 Ignites
-          %h4 Drafts
+          %h4 Draft Ignites
 
           %hr
           %table#draft_events
@@ -120,7 +128,7 @@
                     =link_to event_path(draft_event), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this Ignite?"} do 
                       %i.fa.fa-times
 
-      .row.top-50
+      .row.top-50.published
         .col-md-10.col-md-offset-1
           %h4
             Published Ignites
@@ -153,10 +161,9 @@
                       %i.fa.fa-times
 
     #admin_upcomings.admin_panel
-      .row
+      .row.draft
         .col-md-10.col-md-offset-1
-          %h2 Upcoming Events
-          %h4 Drafts
+          %h4 Draft Upcoming Events
             
           %hr
           %table#draft_upcoming
@@ -178,7 +185,7 @@
                     =link_to upcoming_path(draft_upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming event?"} do 
                       %i.fa.fa-times
 
-      .row.top-50
+      .row.top-50.published
         .col-md-10.col-md-offset-1
           %h4
             Published Upcoming Events

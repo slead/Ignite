@@ -79,6 +79,19 @@ function pageLoad() {
     ]
   });
 
+  // Toggle switches for draft/published. Drafts are off by default
+  $(".draft").hide();
+  
+  $(".bootstrapSwitch").bootstrapSwitch();
+
+  $("#chkDrafts").on('switchChange.bootstrapSwitch', function(event, state) {
+    $(".draft").toggle(state);
+  });
+
+  $("#chkPublished").on('switchChange.bootstrapSwitch', function(event, state) {
+    $(".published").toggle(state);
+  });
+
   // Hide/show the navbar on the homepage (only)
   if(window.location.pathname == "/") {
     $(".navbar").hide();
