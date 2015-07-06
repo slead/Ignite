@@ -9,7 +9,7 @@
             ago
           .content
             %p
-              =truncate(post.content, length: 150)
+              =markdown(truncate(post.content, length: 500))
               %span.readmore= link_to "more", post
           %hr
 

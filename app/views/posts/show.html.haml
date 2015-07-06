@@ -3,12 +3,11 @@
     .col-lg-8.col-lg-offset-2
       .content.single_post
         %h4.title= @post.title
-        / %p= markdown @post.content
-        %p= @post.content
-
-      = link_to posts_path, class: "btn" do
+        %p= markdown @post.content
+        
+      = link_to blog_path, class: "btn" do
         %i.fa.fa-angle-double-left.highlight
-        Back to articles
+        Back to blog
 
         - if user_signed_in? && @post.user_id == current_user.id
           #me
