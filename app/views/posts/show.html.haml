@@ -2,7 +2,7 @@
   .row.top-100
     .col-lg-8.col-lg-offset-2
       .content.single_post
-        %h4.title= @post.title
+        %h1.title= @post.title
         %p= markdown @post.content
         
       = link_to blog_path, class: "btn" do
