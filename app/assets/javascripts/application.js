@@ -79,11 +79,10 @@ function pageLoad() {
     ]
   });
 
-  // Toggle switches for draft/published
-  $(".draft").toggle($("#chkDrafts").is("checked"))
-  $(".published").toggle($("#chkPublished").is("checked"))
-  
+  // Toggle switches for draft/published, using BootStrapSwitch plugin
   $(".bootstrapSwitch").bootstrapSwitch();
+  $(".draft").toggle($("#chkDrafts").bootstrapSwitch('state'));
+  $(".published").toggle($("#chkPublished").bootstrapSwitch('state'));
 
   $("#chkDrafts").on('switchChange.bootstrapSwitch', function(event, state) {
     $(".draft").toggle(state);
