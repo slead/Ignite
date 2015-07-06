@@ -44,7 +44,9 @@ class VideosController < ApplicationController
     else
       # If this user is not an admin, flag the video as a draft. It won't show on public pages until published
       @video.status = 'draft'
-      NotifyMailer.sample_email(User.first).deliver
+
+      # Notify an admin via email
+      NotifyMailer.new_draft_email(User.first, @video).deliver
     end
 
     if @video.save
