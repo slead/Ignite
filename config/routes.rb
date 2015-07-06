@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :contacts, only: [:new, :create]
   resources :videos
   resources :upcomings
+  resources :posts
 
   get '/about', to: 'content#about', as: :about #=> about_path
   get '/admin', to: 'admin#index', as: :admin #=> admin_path

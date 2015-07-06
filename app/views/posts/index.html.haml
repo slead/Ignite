@@ -1,0 +1,21 @@
+.container.top-100
+  - @posts.each do |post|
+    .row
+      .col-lg-8.col-lg-offset-2
+        .post.content
+          %h4.title= link_to post.title, post
+          %span.date
+            = time_ago_in_words(post.created_at)
+            ago
+          .content
+            %p
+              =truncate(post.content, length: 150)
+              %span.readmore= link_to "more", post
+          %hr
+
+- if user_signed_in?
+  #me
+    = link_to destroy_user_session_path, method: :delete, class: "light btn-user" do
+      %i.fa.fa-user
+    = link_to new_post_path, class: "light btn-edit" do
+      %i.fa.fa-pencil-square-o

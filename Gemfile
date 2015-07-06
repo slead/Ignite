@@ -27,6 +27,8 @@ gem 'haml', '~> 4.0.6'
 gem 'leaflet-rails', '~> 0.7.4'
 gem 'mail_form', '~> 1.5.1'
 gem "omniauth-google-oauth2"
+gem 'pygments.rb', '~> 0.6.3'
+gem 'redcarpet', '~> 3.2.3'
 gem 'searchkick', '~> 0.8.7'
 gem 'simple_form', '~> 3.1.0'
 gem 'sitemap_generator', '~> 5.0.5'

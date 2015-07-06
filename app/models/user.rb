@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   has_many :videos
   has_many :events
   has_many :upcomings
+  has_many :posts
 end
