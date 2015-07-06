@@ -81,15 +81,30 @@ function pageLoad() {
 
   // Toggle switches for draft/published, using BootStrapSwitch plugin
   $(".bootstrapSwitch").bootstrapSwitch();
-  $(".draft").toggle($("#chkDrafts").bootstrapSwitch('state'));
-  $(".published").toggle($("#chkPublished").bootstrapSwitch('state'));
+  if(Cookies.get("chkDrafts") == 'true') {
+    $("#chkDrafts").bootstrapSwitch('state', true)
+    $(".draft").toggle(true);
+  } else {
+    $("#chkDrafts").bootstrapSwitch('state', false)
+    $(".draft").toggle(false);
+  }
+
+  if(Cookies.get("chkPublished") == 'true') {
+    $("#chkPublished").bootstrapSwitch('state', true)
+    $(".published").toggle(true);
+  } else {
+    $("#chkPublished").bootstrapSwitch('state', false)
+    $(".published").toggle(false);
+  }
 
   $("#chkDrafts").on('switchChange.bootstrapSwitch', function(event, state) {
     $(".draft").toggle(state);
+    Cookies.set('chkDrafts', state);
   });
 
   $("#chkPublished").on('switchChange.bootstrapSwitch', function(event, state) {
     $(".published").toggle(state);
+    Cookies.set('chkPublished', state);
   });
 
   // Hide/show the navbar on the homepage (only)
