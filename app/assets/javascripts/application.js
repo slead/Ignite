@@ -79,8 +79,9 @@ function pageLoad() {
     ]
   });
 
-  // Toggle switches for draft/published. Drafts are off by default
-  $(".draft").hide();
+  // Toggle switches for draft/published
+  $(".draft").toggle($("#chkDrafts").is("checked"))
+  $(".published").toggle($("#chkPublished").is("checked"))
   
   $(".bootstrapSwitch").bootstrapSwitch();
 

@@ -23,6 +23,17 @@ class UpcomingsController < ApplicationController
 
   def create
     @upcoming = current_user.upcomings.build(upcoming_params)
+    if current_user.admin?
+      # If the current user is an administrator, create the upcoming event normally. It's immediately published.
+      @upcoming.status = 'published'
+    else
+      # If this user is not an admin, flag the upcoming event as a draft. It won't show on public pages until published
+      @upcoming.status = 'draft'
+
+      # Notify an admin via email
+      NotifyMailer.new_draft_email(User.first).deliver
+    end
+
     if @upcoming.save
       flash[:notice] = "Upcoming event #{@upcoming.name} added successfully."
       redirect_to admin_path

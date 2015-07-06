@@ -55,29 +55,25 @@ class EventsController < ApplicationController
   end
 
   def create
+    @event = current_user.events.build(event_params)
     if current_user.admin?
       # If the current user is an administrator, create the event normally. It's immediately published.
-      @event = current_user.events.build(event_params)
       @event.status = 'published'
-      if @event.save
-        flash[:notice] = "event #{@event.name} added successfully."
-        redirect_to admin_path
-      else
-        flash.now[:notice] = @event.errors.full_messages.to_sentence
-        render 'new'
-      end
     else
       # If this user is not an admin, flag the event as a draft. It won't show on public pages until published
-      @event = Event.create(event_params)
       @event.status = 'draft'
-      if @event.save
-        flash[:notice] = "Thanks for submitting an event. We'll load it ASAP!"
-        redirect_to root_path
-      else
-        flash[:notice] = @event.errors.full_messages
-        render 'new'
-      end
+
+      # Notify an admin via email
+      NotifyMailer.new_draft_email(User.first).deliver
     end
+
+    if @event.save
+        flash[:notice] = "Event #{@event.name} added successfully."
+        redirect_to admin_path
+      else
+        flash[:notice] = @event.errors.full_messages.to_sentence
+        render 'new'
+      end    
   end
 
   def update
