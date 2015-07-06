@@ -46,7 +46,7 @@ class VideosController < ApplicationController
       @video.status = 'draft'
 
       # Notify an admin via email
-      NotifyMailer.new_draft_email(User.first, @video).deliver
+      NotifyMailer.new_draft_email(User.first).deliver
     end
 
     if @video.save
