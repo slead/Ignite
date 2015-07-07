@@ -11,6 +11,19 @@ ready = function() {
     $("#clear-filter").hide();
   }
 
+  $("#btnYouTubeRetrieve").on("click", function() {
+    url = $("#video_url").val();
+    checkURL = ytVidId(url);
+    $.getJSON( checkURL, function( data ) {
+      if (data.items.length > 0) {
+        title = data.items[0].snippet.title;
+        description = data.items[0].snippet.description;
+        $("#video_title").val(title);
+        $("#video_description").val(description);
+      }
+    });
+  });
+
 }
 
 function getUrlParameter(sParam)
@@ -25,7 +38,13 @@ function getUrlParameter(sParam)
             return sParameterName[1];
         }
     }
-}       
+}
+
+function ytVidId(url) {
+  var p = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?(?=.*v=((\w|-){11}))(?:\S+)?$/;
+  uid = (url.match(p)) ? RegExp.$1 : false;
+  return "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyBx6PNbsLcrB86i3cErr5EjIRoz6v8-8DI&fields=items(snippet(title,description))&part=snippet&id=" + uid
+}   
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
