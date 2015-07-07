@@ -60,7 +60,7 @@ class UpcomingsController < ApplicationController
   private
 
   def upcoming_params
-    params.require(:upcoming).permit(:name, :event_id, :date)
+    params.require(:upcoming).permit(:name, :event_id, :date, :status)
   end
 
   def find_upcoming
