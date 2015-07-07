@@ -210,6 +210,14 @@ li a {
   padding-right: 15px;
 }
 
+.navbar-collapse {
+  background-color: white;
+  width: 150px;
+  right: 0;
+  position: absolute;
+  top: 50px;
+}
+
 @media(min-width:768px) {
 
     .navbar {
