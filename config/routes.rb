@@ -7,9 +7,8 @@ Rails.application.routes.draw do
   end
 
   resources :contacts, only: [:new, :create]
-  resources :tags
-  resources :upcomings
   resources :videos
+  resources :upcomings
   resources :posts, except: [:index]
 
   get '/about', to: 'content#about', as: :about #=> about_path
