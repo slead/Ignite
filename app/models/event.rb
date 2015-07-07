@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  validates_presence_of :name, :city, :url
+  validates_presence_of :name, :city
   has_many :videos, dependent: :destroy
   has_many :upcomings, dependent: :destroy
   belongs_to :user
