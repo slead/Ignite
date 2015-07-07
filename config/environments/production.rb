@@ -80,13 +80,11 @@ Rails.application.configure do
   GA.tracker = "UA-64086594-1"
 
   # Devise
-  config.action_mailer.default_url_options = { :host => 'rocky-sierra-8674.herokuapp.com' }
-  Rails.application.routes.default_url_options[:host] = 'rocky-sierra-8674.herokuapp.com'
+  Rails.application.routes.default_url_options[:host] = 'www.ignitetalks.io'
 
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.default_url_options = { :host => 'rocky-sierra-8674.heroku.com' }
   config.action_mailer.default_url_options = { :host => 'www.ignitetalks.io' }
 
   ActionMailer::Base.smtp_settings = {
