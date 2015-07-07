@@ -43,7 +43,7 @@ function getUrlParameter(sParam)
 function ytVidId(url) {
   var p = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?(?=.*v=((\w|-){11}))(?:\S+)?$/;
   uid = (url.match(p)) ? RegExp.$1 : false;
-  return "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyCj-uI-OrlNIR9LGyjM2IRFPgEv8kEKaMw&fields=items(snippet(title,description))&part=snippet&id=" + uid
+  return "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94&fields=items(snippet(title,description))&part=snippet&id=" + uid
 }   
 
 $(document).ready(ready);
