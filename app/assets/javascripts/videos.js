@@ -20,6 +20,10 @@ ready = function() {
         description = data.items[0].snippet.description;
         $("#video_title").val(title);
         $("#video_description").val(description);
+        $(".details").show();
+      } else {
+        alert("Unable to retrieve details from YouTube. Please try another URL")
+        $(".details").hide();
       }
     });
   });
