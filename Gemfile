@@ -33,6 +33,7 @@ gem 'searchkick', '~> 0.8.7'
 gem 'simple_form', '~> 3.1.0'
 gem 'sitemap_generator', '~> 5.0.5'
 gem 'utf8_enforcer_workaround', '~> 1.1.0'
+gem "validate_url"
 gem 'will_paginate', '~> 3.0.7'
 gem 'will_paginate-bootstrap', '~> 1.0.1'
 gem 'yt', '~> 0.24.9'

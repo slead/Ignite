@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   validates_presence_of :name, :city
+  validates :url, :url => {:allow_blank => true}
   has_many :videos, dependent: :destroy
   has_many :upcomings, dependent: :destroy
   belongs_to :user

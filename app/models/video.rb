@@ -2,7 +2,7 @@ class Video < ActiveRecord::Base
   validates_presence_of :title, :event, :url, :speaker_name
   validates :url, format: { with: /\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]*)/,
     message: "must be in the format http://www.youtube.com/watch?v=VIDEO_ID" }
-
+  validates :speaker_url, :url => {:allow_blank => true}
   belongs_to :event
   belongs_to :user
   has_and_belongs_to_many :tags
