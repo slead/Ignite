@@ -26,5 +26,16 @@ module ApplicationHelper
     }
     Redcarpet::Markdown.new(renderer, options).render(content).html_safe
   end
+
+  def og_description
+    #Personalise the Facebook description text for each page
+    if @og_description.nil?
+      puts "description is standard one"
+      return "Ignite is a series of 5-minute presentations, where each presenter must use 20 slides, which auto-advance every 15 seconds. Ignite events take place all over the world."
+    else
+      puts "descrition is " + @og_description
+      return @og_description
+   end 
+  end 
   
 end

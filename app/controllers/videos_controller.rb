@@ -32,6 +32,9 @@ class VideosController < ApplicationController
   def show
     #Show up to 4 videos which share the same tag. related_videos is calculated in the video.rb model
     @related_videos = @video.related_videos.pop(4)
+
+    #Customise the Facebook sharing content
+    @og_description = @video.title + " | " + @video.speaker_name + " at " + @video.event.name
   end
 
   def edit
