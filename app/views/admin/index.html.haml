@@ -51,7 +51,7 @@
                   %td= draft_video.speaker_name
                   %td= draft_video.speaker_url
                   %td= draft_video.created_at.to_date
-                  %td= draft_video.tags.map(&:name)
+                  %td= draft_video.tags.map(&:name).join(", ")
                   %td
                     =link_to edit_video_path(draft_video), class: "light btn-edit" do
                       %i.fa.fa-pencil-square-o
@@ -89,7 +89,7 @@
                   %td= video.speaker_name
                   %td= video.speaker_url
                   %td= video.created_at.to_date
-                  %td= video.tags.map(&:name)
+                  %td= video.tags.map(&:name).join(", ")
                   %td
                     =link_to edit_video_path(video), class: "light btn-edit" do
                       %i.fa.fa-pencil-square-o
