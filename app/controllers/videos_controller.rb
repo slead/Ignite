@@ -35,8 +35,8 @@ class VideosController < ApplicationController
 
     #Customise the Facebook/Twitter sharing content
     @og_title = "IgniteTalks.io" + " | " + @video.title + " by " + @video.speaker_name
-    if @video.description.nil?
-      @og_description = "IgniteTalks.io" + " | " + @video.title + " by " + @video.speaker_name
+    if @video.description.blank?
+      @og_description = @video.speaker_name + " speaks at " + @video.event.name
     else
       @og_description = @video.description
     end
