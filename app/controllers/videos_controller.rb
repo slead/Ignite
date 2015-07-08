@@ -2,6 +2,7 @@ class VideosController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_video, only: [:show, :edit, :update, :destroy, :update_stats]
   before_action :update_youtube_stats, only: [:show]
+  layout 'no_footer', :only => [:new, :edit]
 
   rescue_from ActiveRecord::RecordNotFound do
     flash[:notice] = 'Sorry, that video does not exist'

@@ -12,6 +12,7 @@ ready = function() {
   }
 
   $("#btnYouTubeRetrieve").on("click", function() {
+    $("#btnYouTubeRetrieve").addClass("disabled");
     url = $("#video_url").val();
     checkURL = ytVidId(url);
     $.getJSON( checkURL, function( data ) {
@@ -26,6 +27,10 @@ ready = function() {
         $(".details").hide();
       }
     });
+  });
+
+  $("#video_url").on("keyup", function() {
+    $("#btnYouTubeRetrieve").removeClass("disabled");
   });
 
 }
