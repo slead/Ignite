@@ -39,7 +39,7 @@ module ApplicationHelper
   def og_image
     #Personalise the Facebook image for videos
     if @og_image.nil?
-      return "http://www.ignitetalks.io/images/ignite-logo_large.png"
+      return "http://www.ignitetalks.io/images/ignite-logo-facebook.png"
     else
       return @og_image
    end 
