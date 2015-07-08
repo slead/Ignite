@@ -33,6 +33,10 @@ ready = function() {
     $("#btnYouTubeRetrieve").removeClass("disabled");
   });
 
+  $("#video_url").on("focusout", function() {
+    $("#btnYouTubeRetrieve").removeClass("disabled");
+  });
+
 }
 
 function getUrlParameter(sParam)

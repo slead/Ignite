@@ -29,7 +29,12 @@
 / Enable the YouTube retrieve button when there's a URL to test
 :javascript
   $(document).ready(function() {
+    console.log("page ready")
     $('[data-toggle="tooltip"]').tooltip();
     $("#btnYouTubeRetrieve").addClass("disabled");
-    $(".details").hide();
+    if ($("#video_url").val() == '') {
+      $(".details").hide();
+    } else {
+      $(".details").show();
+    }
   });
