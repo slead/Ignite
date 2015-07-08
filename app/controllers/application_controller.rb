@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   after_filter :store_location
 
   Yt.configure do |config|
-    config.api_key = 'AIzaSyBx6PNbsLcrB86i3cErr5EjIRoz6v8-8DI'
+    config.api_key = 'AIzaSyCj-uI-OrlNIR9LGyjM2IRFPgEv8kEKaMw'
     config.log_level = :debug
   end
 
