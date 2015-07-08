@@ -35,6 +35,7 @@ class VideosController < ApplicationController
 
     #Customise the Facebook sharing content
     @og_description = @video.title + " | " + @video.speaker_name + " at " + @video.event.name
+    @og_image = "http://img.youtube.com/vi/#{@video.uid}/maxresdefault.jpg"
   end
 
   def edit
@@ -90,11 +91,15 @@ private
   def update_youtube_stats
     #Update the view, like and dislike counts
     unless @video.uid.nil?
-      video = Yt::Video.new id: @video.uid
-      @video.views = video.view_count
-      @video.likes = video.like_count
-      @video.dislikes = video.dislike_count
-      @video.save
+      begin
+        video = Yt::Video.new id: @video.uid
+        @video.views = video.view_count
+        @video.likes = video.like_count
+        @video.dislikes = video.dislike_count
+        @video.save
+      rescue Exception => e
+        print "YouTube API error"
+      end
     end
   end
 
