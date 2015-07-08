@@ -8,16 +8,16 @@
     %hr
     .row
       .col-md-10
-        =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL (in the format https://www.youtube.com/watch?v=YOUTUBE_ID)"
+        =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL (in the format https://www.youtube.com/watch?v=YOUTUBE_ID)", label: 'Video URL', hint: '(YouTube videos only)'
       .col-md-2
         .tooltip-wrapper{:data => {:toggle => "tooltip"}, :title => "Enter the URL, then retrieve title and description from YouTube"}
           %btn.btn.btn-warning.top-25#btnYouTubeRetrieve Get info
     .row.details
       .col-md-12
-        =f.input :title,  input_html: { class: 'form-control' }, placeholder: "Enter the video's title"
-        =f.input :description,  input_html: { class: 'form-control' }, placeholder: "Enter the video's description (leave blank to import from YouTube)"
+        =f.input :title,  input_html: { class: 'form-control' }, placeholder: "Enter the video's title", label: 'Video title', hint: 'Do not include the speaker name or event name'
+        =f.input :description,  input_html: { class: 'form-control', :rows => 5 }, placeholder: "Enter the video's description", label: 'Video description', hint: 'Please enter a 1-2 sentence summary of the talk\'s topics. This will be displayed under the video, and on Facebook/Twitter posts. Do not include the speaker name or event name'
         =f.input :speaker_name, input_html: { class: 'form-control' }, placeholder: "Enter the speaker's name"
-        =f.input :speaker_url, input_html: { class: 'form-control' }, placeholder: "Enter the speaker's URL (eg Twitter, blog, etc)"
+        =f.input :speaker_url, input_html: { class: 'form-control' }, placeholder: "Enter the speaker's URL (eg Twitter, blog, etc)", label: 'Speaker URL', hint: 'You can optionally provide a link to the speaker\'s blog, Twitter account, etc'
         %hr
         %p
           Ignite event:
