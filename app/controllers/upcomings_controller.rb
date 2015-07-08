@@ -1,6 +1,7 @@
 class UpcomingsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_upcoming, only: [:show, :edit, :update, :destroy]
+  layout 'no_footer', :only => [:new, :edit]
   
   rescue_from ActiveRecord::RecordNotFound do
     flash[:notice] = "Sorry, that upcoming event does not exist"

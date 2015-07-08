@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  layout 'no_footer', :only => [:new, :edit]
   def new
     @contact = Contact.new
     @contact.page_url = params['page']
