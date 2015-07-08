@@ -63,17 +63,17 @@ class EventsController < ApplicationController
     else
       # If this user is not an admin, flag the event as a draft. It won't show on public pages until published
       @event.status = 'draft'
-
-      # Notify an admin via email
-      NotifyMailer.new_draft_email(User.first).deliver
     end
 
     if @event.save
         flash[:notice] = "Event #{@event.name} added successfully."
+        if @event.status == 'draft'
+          NotifyMailer.new_draft_email(User.first).deliver # Notify an admin via email
+        end
         redirect_to admin_path
       else
         flash[:notice] = @event.errors.full_messages.to_sentence
-        render 'new'
+        render 'new', layout: 'no_footer'
       end    
   end
 

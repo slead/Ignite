@@ -30,17 +30,17 @@ class UpcomingsController < ApplicationController
     else
       # If this user is not an admin, flag the upcoming event as a draft. It won't show on public pages until published
       @upcoming.status = 'draft'
-
-      # Notify an admin via email
-      NotifyMailer.new_draft_email(User.first).deliver
     end
 
     if @upcoming.save
       flash[:notice] = "Upcoming event #{@upcoming.name} added successfully."
+      if @upcoming.status == 'draft'
+        NotifyMailer.new_draft_email(User.first).deliver # Notify an admin via email
+      end
       redirect_to admin_path
     else
       flash.now[:notice] = @upcoming.errors.full_messages.to_sentence
-      render 'new'
+      render 'new', layout: 'no_footer'
     end
   end
 
