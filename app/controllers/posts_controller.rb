@@ -35,6 +35,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @og_title = "IgniteTalks.io" + " | " + @post.title
   end
 
   def destroy

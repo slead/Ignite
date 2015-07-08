@@ -28,7 +28,7 @@ module ApplicationHelper
   end
 
   def og_description
-    #Personalise the Facebook description text for each page
+    #Personalise the Facebook/Twitter description text for each page
     if @og_description.nil?
       return "Ignite is a series of 5-minute presentations, where each presenter must use 20 slides, which auto-advance every 15 seconds. Ignite events take place all over the world."
     else
@@ -37,11 +37,20 @@ module ApplicationHelper
   end
 
   def og_image
-    #Personalise the Facebook image for videos
+    #Personalise the Facebook/Twitter image for videos
     if @og_image.nil?
       return "http://www.ignitetalks.io/images/ignite-logo-facebook.png"
     else
       return @og_image
+   end 
+  end 
+
+  def og_title
+    #Personalise the Facebook/Twitter title
+    if @og_title.nil?
+      return "Ignite Talks - Enlighten us, but make it quick"
+    else
+      return @og_title
    end 
   end 
   

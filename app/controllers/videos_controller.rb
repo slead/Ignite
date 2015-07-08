@@ -33,8 +33,13 @@ class VideosController < ApplicationController
     #Show up to 4 videos which share the same tag. related_videos is calculated in the video.rb model
     @related_videos = @video.related_videos.pop(4)
 
-    #Customise the Facebook sharing content
-    @og_description = @video.title + " | " + @video.speaker_name + " at " + @video.event.name
+    #Customise the Facebook/Twitter sharing content
+    @og_title = "IgniteTalks.io" + " | " + @video.title + " by " + @video.speaker_name
+    if @video.description.nil?
+      @og_description = @og_title
+    else
+      @og_description = @video.description
+    end
     @og_image = "http://img.youtube.com/vi/#{@video.uid}/maxresdefault.jpg"
   end
 

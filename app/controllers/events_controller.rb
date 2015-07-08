@@ -46,6 +46,7 @@ class EventsController < ApplicationController
   def show
     @videos = @event.videos.where(status: 'published').paginate(:page => params[:page], :per_page => 8)
     @upcomings = @event.upcomings.where('date > ?', Date.yesterday)
+    @og_title = @event.name + ' on IgniteTalks.io'
   end
 
   def new

@@ -7,13 +7,14 @@
     %meta{'name' => 'author', :content => 'Stephen Lead'}
     %meta{'name' => 'contact', :content => 'http://www.stephenlead.com'}
     %meta{'name' => 'google-site-verification', :content => 'lrXVGG6ASnzX9QfLh11oCCsR0XduLmTQgzpxtOaKCGk'}
-    %meta{'property' => "og:title", :content => "Ignite Talks"}
+    %meta{'property' => "og:title", :content => og_title}
     %meta{'property' => "og:url", :content => request.original_url}
     %meta{'property' => "og:description", :content => og_description}
     %meta{'property' => "og:type", :content => "website"}
     %meta{'property' => "og:image", :content => og_image}
-    %meta{'name' => 'twitter:card', :content => 'summary'}
+    %meta{'name' => 'twitter:card', :content => 'summary_large_image'}
     %meta{'name' => 'twitter:site', :content => '@ignitetalks'}
+    %meta{'name' => 'twitter:image', :content => og_image}
 
     %title Ignite. Enlighten us, but make it quick
     = javascript_include_tag 'application'
