@@ -137,8 +137,25 @@ small, .small {
   margin-right: 15px;
 }
 
+/* New/Edit panels */
 .panel-body .input {
   margin-top: 15px;
+  margin-bottom: 25px;
+  .form-control {
+    margin-bottom: 10px;
+  }
+  abbr[title="required"] {
+    display: none;
+  }
+}
+.collection_check_boxes {
+  font-weight: normal;
+}
+
+.field_with_errors {
+  input, textarea {
+    border: 1px solid red;
+  }
 }
 
 #btnYouTubeRetrieve {

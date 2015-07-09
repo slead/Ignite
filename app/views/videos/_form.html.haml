@@ -8,23 +8,22 @@
     %hr
     .row
       .col-md-10
-        =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL (in the format https://www.youtube.com/watch?v=YOUTUBE_ID)", label: 'Video URL', hint: '(YouTube videos only)'
+        =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL (in the format https://www.youtube.com/watch?v=YOUTUBE_ID)", label: 'Video URL (required)'
       .col-md-2
         .tooltip-wrapper{:data => {:toggle => "tooltip"}, :title => "Enter the URL, then retrieve title and description from YouTube"}
           %btn.btn.btn-warning.top-25#btnYouTubeRetrieve Get info
     .row.details
       .col-md-12
-        =f.input :title,  input_html: { class: 'form-control' }, placeholder: "Enter the video's title", label: 'Video title', hint: 'Do not include the speaker name or event name'
-        =f.input :description,  input_html: { class: 'form-control', :rows => 5 }, placeholder: "Enter the video's description", label: 'Video description', hint: 'Please enter a 1-2 sentence summary of the talk\'s topics. This will be displayed under the video, and on Facebook/Twitter posts. Do not include the speaker name or event name'
-        =f.input :speaker_name, input_html: { class: 'form-control' }, placeholder: "Enter the speaker's name"
+        =f.input :title,  input_html: { class: 'form-control' }, placeholder: "Enter the video's title", label: 'Video title (required)', hint: 'Do not include the speaker name or event name'
+        =f.input :description,  input_html: { class: 'form-control', :rows => 5 }, placeholder: "Enter the video's description", label: 'Video description (required)', hint: 'Please enter a 1-2 sentence summary of the talk\'s topics. This will be displayed under the video, and on Facebook/Twitter posts. Do not include the speaker name or event name, or information about the videographer, etc. This section is just for a description of the talk itself'
+        =f.input :speaker_name, input_html: { class: 'form-control' }, placeholder: "Enter the speaker's name", label: 'Speaker name (required)'
         =f.input :speaker_url, input_html: { class: 'form-control' }, placeholder: "Enter the speaker's URL (eg Twitter, blog, etc)", label: 'Speaker URL', hint: 'You can optionally provide a link to the speaker\'s blog, Twitter account, etc'
         %hr
-        %p
-          Ignite event:
-          =f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
-        %p
-          Tags:
-          =f.collection_check_boxes :tag_ids, Tag.all.order(:name), :id, :name
-        =f.submit class: "btn btn-warning"
+        %label Ignite event (required):
+        = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
+        %label.top-15 Tags:
+        %p= f.collection_check_boxes :tag_ids, Tag.all.order(:name), :id, :name
+        %hr
+        =f.submit class: "btn btn-warning top-15"
         =link_to root_path do
-          %btn.btn.btn-default Cancel
+          %btn.btn.btn-default.top-15 Cancel
