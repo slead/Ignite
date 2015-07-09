@@ -17,7 +17,7 @@
 
 .container
   .row
-    .col-md-9
+    .col-md-9.col-sm-12.col-xs-12
       %h3 Latest video
       .embed-container
         =embed(@first_video.uid)
@@ -34,7 +34,7 @@
         %i.fa.fa-thumbs-o-down.left-5
         = number_with_delimiter(@first_video.dislikes, :delimiter => ',')
 
-    .col-md-3.sidebar.col-sm-12
+    .col-md-3.sidebar.hidden-sm.hidden-xs
       .social.center
         = link_to "https://twitter.com/ignitetalks", :target => "_blank" do
           %i.fa.fa-twitter.fa-2x
@@ -72,5 +72,5 @@
   .row.top-50
     .col-md-2
       %h5= link_to "Browse all videos", videos_path
-    .col-md-4
+    .col-md-4.hidden-sm.hidden-xs
       %h5= link_to "Suggest an Ignite video for this site", new_video_path

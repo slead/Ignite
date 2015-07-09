@@ -66,13 +66,7 @@ ready = function() {
 
         // Create a new text entry for each event
         var html = '';
-        if (geojson.length == 0) {
-          html += "<div class='row'>";
-          html += "<div class='col-md-6 col-md-offset-4 event_content'>";
-          html += "<div><h4>No Ignites found here.</h4></div>";
-          html += "<div><p><a href='/events/new'>Tell us</a> about an existing Ignite, or learn how you can <a href='start'>start your own</a>!</p></div>";
-          html += "</div>"; // event_content
-        } else {
+        if (geojson.length > 0) {
           for (var idx = 0; idx <geojson.length; idx++) {
             if (idx % 4 == 0) {
               html += "<div class='row'>";
