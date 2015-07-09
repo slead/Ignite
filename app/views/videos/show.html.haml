@@ -5,13 +5,13 @@
         = @video.title
         -if @video.status == 'draft'
           (draft)
-      %h4.title
-      -if not @video.speaker_name.blank?
-        - if not @video.speaker_url.blank?
-          by
-          = link_to @video.speaker_name, @video.speaker_url
-        - else
-          = "by #{@video.speaker_name}"
+      %p.title
+        -if not @video.speaker_name.blank?
+          - if not @video.speaker_url.blank?
+            by
+            = link_to @video.speaker_name, @video.speaker_url
+          - else
+            = "by #{@video.speaker_name}"
       %p.subtitle
         Filmed at
         = link_to @video.event.name, event_page_path(@video.event)
