@@ -20,20 +20,20 @@
             = submit_tag "Search", class: "btn btn-default"
     .col-md-8.right.hidden-sm.hidden-xs
       =link_to videos_path do
-        %btn.btn.btn-default.tags#clear-filter
+        %span.btn.btn-default.tags#clear-filter
           %i.fa.fa-times
           clear
       =link_to videos_path(sort: "views") do
-        %btn.btn.btn-default.tags{:id => "tag_views"}
+        %span.btn.btn-default.tags{:id => "tag_views"}
           %i.fa.fa-youtube-play
           = "views"
       =link_to videos_path(sort: "likes") do
-        %btn.btn.btn-default.tags{:id => "tag_likes"}
+        %span.btn.btn-default.tags{:id => "tag_likes"}
           %i.fa.fa-thumbs-o-up
           = "likes"
       - @tags.each do |tag|
         =link_to videos_path(tag: tag.name) do
-          %btn.btn.btn-default.tags{:id => "tag_" + tag.name}= tag.name.titleize
+          %span.btn.btn-default.tags{:id => "tag_" + tag.name}= tag.name.titleize
   .row.top-50
     - @videos.each do |video|
       .col-md-6
