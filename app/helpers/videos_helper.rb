@@ -6,18 +6,7 @@ module VideosHelper
   end
 
   def thumbnail(video, rating_class)
-    # Generate an image from the video's UID, and add the views, likes and dislikes
-    content_tag(:span, nil, :class => 'video_thumbnail') do
-      content_tag(:image, nil, src: "//img.youtube.com/vi/#{video.uid}/maxresdefault.jpg", class: "thumb", alt: 'YouTube thumbnail') do
-        content_tag(:span, nil, :class => rating_class) do
-          content_tag(:i, nil, :class => "fa fa-youtube-play right-5") +
-          content_tag(:span, "#{number_with_delimiter(video.views, :delimiter => ',')}", :class => "right-5") + 
-          content_tag(:i, nil, :class => "fa fa-thumbs-up right-5") +
-          content_tag(:span, "#{number_with_delimiter(video.likes, :delimiter => ',')}", :class => "right-5") +
-          content_tag(:i, nil, :class => "fa fa-thumbs-down right-5") +
-          content_tag(:span, "#{number_with_delimiter(video.dislikes, :delimiter => ',')}") 
-        end
-      end
-    end
+    # Generate a thumbnail image containing viewing stats, which links to the video
+    render 'videos/thumbnail', :video => video, :rating_class => rating_class
   end
 end

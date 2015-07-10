@@ -52,7 +52,7 @@
     .row
       - @related_videos.each do |related_video|
         .col-md-3
-          =link_to thumbnail(related_video, 'video_rating_small'), related_video
+          = thumbnail(related_video, 'video_rating_small')
           %p.title= link_to truncate(related_video.title, length: 35), related_video
           %p.subtitle
             -if not related_video.speaker_name.blank?
