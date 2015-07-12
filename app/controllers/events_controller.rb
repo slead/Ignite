@@ -3,10 +3,10 @@ class EventsController < ApplicationController
   before_action :find_event, only: [:show, :edit, :update, :destroy]
   layout 'no_footer', :only => [:new, :edit]
   
-  rescue_from ActiveRecord::RecordNotFound do
-    flash[:notice] = "Sorry, that event does not exist"
-    redirect_to action: :index
-  end
+  # rescue_from ActiveRecord::RecordNotFound do
+  #   flash[:notice] = "Sorry, that event does not exist"
+  #   redirect_to action: :index
+  # end
 
   def index
     @geojson = Array.new

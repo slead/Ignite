@@ -4,10 +4,10 @@ class VideosController < ApplicationController
   before_action :update_youtube_stats, only: [:show]
   layout 'no_footer', :only => [:new, :edit]
 
-  rescue_from ActiveRecord::RecordNotFound do
-    flash[:notice] = 'Sorry, that video does not exist'
-    redirect_to action: :index
-  end
+  # rescue_from ActiveRecord::RecordNotFound do
+  #   flash[:notice] = 'Sorry, that video does not exist'
+  #   redirect_to action: :index
+  # end
  
   def index
 

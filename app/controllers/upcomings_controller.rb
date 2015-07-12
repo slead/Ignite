@@ -3,10 +3,10 @@ class UpcomingsController < ApplicationController
   before_action :find_upcoming, only: [:show, :edit, :update, :destroy]
   layout 'no_footer', :only => [:new, :edit]
   
-  rescue_from ActiveRecord::RecordNotFound do
-    flash[:notice] = "Sorry, that upcoming event does not exist"
-    redirect_to action: :index
-  end
+  # rescue_from ActiveRecord::RecordNotFound do
+  #   flash[:notice] = "Sorry, that upcoming event does not exist"
+  #   redirect_to action: :index
+  # end
 
   def index
     @upcomings = Upcoming.all.order('date ASC')
