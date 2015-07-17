@@ -86,15 +86,12 @@
       - @tags.each do |tag|
         =link_to videos_path(tag: tag.name) do
           %span.btn.btn-default.tags{:id => "tag_" + tag.name}= tag.name.titleize
-  .row.top-15
-    -@videos.each do |video|
-      .col-md-3
-        = thumbnail(video, 'video_rating_small')
-        %p.title= link_to truncate(video.title, length: 35), video
-        %p.subtitle
-          = video.speaker_name
-          at
-          = link_to video.event.name, event_page_path(video.event)
+
+  -@videos.each_slice(4) do |vids|
+    .row.top-15
+      -vids.each do |video|
+        .col-md-3
+          = thumbnail(video, 'video_rating_small',50)
 
   .row.top-50
     .col-md-2

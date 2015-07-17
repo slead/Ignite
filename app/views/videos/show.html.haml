@@ -52,14 +52,6 @@
     .row
       - @related_videos.each do |related_video|
         .col-md-3
-          = thumbnail(related_video, 'video_rating_small')
-          %p.title= link_to truncate(related_video.title, length: 35), related_video
-          %p.subtitle
-            -if not related_video.speaker_name.blank?
-              - if not related_video.speaker_url.blank?
-                = link_to related_video.speaker_name, related_video.speaker_url
-              - else
-                = related_video.speaker_name
-            at
-            = link_to related_video.event.name, event_page_path(related_video.event)
+          = thumbnail(related_video, 'video_rating_small', 35)
+
           
