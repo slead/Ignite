@@ -34,9 +34,8 @@
 
     -if not @video.description.blank?
       .row 
-        .col-md-12
+        .col-md-10.col-md-offset-1
           %p.top-50.left-15= @video.description
-
   - if user_signed_in?
     .row.right
       .col-md-8.user
