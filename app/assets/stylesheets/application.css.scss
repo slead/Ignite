@@ -4,6 +4,7 @@
  *= require_self
  *= require devise_bootstrap_views
 //= require leaflet
+ *= require social-share-button
 //= depend_on_asset "layers.png"
 //= depend_on_asset "layers-2x.png"
  */
@@ -386,4 +387,9 @@ label {
   text-align: right;
   margin-top: -45px;
   margin-bottom: 45px;
+}
+
+#social-share-span {
+  float: right;
+  margin-top: -25px;
 }

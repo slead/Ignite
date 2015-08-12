@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/cuterxy/social-share-button.git
+  revision: 35e1920af4ae6eeb91bed0eaa8da625f236aee54
+  specs:
+    social-share-button (0.1.9)
+      coffee-rails
+      sass-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -234,6 +242,7 @@ DEPENDENCIES
   searchkick (~> 0.8.7)
   simple_form (~> 3.1.0)
   sitemap_generator (~> 5.0.5)
+  social-share-button (~> 0.1.8)!
   spring
   sqlite3
   turbolinks

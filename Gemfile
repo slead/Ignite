@@ -32,6 +32,7 @@ gem 'redcarpet', '~> 3.2.3'
 gem 'searchkick', '~> 0.8.7'
 gem 'simple_form', '~> 3.1.0'
 gem 'sitemap_generator', '~> 5.0.5'
+gem 'social-share-button', '~> 0.1.8', git: 'https://github.com/cuterxy/social-share-button.git'
 gem 'utf8_enforcer_workaround', '~> 1.1.0'
 gem "validate_url"
 gem 'will_paginate', '~> 3.0.7'
