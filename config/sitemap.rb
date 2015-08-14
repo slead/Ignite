@@ -5,12 +5,12 @@ SitemapGenerator::Sitemap.create do
   add '/contact'
   add '/start'
   add '/videos'
-  add '/events'
+  add '/ignites'
   Video.find_each do |video|
     add video_path(video), :lastmod => video.updated_at
   end
-  Event.find_each do |event|
-    add event_path(event), :lastmod => event.updated_at
+  Ignite.find_each do |ignite|
+    add ignite_path(ignite), :lastmod => ignite.updated_at
   end
   # Put links creation logic here.
   #

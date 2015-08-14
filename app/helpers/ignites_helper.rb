@@ -1,0 +1,2 @@
+module IgnitesHelper
+end

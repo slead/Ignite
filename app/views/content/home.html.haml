@@ -8,7 +8,7 @@
         %p Presenters get 20 slides, which automatically advance every 15 seconds. The result is a fast and fun presentation which lasts just 5 minutes.
         %p Ignite events are held in cities around the world.
         %p
-          =link_to "Find an Ignite", events_path
+          =link_to "Find an Ignite", ignites_path
           near you,
           =link_to "browse Ignite videos", videos_path
           or
@@ -25,7 +25,7 @@
       %p.subtitle
         =@first_video.speaker_name
         at
-        = link_to @first_video.event.name, event_page_path(@first_video.event)
+        = link_to @first_video.ignite.name, ignite_page_path(@first_video.ignite)
       .video_rating_below.hidden-xs
         %i.fa.fa-youtube-play
         %span.right-15= number_with_delimiter(@first_video.views, :delimiter => ',')
@@ -50,7 +50,7 @@
         %ul
           -@upcomings.each do |upcoming|
             %li
-              = link_to upcoming.name, event_page_path(upcoming.event)
+              = link_to upcoming.name, ignite_page_path(upcoming.ignite)
               = "(#{upcoming.date.to_formatted_s(:rfc822)})"
         %p.bottom-15.absolute
           = link_to "Let us know", new_upcoming_path

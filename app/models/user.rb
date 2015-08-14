@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :videos
-  has_many :events
+  has_many :ignites
   has_many :upcomings
   has_many :posts
 end

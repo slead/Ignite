@@ -1,4 +1,4 @@
-class Event < ActiveRecord::Base
+class Ignite < ActiveRecord::Base
   validates_presence_of :name, :city
   validates :url, :url => {:allow_blank => true}
   has_many :videos, dependent: :destroy
