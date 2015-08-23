@@ -39,6 +39,6 @@
       .row.top-15
         -vids.each do |video|
           .col-md-4
-            = thumbnail(video, 'video_rating_large', 80)
+            = thumbnail(video, 'video_rating_small', 60)
   .row.paginate
     = will_paginate @videos, renderer: BootstrapPagination::Rails
