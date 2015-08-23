@@ -1,5 +1,5 @@
 class Upcoming < ActiveRecord::Base
-  validates_presence_of :name, :event, :date
+  validates_presence_of :name, :ignite, :date
   belongs_to :user
-  belongs_to :event
+  belongs_to :ignite
 end

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :events do
+  resources :ignites do
     resources :videos
   end
 
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get '/feedback', to: 'contacts#new', as: :feedback #=> contact_path
   get '/blog', to: 'posts#index', as: :blog #=> blog_path
   get '/start', to: 'content#start', as: :start #=> start_path
-  get '/:id', to: 'events#show', as: :event_page
+  get '/:id', to: 'ignites#show', as: :ignite_page
 
   root to: "content#home"
 

@@ -36,7 +36,7 @@ class VideosController < ApplicationController
     #Customise the Facebook/Twitter sharing content
     @og_title = "IgniteTalks.io" + " | " + @video.title + " by " + @video.speaker_name
     if @video.description.blank?
-      @og_description = @video.speaker_name + " speaks at " + @video.event.name
+      @og_description = @video.speaker_name + " speaks at " + @video.ignite.name
     else
       @og_description = @video.description
     end
@@ -86,7 +86,7 @@ class VideosController < ApplicationController
 private
 
   def video_params
-    params.require(:video).permit(:title, :description, :url, :event_id, :status, :speaker_name, :speaker_url, :uid, tag_ids: [])
+    params.require(:video).permit(:title, :description, :url, :ignite_id, :status, :speaker_name, :speaker_url, :uid, tag_ids: [])
   end
 
   def find_video

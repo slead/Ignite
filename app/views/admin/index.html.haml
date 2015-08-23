@@ -43,7 +43,7 @@
             %tbody
               -@draft_videos.each do |draft_video|
                 %tr
-                  %td= draft_video.event.name
+                  %td= draft_video.ignite.name
                   %td= link_to draft_video.title, edit_video_path(draft_video)
                   %td.center
                     = link_to draft_video.url, :target => "_blank" do
@@ -81,7 +81,7 @@
             %tbody
               -@videos.each do |video|
                 %tr
-                  %td= video.event.name
+                  %td= video.ignite.name
                   %td= link_to video.title, edit_video_path(video)
                   %td.center
                     = link_to video.url, :target => "_blank" do
@@ -97,13 +97,13 @@
                     =link_to video_path(video), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this video?"} do 
                       %i.fa.fa-times
 
-    #admin_events.admin_panel
+    #admin_ignites.admin_panel
       .row.draft
         .col-md-10.col-md-offset-1
           %h4 Draft Ignites
 
           %hr
-          %table#draft_events
+          %table#draft_ignites
             %thead
               %tr
                 %th Name
@@ -114,18 +114,18 @@
                 %th Twitter
                 %th
             %tbody
-              -@draft_events.each do |draft_event|
+              -@draft_ignites.each do |draft_ignite|
                 %tr
-                  %td= link_to draft_event.name, edit_event_path(draft_event)
-                  %td= draft_event.city
-                  %td= draft_event.state
-                  %td= draft_event.country
-                  %td= link_to draft_event.url, draft_event.url, :target => "_blank"
-                  %td= draft_event.twitter_name
+                  %td= link_to draft_ignite.name, edit_ignite_path(draft_ignite)
+                  %td= draft_ignite.city
+                  %td= draft_ignite.state
+                  %td= draft_ignite.country
+                  %td= link_to draft_ignite.url, draft_ignite.url, :target => "_blank"
+                  %td= draft_ignite.twitter_name
                   %td
-                    =link_to edit_event_path(draft_event), class: "light btn-edit" do
+                    =link_to edit_ignite_path(draft_ignite), class: "light btn-edit" do
                       %i.fa.fa-pencil-square-o
-                    =link_to event_path(draft_event), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this Ignite?"} do 
+                    =link_to ignite_path(draft_ignite), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this Ignite?"} do 
                       %i.fa.fa-times
 
       .row.top-50.published
@@ -133,9 +133,9 @@
           %h4
             Published Ignites
             %button
-              =link_to "Add new Ignite", new_event_path
+              =link_to "Add new Ignite", new_ignite_path
           %hr
-          %table#events
+          %table#ignites
             %thead
               %tr
                 %th Name
@@ -146,18 +146,18 @@
                 %th Twitter
                 %th
             %tbody
-              -@events.each do |event|
+              -@ignites.each do |ignite|
                 %tr
-                  %td= link_to event.name, edit_event_path(event)
-                  %td= event.city
-                  %td= event.state
-                  %td= event.country
-                  %td= link_to event.url, event.url, :target => "_blank"
-                  %td= event.twitter_name
+                  %td= link_to ignite.name, edit_ignite_path(ignite)
+                  %td= ignite.city
+                  %td= ignite.state
+                  %td= ignite.country
+                  %td= link_to ignite.url, ignite.url, :target => "_blank"
+                  %td= ignite.twitter_name
                   %td
-                    =link_to edit_event_path(event), class: "light btn-edit" do
+                    =link_to edit_ignite_path(ignite), class: "light btn-edit" do
                       %i.fa.fa-pencil-square-o
-                    =link_to event_path(event), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this Ignite?"} do 
+                    =link_to ignite_path(ignite), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this Ignite?"} do 
                       %i.fa.fa-times
 
     #admin_upcomings.admin_panel
@@ -177,12 +177,12 @@
               -@draft_upcomings.each do |draft_upcoming|
                 %tr
                   %td= link_to draft_upcoming.name, edit_upcoming_path(draft_upcoming)
-                  %td= draft_upcoming.event.name
+                  %td= draft_upcoming.ignite.name
                   %td= draft_upcoming.date
                   %td
                     =link_to edit_upcoming_path(draft_upcoming), class: "light btn-edit" do
                       %i.fa.fa-pencil-square-o
-                    =link_to upcoming_path(draft_upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming event?"} do 
+                    =link_to upcoming_path(draft_upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming ignite?"} do 
                       %i.fa.fa-times
 
       .row.top-50.published
@@ -190,7 +190,7 @@
           %h4
             Published Upcoming Events
             %button
-              =link_to "Add new upcoming event", new_upcoming_path
+              =link_to "Add new upcoming ignite", new_upcoming_path
           %hr
           %table#upcoming
             %thead
@@ -203,12 +203,12 @@
               -@upcomings.each do |upcoming|
                 %tr
                   %td= upcoming.name
-                  %td= upcoming.event.name
+                  %td= upcoming.ignite.name
                   %td= upcoming.date
                   %td
                     =link_to edit_upcoming_path(upcoming), class: "light btn-edit" do
                       %i.fa.fa-pencil-square-o
-                    =link_to upcoming_path(upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming event?"} do 
+                    =link_to upcoming_path(upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming ignite?"} do 
                       %i.fa.fa-times
 - else
   .container-fluid
@@ -234,7 +234,7 @@
           %tbody
             -@videos.each do |video|
               %tr
-                %td= video.event.name
+                %td= video.ignite.name
                 %td= link_to video.title, edit_video_path(video)
                 %td.center
                   = link_to video.url, :target => "_blank" do
@@ -255,9 +255,9 @@
         %h4
           Ignites you have submitted
           %button
-            =link_to "Add new Ignite", new_event_path
+            =link_to "Add new Ignite", new_ignite_path
         %hr
-        %table#events
+        %table#ignites
           %thead
             %tr
               %th Name
@@ -268,25 +268,25 @@
               %th Twitter
               %th
           %tbody
-            -@events.each do |event|
+            -@ignites.each do |ignite|
               %tr
-                %td= link_to event.name, edit_event_path(event)
-                %td= event.city
-                %td= event.state
-                %td= event.country
-                %td= link_to event.url, event.url, :target => "_blank"
-                %td= event.twitter_name
+                %td= link_to ignite.name, edit_ignite_path(ignite)
+                %td= ignite.city
+                %td= ignite.state
+                %td= ignite.country
+                %td= link_to ignite.url, ignite.url, :target => "_blank"
+                %td= ignite.twitter_name
                 %td
-                  =link_to edit_event_path(event), class: "light btn-edit" do
+                  =link_to edit_ignite_path(ignite), class: "light btn-edit" do
                     %i.fa.fa-pencil-square-o
-                  =link_to event_path(event), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this Ignite?"} do 
+                  =link_to ignite_path(ignite), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this Ignite?"} do 
                     %i.fa.fa-times
     .row.top-50
       .col-md-10.col-md-offset-1
         %h4
           Upcoming Events you have submitted
           %button
-            =link_to "Add new upcoming event", new_upcoming_path
+            =link_to "Add new upcoming ignite", new_upcoming_path
         %hr
         %table#upcoming
           %thead
@@ -299,11 +299,11 @@
             -@upcomings.each do |upcoming|
               %tr
                 %td= upcoming.name
-                %td= upcoming.event.name
+                %td= upcoming.ignite.name
                 %td= upcoming.date
                 %td
                   =link_to edit_upcoming_path(upcoming), class: "light btn-edit" do
                     %i.fa.fa-pencil-square-o
-                  =link_to upcoming_path(upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming event?"} do 
+                  =link_to upcoming_path(upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming ignite?"} do 
                     %i.fa.fa-times
                     

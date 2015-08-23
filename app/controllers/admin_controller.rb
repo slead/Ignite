@@ -10,10 +10,10 @@ class AdminController < ApplicationController
         @draft_videos = Video.where(status: 'draft')
         @rejected_videos = Video.where(status: 'rejected')
 
-        # Events (published, draft and rejected)
-        @events = Event.where(status: 'published')
-        @draft_events = Event.where(status: 'draft')
-        @rejected_events = Event.where(status: 'rejected')
+        # Ignites (published, draft and rejected)
+        @ignites = Ignite.where(status: 'published')
+        @draft_ignites = Ignite.where(status: 'draft')
+        @rejected_ignites = Ignite.where(status: 'rejected')
 
         # Upcomings (published, draft and rejected)
         @upcomings = Upcoming.where(status: 'published')
@@ -22,7 +22,7 @@ class AdminController < ApplicationController
     else
         # Non-admin users can see everything they've suggested
         @videos = current_user.videos
-        @events = current_user.events
+        @ignites = current_user.ignites
         @upcomings = current_user.upcomings
     end
   end
