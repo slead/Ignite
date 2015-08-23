@@ -30,6 +30,7 @@ gem "omniauth-google-oauth2"
 gem 'pygments.rb', '~> 0.6.3'
 gem 'redcarpet', '~> 3.2.3'
 gem 'searchkick', '~> 0.8.7'
+gem 'seed_dump'
 gem 'simple_form', '~> 3.1.0'
 gem 'sitemap_generator', '~> 5.0.5'
 gem 'social-share-button', '~> 0.1.8', git: 'https://github.com/cuterxy/social-share-button.git'
