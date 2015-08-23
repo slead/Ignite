@@ -28,19 +28,19 @@ function pageLoad() {
     })
   }, 4500)
 
-  // When hovering over the ignite's text content, open its map infoWindow
-  $( "body" ).delegate( ".ignite_content", "mouseenter", function() {
+  // When hovering over the event's text content, open its map infoWindow
+  $( "body" ).delegate( ".event_content", "mouseenter", function() {
     $(this).addClass("active");
-    igniteID = this.id
+    eventID = this.id
     jsonLayer.eachLayer(function (layer) {
-      if(igniteID == layer.feature.properties.id) {
-        console.log(igniteID);
+      if(eventID == layer.feature.properties.id) {
+        console.log(eventID);
         layer.openPopup()
       }
     });
   });
 
-  $( "body" ).delegate( ".ignite_content", "mouseleave", function() {
+  $( "body" ).delegate( ".event_content", "mouseleave", function() {
     $(this).removeClass("active");
   });
 
@@ -77,13 +77,13 @@ function pageLoad() {
     ]
   });
 
-  $('#ignites').DataTable({
+  $('#events').DataTable({
     "columnDefs": [
       { "orderable": false, "targets": [4,5] }
     ]
   });
 
-  $('#draft_ignites').DataTable({
+  $('#draft_events').DataTable({
     "columnDefs": [
       { "orderable": false, "targets": [4,5] }
     ]

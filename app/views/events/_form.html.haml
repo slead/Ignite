@@ -1,14 +1,14 @@
-= simple_form_for(@ignite, html: { class: 'form' })  do |f|
+= simple_form_for(@event, html: { class: 'form' })  do |f|
   .form-group
     - if current_user.admin?
-      -if @ignite.id.present?
+      -if @event.id.present?
         %h4 Status
         .btn-group
           = f.collection_radio_buttons :status, [['published', 'published'] ,['draft', 'draft'],['rejected', 'rejected']], :first, :last,  :input_html => {style:'display:block', class: "radio"}
-    =f.input :name,  input_html: { class: 'form-control' }, placeholder: "Enter the ignite's full name (eg Ignite Seattle)"
+    =f.input :name,  input_html: { class: 'form-control' }, placeholder: "Enter the event's full name (eg Ignite Seattle)"
     =f.input :city, input_html: { class: 'form-control' }, placeholder: "Enter the city (eg Seattle)"
     / =f.input :country, input_html: { class: 'form-control' }, placeholder: "Enter the country (eg USA)"
-    =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the ignite's homepage (eg http://www.igniteseattle.com)"
+    =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the event's homepage (eg http://www.igniteseattle.com)"
     =f.input :twitter_name, input_html: { class: 'form-control' }, placeholder: "Enter the Twitter name (eg igniteseattle)"
   =f.submit class: "btn btn-warning"
   =link_to root_path do

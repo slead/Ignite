@@ -2,13 +2,13 @@
   .row 
     .col-md-8.col-md-offset-2
       .panel
-        .panel-heading Edit ignite
+        .panel-heading Edit event
         .panel-body
           = render 'form'
           %hr
             %button.btn
-              = link_to "Back to ignite page", ignite_path
+              = link_to "Back to event page", event_path
             %button.btn
-              = link_to "Delete ignite", ignite_path(@ignite), method: :delete, data: {confirm: "Are you sure you want to delete this ignite?"}
+              = link_to "Delete event", event_path(@event), method: :delete, data: {confirm: "Are you sure you want to delete this event?"}
             %button.btn
               = link_to "Back to Admin page", admin_path

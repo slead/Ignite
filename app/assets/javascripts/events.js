@@ -23,21 +23,21 @@ ready = function() {
       maxBounds: L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180))
     });
 
-    // Fetch the ignites within  the current map extent, and re-fetch them when it changes
+    // Fetch the events within  the current map extent, and re-fetch them when it changes
     mapSearch();
     leafletMap.on('moveend', mapSearch);
 
   } 
 
   function mapSearch() {
-    // Request ignites within the current map extent
+    // Request events within the current map extent
 
     extent = leafletMap.getBounds();
     var northEast = extent._northEast.wrap();
     var southWest = extent._southWest.wrap();
     currentZoom = leafletMap.getZoom();
 
-    url = "ignites.json?bbox=" + southWest.lat + "," + southWest.lng + "," + northEast.lat + "," + northEast.lng + "&zoom=" + currentZoom;
+    url = "events.json?bbox=" + southWest.lat + "," + southWest.lng + "," + northEast.lat + "," + northEast.lng + "&zoom=" + currentZoom;
     $.ajax({
       dataType: 'text',
       url: url,
@@ -45,7 +45,7 @@ ready = function() {
         var geojson;
         geojson = $.parseJSON(data);
 
-        // Add the ignites to the map
+        // Add the events to the map
         jsonLayer = L.geoJson(geojson, {
           pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng, geojsonMarkerOptions);
@@ -64,18 +64,18 @@ ready = function() {
         featureGroup.addLayer(jsonLayer)
         featureGroup.addTo(leafletMap);
 
-        // Create a new text entry for each ignite
+        // Create a new text entry for each event
         var html = '';
         if (geojson.length > 0) {
           for (var idx = 0; idx <geojson.length; idx++) {
             if (idx % 4 == 0) {
               html += "<div class='row'>";
             }
-            ignite = geojson[idx].properties;
-            html += "<div class='col-md-3 col-sm-3 col-xs-3 ignite_content' id='" + ignite.id + "''>";
-            html += "<div><h4 class='title'><a href=" + ignite.url + ">" + ignite.name + "<span class='link-spanner'></span></a></h4></div>";
-            html += "<div><p class='subtitle'>" + ignite.city + ", " + ignite.country + "</p></div>";
-            html += "</div>"; // ignite_content
+            event = geojson[idx].properties;
+            html += "<div class='col-md-3 col-sm-3 col-xs-3 event_content' id='" + event.id + "''>";
+            html += "<div><h4 class='title'><a href=" + event.url + ">" + event.name + "<span class='link-spanner'></span></a></h4></div>";
+            html += "<div><p class='subtitle'>" + event.city + ", " + event.country + "</p></div>";
+            html += "</div>"; // event_content
             if (idx % 4 == 3) {
               html += "</div>"
             }

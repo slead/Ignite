@@ -11,22 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814024850) do
+ActiveRecord::Schema.define(version: 20150706065640) do
 
-  create_table "friendly_id_slugs", force: true do |t|
-    t.string   "slug",                      null: false
-    t.integer  "sluggable_id",              null: false
-    t.string   "sluggable_type", limit: 50
-    t.string   "scope"
-    t.datetime "created_at"
-  end
-
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
-
-  create_table "ignites", force: true do |t|
+  create_table "events", force: true do |t|
     t.string   "name"
     t.string   "url"
     t.datetime "created_at"
@@ -41,6 +28,19 @@ ActiveRecord::Schema.define(version: 20150814024850) do
     t.string   "status"
     t.string   "twitter_name"
   end
+
+  create_table "friendly_id_slugs", force: true do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "posts", force: true do |t|
     t.string   "title"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20150814024850) do
 
   create_table "upcomings", force: true do |t|
     t.string   "name"
-    t.integer  "ignite_id"
+    t.integer  "event_id"
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20150814024850) do
   create_table "videos", force: true do |t|
     t.string   "title"
     t.string   "url"
-    t.integer  "ignite_id"
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -113,6 +113,6 @@ ActiveRecord::Schema.define(version: 20150814024850) do
     t.text     "description"
   end
 
-  add_index "videos", ["ignite_id"], name: "index_videos_on_ignite_id"
+  add_index "videos", ["event_id"], name: "index_videos_on_event_id"
 
 end
