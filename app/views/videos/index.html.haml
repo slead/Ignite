@@ -38,7 +38,7 @@
     -@videos.each_slice(3) do |vids|
       .row.top-15
         -vids.each do |video|
-          .col-md-4
-            = thumbnail(video, 'video_rating_small', 60)
+          .col-md-4.video_thumbnail
+            %span= thumbnail(video, 'video_rating_small', 60)
   .row.paginate
     = will_paginate @videos, renderer: BootstrapPagination::Rails
