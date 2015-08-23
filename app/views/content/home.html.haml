@@ -17,22 +17,26 @@
 
 .container-fluid
   .row
-    .col-lg-6.col-lg-offset-2.col-md-8.col-md-offset-1.col-sm-12.col-xs-12
-      %h3 Latest video
-      .embed-container
-        =embed(@first_video.uid)
-      %h4.title= link_to truncate(@first_video.title, length: 100), @first_video
-      %p.subtitle
-        =@first_video.speaker_name
-        at
-        = link_to @first_video.event.name, event_page_path(@first_video.event)
-      .video_rating_below.hidden-xs
-        %i.fa.fa-youtube-play
-        %span.right-15= number_with_delimiter(@first_video.views, :delimiter => ',')
-        %i.fa.fa-thumbs-o-up
-        %span.right-15= number_with_delimiter(@first_video.likes, :delimiter => ',')
-        %i.fa.fa-thumbs-o-down.left-5
-        = number_with_delimiter(@first_video.dislikes, :delimiter => ',')
+    - begin
+      .col-lg-6.col-lg-offset-2.col-md-8.col-md-offset-1.col-sm-12.col-xs-12
+        %h3 Latest video
+        .embed-container
+          =embed(@first_video.uid)
+        %h4.title= link_to truncate(@first_video.title, length: 100), @first_video
+        %p.subtitle
+          =@first_video.speaker_name
+          at
+          = link_to @first_video.event.name, event_page_path(@first_video.event)
+        .video_rating_below.hidden-xs
+          %i.fa.fa-youtube-play
+          %span.right-15= number_with_delimiter(@first_video.views, :delimiter => ',')
+          %i.fa.fa-thumbs-o-up
+          %span.right-15= number_with_delimiter(@first_video.likes, :delimiter => ',')
+          %i.fa.fa-thumbs-o-down.left-5
+          = number_with_delimiter(@first_video.dislikes, :delimiter => ',')
+    - rescue
+      .col-lg-6.col-lg-offset-2.col-md-8.col-md-offset-1.col-sm-12.col-xs-12
+        %h3 Need to add some videos!
 
     .col-md-2.sidebar.hidden-sm.hidden-xs
       .social.center
