@@ -18,11 +18,10 @@ Upcoming.create!([
 ])
   
 Video.create!([
-  {title: "How to get 5 million people to read your web comic", url: "https://www.youtube.com/watch?v=QYyJZOHgpco", uid: 'QYyJZOHgpco', event_id: 1, user_id: 1, slug: "how-to-get-5-million-people-to-read-your-comic", speaker_name: "Matthew Inman", speaker_url: "http://www.theoatmeal.com", status: 'published'},
-  {title: "Save the planet, eat a bug", url: "https://www.youtube.com/watch?v=QSs27t8nPlM", uid: 'QSs27t8nPlM', event_id: 1, user_id: 1, slug: "save-the-planet-eat-a-bug", speaker_name: "Virginia Emery", speaker_url: "", status: 'published'},
-  {title: "What if you say Yes to everything?", url: "https://www.youtube.com/watch?v=InYTkTKSBfo", uid: 'InYTkTKSBfo', event_id: 1, user_id: 1, slug: "what-if-you-say-yes-to-everything", speaker_name: "Jen Kellum Nausin", speaker_url: "", status: 'published'},
-  {title: "Life lessons from industrial design", url: "https://www.youtube.com/watch?v=pur9MMxBTfQ", uid: 'pur9MMxBTfQ', event_id: 2, user_id: 1, slug: "life-lessons-from-industrial-design", speaker_name: "Lily Kolle", speaker_url: "", status: 'draft'},
-  {title: "Notes from a grateful dickhead", url: "https://www.youtube.com/watch?v=8Td8zLMWU4Y", uid: '8Td8zLMWU4Y',  event_id: 2, user_id: 1, slug: "notes-from-a-grateful-dickhead", speaker_name: "Stephen Lead", speaker_url: "http://www.stephenlead.com", status: 'published'}
+  {title: "How to get 5 million people to read your web comic", url: "https://www.youtube.com/watch?v=QYyJZOHgpco", description: "", uid: 'QYyJZOHgpco', event_id: 1, user_id: 1, slug: "how-to-get-5-million-people-to-read-your-comic", speaker_name: "Matthew Inman", speaker_url: "http://www.theoatmeal.com", status: 'published'},
+  {title: "Save the planet, eat a bug", url: "https://www.youtube.com/watch?v=QSs27t8nPlM", description: "", uid: 'QSs27t8nPlM', event_id: 1, user_id: 1, slug: "save-the-planet-eat-a-bug", speaker_name: "Virginia Emery", speaker_url: "", status: 'published'},
+  {title: "What if you say Yes to everything?", url: "https://www.youtube.com/watch?v=InYTkTKSBfo", description: "", uid: 'InYTkTKSBfo', event_id: 1, user_id: 1, slug: "what-if-you-say-yes-to-everything", speaker_name: "Jen Kellum Nausin", speaker_url: "", status: 'published'},
+  {title: "Notes from a grateful dickhead", url: "https://www.youtube.com/watch?v=8Td8zLMWU4Y", description: "", uid: '8Td8zLMWU4Y',  event_id: 2, user_id: 1, slug: "notes-from-a-grateful-dickhead", speaker_name: "Stephen Lead", speaker_url: "http://www.stephenlead.com", status: 'published'}
 ])
 
 Tag::HABTM_Videos.create!([
