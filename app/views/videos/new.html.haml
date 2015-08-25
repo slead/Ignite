@@ -1,27 +1,19 @@
 .container.top-150
   .row
     .col-md-8.col-md-offset-2
+      %h2 Add a new Ignite video
       .well
-        -if current_user.admin?
-          %h4 Before you upload a video...
-        -else
-          %h4 Thanks for proposing an Ignite video...
-        %p Note that we are only looking for very high quality videos on this site. This means:
-        %ul
-          %li the videos must have high production values, ideally with multiple cameras, and be mixed professionally
-          %li videos *must* be HD (720p or higher resolution)
-          %li sound quality must be good, without distracting background noise
-          %li presenters should not be using notes
-          %li slides should contain minimal text, and no bullet points
-        %p Only clever, funny, thought-provoking or just generally interesting videos should be uploaded to IgniteTalks.io! Anything else can still go on the individual Ignite's YouTube channel.
-        %p Please actually watch the video all the way through to ensure the quality remains high.
+        %h4 Notes on adding Ignite videos
+        %p
+          Videos must be stored on YouTube in HD (high definition) format. Videos are associated with an Ignite (eg Ignite Seattle) - if you don't see your Ignite listed, you need to
+          =link_to "add your Ignite", new_event_path
+          first, then return to this page.
+
   .row 
     .col-md-8.col-md-offset-2
       .panel
-        .h4 Add a new video
         .panel-body
           = render 'form'
-        %hr
         -if current_user.admin?
           %button.btn
             = link_to "Back to Admin page", admin_path

@@ -5,7 +5,11 @@
         %h4 Status
         .btn-group
           = f.collection_radio_buttons :status, [['published', 'published'] ,['draft', 'draft'],['rejected', 'rejected']], :first, :last,  :input_html => {style:'display:block', class: "radio"}
-    %hr
+      %hr
+    .row
+      .col-md-10#ignite_name
+        %label Ignite event (required):
+        = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
     .row
       .col-md-10
         =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL (in the format https://www.youtube.com/watch?v=YOUTUBE_ID)", label: 'Video URL (required)'
@@ -19,8 +23,6 @@
         =f.input :speaker_name, input_html: { class: 'form-control' }, placeholder: "Enter the speaker's name", label: 'Speaker name (required)'
         =f.input :speaker_url, input_html: { class: 'form-control' }, placeholder: "Enter the speaker's URL (eg Twitter, blog, etc)", label: 'Speaker URL', hint: 'You can optionally provide a link to the speaker\'s blog, Twitter account, etc'
         %hr
-        %label Ignite event (required):
-        = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
         %label.top-15 Tags:
         %p= f.collection_check_boxes :tag_ids, Tag.all.order(:name), :id, :name
         %hr
