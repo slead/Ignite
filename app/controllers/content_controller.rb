@@ -1,4 +1,5 @@
 class ContentController < ApplicationController
+  layout 'no_footer', :only => [:start]
   
   def show
     render content_params[:content]
