@@ -69,6 +69,7 @@
           %table#videos
             %thead
               %tr
+                %th Featured
                 %th Event
                 %th Title
                 %th Watch
@@ -81,6 +82,11 @@
             %tbody
               -@videos.each do |video|
                 %tr
+                  - if video.featured?
+                    %td
+                      %i.fa.fa-check
+                  - else
+                    %td
                   %td= video.event.name
                   %td= link_to video.title, edit_video_path(video)
                   %td.center

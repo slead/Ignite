@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20150825220840) do
     t.integer  "dislikes"
     t.integer  "views"
     t.text     "description"
-    t.string   "featured"
+    t.boolean  "featured"
   end
 
   add_index "videos", ["event_id"], name: "index_videos_on_event_id"

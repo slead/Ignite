@@ -9,8 +9,7 @@ class Event < ActiveRecord::Base
   geocoded_by :city
   reverse_geocoded_by :latitude, :longitude do |obj, results|
     if geo = results.first
-      byebug
-      obj.city = geo.city
+      # obj.city = geo.city
       obj.state = geo.state
       obj.country = geo.country
     end
