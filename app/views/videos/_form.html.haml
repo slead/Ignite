@@ -5,7 +5,7 @@
         %h4 Status
         .btn-group
           = f.collection_radio_buttons :status, [['published', 'published'] ,['draft', 'draft'],['rejected', 'rejected']], :first, :last,  :input_html => {style:'display:block', class: "radio"}
-        =f.input :featured
+      =f.input :featured
       %hr
     .row
       .col-md-10#ignite_name
