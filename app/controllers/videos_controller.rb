@@ -57,11 +57,14 @@ class VideosController < ApplicationController
     end
 
     if @video.save
-        flash[:notice] = "video #{@video.title} added successfully."
         if @video.status == 'draft'
+          flash[:notice] = "Thanks for submitting this video! We'll review it and publish it ASAP"
           NotifyMailer.new_draft_email(User.first).deliver # Notify an admin via email
+          redirect_to videos_path
+        else
+          flash[:notice] = "video #{@video.title} added successfully."
+          redirect_to admin_path
         end
-        redirect_to admin_path
       else
         flash[:notice] = @video.errors.full_messages.to_sentence
         render 'new', layout: 'no_footer'
@@ -70,7 +73,11 @@ class VideosController < ApplicationController
 
   def update
     if @video.update(video_params)
-      redirect_to admin_path
+      if current_user.admin?
+        redirect_to admin_path
+      else
+        redirect_to @video
+      end
     else
       render 'edit'
     end

@@ -40,7 +40,7 @@
           %p.top-50.left-15= @video.description
         
 
-  - if user_signed_in?
+  - if user_signed_in? and current_user.admin?
     .row.right
       .col-md-8.user
       = link_to edit_video_path(@video), class: "light btn-edit" do
