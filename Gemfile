@@ -8,9 +8,10 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
-gem 'sqlite3'
+gem 'rack', '~> 1.5.3'
 
 group :development do
+  gem 'sqlite3'
   gem 'spring'
   gem 'byebug', '~> 4.0.5'
   gem "better_errors"
