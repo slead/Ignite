@@ -8,9 +8,9 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'sqlite3'
 
 group :development do
-  gem 'sqlite3'
   gem 'spring'
   gem 'byebug', '~> 4.0.5'
   gem "better_errors"
@@ -33,7 +33,8 @@ gem 'searchkick', '~> 0.8.7'
 gem 'seed_dump'
 gem 'simple_form', '~> 3.1.0'
 gem 'sitemap_generator', '~> 5.0.5'
-gem 'social-share-button', '~> 0.1.8', git: 'https://github.com/cuterxy/social-share-button.git'
+# gem 'social-share-button', '~> 0.1.8', git: 'https://github.com/cuterxy/social-share-button.git'
+gem 'social-share-button'
 gem 'utf8_enforcer_workaround', '~> 1.1.0'
 gem "validate_url"
 gem 'will_paginate', '~> 3.0.7'
