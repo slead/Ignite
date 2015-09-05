@@ -48,3 +48,5 @@ A non-admin user _test@ignitetalks.io_ with password _password_ allows this user
 To publish the site on Heroku, follow the instructions at https://devcenter.heroku.com/articles/getting-started-with-rails4
 
 To deploy the Heroku site to http://www.ignitetalks.io/ follow the instructions at http://stackoverflow.com/a/25925332/906814
+
+# moving to eb
