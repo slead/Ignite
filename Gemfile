@@ -10,12 +10,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :development do
-  gem 'sqlite3'
   gem 'spring'
   gem 'byebug', '~> 4.0.5'
   gem "better_errors"
   gem "binding_of_caller"
 end
+
+gem 'sqlite3', '~> 1.3.10'
 
 gem 'devise', '~> 3.4.1'
 gem 'devise-bootstrap-views'

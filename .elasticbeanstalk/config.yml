@@ -1,0 +1,11 @@
+branch-defaults:
+  eb:
+    environment: ignite-env2
+global:
+  application_name: ignite
+  default_ec2_keyname: aws-eb
+  default_platform: 64bit Amazon Linux 2015.03 v2.0.0 running Ruby 2.0 (Passenger
+    Standalone)
+  default_region: us-west-2
+  profile: eb-cli
+  sc: git
