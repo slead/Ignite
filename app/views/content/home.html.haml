@@ -52,10 +52,15 @@
       .upcoming  
         %h3.center Upcoming events
         %ul
-          -@upcomings.each do |upcoming|
-            %li
-              = link_to upcoming.name, event_page_path(upcoming.event)
-              = "(#{upcoming.date.to_formatted_s(:rfc822)})"
+          - begin
+            -@upcomings.each do |upcoming|
+              %li
+                = link_to upcoming.name, event_page_path(upcoming.event)
+                = "(#{upcoming.date.to_formatted_s(:rfc822)})"
+          - rescue
+            .col-lg-6.col-lg-offset-2.col-md-8.col-md-offset-1.col-sm-12.col-xs-12
+              %h3 Need to add some upcoming events!
+
         %p.bottom-15.absolute
           = link_to "Let us know", new_upcoming_path
           about an upcoming event!

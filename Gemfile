@@ -16,8 +16,6 @@ group :development do
   gem "binding_of_caller"
 end
 
-gem 'sqlite3', '~> 1.3.10'
-
 gem 'devise', '~> 3.4.1'
 gem 'devise-bootstrap-views'
 gem 'font-awesome-rails', '~> 4.3.0.0'
@@ -28,6 +26,7 @@ gem 'haml', '~> 4.0.6'
 gem 'leaflet-rails', '~> 0.7.4'
 gem 'mail_form', '~> 1.5.1'
 gem "omniauth-google-oauth2"
+gem 'pg'
 gem 'pygments.rb', '~> 0.6.3'
 gem 'redcarpet', '~> 3.2.3'
 gem 'searchkick', '~> 0.8.7'
@@ -42,6 +41,5 @@ gem 'will_paginate-bootstrap', '~> 1.0.1'
 gem 'yt', '~> 0.24.9'
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end

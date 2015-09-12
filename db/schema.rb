@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150825220840) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "events", force: true do |t|
     t.string   "name"
     t.string   "url"
@@ -37,10 +40,10 @@ ActiveRecord::Schema.define(version: 20150825220840) do
     t.datetime "created_at"
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "posts", force: true do |t|
     t.string   "title"
@@ -63,8 +66,8 @@ ActiveRecord::Schema.define(version: 20150825220840) do
     t.integer "tag_id"
   end
 
-  add_index "tags_videos", ["tag_id"], name: "index_videos_tags_on_tag_id"
-  add_index "tags_videos", ["video_id"], name: "index_videos_tags_on_video_id"
+  add_index "tags_videos", ["tag_id"], name: "index_tags_videos_on_tag_id", using: :btree
+  add_index "tags_videos", ["video_id"], name: "index_tags_videos_on_video_id", using: :btree
 
   create_table "upcomings", force: true do |t|
     t.string   "name"
@@ -92,8 +95,8 @@ ActiveRecord::Schema.define(version: 20150825220840) do
     t.boolean  "admin"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "videos", force: true do |t|
     t.string   "title"
@@ -114,6 +117,6 @@ ActiveRecord::Schema.define(version: 20150825220840) do
     t.boolean  "featured"
   end
 
-  add_index "videos", ["event_id"], name: "index_videos_on_event_id"
+  add_index "videos", ["event_id"], name: "index_videos_on_event_id", using: :btree
 
 end
