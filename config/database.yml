@@ -15,3 +15,13 @@ test:
   pool: 5
   username: postgres
   password: root
+
+production:
+  adapter: postgresql
+  database: <%= ENV['APP_DB_NAME'] %>
+  host:     <%= ENV['APP_DB_HOST'] %>
+  username: <%= ENV['APP_DB_USER'] %>
+  password: <%= ENV['APP_DB_PASSWD'] %>
+  pool: 5
+  timeout: 5000
+  encoding: utf8
