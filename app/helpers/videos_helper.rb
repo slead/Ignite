@@ -2,7 +2,11 @@ module VideosHelper
 
   def embed(youtube_id)
     # Generate the YouTube iframe embed code based on the YouTube ID
+<<<<<<< Updated upstream
     content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{youtube_id}?hd=1&rel=0&autohide=0&showinfo=0", :allowfullscreen => "allowfullscreen", :frameBorder => "0")
+=======
+    content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{youtube_id}?hd=1&rel=0&autohide=0&showinfo=0", :frameborder => "0", :allowfullscreen => "allowfullscreen")
+>>>>>>> Stashed changes
   end
 
   def thumbnail(video, rating_class, max_length)
