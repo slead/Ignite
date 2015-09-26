@@ -61,9 +61,6 @@ class EventsController < ApplicationController
 
     if @event.save
         flash[:notice] = "Event #{@event.name} added successfully."
-        if @event.status == 'draft'
-          NotifyMailer.new_draft_email(User.first).deliver # Notify an admin via email
-        end
         redirect_to admin_path
       else
         flash[:notice] = @event.errors.full_messages.to_sentence

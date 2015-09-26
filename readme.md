@@ -39,9 +39,9 @@ To recreate the site on your local machine:
 
 The default admin username is _admin@ignitetalks.io_ with password _password_. This allows full access to the Admin console at [http://localhost:3000/admin](http://localhost:3000/admin)
 
-From this panel, the administrator can add, edit and delete the Videos, Events (e.g. Ignite Seattle) and Upcoming Events (e.g. Ignite Seattle 27)
+From this panel, the administrator can add, edit and delete the Videos, Events (e.g. Ignite Seattle) and Upcoming Events (e.g. Ignite Seattle 27).
 
-A non-admin user _test@ignitetalks.io_ with password _password_ allows this user to propose videos, Events and Upcoming Events. These are not published until an Administrator publishes them via the Admin page.
+The admin user may create other users, who will then have the ability to create new Videos and Upcomings. The new users will only have write permission to the events to which they have been granted access (TODO)
 
 ##Deploy to Heroku
 

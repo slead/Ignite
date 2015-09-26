@@ -115,4 +115,8 @@
                   =link_to edit_upcoming_path(upcoming), class: "light btn-edit" do
                     %i.fa.fa-pencil-square-o
                   =link_to upcoming_path(upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming event?"} do 
-                    %i.fa.fa-times                     
+                    %i.fa.fa-times
+- else
+  .row.top-50
+    .col-md-10.col-md-offset-1
+      %h4 Functionality for non-admin users is coming soon
