@@ -116,6 +116,38 @@
                     %i.fa.fa-pencil-square-o
                   =link_to upcoming_path(upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming event?"} do 
                     %i.fa.fa-times
+  #admin_users.admin_panel
+    .row.top-50
+      .col-md-10.col-md-offset-1
+        %h4
+          Users
+          %button
+            / =link_to "Add new user", new_user_path
+        %hr
+        %table#users
+          %thead
+            %tr
+              %th Admin?
+              %th Email address
+              %th Last logged in
+              %th
+              %th
+          %tbody
+            -@users.each do |user|
+              %tr
+                - if user.admin?
+                  %td
+                    %i.fa.fa-check
+                - else
+                  %td
+                %td= user.email
+                %td= user.last_sign_in_at
+                %td
+                  =link_to edit_user_registration_path(user), class: "light btn-edit" do
+                    %i.fa.fa-pencil-square-o
+                %td
+                  =link_to user_registration_path(user), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this user?"} do 
+                    %i.fa.fa-times
 - else
   .row.top-50
     .col-md-10.col-md-offset-1
