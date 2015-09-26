@@ -6,17 +6,17 @@ class AdminController < ApplicationController
 
     if current_user.admin?
         # Videos (published, draft and rejected)
-        @videos = Video.where(status: 'published')
+        @videos = Video.all
         @draft_videos = Video.where(status: 'draft')
         @rejected_videos = Video.where(status: 'rejected')
 
         # Events (published, draft and rejected)
-        @events = Event.where(status: 'published')
+        @events = Event.all
         @draft_events = Event.where(status: 'draft')
         @rejected_events = Event.where(status: 'rejected')
 
         # Upcomings (published, draft and rejected)
-        @upcomings = Upcoming.where(status: 'published')
+        @upcomings = Upcoming.all
         @draft_upcomings = Upcoming.where(status: 'draft')
         @rejected_upcomings = Upcoming.where(status: 'rejected')
     else
