@@ -82,12 +82,6 @@ function pageLoad() {
       { "orderable": false, "targets": [3] }
     ]
   });
-
-  $('#users').DataTable({
-    "columnDefs": [
-      { "orderable": false, "targets": [3] }
-    ]
-  });
   
 }
 

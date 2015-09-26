@@ -8,7 +8,6 @@ class AdminController < ApplicationController
         @videos = Video.all
         @events = Event.all
         @upcomings = Upcoming.all
-        @users = User.all
     else
         # Non-admin users can see everything they've suggested
         @videos = current_user.videos
