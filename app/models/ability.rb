@@ -5,7 +5,9 @@ class Ability
     if user.admin?
       can :manage, :all
     elsif user.regular?
-      can :read, :all
+      can :read, Video
+      can :read, Event
+      can :read, Upcoming
     end
   end
 end

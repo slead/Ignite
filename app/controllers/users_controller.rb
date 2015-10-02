@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_user, only: [:show, :edit, :update, :destroy]
   layout 'no_footer'
 
   before_filter :authenticate_user!

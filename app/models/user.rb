@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
     self.role.name == "admin"
   end
 
+  def regular?
+    self.role.name == "Regular"
+  end
+
 end
