@@ -65,6 +65,11 @@ class RolesController < ApplicationController
   end
 
   private
+
+    def needs_password?(user, params)
+      params[:password].present?
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def role_params
       params.require(:role).permit(:name, :description)
