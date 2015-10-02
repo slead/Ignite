@@ -4,10 +4,8 @@ class Ability
   def initialize(user)
     if user.admin?
       can :manage, :all
-    elsif user.regular?
-      can :read, Video
-      can :read, Event
-      can :read, Upcoming
+    else
+      can :read, :all
     end
   end
 end
