@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :path_prefix => 'my'
-  resources :users, except: :create
+  devise_for :users
+  scope "/admin" do
+    resources :users
+  end
 
   resources :events do
     resources :videos
