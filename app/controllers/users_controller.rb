@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
   layout 'no_footer'
-
   before_filter :authenticate_user!
   load_and_authorize_resource
 
