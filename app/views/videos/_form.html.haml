@@ -1,6 +1,7 @@
 = simple_form_for(@video, html: { class: 'form' })  do |f|
   .form-group
-    =f.input :featured
+    -if current_user.admin?
+      =f.input :featured
     %hr
     .row
       .col-md-10#ignite_name
