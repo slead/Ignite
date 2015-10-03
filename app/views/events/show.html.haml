@@ -28,7 +28,7 @@
     .row.paginate
       = will_paginate @videos, renderer: BootstrapPagination::Rails
 
-    - if user_signed_in? and current_user.admin?
+    - if can? :update, @event
       .user
         = link_to edit_event_path(@event), class: "light btn-edit" do
           %i.fa.fa-pencil-square-o

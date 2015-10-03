@@ -1,5 +1,6 @@
 class UpcomingsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  load_and_authorize_resource except: [:index, :show]
   before_action :find_upcoming, only: [:show, :edit, :update, :destroy]
   layout 'no_footer', :only => [:new, :edit]
   

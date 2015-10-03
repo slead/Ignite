@@ -1,6 +1,6 @@
 class VideosController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  load_and_authorize_resource
+  load_and_authorize_resource :find_by => :slug, except: [:index, :show]
   before_action :find_video, only: [:show, :edit, :update, :destroy, :update_stats]
   before_action :update_youtube_stats, only: [:show]
   layout 'no_footer', :only => [:new, :edit]
