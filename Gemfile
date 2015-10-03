@@ -15,6 +15,7 @@ group :development do
   gem "binding_of_caller"
 end
 
+gem 'byebug'
 gem 'cancancan', '~> 1.10'
 gem 'devise', '~> 3.5.2'
 gem 'devise-bootstrap-views'

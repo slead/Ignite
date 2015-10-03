@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = "Access denied!"
+    flash[:notice] = "Sorry, that function is restricted to administrators"
     redirect_to root_url
   end
 

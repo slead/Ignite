@@ -17,11 +17,27 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    self.role.name == "admin"
+    begin
+      if self.role.name == "admin"
+        return true
+      else
+        return false
+      end
+    rescue Exception => e
+      return false
+    end
   end
 
   def regular?
-    self.role.name == "Regular"
+    begin
+      if self.role.name == "regular"
+        return true
+      else
+        return false
+      end
+    rescue Exception => e
+      return false
+    end
   end
 
 end
