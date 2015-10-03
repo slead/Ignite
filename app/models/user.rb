@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :role
   has_many :videos
-  has_many :events
+  has_and_belongs_to_many :events
   has_many :upcomings
   has_many :posts
   validates_presence_of :name, :email

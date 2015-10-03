@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151002121337) do
+ActiveRecord::Schema.define(version: 20151003051712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,17 @@ ActiveRecord::Schema.define(version: 20151002121337) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "slug",         limit: 255
-    t.integer  "user_id"
     t.string   "status",       limit: 255
     t.string   "twitter_name", limit: 255
   end
+
+  create_table "events_users", id: false, force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "user_id"
+  end
+
+  add_index "events_users", ["event_id"], name: "index_events_users_on_event_id", using: :btree
+  add_index "events_users", ["user_id"], name: "index_events_users_on_user_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false

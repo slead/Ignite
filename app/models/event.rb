@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   validates :url, :url => {:allow_blank => true}
   has_many :videos, dependent: :destroy
   has_many :upcomings, dependent: :destroy
-  belongs_to :user
+  has_and_belongs_to_many :users
 
   # Geocoding
   geocoded_by :city
