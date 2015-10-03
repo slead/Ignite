@@ -7,6 +7,10 @@ class Ability
       can :manage, :all
     elsif user.regular?
       can :read, :all
+      can :update, Event do |event|
+        # Users can only edit Events to which they have been granted permission
+        event.users.map(&:id).include? user.id
+      end
       can :create, Video
       can :create, Upcoming
     else
