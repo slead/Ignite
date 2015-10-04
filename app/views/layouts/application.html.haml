@@ -47,8 +47,6 @@
           %ul.nav.navbar-nav.navbar-right
             -if user_signed_in?
               %li= link_to "Admin", admin_path
-              -if current_user.admin?
-                %li= link_to "Users", users_path
             =nav_link "Find an Ignite", "/events"
             =nav_link "Browse videos", videos_path
             =nav_link "Start an Ignite", "/start"
