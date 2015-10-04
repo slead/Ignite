@@ -6,7 +6,11 @@
     .row
       .col-md-10#ignite_name
         %label Ignite event (required):
-        = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
+        -if current_user.admin?
+          = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
+        - else
+          = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select'}
+
     .row
       .col-md-10
         =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL (in the format https://www.youtube.com/watch?v=YOUTUBE_ID)", label: 'Video URL (required)'

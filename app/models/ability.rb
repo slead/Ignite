@@ -12,7 +12,7 @@ class Ability
       # pertaining to events they own
       can :read, Video
       can :read, Event
-  
+
       can :create, Video
       can :create, Upcoming
 
@@ -24,6 +24,16 @@ class Ability
       can :update, Video do |video|
         # Users can only edit Videos belonging Events to which they have been granted permission
         video.event.users.map(&:id).include? user.id
+      end
+
+      can :destroy, Video do |video|
+        # Users can only destroy Videos belonging Events to which they have been granted permission
+        video.event.users.map(&:id).include? user.id
+      end
+
+      can :update, Upcoming do |upcoming|
+        # Users can only edit Upcomings belonging Events to which they have been granted permission
+        upcoming.event.users.map(&:id).include? user.id
       end
 
     else
