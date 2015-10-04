@@ -140,6 +140,7 @@
               %thead
                 %tr
                   %th Admin?
+                  %th Ignites
                   %th Name
                   %th Email
                   %th
@@ -152,6 +153,9 @@
                         %i.fa.fa-check
                     - else
                       %td
+                    %td
+                      - user.events.map do |event|
+                        =event.name
                     %td= user.name
                     %td= user.email
                     %td
