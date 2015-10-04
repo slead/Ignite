@@ -10,7 +10,9 @@ class Ability
     elsif user.regular?
       # Regular users can create videos and upcoming events, and can edit videos
       # pertaining to events they own
-      can :read, :all
+      can :read, Video
+      can :read, Event
+  
       can :create, Video
       can :create, Upcoming
 
