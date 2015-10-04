@@ -11,115 +11,125 @@
           %li= link_to "Change your password", edit_user_registration_path
           %li= link_to('Logout', destroy_user_session_path, :method => :delete)
 
-#admin_videos.admin_panel
-  .row.top-50
+/ Tab headings
+.container-fluid
+  .row
     .col-md-10.col-md-offset-1
-      %h4
-        Videos
-        %button
-          =link_to "Add new video", new_video_path
-      %hr
-      %table#videos
-        %thead
-          %tr
-            %th Featured
-            %th Event
-            %th Title
-            %th Watch
-            %th Presenter
-            %th Presenter URL
-            %th Uploaded
-            %th Tags
-            %th
-            %th
-        %tbody
-          -@videos.each do |video|
-            %tr
-              - if video.featured?
-                %td
-                  %i.fa.fa-check
-              - else
-                %td
-              %td= video.event.name
-              %td= link_to video.title, edit_video_path(video)
-              %td.center
-                = link_to video.url, :target => "_blank" do
-                  %i.fa.fa-play-circle
-              %td= video.speaker_name
-              %td= video.speaker_url
-              %td= video.created_at.to_date
-              %td= video.tags.map(&:name).join(", ")
-              %td
-                =link_to edit_video_path(video), class: "light btn-edit" do
-                  %i.fa.fa-pencil-square-o
-              %td
-                =link_to video_path(video), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this video?"} do 
-                  %i.fa.fa-times
+      %ul.nav.nav-tabs{:role => "tablist"}
+        %li.active{:role => "presentation"}
+          %a{"aria-controls" => "videos_tab", "data-toggle" => "tab", :href => "#videos_tab", :role => "tab"} Videos
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "events_tab", "data-toggle" => "tab", :href => "#events_tab", :role => "tab"} Ignites
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "upcomings_tab", "data-toggle" => "tab", :href => "#upcomings_tab", :role => "tab"} Upcoming events
+        -if current_user.admin?
+          %li{:role => "presentation"}
+            %a{"aria-controls" => "users_tab", "data-toggle" => "tab", :href => "#users_tab", :role => "tab"} Users
 
-#admin_events.admin_panel
-  .row.top-50
+/ Tab containers
+.container-fluid
+  .row
     .col-md-10.col-md-offset-1
-      %h4
-        - if can? :create, Event
-          Ignites
-          %button
-            =link_to "Add new Ignite", new_event_path
-        - else
-          Ignites you manage
-      %hr
-      %table#events
-        %thead
-          %tr
-            %th Name
-            %th City
-            %th State
-            %th Country
-            %th URL
-            %th Twitter
-            %th
-        %tbody
-          -@events.each do |event|
-            %tr
-              %td= link_to event.name, edit_event_path(event)
-              %td= event.city
-              %td= event.state
-              %td= event.country
-              %td= link_to event.url, event.url, :target => "_blank"
-              %td= event.twitter_name
-              %td
-                =link_to edit_event_path(event), class: "light btn-edit" do
-                  %i.fa.fa-pencil-square-o
-                - if can? :destroy, event
-                  =link_to event_path(event), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this Ignite?"} do 
-                    %i.fa.fa-times
+      .tab-content
 
-#admin_upcomings.admin_panel
-  .row.top-50
-    .col-md-10.col-md-offset-1
-      %h4
-        Upcoming Events
-        %button
-          =link_to "Add new upcoming event", new_upcoming_path
-      %hr
-      %table#upcoming
-        %thead
-          %tr
-            %th Name
-            %th Ignite
-            %th Date
-            %th
-        %tbody
-          -@upcomings.each do |upcoming|
-            %tr
-              %td= upcoming.name
-              %td= upcoming.event.name
-              %td= upcoming.date
-              %td
-                =link_to edit_upcoming_path(upcoming), class: "light btn-edit" do
-                  %i.fa.fa-pencil-square-o
-                =link_to upcoming_path(upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming event?"} do 
-                  %i.fa.fa-times
-/ - else
-/   .row.top-50
-/     .col-md-10.col-md-offset-1
-/       %h4 Functionality for non-admin users is coming soon
+        #videos_tab.tab-pane.active{:role => "tabpanel"}
+          %h4
+            %button= link_to "Add new video", new_video_path
+          %hr
+          %table#videos
+            %thead
+              %tr
+                %th Featured
+                %th Event
+                %th Title
+                %th Watch
+                %th Presenter
+                %th Presenter URL
+                %th Uploaded
+                %th Tags
+                %th
+                %th
+            %tbody
+              -@videos.each do |video|
+                %tr
+                  - if video.featured?
+                    %td
+                      %i.fa.fa-check
+                  - else
+                    %td
+                  %td= video.event.name
+                  %td= link_to video.title, edit_video_path(video)
+                  %td.center
+                    = link_to video.url, :target => "_blank" do
+                      %i.fa.fa-play-circle
+                  %td= video.speaker_name
+                  %td= video.speaker_url
+                  %td= video.created_at.to_date
+                  %td= video.tags.map(&:name).join(", ")
+                  %td
+                    =link_to edit_video_path(video), class: "light btn-edit" do
+                      %i.fa.fa-pencil-square-o
+                  %td
+                    =link_to video_path(video), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this video?"} do 
+                      %i.fa.fa-times
+
+
+        #events_tab.tab-pane{:role => "tabpanel"}
+          %h4
+            - if can? :create, Event
+              %button
+                =link_to "Add new Ignite", new_event_path
+              %hr
+          %table#events
+            %thead
+              %tr
+                %th Name
+                %th City
+                %th State
+                %th Country
+                %th URL
+                %th Twitter
+                %th
+            %tbody
+              -@events.each do |event|
+                %tr
+                  %td= link_to event.name, edit_event_path(event)
+                  %td= event.city
+                  %td= event.state
+                  %td= event.country
+                  %td= link_to event.url, event.url, :target => "_blank"
+                  %td= event.twitter_name
+                  %td
+                    =link_to edit_event_path(event), class: "light btn-edit" do
+                      %i.fa.fa-pencil-square-o
+                    - if can? :destroy, event
+                      =link_to event_path(event), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this Ignite?"} do 
+                        %i.fa.fa-times
+
+        #upcomings_tab.tab-pane{:role => "tabpanel"}
+          %h4
+            %button
+              =link_to "Add new upcoming event", new_upcoming_path
+          %hr
+          %table#upcoming
+            %thead
+              %tr
+                %th Name
+                %th Ignite
+                %th Date
+                %th
+            %tbody
+              -@upcomings.each do |upcoming|
+                %tr
+                  %td= upcoming.name
+                  %td= upcoming.event.name
+                  %td= upcoming.date
+                  %td
+                    =link_to edit_upcoming_path(upcoming), class: "light btn-edit" do
+                      %i.fa.fa-pencil-square-o
+                    =link_to upcoming_path(upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming event?"} do 
+                      %i.fa.fa-times
+                      
+        -if current_user.admin?
+          #users_tab.tab-pane{:role => "tabpanel"}
+            %p Users tab coming soon
