@@ -1,0 +1,32 @@
+.row.top-100.bottom-50
+  .col-md-6.col-md-offset-3
+    =bootstrap_devise_error_messages!
+    .panel.panel-default
+      .panel-heading
+        %h4
+          Please see the
+          =link_to "Start page", start_path
+          to request a login for IgniteTalks, or use the 
+          =link_to "Contact us", contact_path
+          link to get in touch with us.
+          
+    / Only an admin user may add new users, via the Admin page - users cannot sign up to the site
+    / .panel.panel-default
+    /   .panel-heading
+    /     %h4 Register for IgniteTalks.io alsdkfjsadf
+    /   .panel-body
+    /     =form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form" }) do |f|
+    /       .form-group
+    /         =f.label :email
+    /         =f.email_field :email, autofocus: true, class: "form-control"
+   
+    /       .form-group
+    /         =f.label :password
+    /         =f.password_field :password, class: "form-control"
+   
+    /       .form-group
+    /         =f.label :password_confirmation
+    /         =f.password_field :password_confirmation, class: "form-control"
+   
+    /       =f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary"
+    / =render "devise/shared/links"

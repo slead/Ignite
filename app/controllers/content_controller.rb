@@ -7,6 +7,7 @@ class ContentController < ApplicationController
 
   def home
     begin
+<<<<<<< HEAD
       @first_video = Video.where(status: 'published').where(featured: true).last
       @videos = Video.where(status: 'published').where(featured: true).where.not(id: @first_video.id).limit(12).order("RANDOM()")
     rescue
@@ -17,6 +18,17 @@ class ContentController < ApplicationController
       @upcomings = Upcoming.where(status:'published').where('date > ?', Date.yesterday).limit(12).order('date ASC')
       @tags = Tag.where(major: true).order(:name)
 
+=======
+      @first_video = Video.where(featured: true).last
+      @videos = Video.where(featured: true).where.not(id: @first_video.id).limit(12).order("RANDOM()")
+    rescue
+      puts "need to add some videos"
+      @first_video = nil
+      @videos = []
+    end
+    @upcomings = Upcoming.where('date > ?', Date.yesterday).limit(12).order('date ASC')
+    @tags = Tag.where(major: true).order(:name)
+>>>>>>> eb
   end
 
   def content_params

@@ -12,15 +12,14 @@ class VideosController < ApplicationController
   def index
 
     if params[:query].present?
-      puts params
-      @videos = Video.search(params[:query], where:{status: 'published'}, page: params[:page], :per_page => 9)
+      @videos = Video.search(params[:query], page: params[:page], :per_page => 9)
     elsif params[:tag].present?
       @tag = Tag.find_by(name: params[:tag])
-      @videos = @tag.videos.where(status: 'published').paginate(:page => params[:page], :per_page => 9)
+      @videos = @tag.videos.paginate(:page => params[:page], :per_page => 9)
     elsif params[:sort].present? and params[:sort] == 'likes' || params[:sort] == 'views'
-      @videos = Video.where(status: 'published').order("#{params[:sort]} DESC").paginate(:page => params[:page], :per_page => 9)
+      @videos = Video.order("#{params[:sort]} DESC").paginate(:page => params[:page], :per_page => 9)
     else
-      @videos = Video.where(status: 'published').paginate(:page => params[:page], :per_page => 9)
+      @videos = Video.paginate(:page => params[:page], :per_page => 9)
     end
     @tags = Tag.where(major: true).order(:name)
   end
@@ -48,23 +47,9 @@ class VideosController < ApplicationController
 
   def create
     @video = current_user.videos.build(video_params)
-    if current_user.admin?
-      # If the current user is an administrator, create the video normally. It's immediately published.
-      @video.status = 'published'
-    else
-      # If this user is not an admin, flag the video as a draft. It won't show on public pages until published
-      @video.status = 'draft'
-    end
-
     if @video.save
-        if @video.status == 'draft'
-          flash[:notice] = "Thanks for submitting this video! We'll review it and publish it ASAP"
-          NotifyMailer.new_draft_email(User.first).deliver # Notify an admin via email
-          redirect_to videos_path
-        else
-          flash[:notice] = "video #{@video.title} added successfully."
-          redirect_to admin_path
-        end
+        flash[:notice] = "video #{@video.title} added successfully."
+        redirect_to admin_path
       else
         flash[:notice] = @video.errors.full_messages.to_sentence
         render 'new', layout: 'no_footer'

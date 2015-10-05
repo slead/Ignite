@@ -18,6 +18,7 @@ test:
 
 production:
   adapter: postgresql
+<<<<<<< HEAD
   database: <%= ENV['APP_DB_NAME'] %>
   host:     <%= ENV['APP_DB_HOST'] %>
   username: <%= ENV['APP_DB_USER'] %>
@@ -25,3 +26,11 @@ production:
   pool: 5
   timeout: 5000
   encoding: utf8
+=======
+  encoding: unicode
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
+>>>>>>> eb

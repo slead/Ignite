@@ -16,7 +16,11 @@ ActiveRecord::Schema.define(version: 20150825220840) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< HEAD
   create_table "events", force: true do |t|
+=======
+  create_table "events", force: :cascade do |t|
+>>>>>>> eb
     t.string   "name"
     t.string   "url"
     t.datetime "created_at"
@@ -32,7 +36,7 @@ ActiveRecord::Schema.define(version: 20150825220840) do
     t.string   "twitter_name"
   end
 
-  create_table "friendly_id_slugs", force: true do |t|
+  create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
     t.string   "sluggable_type", limit: 50
@@ -45,7 +49,7 @@ ActiveRecord::Schema.define(version: 20150825220840) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
-  create_table "posts", force: true do |t|
+  create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
@@ -54,14 +58,14 @@ ActiveRecord::Schema.define(version: 20150825220840) do
     t.datetime "updated_at"
   end
 
-  create_table "tags", force: true do |t|
+  create_table "tags", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "major"
   end
 
-  create_table "tags_videos", id: false, force: true do |t|
+  create_table "tags_videos", id: false, force: :cascade do |t|
     t.integer "video_id"
     t.integer "tag_id"
   end
@@ -69,7 +73,7 @@ ActiveRecord::Schema.define(version: 20150825220840) do
   add_index "tags_videos", ["tag_id"], name: "index_tags_videos_on_tag_id", using: :btree
   add_index "tags_videos", ["video_id"], name: "index_tags_videos_on_video_id", using: :btree
 
-  create_table "upcomings", force: true do |t|
+  create_table "upcomings", force: :cascade do |t|
     t.string   "name"
     t.integer  "event_id"
     t.date     "date"
@@ -79,7 +83,7 @@ ActiveRecord::Schema.define(version: 20150825220840) do
     t.string   "status"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -98,7 +102,7 @@ ActiveRecord::Schema.define(version: 20150825220840) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "videos", force: true do |t|
+  create_table "videos", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
     t.integer  "event_id"

@@ -11,13 +11,13 @@ class EventsController < ApplicationController
   def index
     @geojson = Array.new
     if params[:zoom].present? and params[:zoom].to_i < 3
-      @events = Event.where(status: 'published').order(:name)
+      @events = Event.order(:name)
     elsif params[:bbox].present?
       #Find events which fall within the current map extent
       bbox = params[:bbox].split(",").map(&:to_f)
-      @events = Event.where(status: 'published').within_bounding_box(bbox).order(:name)
+      @events = Event.within_bounding_box(bbox).order(:name)
     else
-      @events = Event.where(status: 'published').all.order(:name)  
+      @events = Event.all.order(:name)  
     end
     # Make a JSON object from the events, to add to the map
     @geojson += @events.collect do |event|
@@ -44,7 +44,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @videos = @event.videos.where(status: 'published').paginate(:page => params[:page], :per_page => 8)
+    @videos = @event.videos.paginate(:page => params[:page], :per_page => 8)
     @upcomings = @event.upcomings.where('date > ?', Date.yesterday)
     @og_title = @event.name + ' on IgniteTalks.io'
   end
@@ -58,19 +58,9 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.events.build(event_params)
-    if current_user.admin?
-      # If the current user is an administrator, create the event normally. It's immediately published.
-      @event.status = 'published'
-    else
-      # If this user is not an admin, flag the event as a draft. It won't show on public pages until published
-      @event.status = 'draft'
-    end
 
     if @event.save
         flash[:notice] = "Event #{@event.name} added successfully."
-        if @event.status == 'draft'
-          NotifyMailer.new_draft_email(User.first).deliver # Notify an admin via email
-        end
         redirect_to admin_path
       else
         flash[:notice] = @event.errors.full_messages.to_sentence

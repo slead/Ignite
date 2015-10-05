@@ -43,9 +43,9 @@ class Video < ActiveRecord::Base
   end
 
   def related_videos
-    #Find published videos which share the same tag(s)
+    #Find videos which share the same tag(s)
 
-    Tag.where(id: tags.map(&:id)).joins(:videos).flat_map(&:videos).reject{|video| video.id == id}.reject{|video| video.status != 'published'}.uniq
+    Tag.where(id: tags.map(&:id)).joins(:videos).flat_map(&:videos).reject{|video| video.id == id}.reject{|video|}.uniq
 
     #flat_map takes an array or arrays and flattens it
     #reject knocks out the current video from the related list
