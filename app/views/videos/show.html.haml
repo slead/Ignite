@@ -1,4 +1,11 @@
 .container-fluid.top-150
+  - if can? :update, @video
+    .row.right
+      .col-md-8.user
+      = link_to edit_video_path(@video), class: "light btn-edit" do
+        %i.fa.fa-pencil-square-o
+      = link_to video_path(@video), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this video?"} do
+        %i.fa.fa-times
   .row 
     .col-md-12.col-lg-10.col-lg-offset-1
       %h3
@@ -36,15 +43,6 @@
       .row 
         .col-md-10.col-md-offset-1
           %p.top-50.left-15= @video.description
-        
-
-  - if can? :update, @video
-    .row.right
-      .col-md-8.user
-      = link_to edit_video_path(@video), class: "light btn-edit" do
-        %i.fa.fa-pencil-square-o
-      = link_to video_path(@video), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this video?"} do
-        %i.fa.fa-times
 
   -if @related_videos.count > 0
     .row.related
