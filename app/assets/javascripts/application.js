@@ -64,6 +64,12 @@ function pageLoad() {
     $(window).unbind('scroll');
   }
 
+  // Use cookies to remember the Admin tab which was last open
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    e.target // newly activated tab
+    e.relatedTarget // previous active tab
+  })
+
   // Enable datatables on the admin page
   $('#videos').dataTable({
     "columnDefs": [
