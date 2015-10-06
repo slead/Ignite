@@ -1,4 +1,11 @@
 .container.event
+  - if can? :update, @event
+    .user.right
+      = link_to edit_event_path(@event), class: "light btn-edit" do
+        %i.fa.fa-pencil-square-o
+      - if can? :destroy, @event
+        = link_to event_path(@event), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this event?"} do
+          %i.fa.fa-times
   .row
     .col-md-12
       %h1= @event.name
@@ -27,10 +34,4 @@
           %hr
     .row.paginate
       = will_paginate @videos, renderer: BootstrapPagination::Rails
-
-    - if user_signed_in? and current_user.admin?
-      .user
-        = link_to edit_event_path(@event), class: "light btn-edit" do
-          %i.fa.fa-pencil-square-o
-        = link_to event_path(@event), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this event?"} do
-          %i.fa.fa-times
+      

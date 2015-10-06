@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  scope "/admin" do
+    resources :users
+  end
 
   resources :events do
     resources :videos
@@ -10,6 +13,7 @@ Rails.application.routes.draw do
   resources :videos
   resources :upcomings
   resources :posts, except: [:index]
+  resources :roles
 
   get '/about', to: 'content#about', as: :about #=> about_path
   get '/admin', to: 'admin#index', as: :admin #=> admin_path

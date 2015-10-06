@@ -11,11 +11,12 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :development do
   gem 'spring'
-  gem 'byebug', '~> 4.0.5'
   gem "better_errors"
   gem "binding_of_caller"
 end
 
+gem 'byebug'
+gem 'cancancan', '~> 1.10'
 gem 'devise', '~> 3.5.2'
 gem 'devise-bootstrap-views'
 gem 'font-awesome-rails', '~> 4.3.0.0'

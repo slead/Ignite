@@ -1,0 +1,40 @@
+.container-fluid
+  .row
+    .col-md-6.col-md-offset-1
+      %h2 Ignite Talks user admin panel
+    .col-md-1.col-md-offset-3
+      .btn-group.top-15
+        %button{:type => "button", :class => "btn btn-default dropdown-toggle", "data-toggle" => "dropdown"}
+          =current_user.name
+          %span.caret 
+        %ul.dropdown-menu
+          %li= link_to "Change your password", edit_user_registration_path
+          %li= link_to('Logout', destroy_user_session_path, :method => :delete)
+
+  .row.top-100
+    .col-md-8.col-md-offset-2
+
+      %table#users
+        %thead
+          %tr
+            %th Admin?
+            %th Name
+            %th Email
+            %th
+            %th
+        %tbody
+          -@users.each do |user|
+            %tr
+              - if user.admin?
+                %td
+                  %i.fa.fa-check
+              - else
+                %td
+              %td= user.name
+              %td= user.email
+              %td
+                = link_to edit_user_path(user), class: "light btn-edit" do
+                  %i.fa.fa-pencil-square-o
+              %td
+                = link_to user_path(user), method: :delete, data: { confirm: 'Are you sure you with to delete this user?' } do 
+                  %i.fa.fa-times

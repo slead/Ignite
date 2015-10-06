@@ -15,6 +15,11 @@ class ApplicationController < ActionController::Base
     config.log_level = :debug
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:notice] = "Sorry, that function is restricted to administrators"
+    redirect_to root_url
+  end
+
   private
     def store_location
       session[:return_to] = request.fullpath

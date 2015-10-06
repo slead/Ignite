@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  load_and_authorize_resource :find_by => :slug, except: [:index, :show]
   before_action :find_event, only: [:show, :edit, :update, :destroy]
   layout 'no_footer', :only => [:new, :edit]
   

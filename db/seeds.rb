@@ -1,6 +1,10 @@
+r1 = Role.create({name: "regular"})
+r2 = Role.create({name: "admin"})
+r2 = Role.create({name: "guru"})
+
 User.create!([
-  {email: "admin@ignitetalks.io", password: "password", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: "2015-07-08 00:11:14", sign_in_count: 11, current_sign_in_at: "2015-08-09 21:34:13", last_sign_in_at: "2015-07-10 00:45:05", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", admin: true},
-  {email: "test@ignitetalks.io", password: "password", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 4, current_sign_in_at: "2015-07-07 23:35:52", last_sign_in_at: "2015-07-07 23:21:40", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", admin: nil}
+  {email: "admin@ignitetalks.io", password: "password", role_id: r2.id},
+  {email: "test@ignitetalks.io", password: "password", role_id: r1.id}
 ])
 Event.create!([
   {name: "Ignite Seattle", url: "http://igniteseattle.com", city: "Seattle", state: "Washington", country: "United States", latitude: 47.6062095, longitude: -122.3320708, slug: "ignite-seattle", user_id: 1, twitter_name: nil},

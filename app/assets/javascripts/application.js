@@ -64,6 +64,17 @@ function pageLoad() {
     $(window).unbind('scroll');
   }
 
+  // Use cookies to remember the Admin tab which was last open
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    Cookies.set("tabpane", e.target.id);
+    console.log("setting cookie " + e.target.id)
+  })
+
+  if (Cookies.get("tabpane") != undefined) {
+    $('#' + Cookies.get("tabpane")).tab('show');
+    console.log("getting cookie " + Cookies.get("tabpane"))
+  }
+
   // Enable datatables on the admin page
   $('#videos').dataTable({
     "columnDefs": [
@@ -80,6 +91,12 @@ function pageLoad() {
   $('#upcoming').DataTable({
     "columnDefs": [
       { "orderable": false, "targets": [3] }
+    ]
+  });
+
+  $('#users').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [3, 4] }
     ]
   });
   
