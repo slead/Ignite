@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :upcomings
   has_many :posts
   validates_presence_of :name, :email
+  validates_uniqueness_of :email
 
   before_save :assign_role
 
