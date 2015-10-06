@@ -30,6 +30,7 @@ gem "omniauth-google-oauth2"
 gem 'pg'
 gem 'pygments.rb', '~> 0.6.3'
 gem 'rack', '~> 1.6.4'
+gem 'rake'
 gem 'redcarpet', '~> 3.2.3'
 gem 'searchkick', '~> 0.8.7'
 gem 'seed_dump'
