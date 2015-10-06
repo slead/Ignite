@@ -1,6 +1,8 @@
 branch-defaults:
   eb:
     environment: ignite-env2
+  master:
+    environment: ignite-env2
 global:
   application_name: ignite
   default_ec2_keyname: aws-eb
