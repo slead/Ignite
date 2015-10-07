@@ -66,8 +66,10 @@ function retrieveYouTubeDetails(){
   baseURL = getBaseUrl() + ".json" + "?uid=" + uid
   $.getJSON( baseURL, function( data ) {
     if (data.length > 0) {
-      alert("This video has already been added to the site")
+      alert("This video has already been added to the site");
+      $(".video_url").addClass("field_with_errors");
     } else {
+      $(".video_url").removeClass("field_with_errors");
       /* Retrieve details from YouTube*/
       checkURL = "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94&fields=items(snippet(title,description))&part=snippet&id=" + uid
       $.getJSON( checkURL, function( data ) {
