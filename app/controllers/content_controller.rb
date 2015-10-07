@@ -1,5 +1,5 @@
 class ContentController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :except => "start"
   layout 'no_footer', :only => [:start]
   
   def show
