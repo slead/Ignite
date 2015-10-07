@@ -50,21 +50,38 @@ function getUrlParameter(sParam){
   }
 }
 
+function getBaseUrl() {
+  var re = new RegExp(/^.*\//);
+  baseURL = re.exec(window.location.href)[0];
+  return baseURL.substr(0, baseURL.length - 1)
+}
+
 function retrieveYouTubeDetails(){
   //Make a call to the YouTube API to retrieve details about this video
   $("#btnYouTubeRetrieve").addClass("disabled");
   url = $("#video_url").val();
-  checkURL = ytVidId(url);
-  $.getJSON( checkURL, function( data ) {
-    if (data.items.length > 0) {
-      title = data.items[0].snippet.title;
-      description = data.items[0].snippet.description;
-      $("#video_title").val(title);
-      $("#video_description").val(description);
-      $(".details").show();
+  uid = ytVidId(url);
+
+  /* Check whether this video has already been added to the system*/
+  baseURL = getBaseUrl() + ".json" + "?uid=" + uid
+  $.getJSON( baseURL, function( data ) {
+    if (data.length > 0) {
+      alert("This video has already been added to the site")
     } else {
-      alert("Unable to retrieve details from YouTube. Please try another URL")
-      $(".details").hide();
+      /* Retrieve details from YouTube*/
+      checkURL = "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94&fields=items(snippet(title,description))&part=snippet&id=" + uid
+      $.getJSON( checkURL, function( data ) {
+        if (data.items.length > 0) {
+          title = data.items[0].snippet.title;
+          description = data.items[0].snippet.description;
+          $("#video_title").val(title);
+          $("#video_description").val(description);
+          $(".details").show();
+        } else {
+          alert("Unable to retrieve details from YouTube. Please try another URL")
+          $(".details").hide();
+        }
+      });
     }
   });
 }
@@ -72,7 +89,7 @@ function retrieveYouTubeDetails(){
 function ytVidId(url) {
   var p = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?(?=.*v=((\w|-){11}))(?:\S+)?$/;
   uid = (url.match(p)) ? RegExp.$1 : false;
-  return "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94&fields=items(snippet(title,description))&part=snippet&id=" + uid
+  return uid
 }   
 
 $(document).ready(ready);

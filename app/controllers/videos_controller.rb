@@ -13,16 +13,37 @@ class VideosController < ApplicationController
   def index
 
     if params[:query].present?
+      # Find videos using elastic search
       @videos = Video.search(params[:query], page: params[:page], :per_page => 9)
+
     elsif params[:tag].present?
+      # Find videos by tag
       @tag = Tag.find_by(name: params[:tag])
       @videos = @tag.videos.paginate(:page => params[:page], :per_page => 9)
+
     elsif params[:sort].present? and params[:sort] == 'likes' || params[:sort] == 'views'
+      # Sort videos baseed on the number of views
       @videos = Video.order("#{params[:sort]} DESC").paginate(:page => params[:page], :per_page => 9)
+
+    elsif params[:uid].present?
+      # Check whther this video already exists. This is called when creating a new video, to save the
+      # user from wasting time entering details about an existing video.
+      # eg: http://localhost:3000/videos.json?uid=AlkKPojdVAk
+      @videos = Video.where(:uid => params[:uid]).paginate(:page => params[:page], :per_page => 9)
+
     else
       @videos = Video.paginate(:page => params[:page], :per_page => 9)
     end
+
     @tags = Tag.where(major: true).order(:name)
+
+    # Respond as JSON, so that this function can be called via AJAX to determine whether a video
+    # already exists when creating a new video via http://localhost:3000/videos/new
+    respond_to do |format|
+      format.html
+      format.json { render json: @videos }  # respond with the created JSON object
+    end
+
   end
 
   def new
@@ -41,6 +62,12 @@ class VideosController < ApplicationController
       @og_description = @video.description
     end
     @og_image = "http://img.youtube.com/vi/#{@video.uid}/maxresdefault.jpg"
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @video }  # respond with the created JSON object
+    end
+
   end
 
   def edit
