@@ -24,9 +24,24 @@
           = @upcomings.first.name
           = "(#{@upcomings.first.date})"
 
+  - if @playlists.exists?
+    .row
+      %h4.left-15
+        Playlists from
+        =@event.name
+      -@playlists.each do |playlist|
+        .row.top-15
+          .col-md-12
+            %h4= link_to playlist.name, playlist
+          -playlist.videos.each do |video|
+            .col-md-4.playlist_thumbnail
+              %span= thumbnail(video, 'video_rating_small', 60)
+
   - if @videos.exists?
     .row
-      %h4.left-15 Featured videos
+      %h4.left-15
+        Videos recorded at
+        =@event.name
       - @videos.each do |video|
         .col-md-6.col-sm-12.col-xs-12
           = thumbnail(video, 'video_rating_large', 60)
@@ -34,4 +49,5 @@
           %hr
     .row.paginate
       = will_paginate @videos, renderer: BootstrapPagination::Rails
+
       

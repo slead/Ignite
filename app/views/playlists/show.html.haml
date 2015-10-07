@@ -1,0 +1,56 @@
+.container-fluid.top-150
+  - if can? :update, @video
+    .row.right
+      .col-md-8.user
+      = link_to edit_video_path(@video), class: "light btn-edit" do
+        %i.fa.fa-pencil-square-o
+      = link_to video_path(@video), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this video?"} do
+        %i.fa.fa-times
+  .row 
+    .col-md-12.col-lg-10.col-lg-offset-1
+      %h3
+        = @video.title
+      %p.title
+        -if not @video.speaker_name.blank?
+          - if not @video.speaker_url.blank?
+            by
+            = link_to @video.speaker_name, @video.speaker_url
+          - else
+            = "by #{@video.speaker_name}"
+      %p.subtitle
+        Filmed at
+        = link_to @video.event.name, event_page_path(@video.event)
+      %span#social-share-span
+        = social_share_button_tag(@video.title, 'data-twitter-title' => truncate(@video.title, :length => 50), via: "IgniteTalks")
+      .embed-container
+        =embed(@video.uid)
+      .stats.right
+        %i.fa.fa-youtube-play
+        %span.right-15= number_with_delimiter(@video.views, :delimiter => ',')
+        %i.fa.fa-thumbs-o-up
+        %span.right-15= number_with_delimiter(@video.likes, :delimiter => ',')
+        %i.fa.fa-thumbs-o-down.left-5
+        = number_with_delimiter(@video.dislikes, :delimiter => ',')
+
+    -if not @video.tags.empty?
+      .row 
+        .col-md-8
+          .tags.left-15
+            %i.fa.fa-tag
+            %span= @video.tags.map(&:name).join(", ").titleize
+
+    -if not @video.description.blank?
+      .row 
+        .col-md-10.col-md-offset-1
+          %p.top-50.left-15= @video.description
+
+  -if @related_videos.count > 0
+    .row.related
+      .col-md-12
+        %h4 Related Videos
+    .row
+      - @related_videos.each do |related_video|
+        .col-md-3
+          = thumbnail(related_video, 'video_rating_small', 35)
+
+          

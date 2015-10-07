@@ -1,0 +1,23 @@
+/ Generate a thumbnail image containing viewing stats, which links to the video
+
+=link_to video do
+  %span.video_thumbnail
+    =image_tag  "//img.youtube.com/vi/#{video.uid}/maxresdefault.jpg", :class => "thumb", :alt => truncate(video.title, length: 30)
+    %span{:class => rating_class}
+      %i.fa.fa-youtube-play.right-5
+      #{number_with_delimiter(video.views, :delimiter => ',')}
+      %span.right-5
+        %i.fa.fa-thumbs-up.right-5
+        #{number_with_delimiter(video.likes, :delimiter => ',')}
+      %span.right-5
+        %i.fa.fa-thumbs-down.right-5
+        #{number_with_delimiter(video.dislikes, :delimiter => ',')}
+%p.title= link_to truncate(video.title, length: max_length), video
+%p.subtitle
+  -if not video.speaker_name.blank?
+    - if not video.speaker_url.blank?
+      = link_to video.speaker_name, video.speaker_url
+    - else
+      = video.speaker_name
+  at
+  = link_to video.event.name, event_page_path(video.event)

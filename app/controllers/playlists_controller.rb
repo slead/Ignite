@@ -5,7 +5,7 @@ class PlaylistsController < ApplicationController
   layout 'no_footer', :only => [:new, :edit]
 
   def index
-    @playlists = Playlist.all
+    @playlists = Playlist.all.paginate(:page => params[:page], :per_page => 9)
   end
 
   def new
@@ -57,7 +57,7 @@ private
   end
 
   def find_playlist
-    @playlist = Playstlist.find(params[:id])
+    @playlist = Playlist.find(params[:id])
   end
 
 end
