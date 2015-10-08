@@ -5,7 +5,7 @@
     %hr
     .row
       .col-md-10#ignite_name
-        %label Ignite event (required):
+        %label Ignite name (required):
         -if current_user.admin?
           = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
         - else
