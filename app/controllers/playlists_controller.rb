@@ -13,6 +13,7 @@ class PlaylistsController < ApplicationController
   end
 
   def show
+    @videos = @playlist.videos
     
 
   end

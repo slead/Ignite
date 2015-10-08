@@ -39,8 +39,11 @@
       .row.top-15
         .col-md-12
           %h4= link_to playlist.name, playlist
-        -playlist.videos.each do |video|
-          .col-md-4.playlist_thumbnail
-            %span= thumbnail(video, 'video_rating_small', 60)
+        -playlist.videos.each_slice(4) do |vids|
+          .row.top-15
+          -vids.each do |video|
+            .col-md-3.video_thumbnail
+              %span= thumbnail(video, 'video_rating_small', 60)
+
   .row.paginate
     = will_paginate @playlists, renderer: BootstrapPagination::Rails
