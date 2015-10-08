@@ -37,7 +37,7 @@
             .col-md-4.playlist_thumbnail
               %span= thumbnail(video, 'video_rating_small', 60)
 
-  - if @videos.exists?
+  - if not @videos.empty?
     .row
       %h4.left-15
         Videos recorded at
@@ -46,8 +46,8 @@
         .col-md-6.col-sm-12.col-xs-12
           = thumbnail(video, 'video_rating_large', 60)
 
-          %hr
-    .row.paginate
-      = will_paginate @videos, renderer: BootstrapPagination::Rails
+    /       %hr
+    / .row.paginate
+    /   = will_paginate @videos, renderer: BootstrapPagination::Rails
 
       

@@ -57,7 +57,7 @@ private
   end
 
   def find_playlist
-    @playlist = Playlist.find(params[:id])
+    @playlist = Playlist.friendly.find(params[:id])
   end
 
 end
