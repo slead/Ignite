@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :events
   has_many :upcomings
   has_many :posts
+  has_many :playlists
   validates_presence_of :name, :email
   validates_uniqueness_of :email
 

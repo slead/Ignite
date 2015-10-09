@@ -1,31 +1,16 @@
 .container.top-150
   .row
     .col-md-8.col-md-offset-2
-      %h2 Add a new Ignite video
+      %h2 Crete a new Ignite playlist
       .well
-        %h4 Notes on adding Ignite videos
-        %p
-          Videos must be stored on YouTube in HD (high definition) format. The thumbnail for the video is taken from the YouTube thumbnail, so please ensure you
-          =link_to "set a good quality image", "https://support.google.com/youtube/answer/72431?hl=en", :target => "_blank"
-          from within YouTube.
+        %h4 Notes on creating Ignite playlists
+        %p lorem ipsum
 
   .row 
     .col-md-8.col-md-offset-2
       .panel
         .panel-body
           = render 'form'
-        / -if current_user.admin?
-        /   %button.btn
-        /     = link_to "Back to Admin page", admin_path
-
-/ Enable the YouTube retrieve button when there's a URL to test
-:javascript
-  $(document).ready(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-    $("#btnYouTubeRetrieve").addClass("disabled");
-    if ($("#video_url").val() == '') {
-      $(".details").hide();
-    } else {
-      $(".details").show();
-    }
-  });
+        -if current_user.admin?
+          %button.btn
+            = link_to "Back to Admin page", admin_path

@@ -2,24 +2,15 @@
   .row 
     .col-md-8.col-md-offset-2
       .panel
-        %h3.left-15 Edit video
+        %h3.left-15 Edit playlist
         .panel-body
           = render 'form'
   .row
     .col-md-8.col-md-offset-2
-      .embed-container
-        =embed(@video.uid)
       %hr
         %button.btn
-          = link_to "Back to video page", video_path
+          = link_to "Back to playlist page", playlist_path
         %button.btn
-          = link_to "Delete video", video_path(@video), method: :delete, data: {confirm: "Are you sure you want to delete this video?"}
+          = link_to "Delete playlist", playlist_path(@playlist), method: :delete, data: {confirm: "Are you sure you want to delete this playlist?"}
         %button.btn
           = link_to "Back to Admin page", admin_path
-
-/ Disable the YouTube retrieve button in Edit mode
-:javascript
-  $(document).ready(function() {
-    $(".details").show();
-    $("#btnYouTubeRetrieve").addClass("disabled");
-  });
