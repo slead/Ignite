@@ -17,6 +17,7 @@ class ContentController < ApplicationController
     end
     @upcomings = Upcoming.where('date > ?', Date.yesterday).limit(12).order('date ASC')
     @tags = Tag.where(major: true).order(:name)
+    @playlists = Playlist.where(featured: true)
   end
 
   def content_params

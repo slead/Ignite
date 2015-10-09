@@ -64,10 +64,25 @@
         %p.bottom-15.absolute
           = link_to "Let us know", "https://docs.google.com/forms/d/1qXBkQB3-JTKCNrapzaJaWQSMDjWCXR8fuZ0WSxuQR5o/viewform", :target => "_blank"
           about an upcoming event!
-          
-  .row
-    .col-md-12
-      %h4 Featured Ignite videos
+  - if @playlists.exists?
+    .row
+      .col-md-12
+        -@playlists.each do |playlist|
+          .row.top-15
+            .col-md-12
+              %h4= link_to playlist.name, playlist
+            -playlist.videos.limit(4).each do |video|
+              .col-md-3.playlist_thumbnail
+                %span= thumbnail(video, 'video_rating_small', 30)
+         
+  - if @playlists.exists?        
+    .row.top-100
+      .col-md-12
+        %h4 Featured Ignite videos
+  - else
+    .row
+      .col-md-12
+        %h4 Featured Ignite videos
 
   .row.top-15
     .col-md-4.col-sm-12.col-xs-12
@@ -100,7 +115,7 @@
     .row.top-15
       -vids.each do |video|
         .col-md-3
-          = thumbnail(video, 'video_rating_small',35)
+          = thumbnail(video, 'video_rating_small',30)
 
   .row.top-50
     .col-md-2

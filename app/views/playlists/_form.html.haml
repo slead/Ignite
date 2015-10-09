@@ -10,3 +10,7 @@
         = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
       - else
         = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select'}
+      %hr
+      =f.submit class: "btn btn-warning top-15"
+      =link_to root_path do
+        %btn.btn.btn-default.top-15 Cancel
