@@ -19,6 +19,8 @@
         %li.active{:role => "presentation"}
           %a{"aria-controls" => "videos_tab", "data-toggle" => "tab", :href => "#videos_tab", :id => "tab_videos", :role => "tab"} Videos
         %li{:role => "presentation"}
+          %a{"aria-controls" => "events_tab", "data-toggle" => "tab", :href => "#playlists_tab", :id => "tab_events", :role => "tab"} Playlists
+        %li{:role => "presentation"}
           %a{"aria-controls" => "events_tab", "data-toggle" => "tab", :href => "#events_tab", :id => "tab_events", :role => "tab"} Ignites
         %li{:role => "presentation"}
           %a{"aria-controls" => "upcomings_tab", "data-toggle" => "tab", :href => "#upcomings_tab", :id => "tab_upcomings", :role => "tab"} Upcoming events
@@ -73,6 +75,27 @@
                     =link_to video_path(video), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this video?"} do 
                       %i.fa.fa-times
 
+        #playlists_tab.tab-pane{:role => "tabpanel"}
+          %h4
+            %button= link_to "Add new playlist", new_playlist_path
+          %hr
+          %table#playlists
+            %thead
+              %tr
+                %th Name
+                %th Ignite
+                %th
+            %tbody
+              -@playlists.each do |playlist|
+                %tr
+                  %td= link_to playlist.name, edit_playlist_path(playlist)
+                  %td= playlist.event.name
+                  %td
+                    =link_to edit_playlist_path(playlist), class: "light btn-edit" do
+                      %i.fa.fa-pencil-square-o
+                    - if can? :destroy, playlist
+                      =link_to playlist_path(playlist), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this Playlist?"} do 
+                        %i.fa.fa-times
 
         #events_tab.tab-pane{:role => "tabpanel"}
           %h4

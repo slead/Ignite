@@ -82,6 +82,12 @@ function pageLoad() {
     ]
   });
 
+    $('#playlists').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [2] }
+    ]
+  });
+
   $('#events').DataTable({
     "columnDefs": [
       { "orderable": false, "targets": [4,5] }
