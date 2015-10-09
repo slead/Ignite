@@ -15,25 +15,4 @@
             .col-md-4.video_thumbnail
               %span= thumbnail(video, 'video_rating_small', 60)
 
-              %p.title
-                -if not video.speaker_name.blank?
-                  - if not video.speaker_url.blank?
-                    by
-                    = link_to video.speaker_name, video.speaker_url
-                  - else
-                    = "by #{video.speaker_name}"
-              %p.subtitle
-                Filmed at
-                = link_to video.event.name, event_page_path(video.event)
-        / %span#social-share-span
-        /   = social_share_button_tag(video.title, 'data-twitter-title' => truncate(video.title, :length => 50), via: "IgniteTalks")
-        / .embed-container
-        /   =embed(video.uid)
-        / .stats.right
-        /   %i.fa.fa-youtube-play
-        /   %span.right-15= number_with_delimiter(video.views, :delimiter => ',')
-        /   %i.fa.fa-thumbs-o-up
-        /   %span.right-15= number_with_delimiter(video.likes, :delimiter => ',')
-        /   %i.fa.fa-thumbs-o-down.left-5
-        /   = number_with_delimiter(video.dislikes, :delimiter => ',')
           
