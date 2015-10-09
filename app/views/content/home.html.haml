@@ -64,8 +64,9 @@
         %p.bottom-15.absolute
           = link_to "Let us know", "https://docs.google.com/forms/d/1qXBkQB3-JTKCNrapzaJaWQSMDjWCXR8fuZ0WSxuQR5o/viewform", :target => "_blank"
           about an upcoming event!
+
   - if @playlists.exists?
-    .row
+    .row#playlist_row
       .col-md-12
         -@playlists.each do |playlist|
           .row.top-15
