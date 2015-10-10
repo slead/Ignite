@@ -23,12 +23,14 @@
 
   .row
     .col-md-12
-      %h4 Add Videos to this playlist
-      =@videos.order(:title).each_slice(6) do |vids|
-        .row.top-15
-          -vids.each do |video|
-            .col-md-2.video_thumbnail
-              %span= playlist_thumbnail(video, 30)
+      %h4
+        Add Videos to this playlist
+        %em (coming soon)
+      / =@videos.order(:title).each_slice(6) do |vids|
+      /   .row.top-15
+      /     -vids.each do |video|
+      /       .col-md-2.video_thumbnail
+      /         %span= playlist_thumbnail(video, 30)
 
   .row
     %hr

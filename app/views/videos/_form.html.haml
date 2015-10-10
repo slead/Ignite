@@ -10,15 +10,6 @@
           = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
         - else
           = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select'}
-
-    .row.top-25
-      .col-md-10
-        %label Add to playlist (optional):
-        -if current_user.admin?
-          = f.collection_check_boxes :playlist_ids, Playlist.all.order(:name), :id, :name
-        - else
-          = f.collection_check_boxes  :playlist_ids, current_user.playlists.all.order(:name), :id, :name
-
     .row.top-25
       .col-md-10
         =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL (in the format https://www.youtube.com/watch?v=YOUTUBE_ID)", label: 'Video URL (required)'
@@ -34,6 +25,14 @@
         %hr
         %label.top-15 Tags:
         %p= f.collection_check_boxes :tag_ids, Tag.all.order(:name), :id, :name
+
+    .row.top-25.details
+      .col-md-10
+        %label Add to playlist (optional):
+        -if current_user.admin?
+          = f.collection_check_boxes :playlist_ids, Playlist.all.order(:name), :id, :name
+        - else
+          = f.collection_check_boxes  :playlist_ids, current_user.playlists.all.order(:name), :id, :name
         %hr
         =f.submit class: "btn btn-warning top-15"
         =link_to root_path do

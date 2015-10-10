@@ -9,10 +9,10 @@
   .row 
     .col-md-12.col-lg-10.col-lg-offset-1
       %h3= @playlist.name
-      - @videos.each_slice(3) do |vids|
+      - @videos.each_slice(4) do |vids|
         .row.top-15
           -vids.each do |video|
-            .col-md-4.video_thumbnail
-              %span= thumbnail(video, 'video_rating_small', 60)
+            .col-md-3.video_thumbnail
+              %span= thumbnail(video, 'video_rating_small', 45)
 
           
