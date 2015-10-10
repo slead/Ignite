@@ -10,13 +10,14 @@
           = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
         - else
           = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select'}
+          
     .row.top-25
       .col-md-10
         %label Add to playlist (optional):
         -if current_user.admin?
-          = f.collection_select :playlists, Playlist.all.order(:name), :id, :name, {prompt: "Add this video to a playlist?"}, {class: 'form-control select' }
+          = f.collection_select :playlist_ids, Playlist.all.order(:name), :id, :name, {prompt: "Add this video to a playlist?"}, {class: 'form-control select' }
         - else
-          = f.collection_select :playlists, current_user.playlists.all.order(:name), :id, :name, {prompt: "Add this video to a playlist?"}, {class: 'form-control select'}
+          = f.collection_select :playlist_ids, current_user.playlists.all.order(:name), :id, :name, {prompt: "Add this video to a playlist?"}, {class: 'form-control select'}
 
     .row.top-25
       .col-md-10
