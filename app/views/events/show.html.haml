@@ -44,13 +44,11 @@
       %h4.left-15
         Videos recorded at
         =@event.name
-      - @videos.each_slice(4) do |vids|
+    - @videos.each_slice(4) do |vids|
+      .row
+        .col-md-12
         - vids.each do |video|
           .col-md-3.col-sm-12.col-xs-12
             = thumbnail(video, 'video_rating_small', 30)
-
-    /       %hr
-    / .row.paginate
-    /   = will_paginate @videos, renderer: BootstrapPagination::Rails
 
       
