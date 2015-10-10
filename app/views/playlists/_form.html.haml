@@ -23,9 +23,9 @@
 
   .row
     .col-md-12
-      %h4
-        Add Videos to this playlist
-        %em (coming soon)
+      %h4 Add Videos to this playlist
+      %p
+        %em (coming soon - for now, edit a video to add it to a playlist)
       / =@videos.order(:title).each_slice(6) do |vids|
       /   .row.top-15
       /     -vids.each do |video|
