@@ -15,8 +15,6 @@ class PlaylistsController < ApplicationController
 
   def show
     @videos = @playlist.videos
-    
-
   end
 
   def edit
