@@ -1,0 +1,16 @@
+.container.top-150
+  .row
+    .col-md-8.col-md-offset-2
+      %h2 Crete a new Ignite playlist
+      .well
+        %h4 Notes on creating Ignite playlists
+        %p lorem ipsum
+
+  .row 
+    .col-md-8.col-md-offset-2
+      .panel
+        .panel-body
+          = render 'form'
+        -if current_user.admin?
+          %button.btn
+            = link_to "Back to Admin page", admin_path

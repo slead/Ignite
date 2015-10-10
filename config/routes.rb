@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :videos
+    resources :playlists
   end
 
   resources :contacts, only: [:new, :create]
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   resources :upcomings
   resources :posts, except: [:index]
   resources :roles
+  resources :playlists
 
   get '/about', to: 'content#about', as: :about #=> about_path
   get '/admin', to: 'admin#index', as: :admin #=> admin_path

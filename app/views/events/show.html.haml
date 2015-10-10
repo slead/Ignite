@@ -1,4 +1,4 @@
-.container.event
+.container-fluid.event
   - if can? :update, @event
     .user.right
       = link_to edit_event_path(@event), class: "light btn-edit" do
@@ -7,7 +7,7 @@
         = link_to event_path(@event), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this event?"} do
           %i.fa.fa-times
   .row
-    .col-md-12
+    .col-md-6.col-md-offset-5
       %h1= @event.name
       - if not @event.state.blank?
         %p= "#{@event.city}, #{@event.state}, #{@event.country}"
@@ -24,14 +24,31 @@
           = @upcomings.first.name
           = "(#{@upcomings.first.date})"
 
-  - if @videos.exists?
+  - if @playlists.exists?
     .row
-      %h4.left-15 Featured videos
-      - @videos.each do |video|
-        .col-md-6.col-sm-12.col-xs-12
-          = thumbnail(video, 'video_rating_large', 60)
+      %h4.left-15
+        Playlists from
+        =@event.name
 
-          %hr
-    .row.paginate
-      = will_paginate @videos, renderer: BootstrapPagination::Rails
+    -@playlists.each do |playlist|
+      .row.top-15
+        .col-md-12
+          %h4= link_to playlist.name, playlist
+        -playlist.videos.each_slice(4) do |vids|
+          - vids.each do |video|
+            .col-md-3.playlist_thumbnail
+              %span= thumbnail(video, 'video_rating_small', 30)
+
+  - if not @videos.empty?
+    .row.top-50
+      %h4.left-15
+        Videos recorded at
+        =@event.name
+    - @videos.each_slice(4) do |vids|
+      .row
+        .col-md-12
+        - vids.each do |video|
+          .col-md-3.col-sm-12.col-xs-12
+            = thumbnail(video, 'video_rating_small', 30)
+
       

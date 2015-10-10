@@ -9,4 +9,5 @@ module VideosHelper
     # Generate a thumbnail image containing viewing stats, which links to the video
     render 'videos/thumbnail', :video => video, :rating_class => rating_class, :max_length => max_length
   end
+
 end

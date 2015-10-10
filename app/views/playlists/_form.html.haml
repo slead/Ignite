@@ -1,0 +1,40 @@
+= simple_form_for(@playlist, html: { class: 'form' })  do |f|
+  .form-group
+    -if current_user.admin?
+      =f.input :featured
+  %hr
+  .row
+    .col-md-12#ignite_name
+      =f.input :name,  input_html: { class: 'form-control' }, placeholder: "Enter the a descriptive name for the playlist (eg Ignite Seattle 23)"
+      %label Ignite event:
+      -if current_user.admin?
+        = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
+      - else
+        = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select'}
+
+  .row.top-50
+    .col-md-12
+      %h4 Videos in this playlist
+      =@playlist.videos.each_slice(6) do |vids|
+        .row.top-15
+          -vids.each do |video|
+            .col-md-2.video_thumbnail
+              %span= playlist_thumbnail(video, 30)
+
+  .row
+    .col-md-12
+      %h4
+        Add Videos to this playlist
+        %em (coming soon)
+      / =@videos.order(:title).each_slice(6) do |vids|
+      /   .row.top-15
+      /     -vids.each do |video|
+      /       .col-md-2.video_thumbnail
+      /         %span= playlist_thumbnail(video, 30)
+
+  .row
+    %hr
+    .col-md-12
+      =f.submit class: "btn btn-warning top-15"
+      =link_to root_path do
+        %btn.btn.btn-default.top-15 Cancel

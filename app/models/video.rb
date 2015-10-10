@@ -8,6 +8,7 @@ class Video < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
   has_and_belongs_to_many :tags
+  has_and_belongs_to_many :playlists
   searchkick
 
   before_create -> do
@@ -15,6 +16,7 @@ class Video < ActiveRecord::Base
     uid = url.match(YT_LINK_FORMAT)
     self.uid = uid[2] if uid && uid[2]
    
+    Yt.configuration.api_key = "AIzaSyBDXu4NyAry6H2cb1vbOfei2E3yI7nFEsg"
     video = Yt::Video.new id: self.uid
     if self.uid.to_s.length != 11
       self.errors.add(:error, ' - YouTube ID is invalid.')

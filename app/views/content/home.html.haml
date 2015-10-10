@@ -64,11 +64,7 @@
         %p.bottom-15.absolute
           = link_to "Let us know", "https://docs.google.com/forms/d/1qXBkQB3-JTKCNrapzaJaWQSMDjWCXR8fuZ0WSxuQR5o/viewform", :target => "_blank"
           about an upcoming event!
-          
-  .row
-    .col-md-12
-      %h4 Featured Ignite videos
-
+  %hr
   .row.top-15
     .col-md-4.col-sm-12.col-xs-12
       = form_tag videos_path, class: "form-inline", method: :get do
@@ -96,13 +92,35 @@
         =link_to videos_path(tag: tag.name) do
           %span.btn.btn-default.tags{:id => "tag_" + tag.name}= tag.name.titleize
 
+  - if @playlists.exists?
+    .row#playlist_row.top-50
+      .col-md-12
+        -@playlists.each do |playlist|
+          .row.top-15
+            .col-md-12
+              %h4= link_to playlist.name, playlist
+            -playlist.videos.limit(4).each do |video|
+              .col-md-3.playlist_thumbnail
+                %span= thumbnail(video, 'video_rating_small', 30)
+         
+  - if @playlists.exists?        
+    .row.top-50
+      .col-md-12
+        %h4 Featured Ignite videos
+  - else
+    .row
+      .col-md-12
+        %h4 Featured Ignite videos
+
   -@videos.each_slice(4) do |vids|
     .row.top-15
       -vids.each do |video|
         .col-md-3
-          = thumbnail(video, 'video_rating_small',35)
+          = thumbnail(video, 'video_rating_small',30)
 
   .row.top-50
+    .col-md-2
+      %h5= link_to "Browse all playlists", playlists_path
     .col-md-2
       %h5= link_to "Browse all videos", videos_path
     .col-md-4.hidden-sm.hidden-xs

@@ -1,0 +1,8 @@
+/ Generate a simple thumbnail image for use when generating playlists
+
+%span.video_thumbnail
+  =image_tag  "//img.youtube.com/vi/#{video.uid}/maxresdefault.jpg", :class => "thumb", :alt => truncate(video.title, length: 20)
+%p.subtitle
+  = truncate(video.title, length: max_length)
+  |
+  =video.speaker_name
