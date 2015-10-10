@@ -10,11 +10,6 @@ class ApplicationController < ActionController::Base
 
   after_filter :store_location
 
-  Yt.configure do |config|
-    config.api_key = 'AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94'
-    config.log_level = :debug
-  end
-
   rescue_from CanCan::AccessDenied do |exception|
     flash[:notice] = "Sorry, that function is restricted to administrators"
     redirect_to root_url

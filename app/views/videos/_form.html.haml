@@ -5,13 +5,20 @@
     %hr
     .row
       .col-md-10#ignite_name
-        %label Ignite event (required):
+        %label Ignite event:
         -if current_user.admin?
           = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
         - else
           = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select'}
+    .row.top-25
+      .col-md-10
+        %label Add to playlist (optional):
+        -if current_user.admin?
+          = f.collection_select :playlists, Playlist.all.order(:name), :id, :name, {prompt: "Add this video to a playlist?"}, {class: 'form-control select' }
+        - else
+          = f.collection_select :playlists, current_user.playlists.all.order(:name), :id, :name, {prompt: "Add this video to a playlist?"}, {class: 'form-control select'}
 
-    .row
+    .row.top-25
       .col-md-10
         =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL (in the format https://www.youtube.com/watch?v=YOUTUBE_ID)", label: 'Video URL (required)'
       .col-md-2
