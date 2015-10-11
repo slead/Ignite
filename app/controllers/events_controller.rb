@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   # end
 
   def index
-    @geojson = Array.new
+    @geojson = Array.new #TODO - hardcode the IgniteTalks event to the JSON so it's always shown
     if params[:zoom].present? and params[:zoom].to_i < 3
       @events = Event.order(:name)
     elsif params[:bbox].present?
@@ -21,7 +21,7 @@ class EventsController < ApplicationController
       # Check whther this event already exists. This is called when creating a new video, to save the
       # user from wasting time entering details about an existing video.
       # eg: http://localhost:3000/events.json?name=ignite+sydney
-      @videos = Video.where(:uid => params[:uid]).paginate(:page => params[:page], :per_page => 9)
+      @events = Event.where(:name => params[:name])
     else
       @events = Event.all.order(:name)  
     end
