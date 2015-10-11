@@ -6,7 +6,21 @@ class PlaylistsController < ApplicationController
   layout 'no_footer', :only => [:new, :edit]
 
   def index
-    @playlists = Playlist.all.paginate(:page => params[:page], :per_page => 9)
+    if params[:name].present?
+      # Check whther this video already exists. This is called when creating a new video
+      # eg: http://localhost:3000/playlists.json?name=playlist_name
+      @playlists = Playlist.where(:name => params[:name]).paginate(:page => params[:page], :per_page => 9)
+    else
+      @playlists = Playlist.all.paginate(:page => params[:page], :per_page => 9)
+    end
+
+    # Respond as JSON, so that this function can be called via AJAX to determine whether a video
+    # already exists when creating a new video via http://localhost:3000/videos/new
+    respond_to do |format|
+      format.html
+      format.json { render json: @playlists }  # respond with the created JSON object
+    end
+
   end
 
   def new
