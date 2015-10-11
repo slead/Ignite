@@ -17,6 +17,11 @@ class EventsController < ApplicationController
       #Find events which fall within the current map extent
       bbox = params[:bbox].split(",").map(&:to_f)
       @events = Event.within_bounding_box(bbox).order(:name)
+    elsif params[:name].present?
+      # Check whther this event already exists. This is called when creating a new video, to save the
+      # user from wasting time entering details about an existing video.
+      # eg: http://localhost:3000/events.json?name=ignite+sydney
+      @videos = Video.where(:uid => params[:uid]).paginate(:page => params[:page], :per_page => 9)
     else
       @events = Event.all.order(:name)  
     end
