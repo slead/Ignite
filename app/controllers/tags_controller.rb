@@ -12,7 +12,7 @@ class TagsController < ApplicationController
     # else
     #   @tags = Tag.all.paginate(:page => params[:page], :per_page => 9)
     # end
-    @tags = Tag.all
+    @tags = Tag.all.order(:name)
 
     # Respond as JSON, so that this function can be called via AJAX to determine whether a video
     # already exists when creating a new video via http://localhost:3000/videos/new
