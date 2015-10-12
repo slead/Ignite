@@ -13,10 +13,12 @@ class Ability
       can :read, Video
       can :read, Playlist
       can :read, Event
+      can :read, Tag
 
       can :create, Video
       can :create, Playlist
       can :create, Upcoming
+      can :create, Tag
 
       can :update, Event do |event|
         # Users can only edit Events to which they have been granted permission

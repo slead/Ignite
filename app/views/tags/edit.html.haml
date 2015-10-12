@@ -1,0 +1,10 @@
+.container.top-150
+  .row 
+    .col-md-8.col-md-offset-2
+      .panel
+        %h1.left-15 Edit Tag
+        .panel-body
+          = render 'form'
+          %hr
+          %button.btn
+            = link_to "Back to Admin page", admin_path

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :upcomings
   resources :posts, except: [:index]
   resources :roles
+  resources :tags
   resources :playlists
 
   get '/about', to: 'content#about', as: :about #=> about_path

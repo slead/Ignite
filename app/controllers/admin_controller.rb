@@ -3,6 +3,7 @@ class AdminController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @tags = Tag.all.order(:name)
     if current_user.admin?
         @videos = Video.all
         @events = Event.all

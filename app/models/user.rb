@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :upcomings
   has_many :posts
   has_many :playlists
+  has_many :tags
   validates_presence_of :name, :email
   validates_uniqueness_of :email
 
