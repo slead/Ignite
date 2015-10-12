@@ -64,7 +64,11 @@ class Video < ActiveRecord::Base
   def check_for_new_tags
     #If the user has added any new tags as free text, apply them
     if not new_tag_name.blank?
-      @newTag = Tag.create(:name => new_tag_name)
+      if Tag.where(:name => new_tag_name).count > 0
+        @newTag = Tag.where(:name => new_tag_name)
+      else
+        @newTag = Tag.create(:name => new_tag_name)
+      end
       self.tags.append(@newTag)
     end
   end

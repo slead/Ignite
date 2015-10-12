@@ -72,7 +72,6 @@ function pageLoad() {
 
   if (Cookies.get("tabpane") != undefined) {
     $('#' + Cookies.get("tabpane")).tab('show');
-    console.log("getting cookie " + Cookies.get("tabpane"))
   }
 
   // Enable datatables on the admin page
