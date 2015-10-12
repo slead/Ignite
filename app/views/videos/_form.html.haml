@@ -25,7 +25,9 @@
         %hr
         %label.top-15 Tags:
         %p= f.collection_check_boxes :tag_ids, Tag.all.order(:name), :id, :name
-
+        =f.text_field :new_tag_name, placeholder: "Enter a new tag"
+        
+    %hr
     .row.top-25.details
       .col-md-10
         %label Add to playlist (optional):

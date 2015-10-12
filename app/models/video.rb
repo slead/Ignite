@@ -8,6 +8,8 @@ class Video < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
   has_and_belongs_to_many :tags
+  attr_accessor :new_tag_name
+  before_update :check_for_new_tags
   has_and_belongs_to_many :playlists
   searchkick
 
@@ -36,6 +38,9 @@ class Video < ActiveRecord::Base
         self.likes = 0 ; self.dislikes = 0 ; self.views = 0
       end
     end
+
+    # If the user has entered any new tags as free text, add them to the Tags and Video
+    check_for_new_tags
   end
 
   # Friendly IDs in the URL
@@ -54,6 +59,14 @@ class Video < ActiveRecord::Base
     #flat_map takes an array or arrays and flattens it
     #reject knocks out the current video from the related list
     #uniq removes duplicates
+  end
+
+  def check_for_new_tags
+    #If the user has added any new tags as free text, apply them
+    if not new_tag_name.blank?
+      @newTag = Tag.create(:name => new_tag_name)
+      self.tags.append(@newTag)
+    end
   end
 
 end
