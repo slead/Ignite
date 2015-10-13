@@ -18,6 +18,12 @@ class Video < ActiveRecord::Base
   before_update :check_for_new_playlist
 
   before_create -> do
+    # If the user has entered any new tags as free text, add them to the Tags and Video
+    check_for_new_tags
+
+    # If the user has entered any new playlists as free text, add them to the Playlists and Video
+    check_for_new_playlist
+
     YT_LINK_FORMAT = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/i
     uid = url.match(YT_LINK_FORMAT)
     self.uid = uid[2] if uid && uid[2]
@@ -42,12 +48,6 @@ class Video < ActiveRecord::Base
         self.likes = 0 ; self.dislikes = 0 ; self.views = 0
       end
     end
-
-    # If the user has entered any new tags as free text, add them to the Tags and Video
-    check_for_new_tags
-
-    # If the user has entered any new playlists as free text, add them to the Playlists and Video
-    check_for_new_playlist
   end
 
   # Friendly IDs in the URL

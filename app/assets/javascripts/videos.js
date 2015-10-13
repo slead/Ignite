@@ -71,14 +71,20 @@ function retrieveYouTubeDetails(){
     } else {
       $(".video_url").removeClass("field_with_errors");
       /* Retrieve details from YouTube*/
-      checkURL = "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94&fields=items(snippet(title,description))&part=snippet&id=" + uid
+      checkURL = "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94&fields=items(snippet(title,description,thumbnails))&part=snippet&id=" + uid
       $.getJSON( checkURL, function( data ) {
         if (data.items.length > 0) {
-          title = data.items[0].snippet.title;
-          description = data.items[0].snippet.description;
-          $("#video_title").val(title);
-          $("#video_description").val(description);
-          $(".details").show();
+          /*Verify this video is HD*/
+          if (data.items[0].snippet.thumbnails.maxres == undefined) {
+            alert("Sorry, only HD videos are supported on this site")
+            $(".details").hide();
+          } else {
+            title = data.items[0].snippet.title;
+            description = data.items[0].snippet.description;
+            $("#video_title").val(title);
+            $("#video_description").val(description);
+            $(".details").show();
+          }
         } else {
           alert("Unable to retrieve details from YouTube. Please try another URL")
           $(".details").hide();
