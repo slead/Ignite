@@ -33,9 +33,6 @@ class Video < ActiveRecord::Base
     if self.uid.to_s.length != 11
       self.errors.add(:error, ' - YouTube ID is invalid.')
       false
-    elsif not video.hd?
-      self.errors.add(:error, ' - only HD videos are supported')
-      false
     elsif Video.where(uid: self.uid).any?
       self.errors.add(:error, '- this video has already been added to IgniteTalks.io!')
       false
@@ -44,8 +41,11 @@ class Video < ActiveRecord::Base
         self.likes = video.like_count
         self.dislikes = video.dislike_count
         self.views = video.view_count
+        if video.hd?
+          self.hd = true
+        end
       rescue
-        self.likes = 0 ; self.dislikes = 0 ; self.views = 0
+        self.likes = 0 ; self.dislikes = 0 ; self.views = 0; self.hd = false
       end
     end
   end
