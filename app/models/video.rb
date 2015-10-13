@@ -47,7 +47,7 @@ class Video < ActiveRecord::Base
     check_for_new_tags
 
     # If the user has entered any new playlists as free text, add them to the Playlists and Video
-    check_for_new_playlists
+    check_for_new_playlist
   end
 
   # Friendly IDs in the URL
