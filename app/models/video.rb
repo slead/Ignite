@@ -8,10 +8,14 @@ class Video < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
   has_and_belongs_to_many :tags
-  attr_accessor :new_tag_name
-  before_update :check_for_new_tags
   has_and_belongs_to_many :playlists
   searchkick
+
+  #Allow the creation of new tags and playlists during create/edit videos
+  attr_accessor :new_tag_name
+  attr_accessor :new_playlist_name
+  before_update :check_for_new_tags
+  before_update :check_for_new_playlist
 
   before_create -> do
     YT_LINK_FORMAT = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/i
@@ -41,6 +45,9 @@ class Video < ActiveRecord::Base
 
     # If the user has entered any new tags as free text, add them to the Tags and Video
     check_for_new_tags
+
+    # If the user has entered any new playlists as free text, add them to the Playlists and Video
+    check_for_new_playlists
   end
 
   # Friendly IDs in the URL
@@ -72,6 +79,18 @@ class Video < ActiveRecord::Base
         end
         self.tags.append(@newTag)
       end
+    end
+  end
+
+  def check_for_new_playlist
+    #If the user has added any a new playlist as free text, apply them
+    if not new_playlist_name.blank?
+      if Playlist.where(:name => new_playlist_name).count > 0
+        @newPlaylist = Playlist.where(:name => new_playlist_name)
+      else
+        @newPlaylist = Playlist.create(:name => new_playlist_name, :user => self.user, :event => self.event)
+      end
+      self.playlists.append(@newPlaylist)
     end
   end
 
