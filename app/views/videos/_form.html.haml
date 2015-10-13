@@ -30,10 +30,12 @@
     %hr
     .row.top-25.details
       .col-md-10
+        %label Add to playlist:
         -if current_user.admin?
-          %label Add to playlist (optional):
-          = f.collection_check_boxes :playlist_ids, Playlist.all.order(:name), :id, :name
-          =f.input :new_playlist_name, input_html: { class: 'form-control' }, placeholder: "Enter a new playlist name"
+          %p= f.collection_check_boxes :playlist_ids, Playlist.all.order(:name), :id, :name
+        - else
+          %p= f.collection_check_boxes  :playlist_ids, Playlist.where("event_id IN (?)",  current_user.event_ids), :id, :name
+        =f.input :new_playlist_name, input_html: { class: 'form-control' }, placeholder: "Enter a new playlist name"
         
         %hr
         =f.submit class: "btn btn-warning top-15"
