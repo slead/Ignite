@@ -27,14 +27,6 @@
         %p= f.collection_check_boxes :tag_ids, Tag.all.order(:name), :id, :name
         =f.input :new_tag_name, input_html: { class: 'form-control' }, placeholder: "Enter new tags (separated with commas)"
         
-    %hr
-    .row.top-25.details
-      .col-md-10
-        %label Add to playlist (optional):
-        -if current_user.admin?
-          = f.collection_check_boxes :playlist_ids, Playlist.all.order(:name), :id, :name
-        - else
-          = f.collection_check_boxes  :playlist_ids, current_user.playlists.all.order(:name), :id, :name
         %hr
         =f.submit class: "btn btn-warning top-15"
         =link_to root_path do
