@@ -86,11 +86,14 @@ class Video < ActiveRecord::Base
     #If the user has added any a new playlist as free text, apply them
     if not new_playlist_name.blank?
       if Playlist.where(:name => new_playlist_name).count > 0
-        @newPlaylist = Playlist.where(:name => new_playlist_name)
+        @newPlaylist = Playlist.where(:name => new_playlist_name)[0]
       else
         @newPlaylist = Playlist.create(:name => new_playlist_name, :user => self.user, :event => self.event)
       end
-      self.playlists.append(@newPlaylist)
+      if not self.playlists.map(&:id).include? @newPlaylist.id
+        self.playlists.append(@newPlaylist)
+        # @newPlaylist.videos.append(self)
+      end
     end
   end
 
