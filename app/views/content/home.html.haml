@@ -123,5 +123,14 @@
       %h5= link_to "Browse all playlists", playlists_path
     .col-md-2
       %h5= link_to "Browse all videos", videos_path
-    .col-md-4.hidden-sm.hidden-xs
+    .col-md-3.hidden-sm.hidden-xs
       %h5= link_to "Suggest an Ignite video for this site", "https://docs.google.com/forms/d/1NrIlpRb_IvBl1zGw0LuVhipUxeVJE1r28UUglcFXYjQ/viewform", :target => "_blank"
+    .col-md-5.hidden-sm.hidden-xs.right
+      %h5
+        IgniteTalks contains
+        =number_with_delimiter(@total_videos, :delimiter => ',')
+        videos with
+        =number_with_delimiter(@total_views, :delimiter => ',')
+        views and
+        =number_with_delimiter(@total_likes, :delimiter => ',')
+        likes
