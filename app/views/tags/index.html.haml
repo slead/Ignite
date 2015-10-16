@@ -10,8 +10,7 @@
           %strong
             = link_to tag.name.camelize, tag
           %br
-          = tag.videos.count
-          videos
+          =pluralize tag.videos.count, "video"
           - if can? :update, tag
             = link_to edit_tag_path(tag), class: "light btn-edit" do
               %i.fa.fa-pencil-square-o
