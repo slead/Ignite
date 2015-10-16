@@ -31,6 +31,18 @@ class User < ActiveRecord::Base
     end
   end
 
+  def curator?
+    begin
+      if self.role.name == "curator"
+        return true
+      else
+        return false
+      end
+    rescue Exception => e
+      return false
+    end
+  end
+
   def regular?
     begin
       if self.role.name == "regular"
