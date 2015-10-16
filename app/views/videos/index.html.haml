@@ -34,11 +34,12 @@
       - @tags.each do |tag|
         =link_to videos_path(tag: tag.name) do
           %span.btn.btn-default.tags{:id => "tag_" + tag.name}= tag.name.titleize
+  
   .row.top-50
-    -@videos.each_slice(3) do |vids|
+    -@videos.each_slice(4) do |vids|
       .row.top-15
         -vids.each do |video|
-          .col-md-4.video_thumbnail
+          .col-md-3.video_thumbnail
             %span= thumbnail(video, 'video_rating_small', 60)
   .row.paginate
     = will_paginate @videos, renderer: BootstrapPagination::Rails

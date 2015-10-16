@@ -32,7 +32,7 @@ class VideosController < ApplicationController
       @videos = Video.where(:uid => params[:uid]).paginate(:page => params[:page], :per_page => 9)
 
     else
-      @videos = Video.paginate(:page => params[:page], :per_page => 9)
+      @videos = Video.order("RANDOM()").paginate(:page => params[:page], :per_page => 9)
     end
 
     @tags = Tag.where(major: true).order(:name)
