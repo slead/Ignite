@@ -1,11 +1,17 @@
 .container.top-150
   .row 
     .col-md-8.col-md-offset-2
-      %h1 Tags
+      %h1.center Find videos by tags
 
-      - @tags.each do |tag|
-        %p
-          =link_to tag.name, tag
+  - @tags.each_slice(4) do |tags|
+    .row.top-15
+      -tags.each do |tag|
+        .col-md-3
+          %strong
+            = link_to tag.name.camelize, tag
+          %br
+          = tag.videos.count
+          videos
           - if can? :update, tag
             = link_to edit_tag_path(tag), class: "light btn-edit" do
               %i.fa.fa-pencil-square-o
