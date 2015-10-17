@@ -52,6 +52,16 @@ module ApplicationHelper
     else
       return @og_title
    end 
-  end 
+  end
+
+  # Highlight the current menu item in the navigation
+  def nav_link(link_text, link_path)
+    class_name = current_page?(link_path) ? 'current' : ''
+    puts(class_name)
+
+    content_tag(:li, :class => class_name) do
+      link_to link_text, link_path
+    end
+  end
   
 end

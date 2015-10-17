@@ -1,10 +1,10 @@
-.container-fluid
+.container
   =render "videos/nav"
   .row.top-50
-  - @tags.each_slice(4) do |tags|
+  - @tags.each_slice(6) do |tags|
     .row.top-15
       -tags.each do |tag|
-        .col-md-3
+        .col-md-2
           %strong
             = link_to tag.name.camelize, tag
           %br
