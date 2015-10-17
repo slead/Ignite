@@ -1,14 +1,6 @@
 .container-fluid
-  .row
-    .col-md-8.col-md-offset-2
-      %h2.center Featured Ignite videos
-      %p.center
-        IgniteTalks.io contains Ignite videos from around the world.
-        %span.hidden-sm.hidden-xs
-          = link_to "Tell us", "https://docs.google.com/forms/d/1NrIlpRb_IvBl1zGw0LuVhipUxeVJE1r28UUglcFXYjQ/viewform", :target => "_blank"
-          about a great Ignite video!
-  %hr
-  .row
+  = render 'nav'
+  .row.top-50
     .col-md-4.col-sm-12.col-xs-12
       = form_tag videos_path, class: "form-inline", method: :get do
         .input-group
@@ -31,10 +23,7 @@
         %span.btn.btn-default.tags{:id => "tag_likes"}
           %i.fa.fa-thumbs-o-up
           = "likes"
-      - @tags.each do |tag|
-        =link_to videos_path(tag: tag.name) do
-          %span.btn.btn-default.tags{:id => "tag_" + tag.name}= tag.name.titleize
-  
+    
   .row.top-50
     -@videos.each_slice(4) do |vids|
       .row.top-15

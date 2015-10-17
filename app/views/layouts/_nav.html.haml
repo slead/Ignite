@@ -1,0 +1,21 @@
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle.collapsed{"data-target" => "#navbar", "data-toggle" => "collapse", "type" => "button", "aria-expanded" => "false", "aria-controls" => "navbar"}
+
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+
+      =link_to root_path, {:class => "navbar-brand"} do
+        = image_tag 'ignite_logo.png', :style => "margin-top: -13px;"
+        %small Enlighten us, but make it quick
+
+    #navbar.navbar-collapse.collapse
+      %ul.nav.navbar-nav.navbar-right
+        -if user_signed_in?
+          %li= link_to "Admin", admin_path
+        =nav_link "Find an Ignite", "/events"
+        =nav_link "Watch Ignite videos", videos_path
+        =nav_link "Start an Ignite", "/start"

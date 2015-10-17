@@ -414,3 +414,15 @@ label {
   }
 }
 
+@media (min-width: 768px){
+  #video-nav {
+    background-color: #ffffff;
+    background: #ffffff;
+    text-transform: uppercase;
+    margin: 0 auto;
+    display: table;
+    table-layout: fixed;
+    float:none;
+  }
+}
+

@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
+    # administrators have full control
     begin
       if self.role.name == "admin"
         return true
@@ -32,8 +33,10 @@ class User < ActiveRecord::Base
   end
 
   def curator?
+    # curators have enhanced ability to create, edit and delete compared
+    # to regular users. Admins inherit this functionality
     begin
-      if self.role.name == "curator"
+      if ['admin','curator'].include? self.role.name
         return true
       else
         return false

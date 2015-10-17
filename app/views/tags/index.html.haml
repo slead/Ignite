@@ -1,8 +1,6 @@
-.container.top-150
-  .row 
-    .col-md-8.col-md-offset-2
-      %h1.center Find videos by tags
-
+.container-fluid
+  =render "videos/nav"
+  .row.top-50
   - @tags.each_slice(4) do |tags|
     .row.top-15
       -tags.each do |tag|
