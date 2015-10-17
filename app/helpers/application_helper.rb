@@ -57,7 +57,12 @@ module ApplicationHelper
   # Highlight the current menu item in the navigation
   def nav_link(link_text, link_path)
     class_name = current_page?(link_path) ? 'current' : ''
-    puts(class_name)
+
+    # Playlists and Tags routes should also trigger highlighting of the Watch Ignite Videos menu item
+    current_uri = request.env['PATH_INFO']
+    if ['/tags','/playlists'].include? current_uri and link_path == '/videos'
+      class_name = 'current'
+    end
 
     content_tag(:li, :class => class_name) do
       link_to link_text, link_path
