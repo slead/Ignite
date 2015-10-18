@@ -47,7 +47,7 @@ class PlaylistsController < ApplicationController
 
   def update
     if @playlist.update(playlist_params)
-      if current_user.admin?
+      if current_user.curator?
         redirect_to admin_path
       else
         redirect_to @playlist
@@ -67,7 +67,7 @@ class PlaylistsController < ApplicationController
 private
 
   def playlist_params
-    params.require(:playlist).permit(:name, :event_id, :user_id, :featured, video_ids: [])
+    params.require(:playlist).permit(:name, :event_id, :user_id, :description, :featured, video_ids: [])
   end
 
   def find_playlist
@@ -76,7 +76,7 @@ private
 
   def find_users_videos
     # Determine which videos this user has access to add to playlists
-    if current_user.admin?
+    if current_user.curator?
         @videos = Video.all
     else
         # Non-admin users can see the Ignites they've been given permission to see, and the Videos

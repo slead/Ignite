@@ -9,10 +9,12 @@
   .row 
     .col-md-12.col-lg-10.col-lg-offset-1
       %h3= @playlist.name
+      - if @playlist.description?
+        %p.bottom-50= @playlist.description
       - @videos.each_slice(4) do |vids|
         .row.top-15
           -vids.each do |video|
             .col-md-3.video_thumbnail
-              %span= thumbnail(video, 'video_rating_small', 45)
+              %span= thumbnail(video, 'video_rating_small', 30)
 
           

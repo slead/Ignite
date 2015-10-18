@@ -49,7 +49,7 @@ class TagsController < ApplicationController
 
   def update
     if @tag.update(tag_params)
-      if current_user.admin?
+      if current_user.curator?
         redirect_to admin_path
       else
         redirect_to @tag

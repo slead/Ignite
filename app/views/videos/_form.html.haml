@@ -1,12 +1,12 @@
 = simple_form_for(@video, html: { class: 'form' })  do |f|
   .form-group
-    -if current_user.admin?
+    -if current_user.curator?
       =f.input :featured
     %hr
     .row
       .col-md-10#ignite_name
         %label Ignite event:
-        -if current_user.admin?
+        -if current_user.curator?
           = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
         - else
           = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select'}
@@ -31,7 +31,7 @@
     .row.top-25.details
       .col-md-10
         %label Add to playlist:
-        -if current_user.admin?
+        -if current_user.curator?
           %p= f.collection_check_boxes :playlist_ids, Playlist.all.order(:name), :id, :name
         - else
           %p= f.collection_check_boxes  :playlist_ids, Playlist.where("event_id IN (?)",  current_user.event_ids), :id, :name

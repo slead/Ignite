@@ -24,9 +24,10 @@
           %a{"aria-controls" => "events_tab", "data-toggle" => "tab", :href => "#events_tab", :id => "tab_events", :role => "tab"} Ignites
         %li{:role => "presentation"}
           %a{"aria-controls" => "upcomings_tab", "data-toggle" => "tab", :href => "#upcomings_tab", :id => "tab_upcomings", :role => "tab"} Upcoming events
-        -if current_user.admin?
+        -if current_user.curator?
           %li{:role => "presentation"}
             %a{"aria-controls" => "tags_tab", "data-toggle" => "tab", :href => "#tags_tab", :id => "tab_tags", :role => "tab"} Video tags
+        -if current_user.admin?
           %li{:role => "presentation"}
             %a{"aria-controls" => "users_tab", "data-toggle" => "tab", :href => "#users_tab", :id => "tab_users", :role => "tab"} Users
 

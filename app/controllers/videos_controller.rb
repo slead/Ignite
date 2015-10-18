@@ -87,7 +87,7 @@ class VideosController < ApplicationController
 
   def update
     if @video.update(video_params)
-      if current_user.admin?
+      if current_user.curator?
         redirect_to admin_path
       else
         redirect_to @video

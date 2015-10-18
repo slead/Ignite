@@ -3,7 +3,7 @@
     %hr
     =f.input :name,  input_html: { class: 'form-control' }, placeholder: "Enter the event's name (eg Ignite Seattle 15)"
     %label City
-    -if current_user.admin?
+    -if current_user.curator?
       = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Choose the Ignite/city"}, {class: 'form-control select' }
     - else
       = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {prompt: "Choose the Ignite/city"}, {class: 'form-control select'}
