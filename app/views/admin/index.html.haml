@@ -85,12 +85,24 @@
           %table#playlists
             %thead
               %tr
+                %th Featured
+                %th Listed              
                 %th Name
                 %th Ignite
                 %th
             %tbody
               -@playlists.each do |playlist|
                 %tr
+                  - if playlist.featured?
+                    %td
+                      %i.fa.fa-check
+                  - else
+                    %td
+                  - if playlist.listed?
+                    %td
+                      %i.fa.fa-check
+                  - else
+                    %td
                   %td= link_to playlist.name, edit_playlist_path(playlist)
                   %td= playlist.event.name
                   %td

@@ -1,7 +1,7 @@
 = simple_form_for(@video, html: { class: 'form' })  do |f|
   .form-group
     -if current_user.curator?
-      =f.input :featured
+      =f.input :featured, {:label => "Feature this video on the homepage?"}
     %hr
     .row
       .col-md-10#ignite_name
