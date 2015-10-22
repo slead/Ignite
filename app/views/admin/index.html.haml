@@ -104,7 +104,10 @@
                   - else
                     %td
                   %td= link_to playlist.name, edit_playlist_path(playlist)
-                  %td= playlist.event.name
+                  - if playlist.event
+                    %td= playlist.event.name
+                  - else
+                    %td -
                   %td
                     =link_to edit_playlist_path(playlist), class: "light btn-edit" do
                       %i.fa.fa-pencil-square-o

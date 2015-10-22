@@ -60,7 +60,9 @@ class Ability
 
       can :update, Playlist do |playlist|
         # Users can only edit Playlists belonging Events to which they have been granted permission
-        playlist.event.users.map(&:id).include? user.id
+        if playlist.event
+          playlist.event.users.map(&:id).include? user.id
+        end
       end
 
       can :destroy, Video do |video|
