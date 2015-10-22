@@ -1,7 +1,8 @@
 = simple_form_for(@playlist, html: { class: 'form' })  do |f|
   .form-group
     -if current_user.curator?
-      =f.input :featured
+      =f.input :featured, {:label => "Feature this playlist on the homepage?"}
+      =f.input :listed, {:label => "List this playlist on the Playlists page?"}
   %hr
   .row
     .col-md-12#ignite_name

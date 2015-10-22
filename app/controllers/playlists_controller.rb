@@ -11,7 +11,8 @@ class PlaylistsController < ApplicationController
       # eg: http://localhost:3000/playlists.json?name=playlist_name
       @playlists = Playlist.where(:name => params[:name]).paginate(:page => params[:page], :per_page => 9)
     else
-      @playlists = Playlist.all.paginate(:page => params[:page], :per_page => 9)
+      # Only playlists flagged as Listed appear on the Playlists Index page
+      @playlists = Playlist.where(listed: true).paginate(:page => params[:page], :per_page => 9)
     end
 
     # Respond as JSON, so that this function can be called via AJAX to determine whether a video
@@ -67,7 +68,7 @@ class PlaylistsController < ApplicationController
 private
 
   def playlist_params
-    params.require(:playlist).permit(:name, :event_id, :user_id, :description, :featured, video_ids: [])
+    params.require(:playlist).permit(:name, :event_id, :user_id, :description, :featured, :listed, video_ids: [])
   end
 
   def find_playlist
