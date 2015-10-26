@@ -127,7 +127,10 @@
     .col-md-2
       %h5= link_to "Browse all videos", videos_path
     .col-md-3.hidden-sm.hidden-xs
-      %h5= link_to "Suggest an Ignite video for this site", "https://docs.google.com/forms/d/1NrIlpRb_IvBl1zGw0LuVhipUxeVJE1r28UUglcFXYjQ/viewform", :target => "_blank"
+      -if user_signed_in?
+        %h5= link_to "Add a new video", new_video_path
+      - else
+        %h5= link_to "Suggest an Ignite video for this site", "https://docs.google.com/forms/d/1NrIlpRb_IvBl1zGw0LuVhipUxeVJE1r28UUglcFXYjQ/viewform", :target => "_blank"
 
   / .container.hidden-sm.hidden-xs
   /   %hr
