@@ -67,11 +67,19 @@ function pageLoad() {
   // Use cookies to remember the Admin tab which was last open
   $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     Cookies.set("tabpane", e.target.id);
-    console.log("setting cookie " + e.target.id)
   })
 
-  if (Cookies.get("tabpane") != undefined) {
-    $('#' + Cookies.get("tabpane")).tab('show');
+  // The current tab may be specified in the URL as ?tabpane=
+  // If not, try to set the current tab from a cookie
+  try {
+    var tabpane = getUrlParameter("tabpane");
+    if (tabpane != undefined) {
+      $('#tab_' + tabpane).tab('show');
+    } else if (Cookies.get("tabpane") != undefined) {
+      $('#' + Cookies.get("tabpane")).tab('show');
+    }
+  } catch (e){
+    console.log("there was a problem opening the appropriate the admin tab")
   }
 
   // Enable datatables on the admin page
@@ -109,3 +117,16 @@ function pageLoad() {
 
 $(document).ready(pageLoad);
 $(document).on('page:load', pageLoad);
+
+function getUrlParameter(sParam){
+  var sPageURL = window.location.search.substring(1);
+  var sURLVariables = sPageURL.split('&');
+  for (var i = 0; i < sURLVariables.length; i++) 
+  {
+      var sParameterName = sURLVariables[i].split('=');
+      if (sParameterName[0] == sParam) 
+      {
+          return sParameterName[1];
+      }
+  }
+}
