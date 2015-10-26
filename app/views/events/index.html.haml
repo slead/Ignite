@@ -5,9 +5,10 @@
   .row
     #results.col-md-12.col-sm-12.col-xs-12
 
-  .row.top-50.hidden-sm.hidden-xs
-    .col-md-12
-      %p
-        Don't see your Ignite listed?
-        / =link_to "Tell us about it!", new_event_path
-        =link_to "Tell us about it!", "https://docs.google.com/forms/d/1yD7jEXHcws3qFRup91G-mM9YOKvDlfOO3vaJw2GnGaU/viewform", :target => "_blank"
+  -if not user_signed_in?
+    .row.top-50.hidden-sm.hidden-xs
+      .col-md-12
+        %p
+          Don't see your Ignite listed?
+          / =link_to "Tell us about it!", new_event_path
+          =link_to "Tell us about it!", "https://docs.google.com/forms/d/1yD7jEXHcws3qFRup91G-mM9YOKvDlfOO3vaJw2GnGaU/viewform", :target => "_blank"

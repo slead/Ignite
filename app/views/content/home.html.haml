@@ -62,8 +62,11 @@
               %h3 Need to add some upcoming events!
 
         %p.bottom-15.absolute
-          = link_to "Let us know", "https://docs.google.com/forms/d/1qXBkQB3-JTKCNrapzaJaWQSMDjWCXR8fuZ0WSxuQR5o/viewform", :target => "_blank"
-          about an upcoming event!
+          - if can? :create, Upcoming
+            = link_to "Add a new upcoming event", admin_path
+          - else
+            = link_to "Let us know", "https://docs.google.com/forms/d/1qXBkQB3-JTKCNrapzaJaWQSMDjWCXR8fuZ0WSxuQR5o/viewform", :target => "_blank"
+            about an upcoming event!
   %hr
   .row.top-15
     .col-md-4.col-sm-12.col-xs-12
