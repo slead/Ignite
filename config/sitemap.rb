@@ -1,9 +1,8 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://www.ignitetalks.io"
+SitemapGenerator::Sitemap.default_host = "http://ignitetalks.io"
 
 SitemapGenerator::Sitemap.create do
   add '/contact'
-  add '/start'
   add '/videos'
   add '/events'
   Video.find_each do |video|

@@ -41,6 +41,7 @@ gem 'social-share-button', '~> 0.1.8', git: 'https://github.com/cuterxy/social-s
 # gem 'social-share-button'
 gem 'utf8_enforcer_workaround', '~> 1.1.0'
 gem "validate_url"
+gem 'whenever', :require => false
 gem 'will_paginate', '~> 3.0.7'
 gem 'will_paginate-bootstrap', '~> 1.0.1'
 gem 'yt', '~> 0.24.9'

@@ -4,4 +4,4 @@
 # User-agent: *
 # Disallow: /
 
-Sitemap: http://www.ignitetalks.io/sitemap.xml.gz
+Sitemap: http://ignitetalks.io/sitemap.xml.gz
