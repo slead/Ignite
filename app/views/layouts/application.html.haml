@@ -29,19 +29,17 @@
           %h4.center Links
           %ul.contact
             %li= link_to "About Ignite Talks", "http://content.ignitetalks.io/about"
-            / %li= link_to "Contact Us", contact_path
+            %li= link_to "Contact Us", contact_path
             %li= link_to "Find an Ignite", events_path
             %li= link_to "Browse videos", videos_path
             %li= link_to "Start an Ignite", "http://content.ignitetalks.io/start"
-            / %li= link_to "Become a sponsor", contact_path
-            / %li= link_to "Send feedback", feedback_path(page: request.fullpath)
+            %li= link_to "Become a sponsor", contact_path
+            %li= link_to "Send feedback", feedback_path(page: request.fullpath)
           %span.social
             = link_to "https://twitter.com/ignitetalks", :target => "_blank" do
               %i.fa.fa-twitter.fa-2x
             = link_to "https://www.facebook.com/ignite", :target => "_blank" do
               %i.fa.fa-facebook.fa-2x
-            / = link_to "https://plus.google.com/ignite", :target => "_blank" do
-            /   %i.fa.fa-google-plus.fa-2x
             = link_to "https://github.com/IgniteTalks", :target => "_blank" do
               %i.fa.fa-github.fa-2x
 
