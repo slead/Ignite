@@ -85,6 +85,14 @@ Rails.application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { :host => 'www.ignitetalks.io' }
-  config.action_mailer.delivery_method = :ses
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :address => "email-smtp.us-west-2.amazonaws.com",
+      :port => 587, # Port 25 is throttled on AWS
+      :user_name => ENV['SMTP_USERNAME'], 
+      :password => ENV['SMTP_PASSWORD'],
+      :authentication => :login,
+      :enable_starttls_auto => true
+  }
 
 end

@@ -35,18 +35,15 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  # Devise
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.raise_delivery_errors = true
+  # send emails
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: ENV["GMAIL_DOMAIN"],
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+      :address => "email-smtp.us-west-2.amazonaws.com",
+      :port => 587, # Port 25 is throttled on AWS
+      :user_name => ENV['SMTP_USERNAME'], 
+      :password => ENV['SMTP_PASSWORD'],
+      :authentication => :login,
+      :enable_starttls_auto => true
   }
   
 end

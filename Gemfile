@@ -15,7 +15,6 @@ group :development do
   gem "binding_of_caller"
 end
 
-gem "aws-ses", "~> 0.6.0", :require => 'aws/ses'
 gem 'byebug'
 gem 'cancancan', '~> 1.10'
 gem 'devise', '~> 3.5.2'
