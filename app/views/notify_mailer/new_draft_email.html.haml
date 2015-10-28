@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %meta{'charset' => 'utf-8'}
+    %meta{'content' => 'text/html'}
+  %body
+    %h4
+      Hi
+      =@user.email
+    %p
+      A new video has been added to IgniteTalks.io at
+      =link_to @video.title, @video
