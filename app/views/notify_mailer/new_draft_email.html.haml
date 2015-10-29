@@ -7,6 +7,20 @@
     %h4
       Hi
       =@user.email
-    %p
-      A new video has been added to IgniteTalks.io at
-      =link_to @video.title, @video
+    %p A new video has been added to IgniteTalks.io at
+    %h3=link_to @video.title, @video
+    %p.title= "by #{@video.speaker_name}"
+    %p.subtitle
+      Filmed at
+      = link_to @video.event.name, event_page_path(@video.event)
+    .embed-container
+      =embed(@video.uid)
+    .stats.right
+      %i.fa.fa-youtube-play
+      %span.right-15= number_with_delimiter(@video.views, :delimiter => ',')
+      %i.fa.fa-thumbs-o-up
+      %span.right-15= number_with_delimiter(@video.likes, :delimiter => ',')
+      %i.fa.fa-thumbs-o-down.left-5
+      = number_with_delimiter(@video.dislikes, :delimiter => ',')
+
+    %p.top-50.left-15= @video.description
