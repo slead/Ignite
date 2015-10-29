@@ -32,6 +32,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     respond_to do |format|
+      @user.password = Devise.friendly_token.first(8)
       if @user.save
         begin
           NotifyMailer.new_user_email(@user).deliver_now
