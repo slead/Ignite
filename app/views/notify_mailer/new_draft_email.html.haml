@@ -4,15 +4,9 @@
     %meta{'charset' => 'utf-8'}
     %meta{'content' => 'text/html'}
   %body
-    %h4
-      Hi
-      =@user.email
-    %p A new video has been added to IgniteTalks.io at
+    %p= "Hi #{@user.name}, a new video has been added to IgniteTalks.io:"
     %h3=link_to @video.title, @video
-    %p.title= "by #{@video.speaker_name}"
-    %p.subtitle
-      Filmed at
-      = link_to @video.event.name, event_page_path(@video.event)
+    %p= "by #{@video.speaker_name}, filmed at #{@video.event.name}"
     =image_tag  "http://img.youtube.com/vi/#{@video.uid}/hqdefault.jpg"
     %p= @video.description
     %ul
