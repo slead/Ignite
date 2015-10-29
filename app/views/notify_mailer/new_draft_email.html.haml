@@ -13,14 +13,15 @@
     %p.subtitle
       Filmed at
       = link_to @video.event.name, event_page_path(@video.event)
-    .embed-container
-      =embed(@video.uid)
-    .stats.right
-      %i.fa.fa-youtube-play
-      %span.right-15= number_with_delimiter(@video.views, :delimiter => ',')
-      %i.fa.fa-thumbs-o-up
-      %span.right-15= number_with_delimiter(@video.likes, :delimiter => ',')
-      %i.fa.fa-thumbs-o-down.left-5
-      = number_with_delimiter(@video.dislikes, :delimiter => ',')
-
-    %p.top-50.left-15= @video.description
+    =image_tag  "http://img.youtube.com/vi/#{@video.uid}/hqdefault.jpg"
+    %p= @video.description
+    %ul
+      %li
+        = number_with_delimiter(@video.views, :delimiter => ',')
+        views
+      %li
+        = number_with_delimiter(@video.likes, :delimiter => ',')
+        likes
+      %li
+        = number_with_delimiter(@video.dislikes, :delimiter => ',')
+        dislikes
