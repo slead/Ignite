@@ -1,7 +1,7 @@
 class NotifyMailer < ActionMailer::Base
-  default from: "info@IgniteTalks.io"
+  default from: "no-reply@IgniteTalks.io"
 
-    def new_draft_email(user, video)
+    def new_video_email(user, video)
       @user = user
       @video = video
       mail(to: @user.email, subject: 'New video added to IgniteTalks.io')

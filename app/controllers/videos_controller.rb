@@ -79,7 +79,9 @@ class VideosController < ApplicationController
     if @video.save
         flash[:notice] = "video #{@video.title} added successfully."
         begin
-          NotifyMailer.new_draft_email(User.first, @video).deliver_now
+          NotifyMailer.new_video_email(User.first, @video).deliver_now
+        rescue
+          puts "There was a problem emailing the admins about this video"
         end
         redirect_to admin_path
       else
