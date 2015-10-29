@@ -78,7 +78,9 @@ class VideosController < ApplicationController
     @video = current_user.videos.build(video_params)
     if @video.save
         flash[:notice] = "video #{@video.title} added successfully."
-        NotifyMailer.new_draft_email(User.first, @video).deliver_now
+        begin
+          NotifyMailer.new_draft_email(User.first, @video).deliver_now
+        end
         redirect_to admin_path
       else
         flash[:notice] = @video.errors.full_messages.to_sentence

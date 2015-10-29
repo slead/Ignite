@@ -6,7 +6,7 @@
   %body
     %p= "Hi #{@user.name}, a new video has been added to IgniteTalks.io:"
     %h3=link_to @video.title, @video
-    %p= "by #{@video.speaker_name}, filmed at #{@video.event.name}"
+    %p= "Speaker: #{@video.speaker_name}. Filmed at: #{@video.event.name}. Added by: #{@video.user.name}"
     =image_tag  "http://img.youtube.com/vi/#{@video.uid}/hqdefault.jpg"
     %p= @video.description
     %ul
