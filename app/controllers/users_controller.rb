@@ -38,7 +38,7 @@ class UsersController < ApplicationController
         NotifyMailer.new_user_email(@user).deliver_now
         # rescue
         #   puts "There was a problem emailing the new user with their login details"
-        end
+        # end
         format.html { redirect_to admin_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
