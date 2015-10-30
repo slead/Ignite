@@ -8,6 +8,12 @@
     %p Welcome to IgniteTalks.io. Below are instructions for using the site.
     %br
     %h4 Admin page
-    %p You can log in to the Admin page at http://IgniteTalks.io/admin
-    %p= "Username: #{@user.email} | Passsword: #{@user.password} (once you have logged in you may change this)"
-    %p More information to be added...
+    %p You can access the Admin page at http://IgniteTalks.io/admin
+    %ul
+      %li= "Username: #{@user.email}"
+      %li= "Passsword: #{@user.password} (once you have logged in you may change this)"
+    %p
+      See the
+      =link_to "How To", "http://content.ignitetalks.io/how-to/"
+      page for detailed instructions on adding content to the site.
+    %p Happy Igniting!
