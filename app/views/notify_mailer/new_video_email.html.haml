@@ -19,3 +19,7 @@
       %li
         = number_with_delimiter(@video.dislikes, :delimiter => ',')
         dislikes
+    %p Tags:
+    %ul
+      - @video.tags.each do |tag|
+        %li= tag.name
