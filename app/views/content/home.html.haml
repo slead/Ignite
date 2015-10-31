@@ -22,7 +22,11 @@
         %h3 Latest video
         .embed-container
           =embed(@first_video.uid)
-        %h4.title= link_to truncate(@first_video.title, length: 100), @first_video
+        -if @first_video.R18?
+          %h4.title= link_to truncate(@first_video.title + " (R18+)", length: 100), @first_video
+        - else
+          %h4.title= link_to truncate(@first_video.title, length: 100), @first_video
+        
         %p.subtitle
           =@first_video.speaker_name
           at

@@ -11,24 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022051946) do
+ActiveRecord::Schema.define(version: 20151031093958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.string   "name"
-    t.string   "url"
+    t.string   "name",         limit: 255
+    t.string   "url",          limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
+    t.string   "city",         limit: 255
+    t.string   "state",        limit: 255
+    t.string   "country",      limit: 255
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "slug"
-    t.string   "status"
-    t.string   "twitter_name"
+    t.string   "slug",         limit: 255
+    t.string   "status",       limit: 255
+    t.string   "twitter_name", limit: 255
   end
 
   create_table "events_users", id: false, force: :cascade do |t|
@@ -40,10 +40,10 @@ ActiveRecord::Schema.define(version: 20151022051946) do
   add_index "events_users", ["user_id"], name: "index_events_users_on_user_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string   "slug",                      null: false
-    t.integer  "sluggable_id",              null: false
+    t.string   "slug",           limit: 255, null: false
+    t.integer  "sluggable_id",               null: false
     t.string   "sluggable_type", limit: 50
-    t.string   "scope"
+    t.string   "scope",          limit: 255
     t.datetime "created_at"
   end
 
@@ -81,10 +81,10 @@ ActiveRecord::Schema.define(version: 20151022051946) do
   add_index "playlists_videos", ["video_id"], name: "index_playlists_videos_on_video_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",      limit: 255
     t.text     "content"
     t.integer  "user_id"
-    t.string   "slug"
+    t.string   "slug",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20151022051946) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "major"
@@ -114,26 +114,26 @@ ActiveRecord::Schema.define(version: 20151022051946) do
   add_index "tags_videos", ["video_id"], name: "index_videos_tags_on_video_id", using: :btree
 
   create_table "upcomings", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.integer  "event_id"
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "status"
+    t.string   "status",     limit: 255
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
@@ -144,23 +144,24 @@ ActiveRecord::Schema.define(version: 20151022051946) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "videos", force: :cascade do |t|
-    t.string   "title"
-    t.string   "url"
+    t.string   "title",        limit: 255
+    t.string   "url",          limit: 255
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "slug"
-    t.string   "speaker_name"
-    t.string   "speaker_url"
-    t.string   "status"
-    t.string   "uid"
+    t.string   "slug",         limit: 255
+    t.string   "speaker_name", limit: 255
+    t.string   "speaker_url",  limit: 255
+    t.string   "status",       limit: 255
+    t.string   "uid",          limit: 255
     t.integer  "likes"
     t.integer  "dislikes"
     t.integer  "views"
     t.text     "description"
     t.boolean  "featured"
     t.boolean  "hd"
+    t.boolean  "R18"
   end
 
   add_index "videos", ["event_id"], name: "index_videos_on_event_id", using: :btree
