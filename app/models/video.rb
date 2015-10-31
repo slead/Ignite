@@ -71,13 +71,16 @@ class Video < ActiveRecord::Base
   def check_for_new_tags
     #If the user has added any new tags as free text, apply them
     if not new_tag_name.blank?
-      new_tag_name.gsub(" ", "").split(",").each do |new_tag|
-        if Tag.where(:name => new_tag).count > 0
-          @newTag = Tag.where(:name => new_tag)
-        else
-          @newTag = Tag.create(:name => new_tag)
+      new_tag_name.split(",").each do |new_tag|
+        # Don't bother tagging anything with "ignite"
+        if new_tag.upcase.index("IGNITE") == nil
+          if Tag.where(:name => new_tag).count > 0
+            @newTag = Tag.where(:name => new_tag)
+          else
+            @newTag = Tag.create(:name => new_tag)
+          end
+          self.tags.append(@newTag)
         end
-        self.tags.append(@newTag)
       end
     end
   end
