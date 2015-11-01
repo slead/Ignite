@@ -148,6 +148,14 @@ small, .small {
   margin-left: 15px;
 }
 
+.left-35 {
+  margin-left: 35px;
+}
+
+.left-40 {
+  margin-left: 40px;
+}
+
 .right-5 {
   margin-right: 5px;
 }
@@ -423,6 +431,12 @@ label {
     display: table;
     table-layout: fixed;
     float:none;
+  }
+}
+
+#mailchimp {
+  h5 {
+    color: #ffffff;
   }
 }
 

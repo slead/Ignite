@@ -23,7 +23,7 @@
         .embed-container
           =embed(@first_video.uid)
         -if @first_video.R18?
-          %h4.title= link_to truncate(@first_video.title + " (R18+)", length: 100), @first_video
+          %h4.title= link_to truncate(@first_video.title + " (18+)", length: 100), @first_video
         - else
           %h4.title= link_to truncate(@first_video.title, length: 100), @first_video
         
