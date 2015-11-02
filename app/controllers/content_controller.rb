@@ -23,6 +23,8 @@ class ContentController < ApplicationController
     @total_videos = Video.all.count
     @total_events = Event.all.count
 
+    respond_to :html
+
   end
 
   def content_params
