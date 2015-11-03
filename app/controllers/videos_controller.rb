@@ -127,9 +127,9 @@ private
     unless @video.uid.nil?
       begin
         video = Yt::Video.new id: @video.uid
-        @video.views = video.view_count
-        @video.likes = video.like_count
-        @video.dislikes = video.dislike_count
+        @video.views = video.view_count | 0
+        @video.likes = video.like_count | 0
+        @video.dislikes = video.dislike_count | 0
         @video.save
       rescue Exception => e
         print "YouTube API error"

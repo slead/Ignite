@@ -10,6 +10,9 @@ class ApplicationController < ActionController::Base
 
   after_filter :store_location
 
+  # YouTube api
+  Yt.configuration.api_key = "AIzaSyBDXu4NyAry6H2cb1vbOfei2E3yI7nFEsg"
+
   rescue_from CanCan::AccessDenied do |exception|
     flash[:notice] = "Sorry, that function is restricted to administrators"
     redirect_to root_url
