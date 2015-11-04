@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :playlists
   has_many :tags
   validates_presence_of :name, :email
-  validates_uniqueness_of :email
+  # validates_uniqueness_of :email
 
   before_save :assign_role
 
