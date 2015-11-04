@@ -73,15 +73,15 @@
             about an upcoming event!
   %hr
   .row.top-15
-    .col-md-4.col-sm-12.col-xs-12
-      = form_tag videos_path, class: "form-inline", method: :get do
-        .input-group
-          = text_field_tag :query, params[:query], class: "form-control", id: "search", autocomplete: "off"
-          .input-group-btn
-            - if params[:query].present?
-              = link_to videos_path, class: "btn btn-default" do
-                %i.fa.fa-times
-            = submit_tag "Search", class: "btn btn-default"
+    / .col-md-4.col-sm-12.col-xs-12
+    /   = form_tag videos_path, class: "form-inline", method: :get do
+    /     .input-group
+    /       = text_field_tag :query, params[:query], class: "form-control", id: "search", autocomplete: "off"
+    /       .input-group-btn
+    /         - if params[:query].present?
+    /           = link_to videos_path, class: "btn btn-default" do
+    /             %i.fa.fa-times
+    /         = submit_tag "Search", class: "btn btn-default"
     .col-md-8.right.hidden-sm.hidden-xs
       =link_to videos_path do
         %span.btn.btn-default.tags#clear-filter
