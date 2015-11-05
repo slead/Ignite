@@ -1,8 +1,8 @@
 branch-defaults:
   aws-ses:
-    environment: ignite-env2
+    environment: ignite-env3
   eb:
-    environment: ignite-env2
+    environment: ignite-env3
   master:
     environment: ignite-env3
 global:
