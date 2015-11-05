@@ -1,6 +1,7 @@
 .container-fluid
   = render 'nav'
   .row.top-50
+    / Elastic Search is currently failing, so temporarily removing the search function
     / .col-md-4.col-sm-12.col-xs-12
     /   = form_tag videos_path, class: "form-inline", method: :get do
     /     .input-group
@@ -10,7 +11,8 @@
     /           = link_to videos_path, class: "btn btn-default" do
     /             %i.fa.fa-times
     /         = submit_tag "Search", class: "btn btn-default"
-    .col-md-8.right.hidden-sm.hidden-xs
+    / .col-md-8.right.hidden-sm.hidden-xs
+    .col-md-8.right.hidden-sm.hidden-xs.col-md-offset-4
       =link_to videos_path do
         %span.btn.btn-default.tags#clear-filter
           %i.fa.fa-times
