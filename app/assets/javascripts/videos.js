@@ -79,7 +79,7 @@ function retrieveYouTubeDetails(){
 }
 
 function ytVidId(url) {
-  var p = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?(?=.*v=((\w|-){11}))(?:\S+)?$/;
+  var p = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/ ;
   uid = (url.match(p)) ? RegExp.$1 : false;
   return uid
 }   
