@@ -57,9 +57,9 @@ class EventsController < ApplicationController
       @playlists.each do |playlist|
         @videos -= playlist.videos
       end
-      @videos = @videos.paginate(:page => params[:page], :per_page => 8)
+      @videos = @videos.paginate(:page => params[:page], :per_page => 16)
     else
-      @videos = @event.videos.paginate(:page => params[:page], :per_page => 8)
+      @videos = @event.videos.paginate(:page => params[:page], :per_page => 16)
     end
     @upcomings = @event.upcomings.where('date > ?', Date.yesterday)
     @og_title = @event.name + ' on IgniteTalks.io'

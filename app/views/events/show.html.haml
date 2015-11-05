@@ -45,7 +45,7 @@
             .col-md-3.playlist_thumbnail
               %span= thumbnail(video, 'video_rating_small', 30)
         -if playlist.videos.count > 4
-          %p=  link_to "view all videos from #{playlist.name}", playlist
+          %p.left-15=  link_to "View all videos from #{playlist.name}", playlist
 
   - if not @videos.empty?
     .row.top-50
