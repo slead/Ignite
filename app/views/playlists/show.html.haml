@@ -16,5 +16,8 @@
           -vids.each do |video|
             .col-md-3.video_thumbnail
               %span= thumbnail(video, 'video_rating_small', 30)
+      - if @playlist.event
+        %hr
+        %h4= link_to "See more videos from #{@playlist.event.name}", @playlist
 
           

@@ -50,9 +50,14 @@ class EventsController < ApplicationController
   end
 
   def show
-    @playlists = @event.playlists.paginate(:page => params[:page], :per_page => 8)
+    @playlists = @event.playlists
     if @playlists.exists?
-      @videos = @event.videos - @playlists[0].videos.paginate(:page => params[:page], :per_page => 8)
+      # Don't show the same videos in a playlist and in the non-playlist section
+      @videos = @event.videos
+      @playlists.each do |playlist|
+        @videos -= playlist.videos
+      end
+      @videos = @videos.paginate(:page => params[:page], :per_page => 8)
     else
       @videos = @event.videos.paginate(:page => params[:page], :per_page => 8)
     end

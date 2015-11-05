@@ -30,7 +30,7 @@
         = "(#{@upcomings.first.date})"
         %br
 
-  - if @playlists.exists?
+  - if @playlists.exists? and (not params["page"] or params["page"] == "1")
     .row.top-50
       %h4.left-15
         Playlists from
@@ -40,10 +40,12 @@
       .row.top-15
         .col-md-12
           %h4= link_to playlist.name, playlist
-        -playlist.videos.each_slice(4) do |vids|
+        -playlist.videos.limit(4).each_slice(4) do |vids|
           - vids.each do |video|
             .col-md-3.playlist_thumbnail
               %span= thumbnail(video, 'video_rating_small', 30)
+        -if playlist.videos.count > 4
+          %p=  link_to "view all videos from #{playlist.name}", playlist
 
   - if not @videos.empty?
     .row.top-50
@@ -56,5 +58,7 @@
         - vids.each do |video|
           .col-md-3.col-sm-12.col-xs-12
             = thumbnail(video, 'video_rating_small', 30)
+    .row.paginate
+      = will_paginate @videos, renderer: BootstrapPagination::Rails
 
       

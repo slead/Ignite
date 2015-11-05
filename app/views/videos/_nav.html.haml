@@ -6,9 +6,9 @@
       %span.hidden-sm.hidden-xs
         -if user_signed_in?
           = link_to "Add a new video", new_video_path
-        - else
-          = link_to "Tell us", "https://docs.google.com/forms/d/1NrIlpRb_IvBl1zGw0LuVhipUxeVJE1r28UUglcFXYjQ/viewform", :target => "_blank"
-          about a great Ignite video!
+        / - else
+        /   = link_to "Tell us", "https://docs.google.com/forms/d/1NrIlpRb_IvBl1zGw0LuVhipUxeVJE1r28UUglcFXYjQ/viewform", :target => "_blank"
+        /   about a great Ignite video!
 %hr
 
 .row
