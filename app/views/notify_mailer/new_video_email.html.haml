@@ -8,7 +8,7 @@
     %h3=link_to @video.title, @video
     %p= "Speaker: #{@video.speaker_name}. Filmed at: #{@video.event.name}. Added by: #{@video.user.name}"
     =image_tag  "http://img.youtube.com/vi/#{@video.uid}/hqdefault.jpg"
-    %p= "YouTube URL: #{{@video.url}}"
+    %p= "YouTube URL: #{@video.url}"
     %p= @video.description
     %ul
       %li
