@@ -1,4 +1,5 @@
 .container-fluid.top-150
+  = render 'videos/nav'
   - if can? :update, @tag
     .row.right
       .col-md-8.user
@@ -6,6 +7,8 @@
         %i.fa.fa-pencil-square-o
       = link_to tag_path(@tag), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this tag?"} do
         %i.fa.fa-times
+  .row.paginate
+    = will_paginate @videos, renderer: BootstrapPagination::Rails
   .row 
     .col-md-12.col-lg-10.col-lg-offset-1
       %h4
@@ -16,5 +19,7 @@
           -vids.each do |video|
             .col-md-3.video_thumbnail
               %span= thumbnail(video, 'video_rating_small', 30)
+  .row.paginate
+    = will_paginate @videos, renderer: BootstrapPagination::Rails
 
           

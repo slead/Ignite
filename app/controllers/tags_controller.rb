@@ -29,7 +29,7 @@ class TagsController < ApplicationController
   end
 
   def show
-    @videos = @tag.videos.order(:title)
+    @videos = @tag.videos.order(:title).paginate(:page => params[:page], :per_page => 16)
   end
 
   def edit
