@@ -40,7 +40,7 @@
       .row.top-15
         .col-md-12
           %h4= link_to playlist.name, playlist
-        -playlist.videos.limit(4).each_slice(4) do |vids|
+        -playlist.videos.order("RANDOM()").limit(4).each_slice(4) do |vids|
           - vids.each do |video|
             .col-md-3.playlist_thumbnail
               %span= thumbnail(video, 'video_rating_small', 30)
