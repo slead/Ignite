@@ -13,25 +13,25 @@ class VideosController < ApplicationController
 
     if params[:query].present?
       # Find videos using elastic search
-      @videos = Video.search(params[:query], page: params[:page], :per_page => 12)
+      @videos = Video.search(params[:query], page: params[:page], :per_page => 16)
 
     elsif params[:tag].present?
       # Find videos by tag
       @tag = Tag.find_by(name: params[:tag])
-      @videos = @tag.videos.paginate(:page => params[:page], :per_page => 12)
+      @videos = @tag.videos.paginate(:page => params[:page], :per_page => 16)
 
     elsif params[:sort].present? and params[:sort] == 'likes' || params[:sort] == 'views'
       # Sort videos baseed on the number of views
-      @videos = Video.order("#{params[:sort]} DESC").paginate(:page => params[:page], :per_page => 12)
+      @videos = Video.order("#{params[:sort]} DESC").paginate(:page => params[:page], :per_page => 16)
 
     elsif params[:uid].present?
       # Check whther this video already exists. This is called when creating a new video, to save the
       # user from wasting time entering details about an existing video.
       # eg: http://localhost:3000/videos.json?uid=AlkKPojdVAk
-      @videos = Video.where(:uid => params[:uid]).paginate(:page => params[:page], :per_page => 12)
+      @videos = Video.where(:uid => params[:uid]).paginate(:page => params[:page], :per_page => 16)
 
     else
-      @videos = Video.order("RANDOM()").paginate(:page => params[:page], :per_page => 12)
+      @videos = Video.order("RANDOM()").paginate(:page => params[:page], :per_page => 16)
     end
 
     @tags = Tag.where(major: true).order(:name)
