@@ -56,4 +56,12 @@
         .col-md-3
           = thumbnail(related_video, 'video_rating_small', 35)
 
+  .row
+    .col-md-12
+      %h4 More Ignite videos
+  .row
+    - @more_videos.each do |more_video|
+      .col-md-3
+        = thumbnail(more_video, 'video_rating_small', 35)
+
           

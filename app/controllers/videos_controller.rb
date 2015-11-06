@@ -62,6 +62,7 @@ class VideosController < ApplicationController
       @og_description = @video.description
     end
     @og_image = "http://img.youtube.com/vi/#{@video.uid}/maxresdefault.jpg"
+    @more_videos = Video.all.order("RANDOM()").limit(4)
 
     respond_to do |format|
       format.html
