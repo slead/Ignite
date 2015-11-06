@@ -6,7 +6,7 @@
       -tags.each do |tag|
         .col-md-2
           %strong
-            = link_to tag.name.camelize, tag
+            = link_to tag.name.upcase, tag
           %br
           =pluralize tag.videos.count, "video"
           - if can? :update, tag
