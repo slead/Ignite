@@ -4,6 +4,7 @@ class VideosController < ApplicationController
   before_action :find_video, only: [:show, :edit, :update, :destroy, :update_stats]
   layout 'no_footer', :only => [:new, :edit]
   before_filter :set_rand_cookie
+  before_action :update_youtube_stats, only: [:show]
 
   # rescue_from ActiveRecord::RecordNotFound do
   #   flash[:notice] = 'Sorry, that video does not exist'
@@ -129,6 +130,21 @@ private
   def set_rand_cookie
     return if cookies[:rand_seed].present?
     cookies[:rand_seed] = {value: rand, expires: Time.now + 900}
+  end
+
+  def update_youtube_stats
+    #Update the view, like and dislike counts
+    unless @video.uid.nil?
+      begin
+        video = Yt::Video.new id: @video.uid
+        @video.views = video.view_count | 0
+        @video.likes = video.like_count | 0
+        @video.dislikes = video.dislike_count | 0
+        @video.save
+      rescue Exception => e
+        print "YouTube API error"
+      end
+    end
   end
 
 end
