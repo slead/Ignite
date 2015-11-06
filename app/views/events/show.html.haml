@@ -52,6 +52,8 @@
       %h4.left-15
         Videos recorded at
         =@event.name
+    .row.paginate
+      = will_paginate @videos, renderer: BootstrapPagination::Rails
     - @videos.each_slice(4) do |vids|
       .row
         .col-md-12

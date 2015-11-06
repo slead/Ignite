@@ -3,6 +3,7 @@ class VideosController < ApplicationController
   load_and_authorize_resource :find_by => :slug, except: [:index, :show]
   before_action :find_video, only: [:show, :edit, :update, :destroy, :update_stats]
   layout 'no_footer', :only => [:new, :edit]
+  before_filter :set_rand_cookie
 
   # rescue_from ActiveRecord::RecordNotFound do
   #   flash[:notice] = 'Sorry, that video does not exist'
@@ -31,7 +32,10 @@ class VideosController < ApplicationController
       @videos = Video.where(:uid => params[:uid]).paginate(:page => params[:page], :per_page => 16)
 
     else
-      @videos = Video.order("RANDOM()").paginate(:page => params[:page], :per_page => 16)
+      # Show videos in random order. Code is from http://nomethoderror.com/blog/2014/02/05/activerecord-random-ordering-with-pagination/
+      seed_val = Video.connection.quote(cookies[:rand_seed])
+      Video.connection.execute("select setseed(#{seed_val})")
+      @videos = Video.order('random()').paginate(:page => params[:page], :per_page => 16)
     end
 
     @tags = Tag.where(major: true).order(:name)
@@ -51,8 +55,8 @@ class VideosController < ApplicationController
   end
 
   def show
-    #Show up to 4 randomly-selected videos which share the same tags. related_videos is calculated in the video.rb model
-    @related_videos = @video.related_videos.shuffle[0, 4]
+    #Show up to 16 randomly-selected videos which share the same tags. related_videos is calculated in the video.rb model
+    @related_videos = @video.related_videos.shuffle[0, 16]
     
     #Customise the Facebook/Twitter sharing content
     @og_title = "IgniteTalks.io" + " | " + @video.title + " by " + @video.speaker_name
@@ -62,7 +66,7 @@ class VideosController < ApplicationController
       @og_description = @video.description
     end
     @og_image = "http://img.youtube.com/vi/#{@video.uid}/maxresdefault.jpg"
-    @more_videos = Video.all.order("RANDOM()").limit(4)
+    @more_videos = Video.all.order("RANDOM()").limit(16)
 
     respond_to do |format|
       format.html
@@ -120,6 +124,11 @@ private
 
   def find_video
     @video = Video.friendly.find(params[:id])
+  end
+
+  def set_rand_cookie
+    return if cookies[:rand_seed].present?
+    cookies[:rand_seed] = {value: rand, expires: Time.now + 900}
   end
 
 end
