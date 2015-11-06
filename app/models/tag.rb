@@ -12,4 +12,7 @@ class Tag < ActiveRecord::Base
     name_changed?
   end
   
+  # Force all tags to lowercase to prevent duplication
+  before_save { |tag| tag.name = tag.name.downcase }
+
 end
