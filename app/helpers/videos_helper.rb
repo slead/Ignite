@@ -10,4 +10,9 @@ module VideosHelper
     render 'videos/thumbnail', :video => video, :rating_class => rating_class, :max_length => max_length
   end
 
+  def thumbnail_without_event_name(video, rating_class, max_length)
+    # Generate a thumbnail image containing viewing stats, which links to the video
+    render 'videos/thumbnail_without_event_name', :video => video, :rating_class => rating_class, :max_length => max_length
+  end
+
 end
