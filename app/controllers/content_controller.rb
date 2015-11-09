@@ -17,7 +17,7 @@ class ContentController < ApplicationController
     end
     @upcomings = Upcoming.where('date > ?', Date.yesterday).limit(12).order('date ASC')
     @tags = Tag.where(major: true).order(:name)
-    @playlists = Playlist.where(featured: true)
+    @playlists = Playlist.where("featured and video_count > 0")
     @total_views = Video.all.sum("views")
     @total_likes = Video.all.sum("likes")
     @total_videos = Video.all.count

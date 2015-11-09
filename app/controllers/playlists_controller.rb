@@ -7,12 +7,12 @@ class PlaylistsController < ApplicationController
 
   def index
     if params[:name].present?
-      # Check whther this video already exists. This is called when creating a new video
+      # Check whether this playlist already exists. This is called when creating a new video
       # eg: http://localhost:3000/playlists.json?name=playlist_name
       @playlists = Playlist.where(:name => params[:name]).paginate(:page => params[:page], :per_page => 9)
     else
       # Only playlists flagged as Listed appear on the Playlists Index page
-      @playlists = Playlist.where(listed: true).paginate(:page => params[:page], :per_page => 9)
+      @playlists = Playlist.where("listed and video_count > 0").paginate(:page => params[:page], :per_page => 9)
     end
 
     # Respond as JSON, so that this function can be called via AJAX to determine whether a video
@@ -91,7 +91,6 @@ private
           end
         end
     end
-
   end
 
 end

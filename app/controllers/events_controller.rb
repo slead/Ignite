@@ -50,7 +50,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @playlists = @event.playlists
+    @playlists = @event.playlists.where("video_count > 0")
     if @playlists.exists?
       # Don't show the same videos in a playlist and in the non-playlist section
       @videos = @event.videos

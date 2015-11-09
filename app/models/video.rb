@@ -8,7 +8,7 @@ class Video < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
   has_and_belongs_to_many :tags
-  has_and_belongs_to_many :playlists
+  has_and_belongs_to_many :playlists, before_add: :inc_playlist_count, before_remove: :dec_playlist_count
   searchkick
 
   #Allow the creation of new tags and playlists during create/edit videos
@@ -100,6 +100,16 @@ class Video < ActiveRecord::Base
         # @newPlaylist.videos.append(self)
       end
     end
+  end
+
+  private
+  # Keep track of the number of videos in a playlist
+  def inc_playlist_count(model)
+    Playlist.increment_counter('video_count', model.id)
+  end
+
+  def dec_playlist_count(model)
+    Playlist.decrement_counter('video_count', model.id)
   end
 
 end
