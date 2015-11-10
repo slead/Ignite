@@ -107,6 +107,10 @@
             -playlist.videos.order("RANDOM()").limit(4).each do |video|
               .col-md-3.playlist_thumbnail
                 %span= thumbnail(video, 'video_rating_small', 40)
+          -if playlist.video_count > 4
+            .row.top-15
+              .col-md-12
+                =link_to "View all videos from #{playlist.name}", playlist
          
   - if @playlists.exists?        
     .row.top-50
