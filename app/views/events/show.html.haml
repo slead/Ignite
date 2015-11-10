@@ -14,10 +14,11 @@
       - else
         %p= "#{@event.city}, #{@event.country}"
     .col-md-6.top-25
-      = link_to @event.url, :target => "_blank" do
-        %i.fa.fa-desktop
-        =@event.url
-        %br
+      - if not @event.url.blank?
+        = link_to @event.url, :target => "_blank" do
+          %i.fa.fa-desktop
+          =@event.url
+          %br
       - if not @event.twitter_name.blank?
         = link_to "https://www.twitter.com/#{@event.twitter_name}", :target => "_blank" do
           %i.fa.fa-twitter
