@@ -33,11 +33,11 @@ h1, h2, h3, h4, h5, h6, p, a {
 
 img {
   max-width: 100%;
-}
-
-.thumb {
-  border: 1px solid #d3d3d3;
-  border-radius: 5px;
+  .thumb {
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    min-height: 215px;
+  }
 }
 
 #notice_wrapper, #alert_wrapper {
