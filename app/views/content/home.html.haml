@@ -133,25 +133,5 @@
         %h5= link_to "Add a new video", new_video_path
       - else
         %h5= link_to "Suggest an Ignite video for this site", "https://docs.google.com/forms/d/1NrIlpRb_IvBl1zGw0LuVhipUxeVJE1r28UUglcFXYjQ/viewform", :target => "_blank"
-
-  / .container.hidden-sm.hidden-xs
-  /   %hr
-  /   .row.top-50#stats
-  /     .col-md-3
-  /       %span.numscroller.roller-title-number-1.scrollzip.isShown{"data-delay" => "7", "data-increment" => "2", "data-max" => "29", "data-min" => "0", "data-slno" => "1"}
-  /         =number_with_delimiter(@total_events, :delimiter => ',')
-  /       Ignites
-  /     .col-md-3
-  /       %span.numscroller.roller-title-number-2.scrollzip.isShown{"data-delay" => "7", "data-increment" => "10", "data-max" => "2775", "data-min" => "0", "data-slno" => "2"}
-  /         =number_with_delimiter(@total_videos, :delimiter => ',')
-  /       videos
-  /     .col-md-3
-  /       %span.numscroller.roller-title-number-3.scrollzip.isShown{"data-delay" => "3", "data-increment" => "1", "data-max" => "7", "data-min" => "0", "data-slno" => "3"}
-  /         =number_with_delimiter(@total_views, :delimiter => ',')
-  /       views
-  /     .col-md-3
-  /       %span.numscroller.roller-title-number-4.scrollzip.isShown{"data-delay" => "7", "data-increment" => "3", "data-max" => "78", "data-min" => "0", "data-slno" => "4"}
-  /         =number_with_delimiter(@total_likes, :delimiter => ',')
-  /       likes
             
         

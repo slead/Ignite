@@ -1,6 +1,6 @@
 class ContentController < ApplicationController
   # before_action :authenticate_user!, :except => "start"
-  layout 'no_footer', :only => [:start]
+  layout 'no_footer', :only => [:start, :stats]
   
   def show
     render content_params[:content]
@@ -18,13 +18,16 @@ class ContentController < ApplicationController
     @upcomings = Upcoming.where('date > ?', Date.yesterday).limit(12).order('date ASC')
     @tags = Tag.where(major: true).order(:name)
     @playlists = Playlist.where("featured and video_count > 0")
+
+    respond_to :html
+
+  end
+
+  def stats
     @total_views = Video.all.sum("views")
     @total_likes = Video.all.sum("likes")
     @total_videos = Video.all.count
     @total_events = Event.all.count
-
-    respond_to :html
-
   end
 
   def content_params

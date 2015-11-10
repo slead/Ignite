@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/admin', to: 'admin#index', as: :admin #=> admin_path
   get '/contact', to: 'contacts#new', as: :contact #=> contact_path
   get '/feedback', to: 'contacts#new', as: :feedback #=> contact_path
+  get '/stats', to: 'content#stats', as: :stats_page
   get '/:id', to: 'events#show', as: :event_page
 
   root to: "content#home"
