@@ -4,12 +4,16 @@
     -@playlists.each do |playlist|
       .row.top-15
         .col-md-12
-          %h4= link_to playlist.name, playlist
-        -playlist.videos.each_slice(4) do |vids|
-          .row.top-15
-          -vids.each do |video|
-            .col-md-3.video_thumbnail
-              %span= thumbnail(video, 'video_rating_small', 60)
+          %h4.left-15= link_to playlist.name, playlist
+          -playlist.videos.order('random()').limit(4).each_slice(4) do |vids|
+            .row.top-15
+            -vids.each do |video|
+              .col-md-3.video_thumbnail
+                %span= thumbnail(video, 'video_rating_small', 60)
+      -if playlist.video_count > 4
+        .row.top-15
+          .col-md-8.left-15
+            =link_to "View all videos in #{playlist.name}", playlist
 
   .row.paginate
     = will_paginate @playlists, renderer: BootstrapPagination::Rails

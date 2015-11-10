@@ -29,7 +29,7 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-    @videos = @playlist.videos
+    @videos = @playlist.videos.paginate(:page => params[:page], :per_page => 16)
   end
 
   def edit

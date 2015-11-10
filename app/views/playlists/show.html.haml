@@ -19,5 +19,7 @@
       - if @playlist.event
         %hr
         %h4= link_to "See more videos from #{@playlist.event.name}", @playlist
+  .row.paginate
+    = will_paginate @videos, renderer: BootstrapPagination::Rails
 
           
