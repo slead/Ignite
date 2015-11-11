@@ -17,8 +17,9 @@ ready = function() {
       if (data !== null && data.items !== null) {
         for (var idx = 0; idx < data.items.length; idx ++) {
           try{
-            videoId = data.items[idx].contentDetails.videoId;
-            console.log(videoId);
+            var videoId = data.items[idx].contentDetails.videoId;
+            var img = "http://img.youtube.com/vi/" + videoId + "/hqdefault.jpg"
+            console.log(img);
           } catch(err){
             alert(err);
           }
