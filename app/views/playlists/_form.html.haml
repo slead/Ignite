@@ -26,8 +26,10 @@
   .row
     .col-md-12
       %h4 Add Videos to this playlist
-      %p
-        %em (coming soon)
+      %form.form-inline
+        .form-group
+          %input{:type => "text",  :class => "form-control", :id => "txtYouTubePlaylist", :placeholder => "Enter the YouTube playlist ID eg PLNCkBYNm9NxlFCCkq0FKl3B1CfiH_SY3N"}
+          %btn.btn.btn-default{:id => "btnImportFromYouTubePlaylist"} Import from YouTube Playlist
       / =@videos.order(:title).each_slice(6) do |vids|
       /   .row.top-15
       /     -vids.each do |video|
