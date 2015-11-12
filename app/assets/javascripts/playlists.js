@@ -14,8 +14,6 @@ ready = function() {
 
   jQuery('#YouTubeVideos').on("click", ".playlistItem", function() {
     uid = this.attributes[1].value;
-    console.log(uid);
-
   });
 
   function ImportFromYouTubePlaylist(playlistId) {
@@ -75,7 +73,7 @@ ready = function() {
     var regExp = /^.*(youtu.be\/|list=)([^#\&\?]*).*/;
     var match = url.match(regExp);
     if (match && match[2]){
-        return match[2];
+      return match[2];
     }
     return null;
   }
@@ -83,12 +81,13 @@ ready = function() {
   $('#newVideoModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); 
     var uid = button.data('uid');
-    var modal = $(this);
     var playlistID = this.attributes["data-playlistID"].value;
-    url = "http://localhost:3000/videos/new?uid=" + uid + "&playlistID=" + playlistID
+    url = "http://localhost:3000/videos/new?popup=true&uid=" + uid + "&playlistID=" + playlistID
+    var modal = $(this);
     modal.find('.modal-title').text(url);
     modal.find('.modal-body').html("<iframe src='" + url + "' width='100%' height='800px'>")
   })
+  
 }
 
 $(document).ready(ready);

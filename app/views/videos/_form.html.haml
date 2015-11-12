@@ -13,9 +13,10 @@
     .row.top-25
       .col-md-10
         =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL (in the format https://www.youtube.com/watch?v=YOUTUBE_ID)", label: 'Video URL (required)'
-      .col-md-2
-        .tooltip-wrapper{:data => {:toggle => "tooltip"}, :title => "Enter the URL, then retrieve title and description from YouTube"}
-          %btn.btn.btn-warning.top-25#btnYouTubeRetrieve Get info
+      -if not params["popup"]
+        .col-md-2
+          .tooltip-wrapper{:data => {:toggle => "tooltip"}, :title => "Enter the URL, then retrieve title and description from YouTube"}
+            %btn.btn.btn-warning.top-25#btnYouTubeRetrieve Get info
     .row.details
       .col-md-12
         =f.input :title,  input_html: { class: 'form-control' }, placeholder: "Enter the video's title", label: 'Video title (required)', hint: 'Do not include the speaker name or event name'
@@ -28,17 +29,20 @@
         %p= f.collection_check_boxes :tag_ids, Tag.all.order(:name), :id, :name
         =f.input :new_tag_name, input_html: { class: 'form-control' }, placeholder: "Enter new tags (separated with commas)"
 
-    %hr
-    .row.top-25.details
+    -if not params["popup"]
+      .row.top-25.details
+        %hr
+        .col-md-10
+          %label Add to playlist:
+          -if current_user.curator?
+            %p= f.collection_check_boxes :playlist_ids, Playlist.all.order(:name), :id, :name
+          - else
+            %p= f.collection_check_boxes  :playlist_ids, Playlist.where("event_id IN (?)",  current_user.event_ids), :id, :name
+          =f.input :new_playlist_name, input_html: { class: 'form-control' }, placeholder: "Enter a new playlist name"
+    .row.details
       .col-md-10
-        %label Add to playlist:
-        -if current_user.curator?
-          %p= f.collection_check_boxes :playlist_ids, Playlist.all.order(:name), :id, :name
-        - else
-          %p= f.collection_check_boxes  :playlist_ids, Playlist.where("event_id IN (?)",  current_user.event_ids), :id, :name
-        =f.input :new_playlist_name, input_html: { class: 'form-control' }, placeholder: "Enter a new playlist name"
-        
         %hr
         =f.submit class: "btn btn-warning top-15"
-        =link_to root_path do
-          %btn.btn.btn-default.top-15 Cancel
+        -if not params["popup"]
+          =link_to root_path do
+            %btn.btn.btn-default.top-15 Cancel
