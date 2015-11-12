@@ -79,6 +79,14 @@ ready = function() {
     }
     return null;
   }
+
+  $('#newVideoModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) 
+    var uid = button.data('uid')
+    var modal = $(this)
+    modal.find('.modal-title').text('Import video https://www.youtube.com/watch?v=' + uid)
+    modal.find('.modal-body').html("<iframe src='http://localhost:3000/videos/new?uid=" + uid + "' width='100%' height='800px'>")
+  })
 }
 
 $(document).ready(ready);

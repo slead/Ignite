@@ -15,11 +15,19 @@ ready = function() {
   //with another script calling the /videos/new URL repeatedly, with the parameters pre-filled.
   uid = getUrlParameter("uid");
   igniteID = getUrlParameter("igniteid");
-  if(uid != null && igniteID != null) {
+  playlistID = getUrlParameter("playlistID");
+  if(uid != null) {
     //If these properties are present, automatically retrieve the information from the YouTube API
-    $("#video_event_id").val(igniteID);
     $("#video_url").val("https://www.youtube.com/watch?v=" + uid);
     retrieveYouTubeDetails();
+  }
+
+  if(igniteID != null) {
+    $("#video_event_id").val(igniteID);
+  }
+
+  if(playlistID != null) {
+    $("#video_new_playlist_name").val(igniteID);
   }
 
   //Retrieve the video's details from the YouTube API
