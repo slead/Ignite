@@ -81,11 +81,13 @@ ready = function() {
   }
 
   $('#newVideoModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) 
-    var uid = button.data('uid')
-    var modal = $(this)
-    modal.find('.modal-title').text('Import video https://www.youtube.com/watch?v=' + uid)
-    modal.find('.modal-body').html("<iframe src='http://localhost:3000/videos/new?uid=" + uid + "' width='100%' height='800px'>")
+    var button = $(event.relatedTarget); 
+    var uid = button.data('uid');
+    var modal = $(this);
+    var playlistID = this.attributes["data-playlistID"].value;
+    url = "http://localhost:3000/videos/new?uid=" + uid + "&playlistID=" + playlistID
+    modal.find('.modal-title').text(url);
+    modal.find('.modal-body').html("<iframe src='" + url + "' width='100%' height='800px'>")
   })
 }
 

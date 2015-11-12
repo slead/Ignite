@@ -41,7 +41,7 @@
       =link_to root_path do
         %btn.btn.btn-default.top-15 Cancel
 
-#newVideoModal.modal.fade.bs-example-modal-sm{:role => "dialog", :tabindex => "-1"}
+#newVideoModal.modal.fade.bs-example-modal-sm{:role => "dialog", :tabindex => "-1", :data => {:playlistID => @playlist.id} }
   .modal-dialog{:role => "document"}
     .modal-content
       .modal-header

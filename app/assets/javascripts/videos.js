@@ -27,7 +27,7 @@ ready = function() {
   }
 
   if(playlistID != null) {
-    $("#video_new_playlist_name").val(igniteID);
+    $("input:checkbox[value=" + playlistID + "]").attr("checked", true);
   }
 
   //Retrieve the video's details from the YouTube API
