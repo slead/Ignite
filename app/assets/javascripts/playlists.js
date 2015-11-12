@@ -2,7 +2,7 @@ var ready;
 ready = function() {
 
   //Import videos from the YouTube API
-  $("#btnImportFromYouTubePlaylist").on("click", function() {
+  jQuery("#btnImportFromYouTubePlaylist").on("click", function() {
     jQuery("#YouTubeVideos").empty();
 
     var playlistId = url = $("#txtYouTubePlaylist").val();
@@ -10,6 +10,12 @@ ready = function() {
       var playlistId = getPlaylistID(url);
     }    
     ImportFromYouTubePlaylist(playlistId);
+  });
+
+  jQuery('#YouTubeVideos').on("click", ".playlistItem", function() {
+    uid = this.attributes[1].value;
+    console.log(uid);
+
   });
 
   function ImportFromYouTubePlaylist(playlistId) {
@@ -33,19 +39,19 @@ ready = function() {
                 type: "GET",
                 url: videoURL,
                 success: function(data2) {
-                  exists = false;
                   if (data2.length > 0) {
-                    exists = true;
+
+                    // This video has already been added to the system
+                    // TODO Check whether it's also already present in the current playlist, otherwise add it.
+                  } else {
+
+                    // Add the video's thumbnail to the page. Clicking on the thumbnail will open the
+                    // New Video dialog with this video selected
+                    html = "<div class='playlistItem col-md-2' data-uid='" + videoId + "' data-target='#newVideoModal' data-toggle='modal'>"
+                    html += "<img src=http://img.youtube.com/vi/" + videoId + "/hqdefault.jpg>"
+                    html += "</div>"
+                    jQuery("#YouTubeVideos").append(html);
                   }
-
-                  // Add the video's thumbnail to the page. Clicking on the thumbnail will open the
-                  // New Video dialog with this video selected
-                  html = "<div class='playlistItem col-md-2'>"
-                  html += "<span>" + exists + "</span>";
-                  html += "<img src=http://img.youtube.com/vi/" + videoId + "/hqdefault.jpg>"
-                  html += "</div>"
-                  jQuery("#YouTubeVideos").append(html);
-
                 },
                 error: function() {
                   alert("Sorry, there was a problem importing videos from this playlist");
