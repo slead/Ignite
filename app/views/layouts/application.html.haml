@@ -7,29 +7,33 @@
     =render 'layouts/notifications'
 
     =yield
-    %hr
-    .row.sponsors
-      .col-md-8.col-md-offset-2.center
-        %h2 Founding sponsor
-        = link_to image_tag( 'oreilly_logo.png'), 'http://www.oreilly.com', :target => "_blank"
-    .row.top-15.bottom-15
-      .col-md-8.col-md-offset-2.center
-        %h3.bottom-15 Sponsors
-        .row
-          .col-md-4
-            = link_to image_tag( 'FoundryGroup_logo.png', :class => 'logo'), 'http://foundrygroup.com/', :target => "_blank"
-          .col-md-4
-            = link_to image_tag( 'microsoft_research.png', :class => 'logo'), 'http://research.microsoft.com/en-us/', :target => "_blank"
-          .col-md-4 
-            = link_to image_tag( 'pch-logo.png', :class => 'logo'), 'http://www.pchintl.com/', :target => "_blank"
-        %h4.bottom-15 Partners
-        .row
-          .col-md-4
-            = link_to image_tag( 'svb_logo.png', :class => 'logo'), 'http://www.svb.com/', :target => "_blank"
-          .col-md-4
-            = link_to image_tag( 'aeonlaw-logo.png', :class => 'logo'), 'http://aeonlaw.com/', :target => "_blank"
-          .col-md-4 
-            = link_to image_tag( 'aws-logo.png', :class => 'logo'), 'http://aws.amazon.com/', :target => "_blank"
+    / Sponsor information is shown on the major pages only
+    -if ["contacts", "content"].include? params["controller"]
+      %hr
+      .row.sponsors
+        .col-md-8.col-md-offset-2.center
+          %h2 Founding sponsor
+          = link_to image_tag( 'oreilly_logo.png'), 'http://www.oreilly.com', :target => "_blank"
+      .row.top-15.bottom-15
+        .col-md-8.col-md-offset-2.center
+          %h3.bottom-15 Sponsors
+          .row
+            .col-md-4
+              = link_to image_tag( 'FoundryGroup_logo.png', :class => 'logo'), 'http://foundrygroup.com/', :target => "_blank"
+            .col-md-4
+              = link_to image_tag( 'microsoft_research.png', :class => 'logo'), 'http://research.microsoft.com/en-us/', :target => "_blank"
+            .col-md-4 
+              = link_to image_tag( 'pch-logo.png', :class => 'logo'), 'http://www.pchintl.com/', :target => "_blank"
+          / Partners are only shown on the Contact Us page (plus the Wordpress site)
+          -if params["controller"] == "contacts"
+            %h4.bottom-15 Partners
+            .row
+              .col-md-4
+                = link_to image_tag( 'svb_logo.png', :class => 'logo'), 'http://www.svb.com/', :target => "_blank"
+              .col-md-4
+                = link_to image_tag( 'aeonlaw-logo.png', :class => 'logo'), 'http://aeonlaw.com/', :target => "_blank"
+              .col-md-4 
+                = link_to image_tag( 'aws-logo.png', :class => 'logo'), 'http://aws.amazon.com/', :target => "_blank"
 
     %footer
       .row
