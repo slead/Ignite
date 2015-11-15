@@ -10,12 +10,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :development do
+  gem 'byebug'
   gem 'spring'
   gem "better_errors"
   gem "binding_of_caller"
 end
 
-gem 'byebug'
+gem "active_model_serializers"
 gem 'cancancan', '~> 1.10'
 gem 'devise', '~> 3.5.2'
 gem 'devise-bootstrap-views'
