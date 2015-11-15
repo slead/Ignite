@@ -6,66 +6,101 @@ ready = function() {
     jQuery("#YouTubeVideos").empty();
 
     var playlistId = url = $("#txtYouTubePlaylist").val();
+    var eventId = $("#playlist_event_id").val();
     if(url.indexOf("youtube.com") > 0) {
       var playlistId = getPlaylistID(url);
     }    
-    ImportFromYouTubePlaylist(playlistId);
+    ImportFromYouTubePlaylist(playlistId, eventId);
   });
 
   jQuery('#YouTubeVideos').on("click", ".playlistItem", function() {
     uid = this.attributes[1].value;
   });
 
-  function ImportFromYouTubePlaylist(playlistId) {
+  function ImportFromYouTubePlaylist(playlistId, eventId) {
     
-    url = "https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94&part=contentDetails"
-    url += "&maxResults=50&fields=items(contentDetails(videoId))&playlistId=" + playlistId
+    // Check the YouTube API for this playlist
+    var playlistUrl = "https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94&part=contentDetails"
+    playlistUrl += "&maxResults=50&fields=items(contentDetails(videoId))&playlistId=" + playlistId
 
     // Retrieve the list of playlistItems from the YouTube Playlist
-    $.getJSON( url, function( data ) {
-      if (data !== null && data.items !== null) {
-        for (var idx = 0; idx < data.items.length; idx ++) {          
-          try{
+    try{
+      $.getJSON( playlistUrl, function( data ) {
+        if (data !== null && data.items !== null) {
+          for (var idx = 0; idx < data.items.length; idx ++) {          
+            try{
 
-            // Get the uid of each video. Check whether this video already exists in the system
-            var videoId = data.items[idx].contentDetails.videoId;
-            var videoURL = window.location.origin + "/videos.json" + "?uid=" + videoId;
-            checkIfVideoExists(videoURL, videoId);
+              // Get the uid of each video. Check whether this video already exists in the system
+              var videoId = data.items[idx].contentDetails.videoId;
+              var videoURL = window.location.origin + "/videos.json" + "?uid=" + videoId;
+              checkIfVideoExists(videoURL, videoId);
 
-            function checkIfVideoExists(videoURL, videoId) {
-              $.ajax ({
-                type: "GET",
-                url: videoURL,
-                success: function(data2) {
-                  if (data2.length > 0) {
+              function checkIfVideoExists(videoURL, videoId) {
+                $.ajax ({
+                  type: "GET",
+                  url: videoURL,
+                  success: function(data2) {
+                    if (data2.length > 0) {
 
-                    // This video has already been added to the system
-                    // TODO Check whether it's also already present in the current playlist, otherwise add it.
-                  } else {
+                      // This video has already been added to the system
+                      // TODO Check whether it's also already present in the current playlist, otherwise add it to the current playlist
+                    } else {
 
-                    // Add the video's thumbnail to the page. Clicking on the thumbnail will open the
-                    // New Video dialog with this video selected
-                    html = "<div class='playlistItem col-md-2' data-uid='" + videoId + "' data-target='#newVideoModal' data-toggle='modal'>"
-                    html += "<img src=http://img.youtube.com/vi/" + videoId + "/hqdefault.jpg>"
-                    html += "</div>"
-                    jQuery("#YouTubeVideos").append(html);
+                      // This video doesn't yet exist in the system, so add it to the system and this playlist. Flag it as a draft so
+                      // the user can edit it, add the speaker name, etc.
+
+                      // Retrieve the video's details from the YouTube API
+                      checkURL = "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94&fields=items(snippet(title,description,tags))&part=snippet&id=" + videoId;
+                      try{
+                        $.getJSON( checkURL, function( data ) {
+                          if (data.items.length > 0) {
+                            title = data.items[0].snippet.title;
+                            description = data.items[0].snippet.description;
+                            tags = data.items[0].snippet.tags;
+
+                            //TODO: add the correct event ID and Tags, and add it to the correct playlsit
+                            var video_json = {"uid": videoId, "url": "http://www.youtube.com/watch?v=" + videoId, "title": title, "speaker_name": "TBA", "event_id": eventId , "description": description, "status": "draft"};
+                            var data3 = JSON.stringify(video_json);
+                            var url = "http://" + window.location.host + "/videos.json";
+                            $.ajax({
+                              url: url,
+                              type:"POST",
+                              contentType:"application/json; charset=utf-8",
+                              dataType:"json",
+                              data: data3,
+                              success: function(msg) {
+                                //TODO - the alert isn't being show
+                                alert( "Data Saved: " + msg );
+                              },
+                              error: function(err) {
+                                alert("There was an error creating a new video")
+                              }
+                          });
+                        }
+                      });
+                      } catch(err){
+                        alert("Sorry, there was a problem importing videos from this playlist");
+                      }
                   }
                 },
-                error: function() {
-                  alert("Sorry, there was a problem importing videos from this playlist");
-                }
-              });
+                  error: function() {
+                    alert("Sorry, there was a problem importing videos from this playlist");
+                  }
+                });
+              }
+
+            } catch(err){
+              alert("Sorry, there was a problem importing videos from this playlist");
             }
-
-          } catch(err){
-            alert("Sorry, there was a problem importing videos from this playlist");
           }
-        }
 
-      } else {
-        alert("Sorry - unable to retrieve videos from this YouTube playlist");
-      }
-    });
+        } else {
+          alert("Sorry, there was a problem importing videos from this playlist");
+        }
+      });
+    } catch(err) {
+      alert("Sorry, there was a problem importing videos from this playlist");
+    }
   }
 
   function getPlaylistID(url) {

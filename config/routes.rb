@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :tags
   resources :playlists
 
+  post 'videos' => 'videos#create'
+
   get '/admin', to: 'admin#index', as: :admin #=> admin_path
   get '/contact', to: 'contacts#new', as: :contact #=> contact_path
   get '/feedback', to: 'contacts#new', as: :feedback #=> contact_path

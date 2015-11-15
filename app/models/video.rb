@@ -6,7 +6,7 @@ class Video < ActiveRecord::Base
   validates_uniqueness_of :url
   validates_uniqueness_of :uid
   belongs_to :event
-  belongs_to :user
+  # belongs_to :user
   has_and_belongs_to_many :tags
   has_and_belongs_to_many :playlists, before_add: :inc_playlist_count, before_remove: :dec_playlist_count
   searchkick

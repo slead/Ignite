@@ -5,6 +5,8 @@ class VideosController < ApplicationController
   layout 'no_footer', :only => [:new, :edit]
   before_filter :set_rand_cookie
   before_action :update_youtube_stats, only: [:show]
+  respond_to :json
+
 
   # rescue_from ActiveRecord::RecordNotFound do
   #   flash[:notice] = 'Sorry, that video does not exist'
@@ -79,10 +81,37 @@ class VideosController < ApplicationController
   def edit
   end
 
+  # def create
+  #   # @video = current_user.videos.build(video_params)
+  #   @video = Video.new()
+  #   respond_to do |format|
+  #     if @video.save
+  #       flash[:notice] = "video #{@video.title} added successfully."
+  #       begin
+  #         # Email the admins to let them know a new video has been added
+  #         User.where(role: Role.where(name: "admin")).each do |user|
+  #           NotifyMailer.new_video_email(user, @video).deliver_now
+  #         end
+  #       rescue
+  #         puts "There was a problem emailing the admins about this video"
+  #       end
+  #       format.html { redirect_to admin_path }
+  #       format.json { render :json => true}
+  #     else
+  #       format.html {
+  #         flash[:notice] = @video.errors.full_messages.to_sentence
+  #         render 'new', layout: 'no_footer'
+  #       }
+  #       format.json { render :json => @video.errors, :status => :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
   def create
-    @video = current_user.videos.build(video_params)
-    if @video.save
-        flash[:notice] = "video #{@video.title} added successfully."
+    @video = Video.new(video_params)
+
+    respond_to do |format|
+      if @video.save
         begin
           # Email the admins to let them know a new video has been added
           User.where(role: Role.where(name: "admin")).each do |user|
@@ -91,11 +120,20 @@ class VideosController < ApplicationController
         rescue
           puts "There was a problem emailing the admins about this video"
         end
-        redirect_to admin_path
+          
+        format.html {
+          flash[:notice] = "video #{@video.title} added successfully."
+          redirect_to @video, notice: 'Video was successfully created.'
+        }
+        format.json { render json: @video, status: :created, location: @video }
       else
-        flash[:notice] = @video.errors.full_messages.to_sentence
-        render 'new', layout: 'no_footer'
-      end    
+        format.html {
+          flash[:notice] = @video.errors.full_messages.to_sentence
+          render 'new', layout: 'no_footer'
+        }
+        format.json { render json: @video.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
