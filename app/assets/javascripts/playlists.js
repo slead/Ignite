@@ -73,9 +73,9 @@ ready = function() {
                               success: function(msg) {
                                 // Add the video's thumbnail to the page. Clicking on the thumbnail will open the
                                 // New Video dialog with this video selected
-                                html = "<div class='playlistItem col-md-2' data-uid'=" + msg.uid + "'>"
-                                html += "<img src=http://img.youtube.com/vi/" + msg.uid + "/hqdefault.jpg>"
-                                html += "<p class='subtitle'>" + msg.title + "</p>";
+                                html = "<div class='playlistItem col-md-2' data-uid'=" + msg.video.uid + "'>"
+                                html += "<img src=http://img.youtube.com/vi/" + msg.video.uid + "/hqdefault.jpg>"
+                                html += "<p class='subtitle'>" + msg.video.title + "</p>";
                                 html += "</div>"
                                 jQuery("#draftVideos").append(html);
                               },
