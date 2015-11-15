@@ -31,8 +31,10 @@
           %input{:type => "text",  :class => "form-control", :id => "txtYouTubePlaylist", :placeholder => "URL for YouTube playlist (eg https://www.youtube.com/playlist?list=PLNCkBYNm9NxlFCCkq0FKl3B1CfiH_SY3N)"}
           %btn.btn.btn-default{:id => "btnImportFromYouTubePlaylist"} Import from YouTube Playlist
 
-  .row
-    #YouTubeVideos
+  .row#YouTubeVideos
+    %h4 Draft videos imported to playlist
+    %p.subtitle (click to edit and finish importing)
+    #draftVideos
 
   .row
     %hr

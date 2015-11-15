@@ -3,7 +3,7 @@ ready = function() {
 
   //Import videos from the YouTube API
   jQuery("#btnImportFromYouTubePlaylist").on("click", function() {
-    jQuery("#YouTubeVideos").empty();
+    jQuery("#draftVideos").empty();
 
     var playlistId = url = $("#txtYouTubePlaylist").val();
     var eventId = $("#playlist_event_id").val();
@@ -44,6 +44,8 @@ ready = function() {
 
                       // This video has already been added to the system
                       // TODO Check whether it's also already present in the current playlist, otherwise add it to the current playlist
+                      console.log(data2[0].title + " already exists")
+
                     } else {
 
                       // This video doesn't yet exist in the system, so add it to the system and this playlist. Flag it as a draft so
@@ -69,8 +71,13 @@ ready = function() {
                               dataType:"json",
                               data: data3,
                               success: function(msg) {
-                                //TODO - the alert isn't being show
-                                alert( "Data Saved: " + msg );
+                                // Add the video's thumbnail to the page. Clicking on the thumbnail will open the
+                                // New Video dialog with this video selected
+                                html = "<div class='playlistItem col-md-2' data-uid'=" + msg.uid + "'>"
+                                html += "<img src=http://img.youtube.com/vi/" + msg.uid + "/hqdefault.jpg>"
+                                html += "<p class='subtitle'>" + msg.title + "</p>";
+                                html += "</div>"
+                                jQuery("#draftVideos").append(html);
                               },
                               error: function(err) {
                                 alert("There was an error creating a new video")
