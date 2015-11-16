@@ -31,7 +31,13 @@ class EventDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     # insert query here
-    Event.all
+    if ['admin', 'curator'].include? options[:role].name
+      Event.all
+    else
+      # TODO - this currently restricts a regular user to one Ignite. Add
+      # support for multiple Ignites http://stackoverflow.com/questions/9540801/combine-two-activerecordrelation-objects
+      @events = options[:user].events[0] # THIS ISN"T WORKING
+    end
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

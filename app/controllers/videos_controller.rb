@@ -46,7 +46,7 @@ class VideosController < ApplicationController
       format.html
       if params["draw"].present?
         # Format the response for the DataTables plugin on the Admin page
-        format.json { render json: VideoDatatable.new(view_context) }
+        format.json { render json: VideoDatatable.new(view_context, { user: current_user, role: current_user.role }) }
       else
         format.json { render json: @videos }
       end
