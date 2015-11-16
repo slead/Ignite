@@ -45,7 +45,8 @@ class VideosController < ApplicationController
     # already exists when creating a new video via http://localhost:3000/videos/new
     respond_to do |format|
       format.html
-      format.json { render json: @videos }  # respond with the created JSON object
+      # format.json { render json: @videos }  # respond with the created JSON object
+      format.json { render json: VideoDatatable.new(view_context) }
     end
 
   end

@@ -15,6 +15,7 @@ group :development do
   gem "binding_of_caller"
 end
 
+gem 'ajax-datatables-rails'
 gem 'byebug'
 gem 'cancancan', '~> 1.10'
 gem 'devise', '~> 3.5.2'
@@ -48,4 +49,3 @@ gem 'yt', '~> 0.24.9'
 group :production do
   gem 'rails_12factor'
 end
-
