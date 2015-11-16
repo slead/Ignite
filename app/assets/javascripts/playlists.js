@@ -40,11 +40,11 @@ ready = function() {
                   type: "GET",
                   url: videoURL,
                   success: function(data2) {
-                    if (data2.length > 0) {
+                    if (data2.videos.length > 0) {
 
                       // This video has already been added to the system
                       // TODO Check whether it's also already present in the current playlist, otherwise add it to the current playlist
-                      console.log(data2[0].title + " already exists")
+                      console.log(data2.videos[0].title + " already exists")
 
                     } else {
 
