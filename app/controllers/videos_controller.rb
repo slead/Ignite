@@ -12,7 +12,6 @@ class VideosController < ApplicationController
   # end
  
   def index
-
     if params[:query].present?
       # Find videos using elastic search
       @videos = Video.search(params[:query], page: params[:page], :per_page => 16)
@@ -45,8 +44,12 @@ class VideosController < ApplicationController
     # already exists when creating a new video via http://localhost:3000/videos/new
     respond_to do |format|
       format.html
-      # format.json { render json: @videos }  # respond with the created JSON object
-      format.json { render json: VideoDatatable.new(view_context) }
+      if params["draw"].present?
+        # Format the response for the DataTables plugin on the Admin page
+        format.json { render json: VideoDatatable.new(view_context) }
+      else
+        format.json { render json: @videos }
+      end
     end
 
   end
