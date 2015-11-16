@@ -9,7 +9,7 @@ class Contact < MailForm::Base
     {
       :subject => "Contact Us submitted via IgniteTalks.io",
       :to => "support@ignitetalks.zendesk.com",
-      :from => %("#{name}" <#{email}>)
+      :from => "stephen@ignitetalks.io"
     }
   end
 end
