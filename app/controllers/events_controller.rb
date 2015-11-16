@@ -45,7 +45,12 @@ class EventsController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json { render json: @geojson }  # respond with the created JSON object
+      if params["draw"].present?
+        # Format the response for the DataTables plugin on the Admin page
+        format.json { render json: EventDatatable.new(view_context) }
+      else
+        format.json { render json: @geojson }  # respond with the created JSON object
+      end
     end
   end
 

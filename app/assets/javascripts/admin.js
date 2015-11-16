@@ -15,6 +15,22 @@ function pageLoad() {
       ]
   });
 
+  $('#tblEvents').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": $('#tblEvents').data('source'),
+    "pagingType": "full_numbers",
+    columns: [
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+        { sortable: false, searchable: false },
+        { sortable: false, searchable: false }
+      ]
+  });
+
   // Enable datatables on the admin page
   // $('#videos').dataTable({
   //   "columnDefs": [
@@ -28,11 +44,11 @@ function pageLoad() {
     ]
   });
 
-  $('#events').DataTable({
-    "columnDefs": [
-      { "orderable": false, "targets": [4,5] }
-    ]
-  });
+  // $('#events').DataTable({
+  //   "columnDefs": [
+  //     { "orderable": false, "targets": [4,5] }
+  //   ]
+  // });
 
   $('#upcoming').DataTable({
     "columnDefs": [

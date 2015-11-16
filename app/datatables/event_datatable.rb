@@ -1,13 +1,14 @@
 class EventDatatable < AjaxDatatablesRails::Base
+  def_delegators :@view, :link_to, :edit_event_path, :event_path
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
-    @sortable_columns ||= %w(Event.name Event.city)
+    @sortable_columns ||= %w(Event.name Event.city Event.country Event.url Event.twitter_name)
   end
 
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
-    @searchable_columns ||= %w(Event.name Event.city)
+    @searchable_columns ||= %w(Event.name Event.city Event.country Event.url Event.twitter_name)
   end
 
   private
@@ -17,11 +18,13 @@ class EventDatatable < AjaxDatatablesRails::Base
       [
         # comma separated list of the values for each cell of a table row
         # example: record.attribute,
-        record.name,
+        link_to(record.name, record),
         record.city,
+        record.country,
         record.url,
-        record.latitude,
-        record.longitude
+        record.twitter_name,
+        link_to("edit", edit_event_path(record)),
+        link_to("delete", event_path(record), method: :delete, data: { confirm: "Are you sure you wish to delete this event?" })
       ]
     end
   end

@@ -1,5 +1,5 @@
 class VideoDatatable < AjaxDatatablesRails::Base
-  def_delegators :@view, :link_to, :h, :mailto, :edit_video_path, :video_path
+  def_delegators :@view, :link_to, :edit_video_path, :video_path
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
