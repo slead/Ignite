@@ -5,15 +5,15 @@ class AdminController < ApplicationController
   def index
     @tags = Tag.all.order(:name)
     if current_user.admin?
-      @videos = Video.all
-      @events = Event.all
+      # @videos = Video.all
+      # @events = Event.all
       @upcomings = Upcoming.all
       @users = User.all
       @playlists = Playlist.all
     elsif current_user.curator?
       # curators can see everything that an admin can see, except for Users
-      @videos = Video.all
-      @events = Event.all
+      # @videos = Video.all
+      # @events = Event.all
       @upcomings = Upcoming.all
       @playlists = Playlist.all
     else

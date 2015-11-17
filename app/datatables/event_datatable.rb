@@ -24,7 +24,9 @@ class EventDatatable < AjaxDatatablesRails::Base
         record.url,
         record.twitter_name,
         link_to("edit", edit_event_path(record)),
-        link_to("delete", event_path(record), method: :delete, data: { confirm: "Are you sure you wish to delete this event?" })
+        if ['admin', 'curator'].include? options[:role].name
+          link_to("delete", event_path(record), method: :delete, data: { confirm: "Are you sure you wish to delete this event?" })
+        end
       ]
     end
   end
@@ -34,9 +36,7 @@ class EventDatatable < AjaxDatatablesRails::Base
     if ['admin', 'curator'].include? options[:role].name
       Event.all
     else
-      # TODO - this currently restricts a regular user to one Ignite. Add
-      # support for multiple Ignites http://stackoverflow.com/questions/9540801/combine-two-activerecordrelation-objects
-      @events = options[:user].events[0] # THIS ISN"T WORKING
+      @events = options[:user].events
     end
   end
 
