@@ -1,5 +1,5 @@
 class VideoDatatable < AjaxDatatablesRails::Base
-  def_delegators :@view, :link_to, :edit_video_path, :video_path
+  def_delegators :@view, :link_to, :edit_video_path, :video_path, :truncate
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
@@ -18,7 +18,7 @@ class VideoDatatable < AjaxDatatablesRails::Base
       [
         # comma separated list of the values for each cell of a table row
         # example: record.attribute,
-        link_to(record.title, video_path(record)),
+        link_to(truncate(record.title, length: 40), video_path(record)),
         record.speaker_name,
         record.event.name,
         record.created_at.strftime("%d %b. %Y"),

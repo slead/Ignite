@@ -121,10 +121,25 @@ function pageLoad() {
   //   ]
   // });
 
-    $('#playlists').DataTable({
-    "columnDefs": [
-      { "orderable": false, "targets": [2] }
-    ]
+  //   $('#playlists').DataTable({
+  //   "columnDefs": [
+  //     { "orderable": false, "targets": [2] }
+  //   ]
+  // });
+
+  $('#tblPlaylists').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": $('#tblPlaylists').data('source'),
+    "pagingType": "full_numbers",
+    columns: [
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+        { sortable: false, searchable: false },
+        { sortable: false, searchable: false }
+      ]
   });
 
   // $('#events').DataTable({

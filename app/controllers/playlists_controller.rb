@@ -19,7 +19,12 @@ class PlaylistsController < ApplicationController
     # already exists when creating a new video via http://localhost:3000/videos/new
     respond_to do |format|
       format.html
-      format.json { render json: @playlists }  # respond with the created JSON object
+      if params["draw"].present?
+        # Format the response for the DataTables plugin on the Admin page
+        format.json { render json: PlaylistDatatable.new(view_context, { user: current_user, role: current_user.role }) }
+      else
+        format.json { render json: @playlists }
+      end
     end
 
   end
