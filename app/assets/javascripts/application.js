@@ -129,17 +129,19 @@ function pageLoad() {
       ]
   });
 
-  $('#upcoming').DataTable({
-    "columnDefs": [
-      { "orderable": false, "targets": [3] }
-    ]
+  $('#tblUpcomings').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": $('#tblUpcomings').data('source'),
+    "pagingType": "full_numbers",
+    columns: [
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+        { sortable: false, searchable: false },
+        { sortable: false, searchable: false }
+      ]
   });
-
-  // $('#users').DataTable({
-  //   "columnDefs": [
-  //     { "orderable": false, "targets": [3, 4] }
-  //   ]
-  // });
 
   $('#tblUsers').dataTable({
     "processing": true,

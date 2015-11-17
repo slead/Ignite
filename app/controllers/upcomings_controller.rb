@@ -11,6 +11,11 @@ class UpcomingsController < ApplicationController
 
   def index
     @upcomings = Upcoming.all.order('date ASC')
+    respond_to do |format|
+      format.html
+      # Format the response for the DataTables plugin on the Admin page
+      format.json { render json: UpcomingDatatable.new(view_context, { user: current_user, role: current_user.role }) }
+    end  
   end
 
   def show
