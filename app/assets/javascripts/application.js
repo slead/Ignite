@@ -156,6 +156,18 @@ function pageLoad() {
         { sortable: false, searchable: false }
       ]
   });
+
+  $('#tblTags').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": $('#tblTags').data('source'),
+    "pagingType": "full_numbers",
+    columns: [
+        { sortable: true, searchable: true },
+        { sortable: false, searchable: false },
+        { sortable: false, searchable: false }
+      ]
+  });
   
 }
 
