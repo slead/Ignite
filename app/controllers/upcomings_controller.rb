@@ -22,7 +22,8 @@ class UpcomingsController < ApplicationController
   end
 
   def new
-    @upcoming = current_user.upcomings.build
+    # @upcoming = current_user.upcomings.build
+    @upcoming = Upcoming.new
   end
 
   def edit

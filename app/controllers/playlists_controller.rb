@@ -30,7 +30,8 @@ class PlaylistsController < ApplicationController
   end
 
   def new
-    @playlist = current_user.playlists.build
+    # @playlist = current_user.playlists.build
+    @playlist = Playlist.new
   end
 
   def show

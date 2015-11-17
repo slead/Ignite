@@ -55,7 +55,8 @@ class VideosController < ApplicationController
   end
 
   def new
-    @video = current_user.videos.build
+    # @video = current_user.videos.build
+    @video = Video.new
     @tag = Tag.new
   end
 
