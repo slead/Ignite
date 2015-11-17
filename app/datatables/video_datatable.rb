@@ -30,14 +30,10 @@ class VideoDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    # insert query here
-    # Video.all
     if ['admin', 'curator'].include? options[:role].name
       Video.joins(:event)
     else
-      # TODO - this currently restricts a regular user to one Ignite. Add
-      # support for multiple Ignites http://stackoverflow.com/questions/9540801/combine-two-activerecordrelation-objects
-      @videos = options[:user].events[0].videos.joins(:event)
+      @videos = options[:user].videos.joins(:event)
     end
   end
 
