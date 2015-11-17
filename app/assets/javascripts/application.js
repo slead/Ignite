@@ -114,19 +114,6 @@ function pageLoad() {
       ]
   });
 
-  // Enable datatables on the admin page
-  // $('#videos').dataTable({
-  //   "columnDefs": [
-  //     { "orderable": false, "targets": [3,7,8,9] }
-  //   ]
-  // });
-
-  //   $('#playlists').DataTable({
-  //   "columnDefs": [
-  //     { "orderable": false, "targets": [2] }
-  //   ]
-  // });
-
   $('#tblPlaylists').dataTable({
     "processing": true,
     "serverSide": true,
@@ -142,22 +129,30 @@ function pageLoad() {
       ]
   });
 
-  // $('#events').DataTable({
-  //   "columnDefs": [
-  //     { "orderable": false, "targets": [4,5] }
-  //   ]
-  // });
-
   $('#upcoming').DataTable({
     "columnDefs": [
       { "orderable": false, "targets": [3] }
     ]
   });
 
-  $('#users').DataTable({
-    "columnDefs": [
-      { "orderable": false, "targets": [3, 4] }
-    ]
+  // $('#users').DataTable({
+  //   "columnDefs": [
+  //     { "orderable": false, "targets": [3, 4] }
+  //   ]
+  // });
+
+  $('#tblUsers').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": $('#tblUsers').data('source'),
+    "pagingType": "full_numbers",
+    columns: [
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+        { sortable: false, searchable: false },
+        { sortable: false, searchable: false }
+      ]
   });
   
 }

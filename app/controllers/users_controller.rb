@@ -7,6 +7,13 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    respond_to do |format|
+      format.html
+      if params["draw"].present?
+        # Format the response for the DataTables plugin on the Admin page
+        format.json { render json: UserDatatable.new(view_context, { user: current_user, role: current_user.role }) }
+      end
+    end
   end
 
   # GET /users/1
