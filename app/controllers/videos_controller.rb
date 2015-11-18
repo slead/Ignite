@@ -91,7 +91,7 @@ class VideosController < ApplicationController
         rescue
           puts "There was a problem emailing the admins about this video"
         end
-        redirect_to videos_path(@video)
+        redirect_to video_path(@video)
       else
         flash[:notice] = @video.errors.full_messages.to_sentence
         render 'new', layout: 'no_footer'
