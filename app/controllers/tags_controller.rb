@@ -10,7 +10,7 @@ class TagsController < ApplicationController
       # eg: http://localhost:3000/tags.json?name=technology
       @tags = Tag.where(:name => params[:name]).order('name ASC').paginate(:page => params[:page], :per_page => 60)
     else
-      @tags = Tag.all.order('name ASC').paginate(:page => params[:page], :per_page => 60)
+      @tags = Tag.where("video_count > 0").order('name ASC').paginate(:page => params[:page], :per_page => 60)
     end
 
     # Respond as JSON, so that this function can be called via AJAX to determine whether a video
