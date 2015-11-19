@@ -41,12 +41,12 @@
           %h4.left-40 Links
           %ul.contact
             %li= link_to "About Ignite Talks", "http://content.ignitetalks.io/about"
-            %li= link_to "Contact Us", contact_path
+            %li= link_to "Contact Us", "http://content.ignitetalks.io/contact-us"
             %li= link_to "Find an Ignite", events_path
             %li= link_to "Browse videos", videos_path
             %li= link_to "Start an Ignite", "http://content.ignitetalks.io/start"
-            %li= link_to "Become a sponsor", contact_path
-            %li= link_to "Send feedback", feedback_path(page: request.fullpath)
+            %li= link_to "Become a sponsor", "http://content.ignitetalks.io/contact-us"
+            %li= link_to "Send feedback", "http://content.ignitetalks.io/contact-us"
           
           #mailchimp.left-35.top-25
             %form{:action => "//ignitetalks.us11.list-manage.com/subscribe/post?u=aefefa6ad7468b09d55802649&id=4f70b0376d", :method => "post", :name => "mc-embedded-subscribe-form", :novalidate => "", :target => "_blank"}
