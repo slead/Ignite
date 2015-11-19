@@ -124,6 +124,7 @@ function pageLoad() {
         { sortable: true, searchable: true },
         { sortable: true, searchable: true },
         { sortable: true, searchable: true },
+        { sortable: true, searchable: false },
         { sortable: false, searchable: false },
         { sortable: false, searchable: false }
       ]

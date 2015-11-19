@@ -3,7 +3,7 @@ class PlaylistDatatable < AjaxDatatablesRails::Base
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
-    @sortable_columns ||= %w(Playlist.name Event.name Playlist.featured Playlist.listed)
+    @sortable_columns ||= %w(Playlist.name Event.name Playlist.featured Playlist.listed Playlist.video_count)
   end
 
   def searchable_columns
@@ -22,6 +22,7 @@ class PlaylistDatatable < AjaxDatatablesRails::Base
         record.event.name,
         record.featured,
         record.listed,
+        record.video_count,
         link_to("edit", edit_playlist_path(record)),
         link_to("delete", playlist_path(record), method: :delete, data: { confirm: "Are you sure you wish to delete this playlist?" })
       ]
