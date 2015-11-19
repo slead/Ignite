@@ -165,6 +165,7 @@ function pageLoad() {
     "pagingType": "full_numbers",
     columns: [
         { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
         { sortable: false, searchable: false },
         { sortable: false, searchable: false }
       ]

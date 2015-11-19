@@ -5,14 +5,13 @@ class TagsController < ApplicationController
   layout 'no_footer', :only => [:new, :edit]
 
   def index
-    # if params[:name].present?
-    #   # Check whether this tag already exists
-    #   # eg: http://localhost:3000/tags.json?name=technology
-    #   @tags = Tag.where(:name => params[:name]).paginate(:page => params[:page], :per_page => 9)
-    # else
-    #   @tags = Tag.all.paginate(:page => params[:page], :per_page => 9)
-    # end
-    @tags = Tag.all.order(:name)
+    if params[:name].present?
+      # Check whether this tag already exists
+      # eg: http://localhost:3000/tags.json?name=technology
+      @tags = Tag.where(:name => params[:name]).paginate(:page => params[:page], :per_page => 9)
+    else
+      @tags = Tag.where("video_count > 0").paginate(:page => params[:page], :per_page => 9)
+    end
 
     # Respond as JSON, so that this function can be called via AJAX to determine whether a video
     # already exists when creating a new video via http://localhost:3000/videos/new

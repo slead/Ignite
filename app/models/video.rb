@@ -6,7 +6,7 @@ class Video < ActiveRecord::Base
   validates_uniqueness_of :url
   validates_uniqueness_of :uid
   belongs_to :event
-  has_and_belongs_to_many :tags
+  has_and_belongs_to_many :tags, before_add: :inc_tag_count, before_remove: :dec_tag_count
   has_and_belongs_to_many :playlists, before_add: :inc_playlist_count, before_remove: :dec_playlist_count
   searchkick
 
@@ -106,9 +106,16 @@ class Video < ActiveRecord::Base
   def inc_playlist_count(model)
     Playlist.increment_counter('video_count', model.id)
   end
-
   def dec_playlist_count(model)
     Playlist.decrement_counter('video_count', model.id)
+  end
+
+  # Keep track of the number of videos with a tag
+    def inc_tag_count(model)
+    Tag.increment_counter('video_count', model.id)
+  end
+  def dec_tag_count(model)
+    Tag.decrement_counter('video_count', model.id)
   end
 
 end

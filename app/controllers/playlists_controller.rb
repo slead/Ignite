@@ -91,10 +91,8 @@ private
 
         @events = current_user.events
         @videos = []
-        @events.map do |event|
-          event.videos.map do |video|
-            @videos.push(video)
-          end
+        events.each do |event|
+          @videos += event.videos
         end
     end
   end
