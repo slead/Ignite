@@ -30,7 +30,6 @@ class PlaylistsController < ApplicationController
   end
 
   def new
-    # @playlist = current_user.playlists.build
     @playlist = Playlist.new
   end
 
@@ -42,7 +41,8 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    @playlist = current_user.playlists.build(playlist_params)
+    @playlist = Playlist.create(playlist_params)
+    @playlist.user = current_user
     if @playlist.save
         flash[:notice] = "playlist #{@playlist.name} added successfully."
         redirect_to admin_path

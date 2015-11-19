@@ -43,6 +43,7 @@ class TagsController < ApplicationController
   def create
     # @tag = current_user.tags.build(tag_params)
     @tag = Tag.create(tag_params)
+    @tag.user = current_user
     if @tag.save
         flash[:notice] = "tag #{@tag.name} added successfully."
         redirect_to admin_path

@@ -4,12 +4,12 @@ class UpcomingDatatable < AjaxDatatablesRails::Base
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
-    @sortable_columns ||= %w(Upcoming.name Upcoming.date) #Event.name
+    @sortable_columns ||= %w(Upcoming.name Event.name Upcoming.date) #Event.name
   end
 
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
-    @searchable_columns ||= %w(Upcoming.name Upcoming.date) #Event.name
+    @searchable_columns ||= %w(Upcoming.name Event.name Upcoming.date) #Event.name
   end
 
   private

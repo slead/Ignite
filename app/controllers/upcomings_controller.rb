@@ -30,7 +30,8 @@ class UpcomingsController < ApplicationController
   end
 
   def create
-    @upcoming = current_user.upcomings.build(upcoming_params)
+    # @upcoming = current_user.upcomings.build(upcoming_params)
+    @upcoming = Upcoming.create(upcoming_params)
     if @upcoming.save
       flash[:notice] = "Upcoming event #{@upcoming.name} added successfully."
       redirect_to admin_path

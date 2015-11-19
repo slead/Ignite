@@ -85,7 +85,7 @@ class VideosController < ApplicationController
   end
 
   def create
-    @video = current_user.videos.build(video_params)
+    @video = Video.create(video_params)
     if @video.save
         flash[:notice] = "video #{@video.title} added successfully."
         begin
@@ -96,7 +96,7 @@ class VideosController < ApplicationController
         rescue
           puts "There was a problem emailing the admins about this video"
         end
-        redirect_to admin_path
+        redirect_to video_path(@video)
       else
         flash[:notice] = @video.errors.full_messages.to_sentence
         render 'new', layout: 'no_footer'
