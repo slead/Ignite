@@ -38,7 +38,7 @@ class VideosController < ApplicationController
       @videos = Video.order('random()').paginate(:page => params[:page], :per_page => 16)
     end
 
-    @tags = Tag.where(major: true).order(:name)
+    # @tags = Tag.where(major: true).order(:name)
 
     # Respond as JSON, so that this function can be called via AJAX to determine whether a video
     # already exists when creating a new video via http://localhost:3000/videos/new

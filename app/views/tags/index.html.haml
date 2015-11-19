@@ -14,3 +14,5 @@
               %i.fa.fa-pencil-square-o
             = link_to tag_path(tag), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this tag?"} do
               %i.fa.fa-times
+  .row.paginate
+    = will_paginate @tags, renderer: BootstrapPagination::Rails

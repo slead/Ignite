@@ -8,9 +8,9 @@ class TagsController < ApplicationController
     if params[:name].present?
       # Check whether this tag already exists
       # eg: http://localhost:3000/tags.json?name=technology
-      @tags = Tag.where(:name => params[:name]).paginate(:page => params[:page], :per_page => 9)
+      @tags = Tag.where(:name => params[:name]).order('name ASC').paginate(:page => params[:page], :per_page => 60)
     else
-      @tags = Tag.where("video_count > 0").paginate(:page => params[:page], :per_page => 9)
+      @tags = Tag.all.order('name ASC').paginate(:page => params[:page], :per_page => 60)
     end
 
     # Respond as JSON, so that this function can be called via AJAX to determine whether a video
