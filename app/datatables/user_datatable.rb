@@ -3,12 +3,12 @@ class UserDatatable < AjaxDatatablesRails::Base
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
-    @sortable_columns ||= %w(User.name User.email Role.name)
+    @sortable_columns ||= %w(User.name User.email Role.name User.sign_in_count)
   end
 
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
-    @searchable_columns ||= %w(User.name User.email Role.name)
+    @searchable_columns ||= %w(User.name User.email Role.name User.sign_in_count)
   end
 
   private
@@ -21,6 +21,7 @@ class UserDatatable < AjaxDatatablesRails::Base
         link_to(record.name, user_path(record)),
         record.email,
         record.role.name,
+        record.sign_in_count,
         link_to("edit", edit_user_path(record)),
         link_to("delete", user_path(record), method: :delete, data: { confirm: "Are you sure you wish to delete this user?" })
       ]

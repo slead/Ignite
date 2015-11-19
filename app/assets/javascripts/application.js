@@ -82,7 +82,7 @@ function pageLoad() {
     console.log("there was a problem opening the appropriate the admin tab")
   }
 
-    $('#tblVideos').dataTable({
+  $('#tblVideos').dataTable({
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblVideos').data('source'),
@@ -149,6 +149,7 @@ function pageLoad() {
     "ajax": $('#tblUsers').data('source'),
     "pagingType": "full_numbers",
     columns: [
+        { sortable: true, searchable: true },
         { sortable: true, searchable: true },
         { sortable: true, searchable: true },
         { sortable: true, searchable: true },
