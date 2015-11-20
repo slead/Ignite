@@ -80,6 +80,11 @@ class Ability
         upcoming.event.users.map(&:id).include? user.id
       end
 
+      can :destroy, Upcoming do |upcoming|
+        # Users can only destroy Upcomings belonging Events to which they have been granted permission
+        upcoming.event.users.map(&:id).include? user.id
+      end
+
     else
       can :read, :all
     end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109193135) do
+ActiveRecord::Schema.define(version: 20151119044241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,15 +81,6 @@ ActiveRecord::Schema.define(version: 20151109193135) do
   add_index "playlists_videos", ["playlist_id"], name: "index_playlists_videos_on_playlist_id", using: :btree
   add_index "playlists_videos", ["video_id"], name: "index_playlists_videos_on_video_id", using: :btree
 
-  create_table "posts", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.text     "content"
-    t.integer  "user_id"
-    t.string   "slug",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -102,6 +93,7 @@ ActiveRecord::Schema.define(version: 20151109193135) do
     t.datetime "updated_at"
     t.boolean  "major"
     t.string   "slug"
+    t.integer  "video_count"
   end
 
   create_table "tags_videos", id: false, force: :cascade do |t|
@@ -110,9 +102,7 @@ ActiveRecord::Schema.define(version: 20151109193135) do
   end
 
   add_index "tags_videos", ["tag_id"], name: "index_tags_videos_on_tag_id", using: :btree
-  add_index "tags_videos", ["tag_id"], name: "index_videos_tags_on_tag_id", using: :btree
   add_index "tags_videos", ["video_id"], name: "index_tags_videos_on_video_id", using: :btree
-  add_index "tags_videos", ["video_id"], name: "index_videos_tags_on_video_id", using: :btree
 
   create_table "upcomings", force: :cascade do |t|
     t.string   "name",       limit: 255

@@ -4,11 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :role
-  has_many :videos
   has_and_belongs_to_many :events
-  has_many :upcomings
-  has_many :posts
-  has_many :playlists
+  has_many :videos, :through => :events
+  has_many :upcomings, :through => :events
+  has_many :playlists, :through => :events
   has_many :tags
   validates_presence_of :name, :email
   validates_uniqueness_of :email

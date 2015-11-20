@@ -5,20 +5,24 @@ class TagsController < ApplicationController
   layout 'no_footer', :only => [:new, :edit]
 
   def index
-    # if params[:name].present?
-    #   # Check whether this tag already exists
-    #   # eg: http://localhost:3000/tags.json?name=technology
-    #   @tags = Tag.where(:name => params[:name]).paginate(:page => params[:page], :per_page => 9)
-    # else
-    #   @tags = Tag.all.paginate(:page => params[:page], :per_page => 9)
-    # end
-    @tags = Tag.all.order(:name)
+    if params[:name].present?
+      # Check whether this tag already exists
+      # eg: http://localhost:3000/tags.json?name=technology
+      @tags = Tag.where(:name => params[:name]).order('name ASC').paginate(:page => params[:page], :per_page => 60)
+    else
+      @tags = Tag.where("video_count > 0").order('name ASC').paginate(:page => params[:page], :per_page => 60)
+    end
 
     # Respond as JSON, so that this function can be called via AJAX to determine whether a video
     # already exists when creating a new video via http://localhost:3000/videos/new
     respond_to do |format|
       format.html
-      format.json { render json: @tags }  # respond with the created JSON object
+      if params["draw"].present?
+        # Format the response for the DataTables plugin on the Admin page
+        format.json { render json: TagDatatable.new(view_context, { user: current_user, role: current_user.role }) }
+      else
+        format.json { render json: @tags }
+      end
     end
 
   end
@@ -38,6 +42,7 @@ class TagsController < ApplicationController
   def create
     # @tag = current_user.tags.build(tag_params)
     @tag = Tag.create(tag_params)
+    @tag.user = current_user
     if @tag.save
         flash[:notice] = "tag #{@tag.name} added successfully."
         redirect_to admin_path

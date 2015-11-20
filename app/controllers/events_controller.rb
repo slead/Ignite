@@ -45,7 +45,12 @@ class EventsController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json { render json: @geojson }  # respond with the created JSON object
+      if params["draw"].present?
+        # Format the response for the DataTables plugin on the Admin page
+        format.json { render json: EventDatatable.new(view_context, { user: current_user, role: current_user.role }) }
+      else
+        format.json { render json: @geojson }  # respond with the created JSON object
+      end
     end
   end
 
@@ -66,14 +71,17 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = current_user.events.build
+    # @event = current_user.events.build
+    @event = Event.new
   end
 
   def edit
   end
 
   def create
-    @event = current_user.events.build(event_params)
+    # @event = current_user.events.build(event_params)
+    @event = Event.create(event_params)
+    @event.user = current_user
 
     if @event.save
         flash[:notice] = "Event #{@event.name} added successfully."

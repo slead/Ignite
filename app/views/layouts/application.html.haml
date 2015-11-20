@@ -7,21 +7,33 @@
     =render 'layouts/notifications'
 
     =yield
-    %hr
-    .row.sponsors
-      .col-md-8.col-md-offset-2.center
-        %h3 Founding sponsor
-        = link_to image_tag( 'oreilly_logo.png'), 'http://www.oreilly.com', :target => "_blank"
-    .row.top-15.bottom-15
-      .col-md-8.col-md-offset-2.center
-        %h4.bottom-15 Partners
-        .row
-          .col-md-4
-            = link_to image_tag( 'FoundryGroup_logo.png', :class => 'logo'), 'http://foundrygroup.com/', :target => "_blank"
-          .col-md-4
-            = link_to image_tag( 'aeonlaw-logo.png', :class => 'logo'), 'http://aeonlaw.com/', :target => "_blank"
-          .col-md-4 
-            = link_to image_tag( 'pch-logo.png', :class => 'logo'), 'http://www.pchintl.com/', :target => "_blank"
+    / Sponsor information is shown on the major pages only
+    -if ["contacts", "content"].include? params["controller"]
+      %hr
+      .row.sponsors
+        .col-md-8.col-md-offset-2.center
+          %h2 Founding sponsor
+          = link_to image_tag( 'oreilly_logo.png'), 'http://www.oreilly.com', :target => "_blank"
+      .row.top-15.bottom-15
+        .col-md-8.col-md-offset-2.center
+          %h3.bottom-15 Sponsors
+          .row
+            .col-md-4
+              = link_to image_tag( 'FoundryGroup_logo.png', :class => 'logo'), 'http://foundrygroup.com/', :target => "_blank"
+            .col-md-4
+              = link_to image_tag( 'microsoft_research.png', :class => 'logo'), 'http://research.microsoft.com/en-us/', :target => "_blank"
+            .col-md-4 
+              = link_to image_tag( 'pch-logo.png', :class => 'logo'), 'http://www.pchintl.com/', :target => "_blank"
+          / Partners are only shown on the Contact Us page (plus the Wordpress site)
+          -if params["controller"] == "contacts"
+            %h4.bottom-15 Partners
+            .row
+              .col-md-4
+                = link_to image_tag( 'svb_logo.png', :class => 'logo'), 'http://www.svb.com/', :target => "_blank"
+              .col-md-4
+                = link_to image_tag( 'aeonlaw-logo.png', :class => 'logo'), 'http://aeonlaw.com/', :target => "_blank"
+              .col-md-4 
+                = link_to image_tag( 'aws-logo.png', :class => 'logo'), 'http://aws.amazon.com/', :target => "_blank"
 
     %footer
       .row
@@ -29,12 +41,12 @@
           %h4.left-40 Links
           %ul.contact
             %li= link_to "About Ignite Talks", "http://content.ignitetalks.io/about"
-            %li= link_to "Contact Us", contact_path
+            %li= link_to "Contact Us", "http://content.ignitetalks.io/contact-us"
             %li= link_to "Find an Ignite", events_path
             %li= link_to "Browse videos", videos_path
             %li= link_to "Start an Ignite", "http://content.ignitetalks.io/start"
-            %li= link_to "Become a sponsor", contact_path
-            %li= link_to "Send feedback", feedback_path(page: request.fullpath)
+            %li= link_to "Become a sponsor", "http://content.ignitetalks.io/contact-us"
+            %li= link_to "Send feedback", "http://content.ignitetalks.io/contact-us"
           
           #mailchimp.left-35.top-25
             %form{:action => "//ignitetalks.us11.list-manage.com/subscribe/post?u=aefefa6ad7468b09d55802649&id=4f70b0376d", :method => "post", :name => "mc-embedded-subscribe-form", :novalidate => "", :target => "_blank"}

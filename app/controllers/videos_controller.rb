@@ -14,7 +14,6 @@ class VideosController < ApplicationController
   # end
  
   def index
-
     if params[:query].present?
       # Find videos using elastic search
       @videos = Video.search(params[:query], page: params[:page], :per_page => 16)
@@ -41,19 +40,25 @@ class VideosController < ApplicationController
       @videos = Video.order('random()').paginate(:page => params[:page], :per_page => 16)
     end
 
-    @tags = Tag.where(major: true).order(:name)
+    # @tags = Tag.where(major: true).order(:name)
 
     # Respond as JSON, so that this function can be called via AJAX to determine whether a video
     # already exists when creating a new video via http://localhost:3000/videos/new
     respond_to do |format|
       format.html
-      format.json { render json: @videos }  # respond with the created JSON object
+      if params["draw"].present?
+        # Format the response for the DataTables plugin on the Admin page
+        format.json { render json: VideoDatatable.new(view_context, { user: current_user, role: current_user.role }) }
+      else
+        format.json { render json: @videos }
+      end
     end
 
   end
 
   def new
-    @video = current_user.videos.build
+    # @video = current_user.videos.build
+    @video = Video.new
     @tag = Tag.new
   end
 
@@ -81,52 +86,27 @@ class VideosController < ApplicationController
   def edit
   end
 
-  # def create
-  #   # @video = current_user.videos.build(video_params)
-  #   @video = Video.new()
-  #   respond_to do |format|
-  #     if @video.save
-  #       flash[:notice] = "video #{@video.title} added successfully."
-  #       begin
-  #         # Email the admins to let them know a new video has been added
-  #         User.where(role: Role.where(name: "admin")).each do |user|
-  #           NotifyMailer.new_video_email(user, @video).deliver_now
-  #         end
-  #       rescue
-  #         puts "There was a problem emailing the admins about this video"
-  #       end
-  #       format.html { redirect_to admin_path }
-  #       format.json { render :json => true}
-  #     else
-  #       format.html {
-  #         flash[:notice] = @video.errors.full_messages.to_sentence
-  #         render 'new', layout: 'no_footer'
-  #       }
-  #       format.json { render :json => @video.errors, :status => :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
   def create
-    @video = Video.new(video_params)
-
-    respond_to do |format|
-      if @video.save
-        begin
-          # Email the admins to let them know a new video has been added
-          User.where(role: Role.where(name: "admin")).each do |user|
-            NotifyMailer.new_video_email(user, @video).deliver_now
-          end
-        rescue
-          puts "There was a problem emailing the admins about this video"
+    @video = Video.create(video_params)
+    if @video.save
+      begin
+        # Email the admins to let them know a new video has been added
+        User.where(role: Role.where(name: "admin")).each do |user|
+          NotifyMailer.new_video_email(user, @video).deliver_now
         end
-          
+      rescue
+        puts "There was a problem emailing the admins about this video"
+      end
+
+      respond_to do |format|
         format.html {
-          flash[:notice] = "video #{@video.title} added successfully."
-          redirect_to @video, notice: 'Video was successfully created.'
+          flash[:notice] = "Video #{@video.title} added successfully."
+          redirect_to video_path(@video)
         }
         format.json { render json: @video, status: :created, location: @video }
-      else
+      end
+    else
+      respond_to do |format|
         format.html {
           flash[:notice] = @video.errors.full_messages.to_sentence
           render 'new', layout: 'no_footer'

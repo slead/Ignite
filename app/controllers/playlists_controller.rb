@@ -19,13 +19,18 @@ class PlaylistsController < ApplicationController
     # already exists when creating a new video via http://localhost:3000/videos/new
     respond_to do |format|
       format.html
-      format.json { render json: @playlists }  # respond with the created JSON object
+      if params["draw"].present?
+        # Format the response for the DataTables plugin on the Admin page
+        format.json { render json: PlaylistDatatable.new(view_context, { user: current_user, role: current_user.role }) }
+      else
+        format.json { render json: @playlists }
+      end
     end
 
   end
 
   def new
-    @playlist = current_user.playlists.build
+    @playlist = Playlist.new
   end
 
   def show
@@ -36,7 +41,8 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    @playlist = current_user.playlists.build(playlist_params)
+    @playlist = Playlist.create(playlist_params)
+    @playlist.user = current_user
     if @playlist.save
         flash[:notice] = "playlist #{@playlist.name} added successfully."
         redirect_to admin_path
@@ -85,10 +91,8 @@ private
 
         @events = current_user.events
         @videos = []
-        @events.map do |event|
-          event.videos.map do |video|
-            @videos.push(video)
-          end
+        events.each do |event|
+          @videos += event.videos
         end
     end
   end

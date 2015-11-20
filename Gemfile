@@ -17,6 +17,8 @@ group :development do
 end
 
 gem "active_model_serializers"
+gem 'ajax-datatables-rails'
+gem 'byebug'
 gem 'cancancan', '~> 1.10'
 gem 'devise', '~> 3.5.2'
 gem 'devise-bootstrap-views'
@@ -49,4 +51,3 @@ gem 'yt', '~> 0.24.9'
 group :production do
   gem 'rails_12factor'
 end
-

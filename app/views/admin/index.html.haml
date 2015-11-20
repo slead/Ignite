@@ -44,99 +44,45 @@
           %h4
             %button= link_to "Add new video", new_video_path
           %hr
-          %table#videos
+          %table#tblVideos{:data => {:source => videos_path(format: :json)}}
             %thead
               %tr
-                %th Featured
-                %th Event
                 %th Title
-                %th Watch
                 %th Presenter
-                %th Presenter URL
+                %th Event
                 %th Uploaded
-                %th Tags
-                %th
-                %th
+                %th Featured
+                %th Edit
+                %th Delete
             %tbody
-              -@videos.each do |video|
-                %tr
-                  - if video.featured?
-                    %td
-                      %i.fa.fa-check
-                  - else
-                    %td
-                  %td= video.event.name
-                  %td= link_to video.title, edit_video_path(video)
-                  %td.center
-                    = link_to video.url, :target => "_blank" do
-                      %i.fa.fa-play-circle
-                  %td= video.speaker_name
-                  %td= video.speaker_url
-                  %td= video.created_at.to_date
-                  %td= video.tags.map(&:name).join(", ")
-                  %td
-                    =link_to edit_video_path(video), class: "light btn-edit" do
-                      %i.fa.fa-pencil-square-o
-                  %td
-                    =link_to video_path(video), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this video?"} do 
-                      %i.fa.fa-times
-
         #playlists_tab.tab-pane{:role => "tabpanel"}
           %h4
             %button= link_to "Add new playlist", new_playlist_path
           %hr
-          %table#playlists
+          %table#tblPlaylists{:data => {:source => playlists_path(format: :json)}}
             %thead
-              %tr
-                %th Featured
-                %th Listed              
+              %tr           
                 %th Name
                 %th Ignite
+                %th Featured
+                %th Listed 
+                %th No. videos  
+                %th
                 %th
             %tbody
-              -@playlists.each do |playlist|
-                %tr
-                  - if playlist.featured?
-                    %td
-                      %i.fa.fa-check
-                  - else
-                    %td
-                  - if playlist.listed?
-                    %td
-                      %i.fa.fa-check
-                  - else
-                    %td
-                  %td= link_to playlist.name, edit_playlist_path(playlist)
-                  - if playlist.event
-                    %td= playlist.event.name
-                  - else
-                    %td -
-                  %td
-                    =link_to edit_playlist_path(playlist), class: "light btn-edit" do
-                      %i.fa.fa-pencil-square-o
-                    - if can? :destroy, playlist
-                      =link_to playlist_path(playlist), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this Playlist?"} do 
-                        %i.fa.fa-times
 
         #tags_tab.tab-pane{:role => "tabpanel"}
           %h4
             %button= link_to "Add new tag", new_tag_path
           %hr
-          %table#tags
+          %table#tblTags{:data => {:source => tags_path(format: :json)}}
             %thead
               %tr
                 %th Name
+                %th No. videos
+                %th
                 %th
             %tbody
-              -@tags.each do |tag|
-                %tr
-                  %td= link_to tag.name, edit_tag_path(tag)
-                  %td
-                    =link_to edit_tag_path(tag), class: "light btn-edit" do
-                      %i.fa.fa-pencil-square-o
-                    - if can? :destroy, tag
-                      =link_to tag_path(tag), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this Tag?"} do 
-                        %i.fa.fa-times
 
         #events_tab.tab-pane{:role => "tabpanel"}
           %h4
@@ -144,55 +90,32 @@
               %button
                 =link_to "Add new Ignite", new_event_path
               %hr
-          %table#events
+          %table#tblEvents{:data => {:source => events_path(format: :json)}}
             %thead
               %tr
                 %th Name
                 %th City
-                %th State
                 %th Country
                 %th URL
                 %th Twitter
                 %th
+                %th
             %tbody
-              -@events.each do |event|
-                %tr
-                  %td= link_to event.name, edit_event_path(event)
-                  %td= event.city
-                  %td= event.state
-                  %td= event.country
-                  %td= link_to event.url, event.url, :target => "_blank"
-                  %td= event.twitter_name
-                  %td
-                    =link_to edit_event_path(event), class: "light btn-edit" do
-                      %i.fa.fa-pencil-square-o
-                    - if can? :destroy, event
-                      =link_to event_path(event), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this Ignite?"} do 
-                        %i.fa.fa-times
 
         #upcomings_tab.tab-pane{:role => "tabpanel"}
           %h4
             %button
               =link_to "Add new upcoming event", new_upcoming_path
           %hr
-          %table#upcoming
+          %table#tblUpcomings{:data => {:source => upcomings_path(format: :json)}}
             %thead
               %tr
-                %th Name
+                %th Event Name
                 %th Ignite
                 %th Date
                 %th
+                %th
             %tbody
-              -@upcomings.each do |upcoming|
-                %tr
-                  %td= upcoming.name
-                  %td= upcoming.event.name
-                  %td= upcoming.date
-                  %td
-                    =link_to edit_upcoming_path(upcoming), class: "light btn-edit" do
-                      %i.fa.fa-pencil-square-o
-                    =link_to upcoming_path(upcoming), method: :delete, class: "light btn-delete", data: {confirm: "Are you sure you want to delete this upcoming event?"} do 
-                      %i.fa.fa-times
 
         -if current_user.admin?
           #users_tab.tab-pane{:role => "tabpanel"}
@@ -200,31 +123,13 @@
               %button
                 =link_to "Add new User", new_user_path
             %hr
-            %table#users
+            %table#tblUsers{:data => {:source => users_path(format: :json)}}
               %thead
                 %tr
-                  %th Admin?
-                  %th Ignites
                   %th Name
                   %th Email
+                  %th Admin? 
+                  %th No. Sign-ins
                   %th
                   %th
               %tbody
-                -@users.each do |user|
-                  %tr
-                    - if user.admin?
-                      %td
-                        %i.fa.fa-check
-                    - else
-                      %td
-                    %td
-                      - user.events.map do |event|
-                        =event.name
-                    %td= user.name
-                    %td= user.email
-                    %td
-                      = link_to edit_user_path(user), class: "light btn-edit" do
-                        %i.fa.fa-pencil-square-o
-                    %td
-                      = link_to user_path(user), method: :delete, data: { confirm: 'Are you sure you with to delete this user?' } do 
-                        %i.fa.fa-times
