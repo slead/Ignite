@@ -60,8 +60,9 @@ ready = function() {
                             description = data.items[0].snippet.description;
                             tags = data.items[0].snippet.tags;
 
-                            //TODO: add the correct event ID and Tags, and add it to the correct playlsit
-                            var video_json = {"uid": videoId, "url": "http://www.youtube.com/watch?v=" + videoId, "title": title, "speaker_name": "TBA", "event_id": eventId , "description": description, "status": "draft"};
+                            //TODO: add the correct event ID and Tags, and add it to the correct playlist
+                            var pID = 13
+                            var video_json = {"uid": videoId, "url": "http://www.youtube.com/watch?v=" + videoId, "cheese":"brie", "title": title, "speaker_name": "TBA", "event_id": eventId , "description": description, "status": "draft", "playlistIds": [pID], "tags": tags};
                             var data3 = JSON.stringify(video_json);
                             var url = "http://" + window.location.host + "/videos.json";
                             $.ajax({
