@@ -88,12 +88,6 @@ class VideosController < ApplicationController
 
   def create
     @video = Video.create(video_params)
-    \
-    # Playlist params aren't getting through the whitelist, so set them manually
-    Playlist.find(params[:playlist_ids]).each do |pid|
-      @video.playlists.append(pid)
-    end
-
     if @video.save
       begin
         # Email the admins to let them know a new video has been added
@@ -144,7 +138,7 @@ class VideosController < ApplicationController
 private
 
   def video_params
-    params.require(:video).permit(:title, :description, :url, :event_id, :status, :cheese, :speaker_name, :speaker_url, :uid, :featured, :R18, :new_tag_name, :new_playlist_name,playlist_ids: [], tag_ids: [])
+    params.require(:video).permit(:title, :description, :url, :event_id, :status, :speaker_name, :speaker_url, :uid, :featured, :R18, :new_tag_name, :new_playlist_name, playlist_ids: [], tag_ids: [])
   end
 
   def find_video

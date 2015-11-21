@@ -5,23 +5,24 @@ ready = function() {
   jQuery("#btnImportFromYouTubePlaylist").on("click", function() {
     jQuery("#draftVideos").empty();
 
-    var playlistId = url = $("#txtYouTubePlaylist").val();
-    var eventId = $("#playlist_event_id").val();
+    var YTplaylistId = url = $("#txtYouTubePlaylist").val(); // The YouTube playlist ID
+    var playlistId = parseInt($("#spanPlaylistId").text());  // The playlist_id within the IgniteTalks site
+    var eventId = parseInt($("#playlist_event_id").val());
     if(url.indexOf("youtube.com") > 0) {
-      var playlistId = getPlaylistID(url);
+      var YTplaylistId = getPlaylistID(url);
     }    
-    ImportFromYouTubePlaylist(playlistId, eventId);
+    ImportFromYouTubePlaylist(YTplaylistId, eventId, playlistId);
   });
 
   jQuery('#YouTubeVideos').on("click", ".playlistItem", function() {
     uid = this.attributes[1].value;
   });
 
-  function ImportFromYouTubePlaylist(playlistId, eventId) {
+  function ImportFromYouTubePlaylist(YTplaylistId, eventId, playlistId) {
     
     // Check the YouTube API for this playlist
     var playlistUrl = "https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94&part=contentDetails"
-    playlistUrl += "&maxResults=50&fields=items(contentDetails(videoId))&playlistId=" + playlistId
+    playlistUrl += "&maxResults=50&fields=items(contentDetails(videoId))&playlistId=" + YTplaylistId
 
     // Retrieve the list of playlistItems from the YouTube Playlist
     try{
@@ -54,23 +55,22 @@ ready = function() {
                       // Retrieve the video's details from the YouTube API
                       checkURL = "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94&fields=items(snippet(title,description,tags))&part=snippet&id=" + videoId;
                       try{
-                        $.getJSON( checkURL, function( data ) {
-                          if (data.items.length > 0) {
-                            title = data.items[0].snippet.title;
-                            description = data.items[0].snippet.description;
-                            tags = data.items[0].snippet.tags;
+                        $.getJSON( checkURL, function( data3 ) {
+                          if (data3.items.length > 0) {
+                            title = data3.items[0].snippet.title;
+                            description = data3.items[0].snippet.description;
+                            tags = data3.items[0].snippet.tags;
 
                             //TODO: add the correct event ID and Tags, and add it to the correct playlist
-                            var pID = 13
-                            var video_json = { "video": {"uid": videoId, "url": "http://www.youtube.com/watch?v=" + videoId, "title": title, "speaker_name": "TBA", "event_id": eventId , "description": description, "status": "draft", "playlistIds": [pID], "tags": tags}};
-                            var data3 = JSON.stringify(video_json);
-                            var url = "http://" + window.location.host + "/videos.json";
+                            var video_json = { "video": {"uid": videoId, "url": "http://www.youtube.com/watch?v=" + videoId, "title": title, "speaker_name": "TBA", "event_id": eventId , "description": description, "status": "draft", "playlist_ids": [playlistId]}};
+                            var data4 = JSON.stringify(video_json);
+                            var post_url = "http://" + window.location.host + "/videos.json";
                             $.ajax({
-                              url: url,
+                              url: post_url,
                               type:"POST",
                               contentType:"application/json; charset=utf-8",
                               dataType:"json",
-                              data: data3,
+                              data: data4,
                               success: function(msg) {
                                 // Add the video's thumbnail to the page. Clicking on the thumbnail will open the
                                 // New Video dialog with this video selected
@@ -81,7 +81,7 @@ ready = function() {
                                 jQuery("#draftVideos").append(html);
                               },
                               error: function(err) {
-                                alert("There was an error creating a new video")
+                                console.log("There was an error creating a new video")
                               }
                           });
                         }
