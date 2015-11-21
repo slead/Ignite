@@ -88,7 +88,12 @@ class VideosController < ApplicationController
 
   def create
     @video = Video.create(video_params)
-    byebug
+    \
+    # Playlist params aren't getting through the whitelist, so set them manually
+    Playlist.find(params[:playlist_ids]).each do |pid|
+      @video.playlists.append(pid)
+    end
+
     if @video.save
       begin
         # Email the admins to let them know a new video has been added
