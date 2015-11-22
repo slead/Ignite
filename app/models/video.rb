@@ -6,8 +6,8 @@ class Video < ActiveRecord::Base
   validates_uniqueness_of :url
   validates_uniqueness_of :uid
   belongs_to :event
-  has_and_belongs_to_many :tags #, before_add: :inc_tag_count, before_remove: :dec_tag_count
-  has_and_belongs_to_many :playlists #, before_add: :inc_playlist_count, before_remove: :dec_playlist_count
+  has_and_belongs_to_many :tags, before_add: :inc_tag_count, before_remove: :dec_tag_count
+  has_and_belongs_to_many :playlists, before_add: :inc_playlist_count, before_remove: :dec_playlist_count
   searchkick
 
   #Allow the creation of new tags and playlists during create/edit videos

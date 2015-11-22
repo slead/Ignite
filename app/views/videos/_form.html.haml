@@ -2,6 +2,7 @@
   .form-group
     -if current_user.curator?
       =f.input :featured, {:label => "Feature this video on the homepage?"}
+    =f.input :status, collection: ["draft", "published"]
     %hr
     .row
       .col-md-10#ignite_name

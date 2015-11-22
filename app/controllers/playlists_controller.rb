@@ -34,7 +34,7 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-    @videos = @playlist.videos.paginate(:page => params[:page], :per_page => 16)
+    @videos = @playlist.videos.where("status = 'published'").paginate(:page => params[:page], :per_page => 16)
   end
 
   def edit

@@ -17,15 +17,6 @@
       - else
         = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select'}
 
-  .row.top-50
-    .col-md-12
-      %h4 Videos in this playlist
-      =@playlist.videos.each_slice(6) do |vids|
-        .row.top-15
-          -vids.each do |video|
-            .col-md-2.video_thumbnail
-              %span= playlist_thumbnail(video, 30)
-
   .row
     .col-md-12
       %h4 Add Videos to this playlist
@@ -34,10 +25,28 @@
           %input{:type => "text",  :class => "form-control", :id => "txtYouTubePlaylist", :placeholder => "URL for YouTube playlist (eg https://www.youtube.com/playlist?list=PLNCkBYNm9NxlFCCkq0FKl3B1CfiH_SY3N)"}
           %btn.btn.btn-default{:id => "btnImportFromYouTubePlaylist"} Import from YouTube Playlist
 
+  .row.top-50
+    .col-md-12
+      %h4 Videos in this playlist
+      =@playlist.videos.where("status = 'published'").each_slice(6) do |vids|
+        .row.top-15
+          -vids.each do |video|
+            .col-md-2.video_thumbnail
+              %span= playlist_thumbnail(video, 30)
+
   .row#YouTubeVideos
-    %h4 Draft videos imported to playlist
-    %p.subtitle (click to edit and finish importing)
-    #draftVideos
+    .col-md-12
+      %h4 Draft videos in this playlist
+      %p.subtitle
+        (see the
+        =link_to "Admin page", admin_path(:tabpane => "playlists")
+        to finish importing them)
+      #draftVideos
+        =@playlist.videos.where("status = 'draft'").each_slice(6) do |vids|
+          .row.top-15
+            -vids.each do |video|
+              .col-md-2.video_thumbnail
+                =playlist_thumbnail(video, 30)
 
   .row
     %hr
@@ -45,15 +54,3 @@
       =f.submit class: "btn btn-warning top-15"
       =link_to root_path do
         %btn.btn.btn-default.top-15 Cancel
-
-#newVideoModal.modal.fade.bs-example-modal-sm{:role => "dialog", :tabindex => "-1", :data => {:playlistID => @playlist.id} }
-  .modal-dialog{:role => "document"}
-    .modal-content
-      .modal-header
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-        %h4.modal-title Import video to playlist
-      .modal-body
-        
-      .modal-footer
-        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

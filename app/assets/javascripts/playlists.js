@@ -3,7 +3,6 @@ ready = function() {
 
   //Import videos from the YouTube API
   jQuery("#btnImportFromYouTubePlaylist").on("click", function() {
-    jQuery("#draftVideos").empty();
 
     var YTplaylistId = url = $("#txtYouTubePlaylist").val(); // The YouTube playlist ID
     var playlistId = parseInt($("#spanPlaylistId").text());  // The playlist_id within the IgniteTalks site
@@ -12,10 +11,6 @@ ready = function() {
       var YTplaylistId = getPlaylistID(url);
     }    
     ImportFromYouTubePlaylist(YTplaylistId, eventId, playlistId);
-  });
-
-  jQuery('#YouTubeVideos').on("click", ".playlistItem", function() {
-    uid = this.attributes[1].value;
   });
 
   function ImportFromYouTubePlaylist(YTplaylistId, eventId, playlistId) {
@@ -58,7 +53,7 @@ ready = function() {
                         $.getJSON( checkURL, function( data3 ) {
                           if (data3.items.length > 0) {
                             title = data3.items[0].snippet.title;
-                            description = data3.items[0].snippet.description;
+                            description = data3.items[0].snippet.description || "TBA";
                             tags = data3.items[0].snippet.tags;
 
                             //TODO: add the correct event ID and Tags, and add it to the correct playlist
@@ -72,13 +67,13 @@ ready = function() {
                               dataType:"json",
                               data: data4,
                               success: function(msg) {
-                                // Add the video's thumbnail to the page. Clicking on the thumbnail will open the
-                                // New Video dialog with this video selected
-                                html = "<div class='playlistItem col-md-2' data-uid'=" + msg.video.uid + "'>"
-                                html += "<img src=http://img.youtube.com/vi/" + msg.video.uid + "/hqdefault.jpg>"
-                                html += "<p class='subtitle'>" + msg.video.title + "</p>";
-                                html += "</div>"
-                                jQuery("#draftVideos").append(html);
+                                console.log("Successfully added draft video " + msg.video.title);
+
+                                // html = "<div class='playlistItem col-md-2' data-uid'=" + msg.video.uid + "'>"
+                                // html += "<img src=http://img.youtube.com/vi/" + msg.video.uid + "/hqdefault.jpg>"
+                                // html += "<p class='subtitle'>" + msg.video.title + "</p>";
+                                // html += "</div>"
+                                // jQuery("#draftVideos").append(html);
                               },
                               error: function(err) {
                                 console.log("There was an error creating a new video")
@@ -120,16 +115,6 @@ ready = function() {
     }
     return null;
   }
-
-  $('#newVideoModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); 
-    var uid = button.data('uid');
-    var playlistID = this.attributes["data-playlistID"].value;
-    url = "http://localhost:3000/videos/new?popup=true&uid=" + uid + "&playlistID=" + playlistID
-    var modal = $(this);
-    modal.find('.modal-title').text(url);
-    modal.find('.modal-body').html("<iframe src='" + url + "' width='100%' height='800px'>")
-  })
   
 }
 

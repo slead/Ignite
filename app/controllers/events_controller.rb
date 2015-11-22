@@ -58,20 +58,19 @@ class EventsController < ApplicationController
     @playlists = @event.playlists.where("video_count > 0")
     if @playlists.exists?
       # Don't show the same videos in a playlist and in the non-playlist section
-      @videos = @event.videos
+      @videos = @event.videos.where("status = 'published'")
       @playlists.each do |playlist|
-        @videos -= playlist.videos
+        @videos -= playlist.videos.where("status = 'published'")
       end
       @videos = @videos.paginate(:page => params[:page], :per_page => 16)
     else
-      @videos = @event.videos.paginate(:page => params[:page], :per_page => 16)
+      @videos = @event.videos.where("status = 'published'").paginate(:page => params[:page], :per_page => 16)
     end
     @upcomings = @event.upcomings.where('date > ?', Date.yesterday)
     @og_title = @event.name + ' on IgniteTalks.io'
   end
 
   def new
-    # @event = current_user.events.build
     @event = Event.new
   end
 
@@ -79,7 +78,6 @@ class EventsController < ApplicationController
   end
 
   def create
-    # @event = current_user.events.build(event_params)
     @event = Event.create(event_params)
     @event.user = current_user
 
