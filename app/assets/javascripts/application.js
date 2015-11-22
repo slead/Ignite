@@ -90,7 +90,23 @@ function pageLoad() {
     columns: [
         { sortable: true, searchable: true },
         { sortable: true, searchable: true },
+        { sortable: false, searchable: true },
         { sortable: true, searchable: true },
+        { sortable: false, searchable: false },
+        { sortable: false, searchable: false },
+        { sortable: false, searchable: false }
+      ]
+  });
+
+  $('#tblDraftVideos').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": $('#tblDraftVideos').data('source'),
+    "pagingType": "full_numbers",
+    columns: [
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+        { sortable: false, searchable: true },
         { sortable: true, searchable: true },
         { sortable: false, searchable: false },
         { sortable: false, searchable: false },

@@ -1,4 +1,4 @@
-class VideoDatatable < AjaxDatatablesRails::Base
+class DraftVideoDatatable < AjaxDatatablesRails::Base
   def_delegators :@view, :link_to, :edit_video_path, :video_path, :truncate
 
   def sortable_columns
@@ -31,9 +31,9 @@ class VideoDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     if ['admin', 'curator'].include? options[:role].name
-      Video.where(status: 'published')
+      Video.where(status: 'draft')
     else
-      @videos = options[:user].videos.where(status: 'published')
+      @videos = options[:user].videos.where(status: 'draft')
     end
   end
 

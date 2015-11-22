@@ -46,7 +46,7 @@
           %h4
             %button= link_to "Add new video", new_video_path
           %hr
-          %table#tblVideos{:data => {:source => videos_path(format: :json)}}
+          %table#tblVideos{:data => {:source => videos_path(format: :json, status: "published")}}
             %thead
               %tr
                 %th Title
@@ -60,7 +60,7 @@
 
         #draft_videos_tab.tab-pane.active{:role => "tabpanel"}
           %hr
-          %table#tblDraftVideos{:data => {:source => videos_path(format: :json)}}
+          %table#tblDraftVideos{:data => {:source => videos_path(format: :json, status: "draft")}}
             %thead
               %tr
                 %th Title
