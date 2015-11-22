@@ -95,7 +95,10 @@ function pageLoad() {
         { sortable: false, searchable: false },
         { sortable: false, searchable: false },
         { sortable: false, searchable: false }
-      ]
+      ],
+      "language": {
+        "emptyTable": "No videos found"
+      }
   });
 
   $('#tblDraftVideos').dataTable({
@@ -111,7 +114,10 @@ function pageLoad() {
         { sortable: false, searchable: false },
         { sortable: false, searchable: false },
         { sortable: false, searchable: false }
-      ]
+      ],
+      "language": {
+        "emptyTable": "No draft videos found"
+      }
   });
 
   $('#tblEvents').dataTable({
@@ -127,7 +133,10 @@ function pageLoad() {
         { sortable: true, searchable: true },
         { sortable: false, searchable: false },
         { sortable: false, searchable: false }
-      ]
+      ],
+      "language": {
+        "emptyTable": "No events found"
+      }
   });
 
   $('#tblPlaylists').dataTable({
@@ -143,7 +152,10 @@ function pageLoad() {
         { sortable: true, searchable: false },
         { sortable: false, searchable: false },
         { sortable: false, searchable: false }
-      ]
+      ],
+      "language": {
+        "emptyTable": "No playlists found"
+      }
   });
 
   $('#tblUpcomings').dataTable({
@@ -157,7 +169,10 @@ function pageLoad() {
         { sortable: true, searchable: true },
         { sortable: false, searchable: false },
         { sortable: false, searchable: false }
-      ]
+      ],
+      "language": {
+        "emptyTable": "No upcoming events found"
+      }
   });
 
   $('#tblUsers').dataTable({
@@ -172,7 +187,10 @@ function pageLoad() {
         { sortable: true, searchable: true },
         { sortable: false, searchable: false },
         { sortable: false, searchable: false }
-      ]
+      ],
+      "language": {
+        "emptyTable": "No users found"
+      }
   });
 
   $('#tblTags').dataTable({
@@ -185,7 +203,10 @@ function pageLoad() {
         { sortable: true, searchable: true },
         { sortable: false, searchable: false },
         { sortable: false, searchable: false }
-      ]
+      ],
+      "language": {
+        "emptyTable": "No tags found"
+      }
   });
   
 }

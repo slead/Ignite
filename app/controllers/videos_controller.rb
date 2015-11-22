@@ -47,12 +47,7 @@ class VideosController < ApplicationController
     respond_to do |format|
       format.html
       if params[:draw].present?
-        if params[:status] == "published"
-          # Format the response for the DataTables plugin on the Admin page
-          format.json { render json: VideoDatatable.new(view_context, { user: current_user, role: current_user.role }) }
-        elsif params[:status] == "draft"
-          format.json { render json: DraftVideoDatatable.new(view_context, { user: current_user, role: current_user.role }) }
-        end
+        format.json { render json: VideoDatatable.new(view_context, { user: current_user, role: current_user.role }) }
       else
         format.json { render json: @videos }
       end

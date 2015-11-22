@@ -18,7 +18,7 @@ class VideoDatatable < AjaxDatatablesRails::Base
       [
         # comma separated list of the values for each cell of a table row
         # example: record.attribute,
-        link_to(truncate(record.title, length: 40), video_path(record)),
+        link_to(truncate(record.title, length: 40), edit_video_path(record)),
         record.speaker_name,
         record.event.name,
         record.created_at.strftime("%d %b. %Y"),
@@ -31,9 +31,9 @@ class VideoDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     if ['admin', 'curator'].include? options[:role].name
-      Video.where(status: 'published')
+      Video.where(status: params[:status])
     else
-      @videos = options[:user].videos.where(status: 'published')
+      @videos = options[:user].videos.where(status: params[:status])
     end
   end
 
