@@ -147,6 +147,7 @@ class VideosController < ApplicationController
           redirect_to @video
         end
       else
+        flash[:notice] = @video.errors.full_messages.to_sentence
         render 'edit'
       end
     end
