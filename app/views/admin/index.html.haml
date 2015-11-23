@@ -42,8 +42,9 @@
 
         #videos_tab.tab-pane.active{:role => "tabpanel"}
           %h4.top-25
-            .btn.btn-default= link_to "Add new video", new_video_path
-            .btn.btn-default= link_to "Import YouTube playlist", new_video_path
+            .btn.btn-default= link_to "Import a new video", new_video_path
+            .btn.btn-default= link_to "Import a YouTube playlist", new_video_path
+
           %h2.top-25 Published videos
           %table#tblVideos{:data => {:source => videos_path(format: :json, status: "published")}}
             %thead
@@ -72,8 +73,8 @@
 
         #playlists_tab.tab-pane{:role => "tabpanel"}
           %h4.top-25
-            .btn.btn-default= link_to "Add new playlist", new_playlist_path
-            .btn.btn-default= link_to "Import YouTube playlist", new_playlist_path          
+            .btn.btn-default= link_to "Create a new playlist", new_playlist_path
+            .btn.btn-default= link_to "Import a YouTube playlist", new_playlist_path          
           .top-50
             %table#tblPlaylists{:data => {:source => playlists_path(format: :json)}}
               %thead
@@ -89,7 +90,7 @@
 
         #tags_tab.tab-pane{:role => "tabpanel"}
           %h4.top-25
-            .btn.btn-default= link_to "Add new tag", new_tag_path
+            .btn.btn-default= link_to "Create a new tag", new_tag_path
           .top-25
             %table#tblTags{:data => {:source => tags_path(format: :json)}}
               %thead
@@ -103,7 +104,7 @@
         #events_tab.tab-pane{:role => "tabpanel"}
           - if can? :create, Event
             %h4.top-25
-              .btn.btn-default=link_to "Add new Ignite", new_event_path
+              .btn.btn-default=link_to "Create a new Ignite", new_event_path
           .top-25
             %table#tblEvents{:data => {:source => events_path(format: :json)}}
               %thead
@@ -119,7 +120,7 @@
 
         #upcomings_tab.tab-pane{:role => "tabpanel"}
           %h4.top-25
-            .btn.btn-default=link_to "Add new upcoming event", new_upcoming_path
+            .btn.btn-default=link_to "Crete a new upcoming event", new_upcoming_path
           .top-25
             %table#tblUpcomings{:data => {:source => upcomings_path(format: :json)}}
               %thead
@@ -134,7 +135,7 @@
         -if current_user.admin?
           #users_tab.tab-pane{:role => "tabpanel"}
             %h4.top-25
-              .btn.btn-default=link_to "Add new User", new_user_path
+              .btn.btn-default=link_to "Add a new User", new_user_path
             .top-25
               %table#tblUsers{:data => {:source => users_path(format: :json)}}
                 %thead
@@ -146,3 +147,4 @@
                     %th
                     %th
                 %tbody
+

@@ -57,6 +57,8 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-modal-rails (2.2.5)
+      railties (>= 3.1)
     browser (1.0.1)
     builder (3.2.2)
     byebug (4.0.5)
@@ -253,6 +255,7 @@ DEPENDENCIES
   ajax-datatables-rails
   better_errors
   binding_of_caller
+  bootstrap-modal-rails
   byebug
   cancancan (~> 1.10)
   coffee-rails (~> 4.0.0)

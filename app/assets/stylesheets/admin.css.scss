@@ -22,3 +22,7 @@ h2 button {
 
 
 @import 'https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css';
+
+.dataTables_info, .dataTables_paginate {
+  font-size: 80%;
+}

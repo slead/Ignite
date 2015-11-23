@@ -16,6 +16,8 @@
 //= require_tree .
 //= require social-share-button
 //= require leaflet
+//= require bootstrap-modal
+//= require bootstrap-modalmanager
 
 
 function pageLoad() {
@@ -86,7 +88,6 @@ function pageLoad() {
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblVideos').data('source'),
-    "pagingType": "full_numbers",
     columns: [
         { sortable: true, searchable: true },
         { sortable: true, searchable: true },
@@ -105,7 +106,6 @@ function pageLoad() {
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblDraftVideos').data('source'),
-    "pagingType": "full_numbers",
     columns: [
         { sortable: true, searchable: true },
         { sortable: true, searchable: true },
@@ -124,7 +124,6 @@ function pageLoad() {
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblEvents').data('source'),
-    "pagingType": "full_numbers",
     columns: [
         { sortable: true, searchable: true },
         { sortable: true, searchable: true },
@@ -143,7 +142,6 @@ function pageLoad() {
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblPlaylists').data('source'),
-    "pagingType": "full_numbers",
     columns: [
         { sortable: true, searchable: true },
         { sortable: true, searchable: true },
@@ -162,7 +160,6 @@ function pageLoad() {
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblUpcomings').data('source'),
-    "pagingType": "full_numbers",
     columns: [
         { sortable: true, searchable: true },
         { sortable: true, searchable: true },
@@ -179,7 +176,6 @@ function pageLoad() {
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblUsers').data('source'),
-    "pagingType": "full_numbers",
     columns: [
         { sortable: true, searchable: true },
         { sortable: true, searchable: true },
@@ -197,7 +193,6 @@ function pageLoad() {
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblTags').data('source'),
-    "pagingType": "full_numbers",
     columns: [
         { sortable: true, searchable: true },
         { sortable: true, searchable: true },

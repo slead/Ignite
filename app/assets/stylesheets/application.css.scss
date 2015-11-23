@@ -5,6 +5,8 @@
  *= require devise_bootstrap_views
 //= require leaflet
  *= require social-share-button
+ *= require bootstrap-modal-bs3patch
+ *= require bootstrap-modal
 //= depend_on_asset "layers.png"
 //= depend_on_asset "layers-2x.png"
  */

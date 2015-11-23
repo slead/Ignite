@@ -18,7 +18,7 @@ end
 
 gem "active_model_serializers"
 gem 'ajax-datatables-rails'
-gem 'byebug'
+gem 'bootstrap-modal-rails'
 gem 'cancancan', '~> 1.10'
 gem 'devise', '~> 3.5.2'
 gem 'devise-bootstrap-views'
