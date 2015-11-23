@@ -27,7 +27,7 @@
               .form-group
                 %label{:for => "txtYouTubePlaylist"} YouTube playlist URL
                 %input#txtYouTubePlaylist.form-control{:placeholder => "eg https://www.youtube.com/playlist?list=abcdefj", :type => "text"}/
-              %button.btn.btn-default{:type => "submit", :id => "btnImportFromYouTubePlaylist"} Import from YouTube playlist
+              .btn.btn-default{:type => "submit", :id => "btnImportFromYouTubePlaylist"} Import from YouTube playlist
 
         -if @playlist.video_count and @playlist.video_count > 0
           .row
