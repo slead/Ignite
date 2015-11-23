@@ -18,7 +18,7 @@ class TagDatatable < AjaxDatatablesRails::Base
       [
         # comma separated list of the values for each cell of a table row
         # example: record.attribute,
-        truncate(record.name, length: 40),
+        link_to(truncate(record.name, length: 40), edit_tag_path(record)),
         record.video_count,
         link_to("edit", edit_tag_path(record)),
         link_to("delete", tag_path(record), method: :delete, data: { confirm: "Are you sure you wish to delete this tag?" })

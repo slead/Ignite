@@ -18,7 +18,7 @@ class PlaylistDatatable < AjaxDatatablesRails::Base
       [
         # comma separated list of the values for each cell of a table row
         # example: record.attribute,record.speaker_name,
-        link_to(truncate(record.name, length: 40), playlist_path(record)),
+        link_to(truncate(record.name, length: 40), edit_playlist_path(record)),
         record.event.name,
         record.featured,
         record.listed,

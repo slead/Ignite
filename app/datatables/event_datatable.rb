@@ -18,7 +18,7 @@ class EventDatatable < AjaxDatatablesRails::Base
       [
         # comma separated list of the values for each cell of a table row
         # example: record.attribute,
-        link_to(record.name, record),
+        link_to(record.name, edit_event_path(record)),
         record.city,
         record.country,
         record.url,

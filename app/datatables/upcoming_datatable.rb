@@ -19,7 +19,7 @@ class UpcomingDatatable < AjaxDatatablesRails::Base
       [
         # comma separated list of the values for each cell of a table row
         # example: record.attribute,
-        record.name,
+        link_to(record.name, edit_upcoming_path(record)),
         record.event.name,
         record.date.strftime("%d %b. %Y"),
         link_to("edit", edit_upcoming_path(record)),

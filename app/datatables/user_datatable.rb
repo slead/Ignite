@@ -18,7 +18,7 @@ class UserDatatable < AjaxDatatablesRails::Base
       [
         # comma separated list of the values for each cell of a table row
         # example: record.attribute,
-        link_to(record.name, user_path(record)),
+        link_to(record.name, edit_user_path(record)),
         record.email,
         record.role.name,
         record.sign_in_count,

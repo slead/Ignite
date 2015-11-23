@@ -42,7 +42,6 @@ class PlaylistsController < ApplicationController
 
   def create
     @playlist = Playlist.create(playlist_params)
-    @playlist.user = current_user
     if @playlist.save
         flash[:notice] = "playlist #{@playlist.name} added successfully."
         redirect_to admin_path

@@ -1,5 +1,5 @@
 class Playlist < ActiveRecord::Base
-  validates_presence_of :name, :user_id
+  validates_presence_of :name, :event
   validates_uniqueness_of :name
   belongs_to :event
   has_and_belongs_to_many :videos
