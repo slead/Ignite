@@ -17,16 +17,6 @@
         - else
           = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select'}
 
-      / -if @playlist.id
-      /   .row.top-50
-      /     .col-md-12
-      /       %h4 Import videos from YouTube
-      /       %form.form-inline
-      /         .form-group
-      /           %label{:for => "txtYouTubePlaylist"} YouTube playlist URL
-      /           %input#txtYouTubePlaylist.form-control{:placeholder => "eg https://www.youtube.com/playlist?list=abcdefj", :type => "text"}/
-      /         .btn.btn-default{:type => "submit", :id => "btnImportFromYouTubePlaylist"} Import from YouTube playlist
-
     -if @playlist.video_count and @playlist.video_count > 0
       .row.top-50
         .col-md-12

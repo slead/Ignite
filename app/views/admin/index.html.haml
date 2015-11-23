@@ -43,7 +43,8 @@
         #videos_tab.tab-pane.active{:role => "tabpanel"}
           %h4.top-25
             .btn.btn-default= link_to "Import a new video", new_video_path
-            .btn.btn-default= link_to "Import a YouTube playlist", new_video_path
+            / .btn.btn-default{"data-target" => "#importPlaylistModal", "data-toggle" => "modal", :type => "button"}
+            /   Import a YouTube playlist
 
           %h2.top-25 Published videos
           %table#tblVideos{:data => {:source => videos_path(format: :json, status: "published")}}
@@ -74,7 +75,8 @@
         #playlists_tab.tab-pane{:role => "tabpanel"}
           %h4.top-25
             .btn.btn-default= link_to "Create a new playlist", new_playlist_path
-            .btn.btn-default= link_to "Import a YouTube playlist", new_playlist_path          
+            .btn.btn-default{"data-target" => "#importPlaylistModal", "data-toggle" => "modal", :type => "button"}
+              Import a YouTube playlist          
           .top-50
             %table#tblPlaylists{:data => {:source => playlists_path(format: :json)}}
               %thead
@@ -148,3 +150,22 @@
                     %th
                 %tbody
 
+/ Import YouTube playlist modal
+#importPlaylistModal.modal.fade{"aria-labelledby" => "importPlaylistModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#importPlaylistModalLabel.modal-title Import a YouTube Playlist
+      .modal-body
+        .row.top-25
+          .col-md-12
+            %form.form-inline
+              .col-md-8.form-group
+                %label{:for => "txtYouTubePlaylist"} YouTube playlist URL
+                %input#txtYouTubePlaylist.form-control{:placeholder => "eg https://www.youtube.com/playlist?list=abcdefj", :type => "text"}
+              .col-md-4
+                .btn.btn-default.top-25{:type => "submit", :id => "btnImportFromYouTubePlaylist"} Import from YouTube playlist
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

@@ -16,9 +16,6 @@
 //= require_tree .
 //= require social-share-button
 //= require leaflet
-//= require bootstrap-modal
-//= require bootstrap-modalmanager
-
 
 function pageLoad() {
   setTimeout(function() {
