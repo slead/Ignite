@@ -2,22 +2,24 @@
   .form-group
     -if current_user.curator?
       =f.input :featured, {:label => "Feature this video on the homepage?"}
-    =f.input :status, collection: ["draft", "published"]
+    -if @video.id
+      %h4= "Status: #{@video.status}"
     %hr
-    .row
-      .col-md-10#ignite_name
-        %label Filmed at:
-        -if current_user.curator?
-          = f.collection_select :event_id, Event.all.order(:name), :id, :remove_ignite, {:prompt => "Choose the Ignite"}, {:class=>'form-control select'}
-        - else
-          = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {}, {:class=>'form-control select'}
-    .row.top-25
-      .col-md-10
-        =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL (in the format https://www.youtube.com/watch?v=YOUTUBE_ID)", label: 'Video URL (required)'
-      -if not params["popup"]
+    -if not @video.status == 'draft'
+      .row
+        .col-md-10#ignite_name
+          %label Filmed at:
+          -if current_user.curator?
+            = f.collection_select :event_id, Event.all.order(:name), :id, :remove_ignite, {:prompt => "Choose the Ignite"}, {:class=>'form-control select'}
+          - else
+            = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {}, {:class=>'form-control select'}
+      .row.top-25
+        .col-md-10
+          =f.input :url, input_html: { class: 'form-control' }, placeholder: "Enter the URL (in the format https://www.youtube.com/watch?v=YOUTUBE_ID)", label: 'Video URL (required)'
         .col-md-2
           .tooltip-wrapper{:data => {:toggle => "tooltip"}, :title => "Enter the URL, then retrieve title and description from YouTube"}
             %btn.btn.btn-warning.top-25#btnYouTubeRetrieve Get info
+
     .row.details
       .col-md-12
         =f.input :title,  input_html: { class: 'form-control' }, placeholder: "Enter the video's title", label: 'Video title (required)', hint: 'Do not include the speaker name or event name'
@@ -30,7 +32,7 @@
         %p= f.collection_check_boxes :tag_ids, Tag.all.order(:name), :id, :name
         =f.input :new_tag_name, input_html: { class: 'form-control' }, placeholder: "Enter new tags (separated with commas)"
 
-    -if not params["popup"]
+    -if not @video.status == 'draft'
       .row.top-25.details
         %hr
         .col-md-10
@@ -43,7 +45,11 @@
     .row.details
       .col-md-10
         %hr
-        =f.submit class: "btn btn-warning top-15"
-        -if not params["popup"]
-          =link_to root_path do
-            %btn.btn.btn-default.top-15 Cancel
+        -if @video.status == 'draft'
+          =f.submit "Publish video", class: "btn btn-warning top-15"
+        - else
+          =f.submit class: "btn btn-warning top-15"
+        -if @video.id
+          =link_to "Delete video", video_path(@video), method: :delete, data: {confirm: "Are you sure you want to delete this video?"}, class: "btn btn-default top-15"
+        =link_to admin_path do
+          %btn.btn.btn-default.top-15 Back to Admin page

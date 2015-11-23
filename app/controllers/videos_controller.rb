@@ -5,7 +5,8 @@ class VideosController < ApplicationController
   layout 'no_footer', :only => [:new, :edit]
   before_filter :set_rand_cookie
   before_action :update_youtube_stats, only: [:show]
-  respond_to :json
+  # before_action :validate_before_publishing, only: [:update]
+  # respond_to :json
 
 
   # rescue_from ActiveRecord::RecordNotFound do
@@ -28,10 +29,10 @@ class VideosController < ApplicationController
       @videos = Video.where("status = 'published'").order("#{params[:sort]} DESC").paginate(:page => params[:page], :per_page => 16)
 
     elsif params[:uid].present?
-      # Check whther this video already exists. This is called when creating a new video, to save the
+      # Check whether this video already exists. This is called when creating a new video, to save the
       # user from wasting time entering details about an existing video.
       # eg: http://localhost:3000/videos.json?uid=AlkKPojdVAk
-      @videos = Video.where("status = 'published'").where(:uid => params[:uid]).paginate(:page => params[:page], :per_page => 16)
+      @videos = Video.where(:uid => params[:uid]).paginate(:page => params[:page], :per_page => 16)
 
     else
       # Show videos in random order. Code is from http://nomethoderror.com/blog/2014/02/05/activerecord-random-ordering-with-pagination/
@@ -115,14 +116,24 @@ class VideosController < ApplicationController
   end
 
   def update
-    if @video.update(video_params)
-      if current_user.curator?
-        redirect_to admin_path
-      else
-        redirect_to @video
-      end
+    if [params[:video][:speaker_name], params[:video][:description]].include? "TBA"
+      # Videos which are auto-imported have the status 'draft' with unknown Speaker Name and Description.
+      # Don't allow videos to be published until that is amended
+      @video.status = 'draft'
+      flash[:notice] = "Please check the Speaker Name and Description field before publishing"
+      redirect_to edit_video_path(@video)
     else
-      render 'edit'
+      # Otherwise, publish the video
+      @video.status = 'published'
+      if @video.update(video_params)
+        if current_user.curator?
+          redirect_to admin_path
+        else
+          redirect_to @video
+        end
+      else
+        render 'edit'
+      end
     end
   end
 
@@ -160,6 +171,17 @@ private
       rescue Exception => e
         print "YouTube API error"
       end
+    end
+  end
+
+  def validate_before_publishing
+
+    if [@video.speaker_name, @video.description].include? "TBA"
+      @video.status = 'draft'
+      flash[:notice] = "Please check the Speaker Name and Description field before publishing"
+      redirect_to edit_video_path(@video)
+    else
+      @video.status = 'published'
     end
   end
 

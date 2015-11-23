@@ -28,11 +28,14 @@
   .row.top-50
     .col-md-12
       %h4 Videos in this playlist
-      =@playlist.videos.where("status = 'published'").each_slice(6) do |vids|
-        .row.top-15
-          -vids.each do |video|
-            .col-md-2.video_thumbnail
-              %span= playlist_thumbnail(video, 30)
+      -if @playlist.video_count > 0
+        =@playlist.videos.where("status = 'published'").each_slice(6) do |vids|
+          .row.top-15
+            -vids.each do |video|
+              .col-md-2.video_thumbnail
+                %span= playlist_thumbnail(video, 30)
+      - else
+        %p There are no videos in this playlist
 
   .row#YouTubeVideos
     .col-md-12
@@ -42,11 +45,14 @@
         =link_to "Admin page", admin_path(:tabpane => "playlists")
         to finish importing them)
       #draftVideos
-        =@playlist.videos.where("status = 'draft'").each_slice(6) do |vids|
-          .row.top-15
-            -vids.each do |video|
-              .col-md-2.video_thumbnail
-                =playlist_thumbnail(video, 30)
+        -if @playlist.videos.where("status = 'draft'").count > 0
+          =@playlist.videos.where("status = 'draft'").each_slice(6) do |vids|
+            .row.top-15
+              -vids.each do |video|
+                .col-md-2.video_thumbnail
+                  =playlist_thumbnail(video, 30)
+        - else
+          %p There are no draft videos in this playlist
 
   .row
     %hr

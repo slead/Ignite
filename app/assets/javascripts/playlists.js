@@ -69,11 +69,11 @@ ready = function() {
                               success: function(msg) {
                                 console.log("Successfully added draft video " + msg.video.title);
 
-                                // html = "<div class='playlistItem col-md-2' data-uid'=" + msg.video.uid + "'>"
-                                // html += "<img src=http://img.youtube.com/vi/" + msg.video.uid + "/hqdefault.jpg>"
-                                // html += "<p class='subtitle'>" + msg.video.title + "</p>";
-                                // html += "</div>"
-                                // jQuery("#draftVideos").append(html);
+                                html = "<div class='playlistItem col-md-2' data-uid'=" + msg.video.uid + "'>"
+                                html += "<img src=http://img.youtube.com/vi/" + msg.video.uid + "/hqdefault.jpg>"
+                                html += "<p class='subtitle'>" + msg.video.title + "</p>";
+                                html += "</div>"
+                                jQuery("#draftVideos").append(html);
                               },
                               error: function(err) {
                                 console.log("There was an error creating a new video")

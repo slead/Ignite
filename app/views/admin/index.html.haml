@@ -22,8 +22,6 @@
         %li.active{:role => "presentation"}
           %a{"aria-controls" => "videos_tab", "data-toggle" => "tab", :href => "#videos_tab", :id => "tab_videos", :role => "tab"} Videos
         %li{:role => "presentation"}
-          %a{"aria-controls" => "draft_videos_tab", "data-toggle" => "tab", :href => "#draft_videos_tab", :id => "tab_draft_videos", :role => "tab"} Draft Videos
-        %li{:role => "presentation"}
           %a{"aria-controls" => "playlists_tab", "data-toggle" => "tab", :href => "#playlists_tab", :id => "tab_playlists", :role => "tab"} Playlists
         %li{:role => "presentation"}
           %a{"aria-controls" => "events_tab", "data-toggle" => "tab", :href => "#events_tab", :id => "tab_events", :role => "tab"} Ignites
@@ -43,6 +41,7 @@
       .tab-content
 
         #videos_tab.tab-pane.active{:role => "tabpanel"}
+          %h2 Published videos
           %h4
             %button= link_to "Add new video", new_video_path
           %hr
@@ -58,8 +57,8 @@
                 %th Delete
             %tbody
 
-        #draft_videos_tab.tab-pane.active{:role => "tabpanel"}
           %hr
+          %h2 Draft videos
           %table#tblDraftVideos{:data => {:source => videos_path(format: :json, status: "draft")}}
             %thead
               %tr

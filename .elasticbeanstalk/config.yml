@@ -1,4 +1,6 @@
 branch-defaults:
+  YouTubePlaylist:
+    environment: ignite-env3
   aws-ses:
     environment: ignite-env3
   eb:
