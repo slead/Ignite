@@ -102,20 +102,20 @@ class Video < ActiveRecord::Base
   end
 
   private
-  # Keep track of the number of videos in a playlist
-  def inc_playlist_count(model)
-    Playlist.increment_counter('video_count', model.id)
-  end
-  def dec_playlist_count(model)
-    Playlist.decrement_counter('video_count', model.id)
-  end
+    # Keep track of the number of videos in a playlist
+    def inc_playlist_count(model)
+      Playlist.increment_counter('video_count', model.id)
+    end
+    def dec_playlist_count(model)
+      Playlist.decrement_counter('video_count', model.id)
+    end
 
-  # Keep track of the number of videos with a tag
-    def inc_tag_count(model)
-    Tag.increment_counter('video_count', model.id)
-  end
-  def dec_tag_count(model)
-    Tag.decrement_counter('video_count', model.id)
-  end
+    # Keep track of the number of videos with a tag
+      def inc_tag_count(model)
+      Tag.increment_counter('video_count', model.id)
+    end
+    def dec_tag_count(model)
+      Tag.decrement_counter('video_count', model.id)
+    end
 
 end

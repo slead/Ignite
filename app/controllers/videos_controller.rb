@@ -57,7 +57,12 @@ class VideosController < ApplicationController
   end
 
   def new
-    @video = Video.new
+    # If this user can only manage one event, just assign the video to that event
+    if current_user.events.count == 1
+      @video = Video.new(event: current_user.events.first)
+    else
+      @video = Video.new
+    end
     @tag = Tag.new
   end
 

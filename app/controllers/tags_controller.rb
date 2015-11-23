@@ -28,7 +28,6 @@ class TagsController < ApplicationController
   end
 
   def new
-    # @tag = current_user.tags.build
     @tag = Tag.new
   end
 

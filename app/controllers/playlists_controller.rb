@@ -30,7 +30,12 @@ class PlaylistsController < ApplicationController
   end
 
   def new
-    @playlist = Playlist.new
+    # If this user can only manage one event, just assign the playlist to that event
+    if current_user.events.count == 1
+      @playlist = Playlist.new(event: current_user.events.first)
+    else
+      @playlist = Playlist.new
+    end
   end
 
   def show

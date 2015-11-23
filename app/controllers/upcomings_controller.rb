@@ -22,8 +22,12 @@ class UpcomingsController < ApplicationController
   end
 
   def new
-    # @upcoming = current_user.upcomings.build
-    @upcoming = Upcoming.new
+    # If this user can only manage one event, just assign the upcoming to that event
+    if current_user.events.count == 1
+      @upcoming = Upcoming.new(event: current_user.events.first)
+    else
+      @upcoming = Upcoming.new
+    end
   end
 
   def edit
