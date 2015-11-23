@@ -121,16 +121,26 @@ class VideosController < ApplicationController
   end
 
   def update
+    previous_status = @video.status
     if [params[:video][:speaker_name], params[:video][:description]].include? "TBA"
       # Videos which are auto-imported have the status 'draft' with unknown Speaker Name and Description.
       # Don't allow videos to be published until that is amended
       @video.status = 'draft'
+      if previous_status == 'published'
+        # Decrement the video_count of any playlists which previously held this video
+        @video.playlists.each do |playlist| playlist.video_count -= 1 end
+        byebug
+      end
       flash[:notice] = "Please check the Speaker Name and Description field before publishing"
       redirect_to edit_video_path(@video)
     else
       # Otherwise, publish the video
       @video.status = 'published'
       if @video.update(video_params)
+        if previous_status == 'draft'
+          # Increment the video_count of any playlists which previously held this video
+          @video.playlists.each do |playlist| playlist.video_count += 1 end
+        end
         if current_user.curator?
           redirect_to admin_path
         else
