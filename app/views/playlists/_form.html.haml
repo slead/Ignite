@@ -17,42 +17,43 @@
       - else
         = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select'}
 
-  .row
-    .col-md-12
-      %h4 Add Videos to this playlist
-      %form.form-inline
-        .form-group
-          %input{:type => "text",  :class => "form-control", :id => "txtYouTubePlaylist", :placeholder => "URL for YouTube playlist (eg https://www.youtube.com/playlist?list=PLNCkBYNm9NxlFCCkq0FKl3B1CfiH_SY3N)"}
-          %btn.btn.btn-default{:id => "btnImportFromYouTubePlaylist"} Import from YouTube Playlist
+  -if @playlist.id
+    .row
+      .col-md-12
+        %h4 Add Videos to this playlist
+        %form.form-inline
+          .form-group
+            %input{:type => "text",  :class => "form-control", :id => "txtYouTubePlaylist", :placeholder => "URL for YouTube playlist (eg https://www.youtube.com/playlist?list=PLNCkBYNm9NxlFCCkq0FKl3B1CfiH_SY3N)"}
+            %btn.btn.btn-default{:id => "btnImportFromYouTubePlaylist"} Import from YouTube Playlist
 
-  .row.top-50
-    .col-md-12
-      %h4 Videos in this playlist
-      -if @playlist.video_count > 0
-        =@playlist.videos.where("status = 'published'").each_slice(6) do |vids|
-          .row.top-15
-            -vids.each do |video|
-              .col-md-2.video_thumbnail
-                %span= playlist_thumbnail(video, 30)
-      - else
-        %p There are no videos in this playlist
-
-  .row#YouTubeVideos
-    .col-md-12
-      %h4 Draft videos in this playlist
-      %p.subtitle
-        (see the
-        =link_to "Admin page", admin_path(:tabpane => "playlists")
-        to finish importing them)
-      #draftVideos
-        -if @playlist.videos.where("status = 'draft'").count > 0
-          =@playlist.videos.where("status = 'draft'").each_slice(6) do |vids|
+    .row.top-50
+      .col-md-12
+        %h4 Videos in this playlist
+        -if @playlist.video_count > 0
+          =@playlist.videos.where("status = 'published'").each_slice(6) do |vids|
             .row.top-15
               -vids.each do |video|
                 .col-md-2.video_thumbnail
-                  =playlist_thumbnail(video, 30)
+                  %span= playlist_thumbnail(video, 30)
         - else
-          %p There are no draft videos in this playlist
+          %p There are no videos in this playlist
+
+    .row#YouTubeVideos
+      .col-md-12
+        %h4 Draft videos in this playlist
+        %p.subtitle
+          (see the
+          =link_to "Admin page", admin_path(:tabpane => "playlists")
+          to finish importing them)
+        #draftVideos
+          -if @playlist.videos.where("status = 'draft'").count > 0
+            =@playlist.videos.where("status = 'draft'").each_slice(6) do |vids|
+              .row.top-15
+                -vids.each do |video|
+                  .col-md-2.video_thumbnail
+                    =playlist_thumbnail(video, 30)
+          - else
+            %p There are no draft videos in this playlist
 
   .row
     %hr
