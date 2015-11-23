@@ -102,12 +102,16 @@ class Video < ActiveRecord::Base
   end
 
   private
-    # Keep track of the number of videos in a playlist
+    # Keep track of the number of published videos in a playlist
     def inc_playlist_count(model)
-      Playlist.increment_counter('video_count', model.id)
+      if self.status == 'published'
+        Playlist.increment_counter('video_count', model.id)
+      end
     end
     def dec_playlist_count(model)
-      Playlist.decrement_counter('video_count', model.id)
+      if self.status == 'published'
+        Playlist.decrement_counter('video_count', model.id)
+      end
     end
 
     # Keep track of the number of videos with a tag

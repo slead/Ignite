@@ -3,12 +3,12 @@ class VideoDatatable < AjaxDatatablesRails::Base
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
-    @sortable_columns ||= %w(Video.title Video.speaker_name Video.created_at Video.featured)
+    @sortable_columns ||= %w(Video.title Video.speaker_name Video.created_at)
   end
 
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
-    @searchable_columns ||= %w(Video.title Video.speaker_name Event.name Video.description)
+    @searchable_columns ||= %w(Video.title Video.speaker_name Video.description)
   end
 
   private

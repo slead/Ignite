@@ -3,62 +3,62 @@
     -if current_user.curator?
       =f.input :featured, {:label => "Feature this playlist on the homepage?"}
       =f.input :listed, {:label => "List this playlist on the Playlists page?"}
-  %hr
-  .row
-    .col-md-12#ignite_name
-      =f.input :name,  input_html: { class: 'form-control' }, placeholder: "Enter a descriptive name for the playlist (eg Ignite Seattle 23)"
-      / Place the playlist ID on the form so we can retrieve it for use in the JSON post later
-      -if @playlist.id
-        %span#spanPlaylistId.hidden= @playlist.id
-      =f.input :description,  input_html: { class: 'form-control' }, placeholder: "Enter  a description for the playlist (optional)"
-      %label Ignite event:
-      -if current_user.curator?
-        = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
-      - else
-        = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select'}
+    %hr
+    .row
+      .col-md-12#ignite_name
+        =f.input :name,  input_html: { class: 'form-control' }, placeholder: "Enter a descriptive name for the playlist (eg Ignite Seattle 23)"
+        / Place the playlist ID on the form so we can retrieve it for use in the JSON post later
+        -if @playlist.id
+          %span#spanPlaylistId.hidden= @playlist.id
+        =f.input :description,  input_html: { class: 'form-control' }, placeholder: "Enter  a description for the playlist (optional)"
+        %label Ignite event:
+        -if current_user.curator?
+          = f.collection_select :event_id, Event.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select' }
+        - else
+          = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select'}
 
-  -if @playlist.id
-    .row.top-50
-      .well.well-lg
+      -if @playlist.id
+        .row.top-50
+          .well.well-lg
+            .row
+              .col-md-12
+                %h4 Import videos from YouTube
+                %form.form-inline
+                  .form-group
+                    %label{:for => "txtYouTubePlaylist"} YouTube playlist URL
+                    %input#txtYouTubePlaylist.form-control{:placeholder => "eg https://www.youtube.com/playlist?list=abcdefj", :type => "text"}/
+                  .btn.btn-default{:type => "submit", :id => "btnImportFromYouTubePlaylist"} Import from YouTube playlist
+
+      -if @playlist.video_count and @playlist.video_count > 0
         .row
           .col-md-12
-            %h4 Import videos from YouTube
-            %form.form-inline
-              .form-group
-                %label{:for => "txtYouTubePlaylist"} YouTube playlist URL
-                %input#txtYouTubePlaylist.form-control{:placeholder => "eg https://www.youtube.com/playlist?list=abcdefj", :type => "text"}/
-              .btn.btn-default{:type => "submit", :id => "btnImportFromYouTubePlaylist"} Import from YouTube playlist
+            %h4 Videos in this playlist
+            =@playlist.videos.where("status = 'published'").each_slice(6) do |vids|
+              .row.top-15
+                -vids.each do |video|
+                  .col-md-2.video_thumbnail
+                    %span= playlist_thumbnail(video, 30)
 
-        -if @playlist.video_count and @playlist.video_count > 0
-          .row
-            .col-md-12
-              %h4 Videos in this playlist
-              =@playlist.videos.where("status = 'published'").each_slice(6) do |vids|
+      -if @playlist.videos.where("status = 'draft'").count > 0
+        .row#YouTubeVideos
+          .col-md-12
+            %h4 Draft videos in this playlist
+            %p.subtitle
+              (see the Videos tab on the
+              =link_to "Admin page", admin_path(:tabpane => "videos")
+              to finish importing them)
+        .row
+          .col-md-12
+            #draftVideos
+              =@playlist.videos.where("status = 'draft'").each_slice(6) do |vids|
                 .row.top-15
                   -vids.each do |video|
                     .col-md-2.video_thumbnail
-                      %span= playlist_thumbnail(video, 30)
+                      =playlist_thumbnail(video, 30)
 
-        -if @playlist.videos.where("status = 'draft'").count > 0
-          .row#YouTubeVideos
-            .col-md-12
-              %h4 Draft videos in this playlist
-              %p.subtitle
-                (see the Videos tab on the
-                =link_to "Admin page", admin_path(:tabpane => "videos")
-                to finish importing them)
-          .row
-            .col-md-12
-              #draftVideos
-                =@playlist.videos.where("status = 'draft'").each_slice(6) do |vids|
-                  .row.top-15
-                    -vids.each do |video|
-                      .col-md-2.video_thumbnail
-                        =playlist_thumbnail(video, 30)
-
-  .row
-    %hr
-    .col-md-12
-      =f.submit class: "btn btn-warning top-15"
-      =link_to root_path do
-        %btn.btn.btn-default.top-15 Cancel
+    .row
+      %hr
+      .col-md-12
+        =f.submit class: "btn btn-warning top-15"
+        =link_to root_path do
+          %btn.btn.btn-default.top-15 Cancel
