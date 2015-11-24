@@ -161,11 +161,23 @@
       .modal-body
         .row.top-25
           .col-md-12
-            %form.form-inline
-              .col-md-8.form-group
-                %label{:for => "txtYouTubePlaylist"} YouTube playlist URL
-                %input#txtYouTubePlaylist.form-control{:placeholder => "eg https://www.youtube.com/playlist?list=abcdefj", :type => "text"}
-              .col-md-4
-                .btn.btn-default.top-25{:type => "submit", :id => "btnImportFromYouTubePlaylist"} Import from YouTube playlist
+            %form
+              .row
+                .col-md-8
+                  .form-group
+                    %label{:for => "selPlaylistDropdown"} Import to playlist:
+                    %select#selPlaylistDropdown.form-control
+                      -@playlists.each do |playlist|
+                        %option{:value => [playlist.id,playlist.event.id]}= playlist.name
+              .row
+                .col-md-8
+                  .form-group
+                    %label{:for => "txtYouTubePlaylist"} YouTube playlist URL
+                    %input#txtYouTubePlaylist.form-control{:placeholder => "eg https://www.youtube.com/playlist?list=abcdefj", :type => "text"}
+                .col-md-4
+                  .btn.btn-warning.top-25{:type => "submit", :id => "btnImportFromYouTubePlaylist"} Import from YouTube playlist
+        .row
+          .col-md-12
+            #results
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
