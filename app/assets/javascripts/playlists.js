@@ -66,7 +66,6 @@ ready = function() {
                         // //TODO: add the correct event ID and Tags, and add it to the correct playlist
                         var video_json = { "video": {"uid": this.videoId, "url": "http://www.youtube.com/watch?v=" + this.videoId, "title": title, "speaker_name": "TBA", "event_id": eventId , "description": description, "status": "draft", "playlist_ids": [playlistId]}};
                         var data4 = JSON.stringify(video_json);
-                        console.log(data4)
                         var post_url = "http://" + window.location.host + "/videos.json";
                         $.ajax({
                           url: post_url,
