@@ -5,10 +5,7 @@ class VideosController < ApplicationController
   layout 'no_footer', :only => [:new, :edit]
   before_filter :set_rand_cookie
   before_action :update_youtube_stats, only: [:show]
-  # before_action :validate_before_publishing, only: [:update]
-  # respond_to :json
-
-
+  
   # rescue_from ActiveRecord::RecordNotFound do
   #   flash[:notice] = 'Sorry, that video does not exist'
   #   redirect_to action: :index
@@ -121,26 +118,28 @@ class VideosController < ApplicationController
   end
 
   def update
-    previous_status = @video.status
+
     if [params[:video][:speaker_name], params[:video][:description]].include? "TBA"
       # Videos which are auto-imported have the status 'draft' with unknown Speaker Name and Description.
       # Don't allow videos to be published until that is amended
       @video.status = 'draft'
-      if previous_status == 'published'
-        # Decrement the video_count of any playlists which previously held this video
-        @video.playlists.each do |playlist| playlist.video_count -= 1 end
-        byebug
-      end
       flash[:notice] = "Please check the Speaker Name and Description field before publishing"
       redirect_to edit_video_path(@video)
     else
       # Otherwise, publish the video
       @video.status = 'published'
       if @video.update(video_params)
-        if previous_status == 'draft'
-          # Increment the video_count of any playlists which previously held this video
-          @video.playlists.each do |playlist| playlist.video_count += 1 end
+
+        # Update the video_count of any playlists and tags which hold this video
+        @video.playlists.each do |playlist|
+          playlist.video_count = playlist.videos.where(status: "published").count
+          playlist.save!
         end
+        @video.tags.each do |tag|
+          tag.video_count = tag.videos.where(status: "published").count
+          tag.save!
+        end
+
         if current_user.curator?
           redirect_to admin_path
         else
@@ -191,12 +190,13 @@ private
   end
 
   def validate_before_publishing
-
-    if [@video.speaker_name, @video.description].include? "TBA"
+    # Before saving a video, verify it no longer has "TBA"
+    if [video_params[:speaker_name], video_params[:description]].include? "TBA"
       @video.status = 'draft'
       flash[:notice] = "Please check the Speaker Name and Description field before publishing"
       redirect_to edit_video_path(@video)
     else
+      # Once it's published, ensure that any playlists it's in have the correct video_count
       @video.status = 'published'
     end
   end

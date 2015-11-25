@@ -6,8 +6,8 @@ class Video < ActiveRecord::Base
   validates_uniqueness_of :url
   validates_uniqueness_of :uid
   belongs_to :event
-  has_and_belongs_to_many :tags, before_add: :inc_tag_count, before_remove: :dec_tag_count
-  has_and_belongs_to_many :playlists, before_add: :inc_playlist_count, before_remove: :dec_playlist_count
+  has_and_belongs_to_many :tags, after_add: :update_video_count, after_remove: :update_video_count
+  has_and_belongs_to_many :playlists, after_add: :update_video_count, after_remove: :update_video_count
   searchkick
 
   #Allow the creation of new tags and playlists during create/edit videos
@@ -102,24 +102,13 @@ class Video < ActiveRecord::Base
   end
 
   private
-    # Keep track of the number of published videos in a playlist
-    def inc_playlist_count(model)
-      if self.status == 'published'
-        Playlist.increment_counter('video_count', model.id)
+    # Keep track of the number of published videos in a playlist or tag
+    def update_video_count(model)
+      begin
+        model.video_count = model.videos.where(status:'published').count
+        model.save!
+      rescue
+        puts "there was a problem updating the published video count"
       end
     end
-    def dec_playlist_count(model)
-      if self.status == 'published'
-        Playlist.decrement_counter('video_count', model.id)
-      end
-    end
-
-    # Keep track of the number of videos with a tag
-      def inc_tag_count(model)
-      Tag.increment_counter('video_count', model.id)
-    end
-    def dec_tag_count(model)
-      Tag.decrement_counter('video_count', model.id)
-    end
-
 end
