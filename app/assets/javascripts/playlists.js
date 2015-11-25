@@ -52,32 +52,42 @@ ready = function() {
 
                   // Retrieve the video's details from the YouTube API
                   checkURL = "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94&fields=items(snippet(title,description,tags))&part=snippet&id=" + this.videoId;
-                  $.getJSON( checkURL, function( data3 ) {
-                    if (data3.items.length > 0) {
-                      title = data3.items[0].snippet.title;
-                      description = data3.items[0].snippet.description || "TBA";
-                      tags = data3.items[0].snippet.tags;
+                  // $.getJSON( checkURL, this.videoId, function( data3 ) {
+                  $.ajax({
+                    dataType: "json",
+                    url: checkURL,
+                    videoId: this.videoId,
+                    success: function(data3) {
+                      if (data3.items.length > 0) {
+                        title = data3.items[0].snippet.title;
+                        description = data3.items[0].snippet.description || "TBA";
+                        tags = data3.items[0].snippet.tags;
 
-                      // //TODO: add the correct event ID and Tags, and add it to the correct playlist
-                      var video_json = { "video": {"uid": this.videoId, "url": "http://www.youtube.com/watch?v=" + videoId, "title": title, "speaker_name": "TBA", "event_id": eventId , "description": description, "status": "draft", "playlist_ids": [playlistId]}};
-                      var data4 = JSON.stringify(video_json);
-                      var post_url = "http://" + window.location.host + "/videos.json";
-                      console.log(data4);
-                      $.ajax({
-                        url: post_url,
-                        type:"POST",
-                        contentType:"application/json; charset=utf-8",
-                        dataType:"json",
-                        data: data4,
-                        success: function(msg) {
-                          html = "<p class='subtitle'><i class='fa fa-check-circle'></i> Added '" + msg.video.title + "'</p>";
-                          jQuery("#results").append(html);
-                        },
-                        error: function(err) {
-                          console.log("There was an error creating a new video")
-                        }
-                      });
+                        // //TODO: add the correct event ID and Tags, and add it to the correct playlist
+                        var video_json = { "video": {"uid": this.videoId, "url": "http://www.youtube.com/watch?v=" + this.videoId, "title": title, "speaker_name": "TBA", "event_id": eventId , "description": description, "status": "draft", "playlist_ids": [playlistId]}};
+                        var data4 = JSON.stringify(video_json);
+                        console.log(data4)
+                        var post_url = "http://" + window.location.host + "/videos.json";
+                        $.ajax({
+                          url: post_url,
+                          type:"POST",
+                          contentType:"application/json; charset=utf-8",
+                          dataType:"json",
+                          data: data4,
+                          success: function(msg) {
+                            html = "<p class='subtitle'><i class='fa fa-check-circle'></i> Added '" + msg.video.title + "'</p>";
+                            jQuery("#results").append(html);
+                          },
+                          error: function(err) {
+                            console.log("There was an error creating a new video")
+                          }
+                        });
+                      }
+                    }, 
+                    error: function(){
+                      console.log("problem")
                     }
+
                   });
                 }
               },
