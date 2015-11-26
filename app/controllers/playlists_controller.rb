@@ -1,7 +1,8 @@
 class PlaylistsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  load_and_authorize_resource :find_by => :slug, except: [:index, :show]
-  before_action :find_playlist, only: [:show, :edit, :update, :destroy, :update_stats]
+  load_and_authorize_resource :find_by => :slug, except: [:index, :show, :update]
+  before_action :find_playlist, only: [:show, :edit, :destroy, :update_stats]
+  before_action :find_playlist_by_id, only: [:update]
   before_action :find_users_videos, only: [:new, :edit, :update]
   layout 'no_footer', :only => [:new, :edit]
 
@@ -57,14 +58,35 @@ class PlaylistsController < ApplicationController
   end
 
   def update
-    if @playlist.update(playlist_params)
-      if current_user.curator?
-        redirect_to admin_path
-      else
-        redirect_to @playlist
+    # This method may be called via AJAX when adding an existing video to this playlist,
+    # in the Import YouTube Playlist functionality. In that case, just add the video
+    # to the playlist and save it, without making any other changes.
+    if playlist_params[:video_ids]
+      response = 0 # Return 0 if the video was already in the playlist
+      begin
+        videoId = playlist_params[:video_ids].first
+        if not @playlist.videos.include? videoId
+          @playlist.videos.append(Video.find_by(uid: videoId))
+          response = 1 # Return 1 if the video was successfully added to the playlist
+        end
+      rescue
+        response = 999 # Return an error flag
+        puts "There was a problem adding this video to the playlist"
+      end
+      respond_to do |format|
+        format.json {render json: response}
       end
     else
-      render 'edit'
+      # Otherwise, just update the playlist using the usual method.
+      if @playlist.update(playlist_params)
+        if current_user.curator?
+          redirect_to admin_path
+        else
+          redirect_to @playlist
+        end
+      else
+        render 'edit'
+      end
     end
   end
 
@@ -78,11 +100,15 @@ class PlaylistsController < ApplicationController
 private
 
   def playlist_params
-    params.require(:playlist).permit(:name, :event_id, :user_id, :description, :featured, :listed, video_ids: [])
+    params.require(:playlist).permit(:name, :id, :event_id, :user_id, :description, :featured, :listed, video_ids: [])
   end
 
   def find_playlist
     @playlist = Playlist.friendly.find(params[:id])
+  end
+
+  def find_playlist_by_id
+    @playlist = Playlist.find(params[:id])
   end
 
   def find_users_videos
