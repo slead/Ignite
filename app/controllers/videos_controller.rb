@@ -98,7 +98,6 @@ class VideosController < ApplicationController
       rescue
         puts "There was a problem emailing the admins about this video"
       end
-
       respond_to do |format|
         format.html {
           flash[:notice] = "Video #{@video.title} added successfully."
@@ -106,6 +105,7 @@ class VideosController < ApplicationController
         }
         format.json { render json: @video, status: :created, location: @video }
       end
+
     else
       respond_to do |format|
         format.html {
