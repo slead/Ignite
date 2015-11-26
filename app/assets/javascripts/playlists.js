@@ -55,12 +55,12 @@ ready = function() {
                         } else if (response == 0) {
                           html = "<p class='subtitle'><i class='fa fa-exclamation-circle'></i> '" + data2.videos[0].title + "' was already in this playlist</p>";
                         } else if (response == 999) {
-                          html = "<p class='subtitle'><i class='fa fa-times-circle'></i> 'There was a problem adding " + data2.videos[0].title + "' to this playlist</p>";
+                          html = "<p class='subtitle error'><i class='fa fa-times-circle'></i> 'There was a problem adding " + data2.videos[0].title + "' to this playlist</p>";
                         }
                         jQuery("#results").append(html);
                       },
                       error: function(err) {
-                        html = "<p class='subtitle'><i class='fa fa-times-circle'></i> 'There was a problem adding " + data2.videos[0].title + "' to this playlist</p>";
+                        html = "<p class='subtitle error'><i class='fa fa-times-circle'></i> 'There was a problem adding " + data2.videos[0].title + "' to this playlist</p>";
                         jQuery("#results").append(html);
                       }
                     });
@@ -97,12 +97,15 @@ ready = function() {
                           contentType:"application/json; charset=utf-8",
                           dataType:"json",
                           data: data4,
+                          title: title,
                           success: function(msg) {
                             html = "<p class='subtitle'><i class='fa fa-check-circle'></i> Added '" + msg.video.title + "'</p>";
                             jQuery("#results").append(html);
                           },
                           error: function(err) {
-                            console.log("There was an error creating a new video")
+                            console.log("There was an error creating a new video");
+                            html = "<p class='subtitle error'><i class='fa fa-times-circle'></i> 'There was a problem adding '" + this.title + "'' to IgniteTalks. Please try again.</p>";
+                            jQuery("#results").append(html);
                           }
                         });
                       }
