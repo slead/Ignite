@@ -18,7 +18,7 @@
               %span= thumbnail(video, 'video_rating_small', 30)
       - if @playlist.event
         %hr
-        %h4= link_to "See more videos from #{@playlist.event.name}", @playlist
+        %h4= link_to "See more videos from #{@playlist.event.name}", @playlist.event
   .row.paginate
     = will_paginate @videos, renderer: BootstrapPagination::Rails
 
