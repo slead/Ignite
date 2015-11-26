@@ -5,11 +5,7 @@ ready = function() {
 
   //Import videos from the YouTube API
   jQuery("#btnImportFromYouTubePlaylist").on("click", function() {
-
     jQuery("#results").empty();
-    html = "<p> Retrieving videos from YouTube...</p>";
-    jQuery("#results").append(html);
-
     var YTplaylistId = url = $("#txtYouTubePlaylist").val(); // The YouTube playlist ID
     var id = $("#selPlaylistDropdown").val(); // This is a quoted array containign "[playlistID, eventID]"
     var playlistId = parseInt(id.substr(1, id.indexOf(",") - 1));  // The playlist_id within the IgniteTalks site
@@ -29,6 +25,8 @@ ready = function() {
     // Retrieve the list of playlistItems from the YouTube Playlist
     $.getJSON( playlistUrl, function( data ) {
       if (data !== null && data.items !== null) {
+        html = "<p> Retrieving " + data.items.length + " videos from YouTube...</p>";
+        jQuery("#results").append(html);
         for (var idx = 0; idx < data.items.length; idx ++) {          
           // Get the uid of each video. Check whether this video already exists in the system
           var videoId = data.items[idx].contentDetails.videoId;

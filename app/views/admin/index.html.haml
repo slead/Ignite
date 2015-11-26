@@ -42,7 +42,7 @@
 
         #videos_tab.tab-pane.active{:role => "tabpanel"}
           %h4.top-25
-            .btn.btn-default= link_to "Import a new video", new_video_path
+            .btn.btn-default= link_to "Import a new video", new_video_path, {:class => "blackText"}
             .btn.btn-default{"data-target" => "#importPlaylistModal", "data-toggle" => "modal", :type => "button"}
               Import from YouTube playlist  
 
@@ -74,7 +74,7 @@
 
         #playlists_tab.tab-pane{:role => "tabpanel"}
           %h4.top-25
-            .btn.btn-default= link_to "Create a new playlist", new_playlist_path
+            .btn.btn-default= link_to "Create a new playlist", new_playlist_path, {:class => "blackText"}
             .btn.btn-default{"data-target" => "#importPlaylistModal", "data-toggle" => "modal", :type => "button"}
               Import from YouTube playlist          
           .top-50
@@ -92,7 +92,7 @@
 
         #tags_tab.tab-pane{:role => "tabpanel"}
           %h4.top-25
-            .btn.btn-default= link_to "Create a new tag", new_tag_path
+            .btn.btn-default= link_to "Create a new tag", new_tag_path, {:class => "blackText"}
           .top-25
             %table#tblTags{:data => {:source => tags_path(format: :json)}}
               %thead
@@ -106,7 +106,7 @@
         #events_tab.tab-pane{:role => "tabpanel"}
           - if can? :create, Event
             %h4.top-25
-              .btn.btn-default=link_to "Create a new Ignite", new_event_path
+              .btn.btn-default=link_to "Create a new Ignite", new_event_path, {:class => "blackText"}
           .top-25
             %table#tblEvents{:data => {:source => events_path(format: :json)}}
               %thead
@@ -122,7 +122,7 @@
 
         #upcomings_tab.tab-pane{:role => "tabpanel"}
           %h4.top-25
-            .btn.btn-default=link_to "Crete a new upcoming event", new_upcoming_path
+            .btn.btn-default=link_to "Crete a new upcoming event", new_upcoming_path, {:class => "blackText"}
           .top-25
             %table#tblUpcomings{:data => {:source => upcomings_path(format: :json)}}
               %thead
@@ -137,7 +137,7 @@
         -if current_user.admin?
           #users_tab.tab-pane{:role => "tabpanel"}
             %h4.top-25
-              .btn.btn-default=link_to "Add a new User", new_user_path
+              .btn.btn-default=link_to "Add a new User", new_user_path, {:class => "blackText"}
             .top-25
               %table#tblUsers{:data => {:source => users_path(format: :json)}}
                 %thead
@@ -187,5 +187,6 @@
         .row
           .col-md-12
             #results
-      .modal-footer
+      .modal-footer.left
+        %button.btn.btn-default=link_to "Go to Draft Videos page", "/admin?tabpane=videos#drafts", {:class => "blackText"}
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
