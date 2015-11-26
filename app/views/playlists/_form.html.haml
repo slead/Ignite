@@ -5,18 +5,18 @@
       =f.input :listed, {:label => "List this playlist on the Playlists page?"}
     %hr
     .row
-      .col-md-12#ignite_name
-        =f.input :name,  input_html: { class: 'form-control' }, placeholder: "Enter a descriptive name for the playlist (eg Ignite Seattle 23)"
-        / Place the playlist ID on the form so we can retrieve it for use in the JSON post later
-        -if @playlist.id
-          %span#spanPlaylistId.hidden= @playlist.id
-        =f.input :description,  input_html: { class: 'form-control' }, placeholder: "Enter  a description for the playlist (optional)"
+      .col-md-12
         %label Ignite event:
         -if current_user.curator?
           = f.collection_select :event_id, Event.all.order(:name), :id, :remove_ignite, {:prompt => "Choose the Ignite"}, {:class=>'form-control select'}
         - else
           = f.collection_select :event_id, current_user.events.all.order(:name), :id, :name, {prompt: "Filmed at..."}, {class: 'form-control select'}
 
+        =f.input :name,  input_html: { class: 'form-control' }, placeholder: "Enter a descriptive name for the playlist (eg Ignite Seattle 23)"
+        / Place the playlist ID on the form so we can retrieve it for use in the JSON post later
+        -if @playlist.id
+          %span#spanPlaylistId.hidden= @playlist.id
+        =f.input :description,  input_html: { class: 'form-control' }, placeholder: "Enter  a description for the playlist (optional)"
     -if @playlist.video_count and @playlist.video_count > 0
       .row.top-50
         .col-md-12
