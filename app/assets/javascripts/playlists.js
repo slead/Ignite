@@ -55,12 +55,12 @@ ready = function() {
                         } else if (response == 0) {
                           html = "<p class='subtitle'><i class='fa fa-exclamation-circle'></i> '" + data2.videos[0].title + "' was already in this playlist</p>";
                         } else if (response == 999) {
-                          html = "<p class='subtitle'><i class='fa fa-exclamation-circle'></i> 'There was a problem adding " + data2.videos[0].title + "' to this playlist</p>";
+                          html = "<p class='subtitle'><i class='fa fa-times-circle'></i> 'There was a problem adding " + data2.videos[0].title + "' to this playlist</p>";
                         }
                         jQuery("#results").append(html);
                       },
                       error: function(err) {
-                        html = "<p class='subtitle'><i class='fa fa-exclamation-circle'></i> 'There was a problem adding " + data2.videos[0].title + "' to this playlist</p>";
+                        html = "<p class='subtitle'><i class='fa fa-times-circle'></i> 'There was a problem adding " + data2.videos[0].title + "' to this playlist</p>";
                         jQuery("#results").append(html);
                       }
                     });

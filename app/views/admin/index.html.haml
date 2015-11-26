@@ -43,8 +43,8 @@
         #videos_tab.tab-pane.active{:role => "tabpanel"}
           %h4.top-25
             .btn.btn-default= link_to "Import a new video", new_video_path
-            / .btn.btn-default{"data-target" => "#importPlaylistModal", "data-toggle" => "modal", :type => "button"}
-            /   Import a YouTube playlist
+            .btn.btn-default{"data-target" => "#importPlaylistModal", "data-toggle" => "modal", :type => "button"}
+              Import from YouTube playlist  
 
           %h2.top-25 Published videos
           %table#tblVideos{:data => {:source => videos_path(format: :json, status: "published")}}
@@ -59,7 +59,7 @@
                 %th Delete
             %tbody
 
-          %h2.top-25 Draft videos
+          %h2.top-25#drafts Draft videos
           %table#tblDraftVideos{:data => {:source => videos_path(format: :json, status: "draft")}}
             %thead
               %tr
@@ -76,7 +76,7 @@
           %h4.top-25
             .btn.btn-default= link_to "Create a new playlist", new_playlist_path
             .btn.btn-default{"data-target" => "#importPlaylistModal", "data-toggle" => "modal", :type => "button"}
-              Import a YouTube playlist          
+              Import from YouTube playlist          
           .top-50
             %table#tblPlaylists{:data => {:source => playlists_path(format: :json)}}
               %thead
@@ -157,7 +157,15 @@
       .modal-header
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
-        %h4#importPlaylistModalLabel.modal-title Import a YouTube Playlist
+        %h4#importPlaylistModalLabel.modal-title Import from YouTube playlist
+        %p.top-15
+          This function imports a batch of videos from a YouTube playlist. Since YouTube doesn't have the concept of a "presenter",
+          the videos are imported with the speaker name listed as "TBA".
+        %p
+          Once this function has finished, please open the
+          =link_to "Videos", "/admin?tabpane=videos#drafts"
+          panel on the Admin page and see the Draft Videos section.
+        %p Click on each draft video and edit the speaker name (and make any other required edits) before hitting the Publish button to complete the video importing process.
       .modal-body
         .row.top-25
           .col-md-12
