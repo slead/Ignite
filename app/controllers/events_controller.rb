@@ -79,7 +79,6 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.create(event_params)
-    @event.user = current_user
 
     if @event.save
         flash[:notice] = "Event #{@event.name} added successfully."
