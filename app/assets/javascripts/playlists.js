@@ -39,13 +39,11 @@ ready = function() {
               videoId: videoId,
               success: function(data2) {
                 if (data2.videos.length > 0) {
-
                   // This video has already been added to the system
                   // Check whether it's also already present in the current playlist, otherwise add it to the current playlist
                   var playlist_ids = data2.videos[0].playlist_ids;
                   var playlistData = {"playlist": {"id": playlistId, "video_ids": [this.videoId]}}
                   if (playlist_ids.indexOf(playlistId) < 0){
-                    //TODO - how to add this video to the playlist via AJAX?
                     $.ajax({
                       url: "http://" + window.location.host + "/playlists/" + playlistId,
                       type:"PUT",
@@ -55,21 +53,21 @@ ready = function() {
                         if (response == 1) {
                           html = "<p class='subtitle'><i class='fa fa-exclamation-circle'></i> '" + data2.videos[0].title + "' was added to this playlist</p>";
                         } else if (response == 0) {
-                          html = "<p class='subtitle'><i class='fa fa-exclamation-circle'></i> ' " + data2.videos[0].title + "' was alredy in this playlist</p>";
+                          html = "<p class='subtitle'><i class='fa fa-exclamation-circle'></i> '" + data2.videos[0].title + "' was already in this playlist</p>";
                         } else if (response == 999) {
                           html = "<p class='subtitle'><i class='fa fa-exclamation-circle'></i> 'There was a problem adding " + data2.videos[0].title + "' to this playlist</p>";
                         }
                         jQuery("#results").append(html);
                       },
                       error: function(err) {
-                        console.log(err);
                         html = "<p class='subtitle'><i class='fa fa-exclamation-circle'></i> 'There was a problem adding " + data2.videos[0].title + "' to this playlist</p>";
                         jQuery("#results").append(html);
                       }
                     });
-                  }
-
-                  
+                  } else {
+                    html = "<p class='subtitle'><i class='fa fa-exclamation-circle'></i> '" + data2.videos[0].title + "' was already in this playlist</p>";
+                    jQuery("#results").append(html);
+                  }                  
 
                 } else {
 
