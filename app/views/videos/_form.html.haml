@@ -3,9 +3,12 @@
     -if current_user.curator?
       =f.input :featured, {:label => "Feature this video on the homepage?"}
     -if @video.id
-      %h4= "Status: #{@video.status}"
+      %h4#videoStatus{"data-video-status" => @video.status}= "Status: #{@video.status}"
     %hr
-    -if not @video.status == 'draft'
+    -if @video.status == 'draft'
+      .row.hidden
+        =f.input :url
+    - else
       .row
         .col-md-10#ignite_name
           %label Filmed at:

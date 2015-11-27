@@ -22,6 +22,10 @@ ready = function() {
     retrieveYouTubeDetails();
   }
 
+  if ($("#videoStatus").data("videoStatus") == 'draft') {
+    retrieveYouTubeDetails();
+  }
+
   if(igniteID != null) {
     $("#video_event_id").val(igniteID);
   }
