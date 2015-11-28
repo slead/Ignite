@@ -55,8 +55,10 @@ class EventsController < ApplicationController
   end
 
   def show
-    @playlists = @event.playlists.where("video_count > 0")
-    if @playlists.exists?
+    # Sort any playlists in reverse numeric order. The regex is to account for letters and numbers, eg Ignite Sydney 10 should come after Ignite Sydney 9
+    # (Except, the order is reversed so that the most recent playlists are shown at the top)
+    @playlists = @event.playlists.where("video_count > 0").sort_by { |key| key.name.split(/(\d+)/).map { |v| v =~ /\d/ ? v.to_i : v } }.reverse!
+    if @playlists.count > 0
       # Don't show the same videos in a playlist and in the non-playlist section
       @videos = @event.videos.where("status = 'published'")
       @playlists.each do |playlist|

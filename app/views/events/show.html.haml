@@ -31,7 +31,7 @@
         = "(#{@upcomings.first.date})"
         %br
 
-  - if @playlists.exists? and (not params["page"] or params["page"] == "1")
+  - if @playlists.count > 0 and (not params["page"] or params["page"] == "1")
     .row.top-50
       %h4.left-15
         Playlists from

@@ -97,7 +97,7 @@
         =link_to videos_path(tag: tag.name) do
           %span.btn.btn-default.tags{:id => "tag_" + tag.name}= tag.name.titleize
 
-  - if @playlists.exists?
+  - if @playlists.count > 0
     .row#playlist_row.top-25
       .col-md-12
         -@playlists.each do |playlist|
@@ -112,7 +112,7 @@
               .col-md-12
                 =link_to "View all videos from #{playlist.name}", playlist
          
-  - if @playlists.exists?        
+  - if @playlists.count > 0       
     .row.top-50
       .col-md-12
         %h4 Featured Ignite videos

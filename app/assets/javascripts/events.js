@@ -43,7 +43,7 @@ ready = function() {
       url: url,
       success: function(data) {
         var geojson;
-        geojson = $.parseJSON(data);
+        geojson = $.parseJSON(data).events;
 
         // Add the events to the map
         jsonLayer = L.geoJson(geojson, {
