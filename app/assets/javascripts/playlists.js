@@ -3,6 +3,10 @@ var ready;
 
 ready = function() {
 
+  jQuery("#importPlaylistModal").on("shown", function() {
+    jQuery("#draftVideos").hide();
+  });
+
   //Import videos from the YouTube API
   jQuery("#btnImportFromYouTubePlaylist").on("click", function() {
     jQuery("#results").empty();
@@ -83,9 +87,9 @@ ready = function() {
                       if (data3.items.length > 0) {
                         title = data3.items[0].snippet.title;
                         description = data3.items[0].snippet.description || "TBA";
-                        tags = data3.items[0].snippet.tags;
-
-                        // //TODO: add the correct event ID and Tags, and add it to the correct playlist
+                        if (description.replace(/ /g, '').length == 0) {
+                          description = "TBA"
+                        }
                         var video_json = { "video": {"uid": this.videoId, "url": "http://www.youtube.com/watch?v=" + this.videoId, "title": title, "speaker_name": "TBA", "event_id": eventId , "description": description, "status": "draft", "playlist_ids": [playlistId]}};
                         var data4 = JSON.stringify(video_json);
                         var post_url = "http://" + window.location.host + "/videos.json";
@@ -99,6 +103,7 @@ ready = function() {
                           success: function(msg) {
                             html = "<p class='subtitle'><i class='fa fa-check-circle'></i> Added '" + msg.video.title + "'</p>";
                             jQuery("#results").append(html);
+                            jQuery("#draftVideos").show();
                           },
                           error: function(err) {
                             console.log("There was an error creating a new video");

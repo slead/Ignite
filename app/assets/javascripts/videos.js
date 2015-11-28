@@ -22,9 +22,10 @@ ready = function() {
     retrieveYouTubeDetails();
   }
 
-  if ($("#videoStatus").data("videoStatus") == 'draft') {
-    retrieveYouTubeDetails();
-  }
+  // Don't retrieve Tags at the moment
+  // if ($("#videoStatus").data("videoStatus") == 'draft') {
+  //   retrieveYouTubeDetails();
+  // }
 
   if(igniteID != null) {
     $("#video_event_id").val(igniteID);
@@ -76,10 +77,10 @@ function retrieveYouTubeDetails(){
         if (data.items.length > 0) {
           title = data.items[0].snippet.title;
           description = data.items[0].snippet.description;
-          tags = data.items[0].snippet.tags;
+          // tags = data.items[0].snippet.tags;
           $("#video_title").val(title);
           $("#video_description").val(description);
-          $("#video_new_tag_name").val(tags);
+          // $("#video_new_tag_name").val(tags);
           $(".details").show();
         } else {
           alert("Unable to retrieve details from YouTube. Please try another URL")
