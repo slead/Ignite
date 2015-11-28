@@ -3,8 +3,13 @@ var ready;
 
 ready = function() {
 
-  jQuery("#importPlaylistModal").on("shown", function() {
-    jQuery("#draftVideos").hide();
+  jQuery("#importPlaylistModal").on("shown.bs.modal", function() {
+    jQuery("#btnDraftVideos").hide();
+    jQuery("#btnCloseImportPlaylist").show();
+  });
+  jQuery("#importPlaylistModal").on("hidden.bs.modal", function() {
+    jQuery("#btnDraftVideos").hide();
+    jQuery("#btnCloseImportPlaylist").show();
   });
 
   //Import videos from the YouTube API
@@ -103,7 +108,8 @@ ready = function() {
                           success: function(msg) {
                             html = "<p class='subtitle'><i class='fa fa-check-circle'></i> Added '" + msg.video.title + "'</p>";
                             jQuery("#results").append(html);
-                            jQuery("#draftVideos").show();
+                            jQuery("#btnDraftVideos").show();
+                            jQuery("#btnCloseImportPlaylist").hide();
                           },
                           error: function(err) {
                             console.log("There was an error creating a new video");

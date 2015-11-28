@@ -188,5 +188,5 @@
           .col-md-12
             #results
       .modal-footer.left
-        %button.btn.btn-default#draftVideos=link_to "Go to Draft Videos page", "/admin?tabpane=videos#drafts", {:class => "blackText"}
-        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-default#btnDraftVideos=link_to "Go to Draft Videos page", "/admin?tabpane=videos#drafts", {:class => "blackText"}
+        %button.btn.btn-default#btnCloseImportPlaylist{"data-dismiss" => "modal", :type => "button"} Close
