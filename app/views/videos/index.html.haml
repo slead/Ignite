@@ -24,9 +24,9 @@
           %i.fa.fa-thumbs-o-up
           = "likes"
     
-  .row
-    .row.paginate
-      = will_paginate @videos, renderer: BootstrapPagination::Rails
+  .row.top-50
+    / .row.paginate
+    /   = will_paginate @videos, renderer: BootstrapPagination::Rails
     -@videos.each_slice(4) do |vids|
       .row.top-15
         -vids.each do |video|
