@@ -18,7 +18,7 @@ ready = function() {
     var YTplaylistId = url = $("#txtYouTubePlaylist").val(); // The YouTube playlist ID
     var id = $("#selPlaylistDropdown").val(); // This is a quoted array containign "[playlistID, eventID]"
     var playlistId = parseInt(id.substr(1, id.indexOf(",") - 1));  // The playlist_id within the IgniteTalks site
-    var eventId = parseInt(id.substr(id.indexOf(', ') + 2, 1));  // The event_id within the IgntieTalks site
+    var eventId = parseInt(id.substring(id.indexOf(', ') + 2, id.length - 1));  // The event_id within the IgntieTalks site
     if(url.indexOf("youtube.com") > 0) {
       var YTplaylistId = getPlaylistID(url);
     }    
@@ -44,6 +44,7 @@ ready = function() {
               type: "GET",
               url: videoURL,
               videoId: videoId,
+              eventId: eventId,
               success: function(data2) {
                 if (data2.videos.length > 0) {
                   // This video has already been added to the system
@@ -88,6 +89,7 @@ ready = function() {
                     dataType: "json",
                     url: checkURL,
                     videoId: this.videoId,
+                    eventId: this.eventId,
                     success: function(data3) {
                       if (data3.items.length > 0) {
                         title = data3.items[0].snippet.title;
@@ -95,7 +97,7 @@ ready = function() {
                         if (description.replace(/ /g, '').length == 0) {
                           description = "TBA"
                         }
-                        var video_json = { "video": {"uid": this.videoId, "url": "http://www.youtube.com/watch?v=" + this.videoId, "title": title, "speaker_name": "TBA", "event_id": eventId , "description": description, "status": "draft", "playlist_ids": [playlistId]}};
+                        var video_json = { "video": {"uid": this.videoId, "url": "http://www.youtube.com/watch?v=" + this.videoId, "title": title, "speaker_name": "TBA", "event_id": this.eventId , "description": description, "status": "draft", "playlist_ids": [playlistId]}};
                         var data4 = JSON.stringify(video_json);
                         var post_url = "http://" + window.location.host + "/videos.json";
                         $.ajax({
