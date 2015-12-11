@@ -1,8 +1,19 @@
 require 'rails_helper'
 
 describe Video do
-  it "has a valid factory"
-  it "is invalid without a firstname"
-  it "is invalid without a lastname"
-  it "returns a contact's full name as a string"
+  it "has a valid factory" do
+    expect(build(:video)).to be_valid
+  end
+
+  it "is invalid without a title" do
+    expect(build(:video, title: nil)).to be_invalid
+  end
+
+  it "is invalid without a description" do
+    expect(build(:video, description: nil)).to be_invalid
+  end
+
+  it "is invalid without an event" do
+    expect(build(:video, event: nil)).to be_invalid
+  end
 end
