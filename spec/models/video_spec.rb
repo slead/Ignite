@@ -16,4 +16,13 @@ describe Video do
   it "is invalid without an event" do
     expect(build(:video, event: nil)).to be_invalid
   end
+
+  it "is invalid without a URL" do
+    expect(build(:video, url: nil)).to be_invalid
+  end
+
+  it "is invalid without a uID" do
+    expect(build(:video, uid: nil)).to be_invalid
+  end
+
 end
