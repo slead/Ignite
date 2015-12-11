@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+# source 'https://rubygems.org'
+source 'http://rubygems'
 
 gem 'rails', '4.2'
 gem 'sass-rails', '~> 4.0.3'
@@ -61,4 +62,7 @@ group :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'turnip'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
