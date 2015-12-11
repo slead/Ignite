@@ -25,4 +25,8 @@ describe Video do
     expect(build(:video, uid: nil)).to be_invalid
   end
 
+  it "is invalid without a YouTube-style URL" do
+    expect(build(:video, url: "www.smh.com.au")).to be_invalid
+  end
+
 end
