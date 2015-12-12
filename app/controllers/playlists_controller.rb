@@ -118,15 +118,11 @@ private
     else
         # Non-admin users can see the Ignites they've been given permission to see, and the Videos
         # which are owned by those Ignites
-        @events = current_user.events
         @videos = []
-        @events.each do |event|
+        current_user.events.each do |event|
           @videos += event.videos
         end
     end
-
-    # refactor to this once the test is written:
-    # @videos = User::Video::Finder.find(current_user)
   end
 
 end
