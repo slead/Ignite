@@ -1,4 +1,4 @@
-# source 'https://rubygems.org'
+#source 'https://rubygems.org'
 source 'http://rubygems'
 
 gem 'rails', '4.2'
@@ -65,4 +65,6 @@ group :test do
   gem 'turnip'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
+  gem 'warden'
+  gem 'webmock'
 end

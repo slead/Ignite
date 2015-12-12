@@ -1,9 +1,7 @@
-require 'ffaker'
-
 FactoryGirl.define do
   factory :event do
-    name ( FFaker::Address.city )
-    city ( FFaker::Address.city )
-    url ( FFaker::Internet.http_url )
+    sequence(:name) { |n| "Ignite Test #{n}" }
+    sequence(:city) { |n| "Sydney #{n}" }
+    url ( "http://www.ignitesydney.com" )
   end
 end

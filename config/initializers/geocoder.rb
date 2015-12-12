@@ -9,6 +9,8 @@ Geocoder.configure(
   # set default units to kilometers:
   :units => :km,
 
-  :http_headers => { "User-Agent" => "stephen@ignitetalks.io" }
+  :http_headers => { "User-Agent" => "stephen@ignitetalks.io" },
+
+  :always_raise => :all
 
 )
