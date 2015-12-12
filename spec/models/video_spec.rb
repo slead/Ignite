@@ -10,7 +10,7 @@ describe Video do
       "view_count" => 0, "like_count" => 0, "dislike_count" => 0
       }.to_json
     stub_request(:any, /.*nominatim.openstreetmap.*/).to_return(status: 200, body: mapData)
-    # stub_request(:any, /.*www.googleapis.com.*/).with(:headers => {'Content-Length'=>'0', 'User-Agent'=>'Yt::Request (gzip)'}).to_return(status: 200, body: ytData)
+    stub_request(:any, /.*www.googleapis.com.*/).with(:headers => {'Content-Length'=>'0', 'User-Agent'=>'Yt::Request (gzip)'}).to_return(status: 200, body: ytData)
     stub_request(:put, /.*localhost:9200.*/).to_return(status: 200)
   end
 
