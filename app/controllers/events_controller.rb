@@ -11,17 +11,19 @@ class EventsController < ApplicationController
 
   def index
     @geojson = Array.new #TODO - hardcode the IgniteTalks event to the JSON so it's always shown
-    if params[:query].present?
-      # Find videos using elastic search
-      @events = Event.search(params[:query]) 
-    elsif params[:zoom].present? and params[:zoom].to_i < 3
-      @events = Event.order(:name)
-    elsif params[:bbox].present?
+    @allEvents = Event.all.order(:name)
+    if params[:bbox].present?
       #Find events which fall within the current map extent
       bbox = params[:bbox].split(",").map(&:to_f)
       @events = Event.within_bounding_box(bbox).order(:name)
+    elsif params[:id].present?
+      # This path is called when the user chooses an Ignite from the dropdown on the Events page. In
+      # this case, open that event's homepage (and break out of the rest of this function)
+      @event = Event.find(params[:id])
+      redirect_to @event
+      return
     elsif params[:name].present?
-      # Check whther this event already exists. This is called when creating a new video, to save the
+      # Check whether this event already exists. This is called when creating a new video, to save the
       # user from wasting time entering details about an existing video.
       # eg: http://localhost:3000/events.json?name=ignite+sydney
       @events = Event.where(:name => params[:name])
@@ -52,7 +54,8 @@ class EventsController < ApplicationController
         # Format the response for the DataTables plugin on the Admin page
         format.json { render json: EventDatatable.new(view_context, { user: current_user, role: current_user.role }) }
       else
-        format.json { render json: @geojson }  # respond with the created JSON object
+        # Format the response for the map
+        format.json { render json: @geojson }
       end
     end
   end

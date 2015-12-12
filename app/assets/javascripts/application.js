@@ -33,7 +33,6 @@ function pageLoad() {
     eventID = this.id
     jsonLayer.eachLayer(function (layer) {
       if(eventID == layer.feature.properties.id) {
-        console.log(eventID);
         layer.openPopup()
       }
     });
