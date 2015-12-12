@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+# source 'https://rubygems.org'
+source 'http://rubygems'
 
 gem 'rails', '4.2'
 gem 'sass-rails', '~> 4.0.3'

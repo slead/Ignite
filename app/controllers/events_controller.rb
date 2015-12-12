@@ -11,7 +11,10 @@ class EventsController < ApplicationController
 
   def index
     @geojson = Array.new #TODO - hardcode the IgniteTalks event to the JSON so it's always shown
-    if params[:zoom].present? and params[:zoom].to_i < 3
+    if params[:query].present?
+      # Find videos using elastic search
+      @events = Event.search(params[:query]) 
+    elsif params[:zoom].present? and params[:zoom].to_i < 3
       @events = Event.order(:name)
     elsif params[:bbox].present?
       #Find events which fall within the current map extent
