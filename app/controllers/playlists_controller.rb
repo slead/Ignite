@@ -124,6 +124,9 @@ private
           @videos += event.videos
         end
     end
+
+    # refactor to this once the test is written:
+    # @videos = User::Video::Finder.find(current_user)
   end
 
 end

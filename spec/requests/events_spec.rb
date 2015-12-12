@@ -3,7 +3,6 @@ require 'spec_helper'
 describe "Events" do
 
   it "Signs in as an administrator", js: true do
-    DatabaseCleaner.clean
 
     # Create an Admin user
     admin = FactoryGirl.create(:role, name:"admin")
