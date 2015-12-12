@@ -27,7 +27,11 @@ ready = function() {
     mapSearch();
     leafletMap.on('moveend', mapSearch);
 
-  } 
+  }
+
+  jQuery("#selectAllEvents").on('change', function(evt) {
+    window.location = "/events?id=" + this.value
+  });
 
   function mapSearch() {
     // Request events within the current map extent
@@ -41,53 +45,53 @@ ready = function() {
     $.ajax({
       dataType: 'text',
       url: url,
-      success: function(data) {
-        var geojson;
-        geojson = $.parseJSON(data).events;
-
-        // Add the events to the map
-        jsonLayer = L.geoJson(geojson, {
-          pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng, geojsonMarkerOptions);
-          },
-          onEachFeature: function (feature, layer) {
-            if(feature.properties.name != undefined) {
-              if(feature.properties.url != undefined) {
-                layer.bindPopup("<a href='" + feature.properties.url + "''>" + feature.properties.name + "</a>");
-              } else {
-                layer.bindPopup(feature.properties.name);
-              }
-            }
-          }
-        });
-        featureGroup = L.featureGroup()
-        featureGroup.addLayer(jsonLayer)
-        featureGroup.addTo(leafletMap);
-
-        // Create a new text entry for each event
-        var html = '';
-        if (geojson.length > 0) {
-          for (var idx = 0; idx <geojson.length; idx++) {
-            if (idx % 4 == 0) {
-              html += "<div class='row'>";
-            }
-            event = geojson[idx].properties;
-            html += "<div class='col-md-3 col-sm-3 col-xs-3 event_content' id='" + event.id + "''>";
-            html += "<div><h4 class='title'><a href=" + event.url + ">" + event.name + "<span class='link-spanner'></span></a></h4></div>";
-            html += "<div><p class='subtitle'>" + event.city + ", " + event.country + "</p></div>";
-            html += "</div>"; // event_content
-            if (idx % 4 == 3) {
-              html += "</div>"
-            }
-          }
-        }
-        $("#results").html(html);
-  
-      },
+      success: drawEvents,
       error: function() {
         console.log("Error with Index map");
       }
     });
+  }
+
+  function drawEvents(data) {
+    var geojson = $.parseJSON(data).events;
+
+    // Add the events to the map
+    jsonLayer = L.geoJson(geojson, {
+      pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+      },
+      onEachFeature: function (feature, layer) {
+        if(feature.properties.name != undefined) {
+          if(feature.properties.url != undefined) {
+            layer.bindPopup("<a href='" + feature.properties.url + "''>" + feature.properties.name + "</a>");
+          } else {
+            layer.bindPopup(feature.properties.name);
+          }
+        }
+      }
+    });
+    featureGroup = L.featureGroup()
+    featureGroup.addLayer(jsonLayer)
+    featureGroup.addTo(leafletMap);
+
+    // Create a new text entry for each event
+    var html = '';
+    if (geojson.length > 0) {
+      for (var idx = 0; idx <geojson.length; idx++) {
+        if (idx % 4 == 0) {
+          html += "<div class='row'>";
+        }
+        event = geojson[idx].properties;
+        html += "<div class='col-md-3 col-sm-3 col-xs-3 event_content' id='" + event.id + "''>";
+        html += "<div><h4 class='title'><a href=" + event.url + ">" + event.name + "<span class='link-spanner'></span></a></h4></div>";
+        html += "<div><p class='subtitle'>" + event.city + ", " + event.country + "</p></div>";
+        html += "</div>"; // event_content
+        if (idx % 4 == 3) {
+          html += "</div>"
+        }
+      }
+    }
+    $("#results").html(html);
   }
 };
 
