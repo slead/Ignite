@@ -114,7 +114,7 @@ class VideosController < ApplicationController
         }
         format.json { render json: @video.errors, status: :unprocessable_entity }
       end
-    end
+    end 
   end
 
   def update

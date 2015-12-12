@@ -23,10 +23,9 @@ class Video < ActiveRecord::Base
     # If the user has entered any new playlists as free text, add them to the Playlists and Video
     check_for_new_playlist
 
-    YT_LINK_FORMAT = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/i
-    uid = url.match(YT_LINK_FORMAT)
+    # YT_LINK_FORMAT = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/i
+    uid = url.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/i)
     self.uid = uid[2] if uid && uid[2]
-   
     video = Yt::Video.new id: self.uid
     if self.uid.to_s.length != 11
       self.errors.add(:error, ' - YouTube ID is invalid.')

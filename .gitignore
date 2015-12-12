@@ -23,3 +23,5 @@ config/initializers/dev_environment.rb
 !.elasticbeanstalk/*.global.yml
 
 *.pem
+
+.byebug_history
