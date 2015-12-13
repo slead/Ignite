@@ -20,8 +20,8 @@ ready = function() {
     jQuery(".videoImportToPlaylist").removeClass("checkedRow");
   });
 
+  // Toggle the checkbox state when clicking on the div
   jQuery(".videoImportToPlaylist").click(function() {
-    // Toggle the checkbox state when clicking on the div
     var videoId = this.dataset.videoid;
     var row = jQuery("#rowVideo" + videoId);
     newState = !jQuery("#chkVideo" + videoId)[0].checked;
@@ -31,6 +31,19 @@ ready = function() {
     } else {
       row.removeClass("checkedRow");
     }
+
+    // Enable the Save Playlists button if there are any new videos selected
+    if(jQuery(".videoImportToPlaylist.checkedRow").length > 0) {
+      jQuery("#btnSavePlaylist").css('display','inline');
+    } else {
+      jQuery("#btnSavePlaylist").hide();
+    }
+  });
+
+  // Save the playlist when the Save Playlist button is pressed
+  jQuery("#btnDraftVideos").on("click", function(){
+    alert("need to save the playlist with the selected videos appended");
+    jQuery("#addVideosToPlaylistModal").hide();
   });
 
 
