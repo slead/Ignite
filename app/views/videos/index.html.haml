@@ -4,7 +4,7 @@
     .col-md-4.col-sm-12.col-xs-12
       = form_tag videos_path, class: "form-inline", method: :get do
         .input-group
-          = text_field_tag :query, params[:query], class: "form-control", id: "search", autocomplete: "off"
+          = text_field_tag :query, params[:query], class: "form-control", id: "search", autocomplete: "off", placeholder: "Enter a keyword to search for an Ignite video"
           .input-group-btn
             - if params[:query].present?
               = link_to videos_path, class: "btn btn-default" do
