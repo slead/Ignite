@@ -24,11 +24,13 @@
             Videos in this playlist
             .btn.btn-default#btnAddVideosToPlaylist{"data-target" => "#addVideosToPlaylistModal", "data-toggle" => "modal", :type => "button"}
               Add videos to this playlist
-          =@playlist.videos.where("status = 'published'").each_slice(6) do |vids|
+          =@videos.each_slice(4) do |vids|
             .row.top-15
               -vids.each do |video|
-                .col-md-2.video_thumbnail
+                .col-md-3.video_thumbnail
                   %span= playlist_thumbnail(video, 30)
+          .row.paginate
+            = will_paginate @videos, renderer: BootstrapPagination::Rails
 
     .row
       %hr

@@ -45,6 +45,7 @@ class PlaylistsController < ApplicationController
   end
 
   def edit
+    @videos = @playlist.videos.where("status = 'published'").paginate(:page => params[:page], :per_page => 16)
   end
 
   def create
