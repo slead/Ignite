@@ -17,27 +17,18 @@
         -if @playlist.id
           %span#spanPlaylistId.hidden= @playlist.id
         =f.input :description,  input_html: { class: 'form-control' }, placeholder: "Enter  a description for the playlist (optional)"
-
-    .row.top-15  
-      .col-md-12
-        %h4.bottom-25
-          Videos in this playlist
-          .btn.btn-default#btnAddVideosToPlaylist{"data-target" => "#addVideosToPlaylistModal", "data-toggle" => "modal", :type => "button"}
-            Add videos to this playlist
-        =@playlist.videos.where("status = 'published'").each_slice(6) do |vids|
-          .row.top-15
-            -vids.each do |video|
-              .col-md-2.video_thumbnail
-                %span= playlist_thumbnail(video, 30)
-
-      .row
+    -if @playlist.id
+      .row.top-15  
         .col-md-12
-          #draftVideos
-            =@playlist.videos.where("status = 'draft'").each_slice(6) do |vids|
-              .row.top-15
-                -vids.each do |video|
-                  .col-md-2.video_thumbnail
-                    =playlist_thumbnail(video, 30)
+          %h4.bottom-25
+            Videos in this playlist
+            .btn.btn-default#btnAddVideosToPlaylist{"data-target" => "#addVideosToPlaylistModal", "data-toggle" => "modal", :type => "button"}
+              Add videos to this playlist
+          =@playlist.videos.where("status = 'published'").each_slice(6) do |vids|
+            .row.top-15
+              -vids.each do |video|
+                .col-md-2.video_thumbnail
+                  %span= playlist_thumbnail(video, 30)
 
     .row
       %hr
@@ -60,10 +51,10 @@
           .col-md-12
             #videosForPlaylist
               -@videos.each do |video|
-                .row.top-5.videoImportToPlaylist{role: "checkbox", :id => "rowVideo#{video.id}", :data => {:videoID => video.id}}
+                .row.top-5.videoImportToPlaylist{role: "checkbox", :id => "rowVideo#{video.uid}", :data => {:videoID => video.uid}}
 
                   .col-md-3
-                    =check_box_tag "chkVideo#{video.id}", false, false, class: 'hidden'
+                    =check_box_tag "chkVideo#{video.uid}", false, false, class: 'hidden'
                     =image_tag  "//img.youtube.com/vi/#{video.uid}/default.jpg", :class => "thumbImportToPlaylist", :alt => truncate(video.title, length: 20)
                   .col-md-7.col-md-offset-1
                     %strong= "#{video.title} (#{video.speaker_name})"

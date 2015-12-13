@@ -6,7 +6,7 @@
     .col-md-4.col-md-offset-4
       .form-group
         //=select_tag "selectAllEvents", options_from_collection_for_select(@allEvents, "id", "name".gsub("Ignite ","")), prompt: "Choose an Ignite, or search on the map", class: "form-control"
-        =select_tag "selectAllEvents", options_for_select(@allEvents.collect{ |u| [u.name.gsub("Ignite ",""), u.id] }), prompt: "Choose an Ignite, or search on the map", class: "form-control"
+        =select_tag "selectAllEvents", options_for_select(@allEvents.collect{ |u| [u.name.gsub("Ignite ",""), u.id] }), prompt: "Choose an Ignite from the list, or search on the map", class: "form-control"
   .row
     #results.col-md-12.col-sm-12.col-xs-12
 

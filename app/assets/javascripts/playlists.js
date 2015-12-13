@@ -1,6 +1,4 @@
 var ready;
-
-
 ready = function() {
 
   jQuery("#importPlaylistModal").on("shown.bs.modal", function() {
@@ -43,8 +41,27 @@ ready = function() {
   // Save the playlist when the Save Playlist button is pressed
   jQuery("#btnSavePlaylist").on("click", function(){
     //TODO: save the playlist with the selected videos appended
-    jQuery("#addVideosToPlaylistModal").modal('hide');
-    window.location = "/admin?tabpanel=playlists"
+    var rows = jQuery(".videoImportToPlaylist.checkedRow");
+    var playlistId = jQuery("#spanPlaylistId").text();
+    var videoIds = []
+    for (var idx = 0; idx < rows.length; idx++) {
+      videoIds.push(rows[idx].dataset.videoid);
+    }
+    console.log("Adding videos with uids: ", videoIds);
+    var playlistData = {"playlist": {"id": playlistId, "video_ids": videoIds}};
+    $.ajax({
+      url: "http://" + window.location.host + "/playlists/" + playlistId,
+      type:"PUT",
+      dataType:"json",
+      data: playlistData,
+      success: function(response) {
+        jQuery("#addVideosToPlaylistModal").modal('hide');
+        location.reload();
+      },
+      error: function(err) {
+        alert("There was a problem saving those videos to the playlist");
+      }
+    });
   });
 
 

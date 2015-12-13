@@ -4,6 +4,7 @@ class PlaylistsController < ApplicationController
   before_action :find_playlist, only: [:show, :edit, :destroy, :update_stats]
   before_action :find_playlist_by_id, only: [:update]
   before_action :find_users_videos, only: [:new, :edit, :update]
+  before_action :update_video_count, only: [:update]
   layout 'no_footer', :only => [:new, :edit]
 
   def index
@@ -68,6 +69,7 @@ class PlaylistsController < ApplicationController
         if not @playlist.videos.include? videoId
           @playlist.videos.append(Video.find_by(uid: videoId))
           response = 1 # Return 1 if the video was successfully added to the playlist
+          update_video_count
         end
       rescue
         response = 999 # Return an error flag
@@ -122,6 +124,12 @@ private
     end
     # Remove any videos already in this playlist
     @videos = videos - @playlist.videos
+  end
+
+  def update_video_count
+    # Keep track of the number of published videos in this playlist
+    @playlist.video_count = @playlist.videos.where(status: "published").count
+    @playlist.save!
   end
 
 end
