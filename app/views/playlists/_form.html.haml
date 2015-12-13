@@ -54,17 +54,16 @@
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
         %h4#addVideosToPlaylistModalLabel.modal-title Add videos to playlist
-        %p.top-15
-          Choose the videos you wish to add to this playlist
+        %p.top-15 Choose the videos you wish to add to this playlist (you may need to scroll within this window to see them all)
       .modal-body#videoList
         .row
           .col-md-12
             #videosForPlaylist
               -@videos.each do |video|
-                .row.top-5.videoImportToPlaylist{role: "checkbox", :data => {:videoID => video.id}}
+                .row.top-5.videoImportToPlaylist{role: "checkbox", :id => "rowVideo#{video.id}", :data => {:videoID => video.id}}
 
                   .col-md-3
-                    =check_box_tag "chkVideo#{video.id}", false
+                    =check_box_tag "chkVideo#{video.id}", false, false, class: 'hidden'
                     =image_tag  "//img.youtube.com/vi/#{video.uid}/default.jpg", :class => "thumbImportToPlaylist", :alt => truncate(video.title, length: 20)
                   .col-md-7.col-md-offset-1
                     %strong= "#{video.title} (#{video.speaker_name})"

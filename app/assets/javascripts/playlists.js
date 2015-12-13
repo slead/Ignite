@@ -17,12 +17,20 @@ ready = function() {
   });
   jQuery("#addVideosToPlaylistModal").on("hidden.bs.modal", function() {
     jQuery("#btnSavePlaylist").hide();
+    jQuery(".videoImportToPlaylist").removeClass("checkedRow");
   });
 
   jQuery(".videoImportToPlaylist").click(function() {
     // Toggle the checkbox state when clicking on the div
-    videoId = this.dataset.videoid;
-    jQuery("#chkVideo" + videoId)[0].checked = !jQuery("#chkVideo" + videoId)[0].checked;
+    var videoId = this.dataset.videoid;
+    var row = jQuery("#rowVideo" + videoId);
+    newState = !jQuery("#chkVideo" + videoId)[0].checked;
+    jQuery("#chkVideo" + videoId)[0].checked = newState;
+    if(newState) {
+      row.addClass("checkedRow");
+    } else {
+      row.removeClass("checkedRow");
+    }
   });
 
 
