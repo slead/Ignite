@@ -1,41 +1,22 @@
 var ready;
 ready = function() {
 
-  jQuery("#importPlaylistModal").on("shown.bs.modal", function() {
-    jQuery("#btnDraftVideos").hide();
-    jQuery("#btnCloseImportPlaylist").show();
-  });
-  jQuery("#importPlaylistModal").on("hidden.bs.modal", function() {
-    jQuery("#btnDraftVideos").hide();
-    jQuery("#btnCloseImportPlaylist").show();
-  });
-
-  jQuery("#addVideosToPlaylistModal").on("shown.bs.modal", function() {
-    jQuery("#btnSavePlaylist").hide();
-  });
-  jQuery("#addVideosToPlaylistModal").on("hidden.bs.modal", function() {
-    jQuery("#btnSavePlaylist").hide();
-    jQuery(".videoImportToPlaylist").removeClass("checkedRow");
-  });
-
-  // Toggle the checkbox state when clicking on the div
+  // Toggle the checkbox state when clicking on the new video div
   jQuery(".videoImportToPlaylist").click(function() {
-    var videoId = this.dataset.videoid;
-    var row = jQuery("#rowVideo" + videoId);
-    newState = !jQuery("#chkVideo" + videoId)[0].checked;
-    jQuery("#chkVideo" + videoId)[0].checked = newState;
-    if(newState) {
-      row.addClass("checkedRow");
-    } else {
-      row.removeClass("checkedRow");
-    }
+    toggleState(this);
 
-    // Enable the Save Playlists button if there are any new videos selected
+    // Enable the Save Playlists button if there are any new videos selected for importation into this playlist
     if(jQuery(".videoImportToPlaylist.checkedRow").length > 0) {
       jQuery("#btnSavePlaylist").css('display','inline');
     } else {
       jQuery("#btnSavePlaylist").hide();
     }
+  });
+
+  // Toggle the checkbox state when clicking on an existing video
+  jQuery(".playlistThumb").click(function() {
+    toggleState(this);
+
   });
 
   // Save the playlist when the Save Playlist button is pressed
@@ -50,7 +31,7 @@ ready = function() {
     console.log("Adding videos with uids: ", videoIds);
     var playlistData = {"playlist": {"id": playlistId, "video_ids": videoIds}};
     $.ajax({
-      url: "http://" + window.location.host + "/playlists/" + playlistId,
+      url: "/playlists/" + playlistId,
       type:"PUT",
       dataType:"json",
       data: playlistData,
@@ -63,7 +44,6 @@ ready = function() {
       }
     });
   });
-
 
   //Import videos from the YouTube API
   jQuery("#btnImportFromYouTubePlaylist").on("click", function() {
@@ -106,7 +86,7 @@ ready = function() {
                   var playlistData = {"playlist": {"id": playlistId, "video_ids": [this.videoId]}}
                   if (playlist_ids.indexOf(playlistId) < 0){
                     $.ajax({
-                      url: "http://" + window.location.host + "/playlists/" + playlistId,
+                      url: "/playlists/" + [playlistId],
                       type:"PUT",
                       dataType:"json",
                       data: playlistData,
@@ -206,6 +186,36 @@ ready = function() {
     jQuery("#results").empty();
     jQuery("#txtYouTubePlaylist").val('');
   })
+
+  function toggleState(obj) {
+    var videoId = obj.dataset.videoid;
+    var row = jQuery("#rowVideo" + videoId);
+    newState = !jQuery("#chkVideo" + videoId)[0].checked;
+    jQuery("#chkVideo" + videoId)[0].checked = newState;
+    if(newState) {
+      row.addClass("checkedRow");
+    } else {
+      row.removeClass("checkedRow");
+    }
+  }
+
+  // Clean up the modal dialogs when opening/closing
+  jQuery("#importPlaylistModal").on("shown.bs.modal", function() {
+    jQuery("#btnDraftVideos").hide();
+    jQuery("#btnCloseImportPlaylist").show();
+  });
+  jQuery("#importPlaylistModal").on("hidden.bs.modal", function() {
+    jQuery("#btnDraftVideos").hide();
+    jQuery("#btnCloseImportPlaylist").show();
+  });
+
+  jQuery("#addVideosToPlaylistModal").on("shown.bs.modal", function() {
+    jQuery("#btnSavePlaylist").hide();
+  });
+  jQuery("#addVideosToPlaylistModal").on("hidden.bs.modal", function() {
+    jQuery("#btnSavePlaylist").hide();
+    jQuery(".videoImportToPlaylist").removeClass("checkedRow");
+  });
   
 }
 

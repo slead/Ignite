@@ -28,7 +28,7 @@
             .row.top-15
               -vids.each do |video|
                 .col-md-3.video_thumbnail
-                  %span= playlist_thumbnail(video, 30)
+                  =playlist_thumbnail(video, 30)
           .row.paginate
             = will_paginate @videos, renderer: BootstrapPagination::Rails
 

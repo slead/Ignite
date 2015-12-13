@@ -4,7 +4,7 @@
   / - if video.hd?
   / =image_tag  "//img.youtube.com/vi/#{video.uid}/maxresdefault.jpg", :class => "thumb", :alt => truncate(video.title, length: 20)
   / - else
-  =image_tag  "//img.youtube.com/vi/#{video.uid}/hqdefault.jpg", :class => "thumb", :alt => truncate(video.title, length: 20)
+  =image_tag  "//img.youtube.com/vi/#{video.uid}/hqdefault.jpg", :class => "playlistThumb", :alt => truncate(video.title, length: 20)
 %p.subtitle
   = truncate(video.title, length: max_length)
   |

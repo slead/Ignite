@@ -65,11 +65,13 @@ class PlaylistsController < ApplicationController
     if playlist_params[:video_ids]
       response = 0 # Return 0 if the video was already in the playlist
       begin
-        videoId = playlist_params[:video_ids].first
-        if not @playlist.videos.include? videoId
-          @playlist.videos.append(Video.find_by(uid: videoId))
-          response = 1 # Return 1 if the video was successfully added to the playlist
-          update_video_count
+        videoIds = playlist_params[:video_ids]
+        videoIds.each do |videoId|
+          if not @playlist.videos.include? videoId
+            @playlist.videos.append(Video.find_by(uid: videoId))
+            response = 1 # Return 1 if the video was successfully added to the playlist
+            update_video_count
+          end
         end
       rescue
         response = 999 # Return an error flag
@@ -123,6 +125,7 @@ private
   end
 
   def update_video_count
+    # TODO - is this necessary? Just calculate the count on the fly rather than persisting it to the database
     # Keep track of the number of published videos in this playlist
     @playlist.video_count = @playlist.videos.where(status: "published").count
     @playlist.save!
