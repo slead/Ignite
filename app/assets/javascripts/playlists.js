@@ -41,9 +41,10 @@ ready = function() {
   });
 
   // Save the playlist when the Save Playlist button is pressed
-  jQuery("#btnDraftVideos").on("click", function(){
-    alert("need to save the playlist with the selected videos appended");
-    jQuery("#addVideosToPlaylistModal").hide();
+  jQuery("#btnSavePlaylist").on("click", function(){
+    //TODO: save the playlist with the selected videos appended
+    jQuery("#addVideosToPlaylistModal").modal('hide');
+    window.location = "/admin?tabpanel=playlists"
   });
 
 
