@@ -12,6 +12,20 @@ ready = function() {
     jQuery("#btnCloseImportPlaylist").show();
   });
 
+  jQuery("#addVideosToPlaylistModal").on("shown.bs.modal", function() {
+    jQuery("#btnSavePlaylist").hide();
+  });
+  jQuery("#addVideosToPlaylistModal").on("hidden.bs.modal", function() {
+    jQuery("#btnSavePlaylist").hide();
+  });
+
+  jQuery(".videoImportToPlaylist").click(function() {
+    // Toggle the checkbox state when clicking on the div
+    videoId = this.dataset.videoid;
+    jQuery("#chkVideo" + videoId)[0].checked = !jQuery("#chkVideo" + videoId)[0].checked;
+  });
+
+
   //Import videos from the YouTube API
   jQuery("#btnImportFromYouTubePlaylist").on("click", function() {
     jQuery("#results").empty();

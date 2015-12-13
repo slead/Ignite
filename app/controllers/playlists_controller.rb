@@ -112,17 +112,16 @@ private
   end
 
   def find_users_videos
-    # Determine which videos this user has access to add to playlists
+    # Determine which videos this user can add to playlists
     if current_user.curator?
-        @videos = Video.all
+        videos = Video.all.order(:title) #.paginate(:page => params[:page], :per_page => 16)
     else
         # Non-admin users can see the Ignites they've been given permission to see, and the Videos
         # which are owned by those Ignites
-        @videos = []
-        current_user.events.each do |event|
-          @videos += event.videos
-        end
+        videos = current_user.videos.sort_by {|video| video.title} #.paginate(:page => params[:page], :per_page => 16)
     end
+    # Remove any videos already in this playlist
+    @videos = videos - @playlist.videos
   end
 
 end

@@ -17,19 +17,18 @@
         -if @playlist.id
           %span#spanPlaylistId.hidden= @playlist.id
         =f.input :description,  input_html: { class: 'form-control' }, placeholder: "Enter  a description for the playlist (optional)"
-    
-    .btn.btn-default#btnAddVideosToPlaylist{"data-target" => "#addVideosToPlaylistModal", "data-toggle" => "modal", :type => "button"}
-      Add videos to this playlist
 
-    -if @playlist.video_count and @playlist.video_count > 0
-      .row.top-50
-        .col-md-12
-          %h4 Videos in this playlist
-          =@playlist.videos.where("status = 'published'").each_slice(6) do |vids|
-            .row.top-15
-              -vids.each do |video|
-                .col-md-2.video_thumbnail
-                  %span= playlist_thumbnail(video, 30)
+    .row.top-15  
+      .col-md-12
+        %h4.bottom-25
+          Videos in this playlist
+          .btn.btn-default#btnAddVideosToPlaylist{"data-target" => "#addVideosToPlaylistModal", "data-toggle" => "modal", :type => "button"}
+            Add videos to this playlist
+        =@playlist.videos.where("status = 'published'").each_slice(6) do |vids|
+          .row.top-15
+            -vids.each do |video|
+              .col-md-2.video_thumbnail
+                %span= playlist_thumbnail(video, 30)
 
       .row
         .col-md-12
@@ -57,10 +56,20 @@
         %h4#addVideosToPlaylistModalLabel.modal-title Add videos to playlist
         %p.top-15
           Choose the videos you wish to add to this playlist
-      .modal-body
+      .modal-body#videoList
         .row
           .col-md-12
             #videosForPlaylist
-              A list of your videos will go here
+              -@videos.each do |video|
+                .row.top-5.videoImportToPlaylist{role: "checkbox", :data => {:videoID => video.id}}
+
+                  .col-md-3
+                    =check_box_tag "chkVideo#{video.id}", false
+                    =image_tag  "//img.youtube.com/vi/#{video.uid}/default.jpg", :class => "thumbImportToPlaylist", :alt => truncate(video.title, length: 20)
+                  .col-md-7.col-md-offset-1
+                    %strong= "#{video.title} (#{video.speaker_name})"
+                    %p= truncate(video.description, length: 100)
+
       .modal-footer.left
+        .btn.btn-warning#btnSavePlaylist Save playlist
         %button.btn.btn-default#btnCloseImportVideosToPlaylist{"data-dismiss" => "modal", :type => "button"} Close
