@@ -1,8 +1,7 @@
 class PlaylistsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   load_and_authorize_resource :find_by => :slug, except: [:index, :show, :update]
-  before_action :find_playlist, only: [:show, :edit, :destroy, :update_stats]
-  before_action :find_playlist_by_id, only: [:update]
+  before_action :find_playlist, only: [:show, :edit, :destroy, :update, :update_stats]
   before_action :find_users_videos, only: [:new, :edit, :update]
   before_action :update_video_count, only: [:update]
   layout 'no_footer', :only => [:new, :edit]
@@ -110,10 +109,6 @@ private
     @playlist = Playlist.friendly.find(params[:id])
   end
 
-  def find_playlist_by_id
-    @playlist = Playlist.find(params[:id])
-  end
-
   def find_users_videos
     # Determine which videos this user can add to playlists
     if current_user.curator?
@@ -124,7 +119,7 @@ private
         videos = current_user.videos.sort_by {|video| video.title} #.paginate(:page => params[:page], :per_page => 16)
     end
     # Remove any videos already in this playlist
-    @videos = videos - @playlist.videos
+    @users_videos = videos - @playlist.videos
   end
 
   def update_video_count

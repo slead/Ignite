@@ -20,7 +20,7 @@
     -if @playlist.id
       .row.top-15  
         .col-md-12
-          %h4.bottom-25
+          %h4.bottom-50
             Videos in this playlist
             .btn.btn-default#btnAddVideosToPlaylist{"data-target" => "#addVideosToPlaylistModal", "data-toggle" => "modal", :type => "button"}
               Add videos to this playlist
@@ -52,7 +52,7 @@
         .row
           .col-md-12
             #videosForPlaylist
-              -@videos.each do |video|
+              -@users_videos.each do |video|
                 .row.top-5.videoImportToPlaylist{role: "checkbox", :id => "rowVideo#{video.uid}", :data => {:videoID => video.uid}}
 
                   .col-md-3
