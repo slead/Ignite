@@ -31,6 +31,7 @@ gem 'leaflet-rails', '~> 0.7.4'
 gem 'mail_form', '~> 1.5.1'
 gem "omniauth-google-oauth2"
 gem 'pg'
+gem 'pry'
 gem 'pygments.rb', '~> 0.6.3'
 gem 'rack', '~> 1.6.4'
 gem 'rake'

@@ -7,7 +7,7 @@ GIT
       sass-rails
 
 GEM
-  remote: http://rubygems/
+  remote: https://rubygems.org/
   specs:
     actionmailer (4.2.0)
       actionpack (= 4.2.0)
@@ -374,6 +374,7 @@ DEPENDENCIES
   mail_form (~> 1.5.1)
   omniauth-google-oauth2
   pg
+  pry
   pygments.rb (~> 0.6.3)
   rack (~> 1.6.4)
   rails (= 4.2)
