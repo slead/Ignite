@@ -27,7 +27,7 @@
           =@videos.each_slice(4) do |vids|
             .row.top-15
               -vids.each do |video|
-                .col-md-3.video_thumbnail
+                .col-md-3.video_thumbnail{role: "checkbox", :id => "rowVideo#{video.uid}", :data => {:videoID => video.uid}}
                   =playlist_thumbnail(video, 30)
           .row.paginate
             = will_paginate @videos, renderer: BootstrapPagination::Rails

@@ -15,8 +15,7 @@ ready = function() {
 
   // Toggle the checkbox state when clicking on an existing video
   jQuery(".playlistThumb").click(function() {
-    toggleState(this);
-
+    // toggleState(this);
   });
 
   // Save the playlist when the Save Playlist button is pressed
