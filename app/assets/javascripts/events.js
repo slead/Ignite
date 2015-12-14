@@ -83,8 +83,8 @@ ready = function() {
         }
         event = geojson[idx].properties;
         html += "<div class='col-md-3 col-sm-3 col-xs-3 event_content' id='" + event.id + "''>";
-        html += "<div><h4 class='title'><a href=" + event.url + ">" + event.name + "<span class='link-spanner'></span></a></h4></div>";
-        html += "<div><p class='subtitle'>" + event.city + ", " + event.country + "</p></div>";
+        html += "<div><h4 class='title truncate'><a href=" + event.url + ">" + event.name + "<span class='link-spanner'></span></a></h4></div>";
+        html += "<div><p class='subtitle truncate'>" + event.city + ", " + event.country + "</p></div>";
         html += "</div>"; // event_content
         if (idx % 4 == 3) {
           html += "</div>"

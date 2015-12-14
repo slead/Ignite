@@ -350,6 +350,9 @@ li a {
 .title {
   margin-bottom: 0;
   margin-top: 5px;
+}
+
+.truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

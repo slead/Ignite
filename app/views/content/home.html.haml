@@ -23,9 +23,9 @@
         .embed-container
           =embed(@first_video.uid)
         -if @first_video.R18?
-          %h4.title= link_to @first_video.title + " (18+)", @first_video
+          %h4.title.truncate= link_to @first_video.title + " (18+)", @first_video
         - else
-          %h4.title= link_to @first_video.title, @first_video
+          %h4.title.truncate= link_to @first_video.title, @first_video
         
         %p.subtitle
           =@first_video.speaker_name
@@ -58,7 +58,7 @@
         %ul
           - begin
             -@upcomings.each do |upcoming|
-              %li
+              %li.truncate
                 = link_to upcoming.name, event_page_path(upcoming.event)
                 = "(#{upcoming.date.to_formatted_s(:rfc822)})"
           - rescue
