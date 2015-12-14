@@ -6,6 +6,6 @@
   / - else
   =image_tag  "//img.youtube.com/vi/#{video.uid}/hqdefault.jpg", :class => "playlistThumb", :alt => truncate(video.title, length: 20)
 %p.subtitle
-  = truncate(video.title, length: max_length)
+  = video.title
   |
   =video.speaker_name
