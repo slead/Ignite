@@ -52,23 +52,15 @@
         .row
           .col-md-12
             #videosForPlaylist
-            %table#tblUsersVideos{:data => {:source => videos_path(format: :json, status: "published")}}
-              %thead
-                %tr
-                  %th Title
-                  %th Presenter
-                  %th Description
-                  %th Uploaded
-              %tbody
-              / -@users_videos.each do |video|
-              /   .row.top-5.videoImportToPlaylist{role: "checkbox", :id => "rowVideo#{video.uid}", :data => {:videoID => video.uid}}
+              -@users_videos.each do |video|
+                .row.top-5.videoImportToPlaylist{role: "checkbox", :id => "rowVideo#{video.uid}", :data => {:videoID => video.uid}}
 
-              /     .col-md-3
-              /       =check_box_tag "chkVideo#{video.uid}", false, false, class: 'hidden'
-              /       =image_tag  "//img.youtube.com/vi/#{video.uid}/default.jpg", :class => "thumbImportToPlaylist", :alt => truncate(video.title, length: 20)
-              /     .col-md-7.col-md-offset-1
-              /       %strong= "#{video.title} (#{video.speaker_name})"
-              /       %p= truncate(video.description, length: 100)
+                  .col-md-3
+                    =check_box_tag "chkVideo#{video.uid}", false, false, class: 'hidden'
+                    =image_tag  "//img.youtube.com/vi/#{video.uid}/default.jpg", :class => "thumbImportToPlaylist", :alt => truncate(video.title, length: 20)
+                  .col-md-7.col-md-offset-1
+                    %strong= "#{video.title} (#{video.speaker_name})"
+                    %p= truncate(video.description, length: 100)
 
       .modal-footer.left
         .btn.btn-warning#btnSavePlaylist Add videos to playlist
