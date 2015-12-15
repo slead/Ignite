@@ -1,5 +1,5 @@
 class Video < ActiveRecord::Base
-  validates_presence_of :title, :event, :url, :speaker_name, :description, :uid
+  validates_presence_of :title, :event, :url, :speaker_name, :description
   validates :url, format: { with: /\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]*)/,
     message: "must be in the format http://www.youtube.com/watch?v=VIDEO_ID" }
   validates :speaker_url, :url => {:allow_blank => true}
@@ -15,8 +15,9 @@ class Video < ActiveRecord::Base
   attr_accessor :new_playlist_name
   # before_update :check_for_new_tags
   # before_update :check_for_new_playlist
-
+  
   before_create -> do
+
     # If the user has entered any new tags as free text, add them to the Tags and Video
     check_for_new_tags
 

@@ -5,6 +5,7 @@
     -if @video.id
       %h4#videoStatus{"data-video-status" => @video.status}= "Status: #{@video.status}"
     %hr
+    / =f.input :uid, input_html: { class: 'hidden' }
     -if @video.status == 'draft'
       .row.hidden
         =f.input :url

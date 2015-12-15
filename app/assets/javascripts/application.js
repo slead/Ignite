@@ -199,6 +199,22 @@ function pageLoad() {
         "emptyTable": "No tags found"
       }
   });
+
+  $('#tblUsersVideos').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": $('#tblUsersVideos').data('source'),
+    columns: [
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+        { sortable: true, searchable: true },
+      ],
+      "language": {
+        "emptyTable": "No videos found"
+      }
+  });
+
   
 }
 

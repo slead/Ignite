@@ -22,10 +22,9 @@ ready = function() {
     retrieveYouTubeDetails();
   }
 
-  // Don't retrieve Tags at the moment
-  // if ($("#videoStatus").data("videoStatus") == 'draft') {
-  //   retrieveYouTubeDetails();
-  // }
+  if ($("#videoStatus").data("videoStatus") == 'draft') {
+    retrieveYouTubeDetails();
+  }
 
   if(igniteID != null) {
     $("#video_event_id").val(igniteID);
@@ -62,6 +61,7 @@ function retrieveYouTubeDetails(){
   $("#btnYouTubeRetrieve").addClass("disabled");
   url = $("#video_url").val();
   uid = ytVidId(url);
+  // $("#video_uid").val(uid)
 
   /* Check whether this video has already been added to the system*/
   baseURL = getBaseUrl() + ".json" + "?uid=" + uid
