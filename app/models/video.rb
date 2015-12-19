@@ -13,8 +13,8 @@ class Video < ActiveRecord::Base
   #Allow the creation of new tags and playlists during create/edit videos
   attr_accessor :new_tag_name
   attr_accessor :new_playlist_name
-  # before_update :check_for_new_tags
-  # before_update :check_for_new_playlist
+  before_update :check_for_new_tags
+  before_update :check_for_new_playlist
   
   before_create -> do
 
