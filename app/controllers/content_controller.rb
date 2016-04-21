@@ -15,7 +15,7 @@ class ContentController < ApplicationController
       @first_video = nil
       @videos = []
     end
-    @upcomings = Upcoming.all.order('date ASC').limit(15)
+    @upcomings = Upcoming.all.order('date DESC').limit(15)
     @tags = Tag.where(major: true).order(:name)
     @playlists = Playlist.where("featured and video_count > 0")
 
