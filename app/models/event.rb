@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  validates_presence_of :name, :city, :url
+  validates_presence_of :name, :city
   validates_uniqueness_of :name
   validates :url, :url => {:allow_blank => true}
   has_many :videos, dependent: :destroy

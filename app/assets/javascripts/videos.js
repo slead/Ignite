@@ -72,11 +72,12 @@ function retrieveYouTubeDetails(){
     } else {
       $(".video_url").removeClass("field_with_errors");
       /* Retrieve details from YouTube*/
-      checkURL = "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94&fields=items(snippet(title,description))&part=snippet&id=" + uid
+      checkURL = "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD1GKuqhIK7UoPxaLX-PQpCvUlsRYiGD94&fields=items(snippet(title,description,tags))&part=snippet&id=" + uid
       $.getJSON( checkURL, function( data ) {
         if (data.items.length > 0) {
           title = data.items[0].snippet.title;
           description = data.items[0].snippet.description;
+          tags = data.items[0].snippet.tags;
           $("#video_title").val(title);
           $("#video_description").val(description);
           $(".details").show();
