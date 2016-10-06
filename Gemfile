@@ -16,7 +16,7 @@ group :development do
   gem "binding_of_caller"
 end
 
-gem "active_model_serializers"
+gem 'active_model_serializers', '~> 0.9.3'
 gem 'ajax-datatables-rails'
 gem 'cancancan', '~> 1.10'
 gem 'devise', '~> 3.5.2'
@@ -34,7 +34,7 @@ gem 'pg'
 gem 'pry'
 gem 'pygments.rb', '~> 0.6.3'
 gem 'rack', '~> 1.6.4'
-gem 'rake'
+gem 'rake', '~> 11.3'
 gem 'redcarpet', '~> 3.2.3'
 gem 'searchkick', '~> 0.8.7'
 gem 'seed_dump'
