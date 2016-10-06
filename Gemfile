@@ -68,3 +68,5 @@ group :test do
   gem 'warden'
   gem 'webmock'
 end
+
+ruby "2.3.1"
