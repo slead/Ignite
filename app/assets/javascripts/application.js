@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-//= require social-share-button
 //= require leaflet
 
 function pageLoad() {
