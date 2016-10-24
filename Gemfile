@@ -17,7 +17,7 @@ group :development do
 end
 
 gem 'active_model_serializers', '~> 0.9.3'
-gem 'ajax-datatables-rails'
+gem 'ajax-datatables-rails', '~> 0.3.1'
 gem 'cancancan', '~> 1.10'
 gem 'devise', '~> 3.5.2'
 gem 'devise-bootstrap-views'
