@@ -23,8 +23,6 @@
       %p.subtitle
         Filmed at
         = link_to @video.event.name, event_page_path(@video.event)
-      %span#social-share-span
-        = social_share_button_tag(@video.title, 'data-twitter-title' => truncate(@video.title, :length => 50), via: "IgniteTalks")
       .embed-container
         =embed(@video.uid)
       .stats.right

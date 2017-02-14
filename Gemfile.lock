@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 GIT
   remote: https://github.com/cuterxy/social-share-button.git
   revision: d3e12b1e503c95de1eb1e7a741bdf4fed6fe9b7c
@@ -6,6 +7,8 @@ GIT
       coffee-rails
       sass-rails
 
+=======
+>>>>>>> origin/master
 GEM
   remote: https://rubygems.org/
   specs:
@@ -61,7 +64,11 @@ GEM
     builder (3.2.2)
     byebug (9.0.6)
     cancancan (1.15.0)
+<<<<<<< HEAD
     capybara (2.10.0)
+=======
+    capybara (2.10.1)
+>>>>>>> origin/master
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -275,7 +282,11 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+<<<<<<< HEAD
     ruby_dep (1.4.0)
+=======
+    ruby_dep (1.5.0)
+>>>>>>> origin/master
     rubyzip (1.2.0)
     safe_yaml (1.0.4)
     sass (3.2.19)
@@ -284,17 +295,28 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
+<<<<<<< HEAD
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     searchkick (1.3.5)
+=======
+    sdoc (0.4.2)
+      json (~> 1.7, >= 1.7.7)
+      rdoc (~> 4.0)
+    searchkick (1.3.6)
+>>>>>>> origin/master
       activemodel
       elasticsearch (>= 1)
       hashie
     seed_dump (3.2.4)
       activerecord (>= 4)
       activesupport (>= 4)
+<<<<<<< HEAD
     selenium-webdriver (2.53.4)
+=======
+    selenium-webdriver (3.0.0)
+>>>>>>> origin/master
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
@@ -344,7 +366,11 @@ GEM
     websocket (1.2.3)
     whenever (0.9.7)
       chronic (>= 0.6.3)
+<<<<<<< HEAD
     will_paginate (3.0.10)
+=======
+    will_paginate (3.0.12)
+>>>>>>> origin/master
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
     xpath (2.0.0)
@@ -399,7 +425,10 @@ DEPENDENCIES
   selenium-webdriver
   simple_form (~> 3.1.0)
   sitemap_generator (~> 5.0.5)
+<<<<<<< HEAD
   social-share-button (~> 0.1.8)!
+=======
+>>>>>>> origin/master
   spring
   turbolinks
   turnip
@@ -417,4 +446,8 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
+<<<<<<< HEAD
    1.13.1
+=======
+   1.13.2
+>>>>>>> origin/master

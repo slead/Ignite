@@ -14,10 +14,12 @@
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+<<<<<<< HEAD
 //= require dataTables/jquery.dataTables
+=======
+>>>>>>> origin/master
 //= require turbolinks
 //= require_tree .
-//= require social-share-button
 //= require leaflet
 
 function pageLoad() {

@@ -17,7 +17,7 @@ group :development do
 end
 
 gem 'active_model_serializers', '~> 0.9.3'
-gem 'ajax-datatables-rails'
+gem 'ajax-datatables-rails', '~> 0.3.1'
 gem 'cancancan', '~> 1.10'
 gem 'devise', '~> 3.5.2'
 gem 'devise-bootstrap-views'
@@ -41,7 +41,6 @@ gem 'searchkick'
 gem 'seed_dump'
 gem 'simple_form', '~> 3.1.0'
 gem 'sitemap_generator', '~> 5.0.5'
-gem 'social-share-button', '~> 0.1.8', git: 'https://github.com/cuterxy/social-share-button.git'
 gem 'utf8_enforcer_workaround', '~> 1.1.0'
 gem "validate_url"
 gem 'whenever', :require => false
