@@ -384,7 +384,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.9.3)
-  ajax-datatables-rails
+  ajax-datatables-rails (~> 0.3.1)
   better_errors
   binding_of_caller
   byebug
