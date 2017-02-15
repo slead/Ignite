@@ -41,6 +41,7 @@ gem 'searchkick'
 gem 'seed_dump'
 gem 'simple_form', '~> 3.1.0'
 gem 'sitemap_generator', '~> 5.0.5'
+gem 'thor', '0.19.1'
 gem 'utf8_enforcer_workaround', '~> 1.1.0'
 gem "validate_url"
 gem 'whenever', :require => false
