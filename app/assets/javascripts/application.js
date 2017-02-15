@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
+//= require dataTables/extras/dataTables.responsive
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
 //= require_tree .
@@ -82,6 +83,7 @@ function pageLoad() {
   }
 
   $('#tblVideos').dataTable({
+    "responsive": true,
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblVideos').data('source'),
@@ -100,6 +102,7 @@ function pageLoad() {
   });
 
   $('#tblDraftVideos').dataTable({
+    "responsive": true,
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblDraftVideos').data('source'),
@@ -118,6 +121,7 @@ function pageLoad() {
   });
 
   $('#tblEvents').dataTable({
+    "responsive": true,
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblEvents').data('source'),
@@ -136,6 +140,7 @@ function pageLoad() {
   });
 
   $('#tblPlaylists').dataTable({
+    "responsive": true,
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblPlaylists').data('source'),
@@ -154,6 +159,7 @@ function pageLoad() {
   });
 
   $('#tblUpcomings').dataTable({
+    "responsive": true,
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblUpcomings').data('source'),
@@ -170,6 +176,7 @@ function pageLoad() {
   });
 
   $('#tblUsers').dataTable({
+    "responsive": true,
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblUsers').data('source'),
@@ -187,6 +194,7 @@ function pageLoad() {
   });
 
   $('#tblTags').dataTable({
+    "responsive": true,
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblTags').data('source'),
@@ -202,6 +210,7 @@ function pageLoad() {
   });
 
   $('#tblUsersVideos').dataTable({
+    "responsive": true,
     "processing": true,
     "serverSide": true,
     "ajax": $('#tblUsersVideos').data('source'),
