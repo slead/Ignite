@@ -7,11 +7,19 @@ branch-defaults:
     environment: ignite-env3
   master:
     environment: ignite-test
+environment-defaults:
+  ignite-test:
+    branch: null
+    repository: null
 global:
   application_name: ignite
   default_ec2_keyname: aws-eb
   default_platform: 64bit Amazon Linux 2015.03 v2.0.0 running Ruby 2.0 (Passenger
     Standalone)
   default_region: us-west-2
+  instance_profile: null
+  platform_name: null
+  platform_version: null
   profile: eb-cli
   sc: git
+  workspace_type: Application

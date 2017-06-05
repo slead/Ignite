@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2'
-gem 'sass-rails', '~> 4.0.3'
+gem 'rails', '5.0.2'
+gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
@@ -19,27 +19,27 @@ end
 gem 'active_model_serializers', '~> 0.9.3'
 gem 'ajax-datatables-rails'
 gem 'cancancan', '~> 1.10'
-gem 'devise', '~> 3.5.2'
+gem 'devise'
 gem 'devise-bootstrap-views'
 # gem "elasticsearch", ">= 1.0.14"
-gem 'font-awesome-rails', '~> 4.3.0.0'
+gem 'font-awesome-rails'
 gem 'friendly_id', '~> 5.1.0'
 gem 'geocoder', '~> 1.2.8'
 gem 'google-analytics-rails'
 gem 'haml', '~> 4.0.6'
 gem 'jquery-datatables-rails'
 gem 'leaflet-rails', '~> 0.7.4'
-gem 'mail_form', '~> 1.5.1'
+gem 'mail_form'
 gem "omniauth-google-oauth2"
 gem 'pg'
 gem 'pry'
 gem 'pygments.rb', '~> 0.6.3'
-gem 'rack', '~> 1.6.4'
+gem 'rack'
 gem 'rake', '~> 11.3'
 gem 'redcarpet', '~> 3.2.3'
 gem 'searchkick'
 gem 'seed_dump'
-gem 'simple_form', '~> 3.1.0'
+gem 'simple_form'
 gem 'sitemap_generator', '~> 5.0.5'
 gem 'thor', '0.19.1'
 gem 'utf8_enforcer_workaround', '~> 1.1.0'
@@ -70,4 +70,4 @@ group :test do
   gem 'webmock'
 end
 
-ruby "2.3.1"
+ruby "2.4.0"

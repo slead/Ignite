@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -34,10 +33,9 @@ ActiveRecord::Schema.define(version: 20151119044241) do
   create_table "events_users", id: false, force: :cascade do |t|
     t.integer "event_id"
     t.integer "user_id"
+    t.index ["event_id"], name: "index_events_users_on_event_id", using: :btree
+    t.index ["user_id"], name: "index_events_users_on_user_id", using: :btree
   end
-
-  add_index "events_users", ["event_id"], name: "index_events_users_on_event_id", using: :btree
-  add_index "events_users", ["user_id"], name: "index_events_users_on_user_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -45,12 +43,11 @@ ActiveRecord::Schema.define(version: 20151119044241) do
     t.string   "sluggable_type", limit: 50
     t.string   "scope"
     t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
-
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "playlists", force: :cascade do |t|
     t.string   "name"
@@ -68,18 +65,16 @@ ActiveRecord::Schema.define(version: 20151119044241) do
   create_table "playlists_events", id: false, force: :cascade do |t|
     t.integer "event_id"
     t.integer "playlist_id"
+    t.index ["event_id"], name: "index_playlists_events_on_event_id", using: :btree
+    t.index ["playlist_id"], name: "index_playlists_events_on_playlist_id", using: :btree
   end
-
-  add_index "playlists_events", ["event_id"], name: "index_playlists_events_on_event_id", using: :btree
-  add_index "playlists_events", ["playlist_id"], name: "index_playlists_events_on_playlist_id", using: :btree
 
   create_table "playlists_videos", id: false, force: :cascade do |t|
     t.integer "playlist_id"
     t.integer "video_id"
+    t.index ["playlist_id"], name: "index_playlists_videos_on_playlist_id", using: :btree
+    t.index ["video_id"], name: "index_playlists_videos_on_video_id", using: :btree
   end
-
-  add_index "playlists_videos", ["playlist_id"], name: "index_playlists_videos_on_playlist_id", using: :btree
-  add_index "playlists_videos", ["video_id"], name: "index_playlists_videos_on_video_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -99,10 +94,9 @@ ActiveRecord::Schema.define(version: 20151119044241) do
   create_table "tags_videos", id: false, force: :cascade do |t|
     t.integer "video_id"
     t.integer "tag_id"
+    t.index ["tag_id"], name: "index_tags_videos_on_tag_id", using: :btree
+    t.index ["video_id"], name: "index_tags_videos_on_video_id", using: :btree
   end
-
-  add_index "tags_videos", ["tag_id"], name: "index_tags_videos_on_tag_id", using: :btree
-  add_index "tags_videos", ["video_id"], name: "index_tags_videos_on_video_id", using: :btree
 
   create_table "upcomings", force: :cascade do |t|
     t.string   "name"
@@ -129,10 +123,9 @@ ActiveRecord::Schema.define(version: 20151119044241) do
     t.datetime "updated_at"
     t.string   "name"
     t.integer  "role_id"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "videos", force: :cascade do |t|
     t.string   "title"
@@ -153,8 +146,7 @@ ActiveRecord::Schema.define(version: 20151119044241) do
     t.boolean  "featured"
     t.boolean  "hd"
     t.boolean  "R18"
+    t.index ["event_id"], name: "index_videos_on_event_id", using: :btree
   end
-
-  add_index "videos", ["event_id"], name: "index_videos_on_event_id", using: :btree
 
 end
