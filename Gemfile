@@ -17,7 +17,7 @@ group :development do
 end
 
 gem 'active_model_serializers', '~> 0.9.3'
-gem 'ajax-datatables-rails'
+gem 'ajax-datatables-rails', '~> 0.3.1'
 gem 'cancancan', '~> 1.10'
 gem 'devise'
 gem 'devise-bootstrap-views'
@@ -27,7 +27,7 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'geocoder', '~> 1.2.8'
 gem 'google-analytics-rails'
 gem 'haml', '~> 4.0.6'
-gem 'jquery-datatables-rails'
+gem 'jquery-datatables-rails', '~> 3.4'
 gem 'leaflet-rails', '~> 0.7.4'
 gem 'mail_form'
 gem "omniauth-google-oauth2"
