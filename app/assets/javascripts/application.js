@@ -228,9 +228,8 @@ function pageLoad() {
   
 }
 
-// $(document).ready(pageLoad);
-// $(document).on('page:load', pageLoad);
-$(document).on("turbolinks:load", pageLoad);
+$(document).ready(pageLoad);
+$(document).on('page:load', pageLoad);
 
 function getUrlParameter(sParam){
   var sPageURL = window.location.search.substring(1);
