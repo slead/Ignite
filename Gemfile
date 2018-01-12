@@ -33,7 +33,6 @@ gem 'mail_form'
 gem "omniauth-google-oauth2"
 gem 'pg'
 gem 'pry'
-gem 'pygments.rb', '~> 0.6.3'
 gem 'rack'
 gem 'rake', '~> 11.3'
 gem 'redcarpet', '~> 3.2.3'
