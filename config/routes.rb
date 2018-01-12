@@ -17,14 +17,16 @@ Rails.application.routes.draw do
   resources :tags
   resources :playlists
 
+  get 'sitemap.xml', :to => 'sitemap#index', :defaults => {:format => 'xml'}
+
   post 'videos' => 'videos#create'
 
   get '/admin', to: 'admin#index', as: :admin #=> admin_path
   get '/contact', to: 'content#contact', as: :contact #=> contact_path
   get '/feedback', to: 'content#contact', as: :feedback #=> feedback_path
   get '/stats', to: 'content#stats', as: :stats_page
-  get '/about', to: 'content#about', as: :about #=> about_path 
-  get '/start', to: 'content#start', as: :start #=> start_path 
+  get '/about', to: 'content#about', as: :about #=> about_path
+  get '/start', to: 'content#start', as: :start #=> start_path
   get '/ignites', to: 'events#index', as: :events_page
   get '/:id', to: 'events#show', as: :event_page
 
