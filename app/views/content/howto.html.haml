@@ -1,0 +1,126 @@
+.container
+  .row
+    .col-md-12
+      %h1{:style => "text-align: left;"} Admin page
+      %p
+        This page contains instructions for Ignite organizers to add and edit content on the IgniteTalks.io site. You can access the Admin page at
+        %a{:href => "http://IgniteTalks.io/admin", :target => "_blank"} IgniteTalks.io/admin
+        using the login details supplied to you. Use our
+        %a{:href => contact_path} contact form
+        if you require a login.
+      %h2 Adding a video
+      %p Videos on IgniteTalks.io are sourced from your YouTube channel, so they must first be uploaded to YouTube.
+      %p
+        Open the
+        %a{:href => "http://www.ignitetalks.io/admin?tabpane=Videos", :target => "_blank"} Videos tab
+        on the admin page, and use the
+        %strong Import A New Video
+        button. Choose the Ignite this video was filmed at, then enter the URL to the YouTube video using the format
+        = succeed ")." do
+          %a{:href => "https://www.youtube.com/watch?v=IQenETZrRyw", :target => "_blank"} https://www.youtube.com/watch?v=IQenETZrRyw
+      %p
+        =image_tag( 'howto1.png', :class => 'aligncenter.wp-image-88.size-full')
+      %p
+        Use the
+        %strong Get Info
+        button to retrieve the video’s Title and Description from YouTube.
+      %p Note that you will need to edit these values to make them more suitable for the IgniteTalks site. For example, there is a separate field for the Speaker’s Name (and optionally the URL to their blog), so this information should not be included in the Title or Description. The description needs to entice viewers to watch this video, so please take the time to include a short but meaningful overview of the talk.
+      %p
+        =image_tag( 'howto2.png', :class => 'aligncenter.wp-image-88.size-full')
+      %p
+        You may optionally add Tags to the video, and add it to a Playlist. Use the
+        %strong Create Video
+        button to finish adding the video to IgniteTalks.io.
+      %h3#editing-videos Editing videos
+      %p
+        Open the
+        %a{:href => "http://www.ignitetalks.io/admin?tabpane=Videos", :target => "_blank"} Videos tab
+        on the admin page, find the video (there is a search box at the top right of the page) then click on the
+        %strong Edit
+        link:
+      %p
+        =image_tag( 'howto3.png', :class => 'aligncenter.wp-image-88.size-full')
+      %p
+        This will open a page similar to that seen when first creating the video. Make the required edits then use the
+        %strong Update Video
+        button.
+      %h3#deleting-videos Deleting videos
+      %p
+        Open the
+        %a{:href => "http://www.ignitetalks.io/admin?tabpane=Videos", :target => "_blank"} Videos tab
+        on the admin page, find the video (there is a search box at the top right of the page) then click on the
+        %strong Delete
+        link
+      %h2#playlists Playlists
+      %h3 Creating a playlist
+      %p
+        Playlists are useful for grouping videos, such as those filmed at a particular event (eg
+        = succeed ")" do
+          %a{:href => "http://www.ignitetalks.io/playlists/ignite-sydney-14", :target => "_blank"} Ignite Sydney 14
+        = succeed ")." do
+          %a{:href => "http://www.ignitetalks.io/playlists/cool-science-talks", :target => "_blank"} Cool science talks
+      %p
+        Visit the
+        %a{:href => "http://www.ignitetalks.io/admin?tabpane=playlists", :target => "_blank"} Playlists tab
+        on the admin page to create a new playlist. Choose the Ignite which owns this playlist, and give it a name and (optionally) a description.
+      %h3 Adding videos to a playlist
+      %p
+        Visit the
+        %a{:href => "http://www.ignitetalks.io/admin?tabpane=playlists", :target => "_blank"} Playlists tab
+        on the admin page and edit a playlist – the page lists the videos currently in the playlist:
+      %p
+        =image_tag( 'howto4.png', :class => 'aligncenter.wp-image-88.size-full')
+      %p
+        Use the
+        %strong Add videos to this playlist
+        button to add existing videos to the playlist. This button will open a popup dialog listing all your videos – select the videos to add to the playlist then confirm the changes using the orange
+        %strong Add videos to playlist
+        button at the bottom of the popup:
+      %p
+        =image_tag( 'howto5.png', :class => 'aligncenter.wp-image-88.size-full')
+      %p  
+      %h3#importing-playlists Importing videos from a YouTube playlist
+      %p
+        The most efficient method for importing multiple videos into IgniteTalks.io is to first
+        %a{:href => "https://support.google.com/youtube/answer/57792?hl=en", :target => "_blank"} create a playlist
+        on YouTube. For example,
+        %a{:href => "https://www.youtube.com/playlist?list=PLNCkBYNm9NxlFCCkq0FKl3B1CfiH_SY3N", :target => "_blank"} Ignite Sydney 13
+        is a collection (on YouTube) of all videos shot at that event.
+      %p
+        To import these videos into a playlist on IgniteTalks.io, choose the
+        %strong Import From YouTube Playlist
+        button on the
+        %a{:href => "http://www.ignitetalks.io/admin?tabpane=playlists", :target => "_blank"} Playlists tab
+        \:
+      %p
+        =image_tag( 'howto6.png', :class => 'aligncenter.wp-image-88.size-full')
+      %p
+        Choose the IgniteTalks.io Playlist and enter the URL to the YouTube playlist, then use the
+        %strong Import From YouTube Playlist
+        button:
+      %p
+        =image_tag( 'howto7.png', :class => 'aligncenter.wp-image-88.size-full')
+      %p Results of the importing process are shown on this panel. In the example above, the first two videos were already on IgniteTalks.io but were not yet in this playlist, so they were added. The remaining videos were added to IgniteTalks.io, and added to this playlist.
+      %p
+        However, because YouTube doesn’t include fields such as “speaker name”, these new videos have been added in
+        %strong Draft
+        mode and require further interaction before they can be published (
+        %em> see next section
+        ).
+      %h3#publishing-drafts Publishing Draft videos
+      %p
+        Videos imported by the
+        %strong Import From YouTube Playlist
+        function are added to the
+        %strong Draft Videos
+        section on the
+        = succeed "," do
+          %a{:href => "http://www.ignitetalks.io/admin?tabpane=videos", :target => "_blank"} Videos tab
+      %p
+        =image_tag( 'howto8.png', :class => 'aligncenter.wp-image-88.size-full')
+      %p To finish publishing these videos, click on the Edit link on each video and fill in the Speaker Name field, then hit the Publish button to finalize the process.
+      %p
+        %em
+          Got questions?  Use our
+          %a{:href => contact_path} contact form
+          to reach us.

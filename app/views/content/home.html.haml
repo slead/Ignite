@@ -12,7 +12,7 @@
           near you,
           =link_to "browse Ignite videos", videos_path
           or
-          =link_to "start a new Ignite", "http://content.ignitetalks.io/start"
+          =link_to "start a new Ignite", start_path
           in your city.
 
 .container-fluid
@@ -26,7 +26,7 @@
           %h4.title.truncate= link_to @first_video.title + " (18+)", @first_video
         - else
           %h4.title.truncate= link_to @first_video.title, @first_video
-        
+
         %p.subtitle
           =@first_video.speaker_name
           at
@@ -53,7 +53,7 @@
         = link_to "https://github.com/IgniteTalks", :target => "_blank" do
           %i.fa.fa-github.fa-2x
 
-      .upcoming  
+      .upcoming
         %h4.center Recent &amp; coming events
         %ul
           - begin
@@ -111,8 +111,8 @@
             .row.top-15
               .col-md-12
                 =link_to "View all videos from #{playlist.name}", playlist
-         
-  - if @playlists.count > 0       
+
+  - if @playlists.count > 0
     .row.top-50
       .col-md-12
         %h4 Featured Ignite videos
@@ -137,4 +137,4 @@
         %h5= link_to "Add a new video", new_video_path
       - else
         %h5= link_to "Suggest an Ignite video for this site", "https://docs.google.com/forms/d/1NrIlpRb_IvBl1zGw0LuVhipUxeVJE1r28UUglcFXYjQ/viewform", :target => "_blank"
-        
+

@@ -3,13 +3,13 @@
     .col-md-6.col-md-offset-1
       %h1 Ignite Talks admin panel
     .col-md-1.col-md-offset-2
-      = link_to "http://content.ignitetalks.io/how-to", class: "light btn-edit", :target => "_blank" do
+      = link_to howto_path, class: "light btn-edit", :target => "_blank" do
         %i.fa.fa-question-circle.fa-2x.top-15
     .col-md-1
       .btn-group.top-15
         %button{:type => "button", :class => "btn btn-default dropdown-toggle", "data-toggle" => "dropdown"}
           =current_user.name
-          %span.caret 
+          %span.caret
         %ul.dropdown-menu
           %li= link_to "Change your password", edit_user_registration_path
           %li= link_to('Logout', destroy_user_session_path, :method => :delete)
@@ -44,7 +44,7 @@
           %h4.top-25
             .btn.btn-default= link_to "Import a new video", new_video_path, {:class => "blackText"}
             .btn.btn-default{"data-target" => "#importPlaylistModal", "data-toggle" => "modal", :type => "button"}
-              Import from YouTube playlist  
+              Import from YouTube playlist
 
           %h2.top-25 Published videos
           %table#tblVideos{:data => {:source => videos_path(format: :json, status: "published")}}
@@ -76,16 +76,16 @@
           %h4.top-25
             .btn.btn-default= link_to "Create a new playlist", new_playlist_path, {:class => "blackText"}
             .btn.btn-default{"data-target" => "#importPlaylistModal", "data-toggle" => "modal", :type => "button"}
-              Import from YouTube playlist          
+              Import from YouTube playlist
           .top-50
             %table#tblPlaylists{:data => {:source => playlists_path(format: :json)}}
               %thead
-                %tr           
+                %tr
                   %th Name
                   %th Ignite
                   %th Featured
-                  %th Listed 
-                  %th No. videos  
+                  %th Listed
+                  %th No. videos
                   %th
                   %th
               %tbody
@@ -144,7 +144,7 @@
                   %tr
                     %th Name
                     %th Email
-                    %th Admin? 
+                    %th Admin?
                     %th No. Sign-ins
                     %th
                     %th
