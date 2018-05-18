@@ -40,12 +40,12 @@ class UsersController < ApplicationController
   def create
     @user.password = Devise.friendly_token.first(8)
     if @user.save
-      begin
+      # begin
         # Email the user to let them know their account has been created
-        NotifyMailer.new_user_email(@user).deliver_now
-      rescue
-        puts "There was a problem emailing the new user"
-      end
+      NotifyMailer.new_user_email(@user).deliver_now
+      # rescue
+      #   puts "There was a problem emailing the new user"
+      # end
       respond_to do |format|
         format.html {
           flash[:notice] = "New user added successfully."
