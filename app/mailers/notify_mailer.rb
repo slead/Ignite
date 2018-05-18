@@ -8,7 +8,8 @@ class NotifyMailer < ActionMailer::Base
     end
 
     def new_user_email(user)
-      mail(to: user.email, subject: 'Welcome to IgniteTalks.io')
+      @user = user
+      mail(to: @user.email, subject: 'Welcome to IgniteTalks.io')
     end
 
 end
