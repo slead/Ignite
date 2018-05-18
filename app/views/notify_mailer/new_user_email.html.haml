@@ -6,11 +6,15 @@
   %body
     %p= "Hi #{@user.name}."
     %p Welcome to IgniteTalks.io. Below are instructions for using the site.
-    %h4 Admin page
-    %p You can access the Admin page at http://IgniteTalks.io/admin
+
+    %h4 Login details:
     %ul
       %li= "Username: #{@user.email}"
       %li= "Passsword: Please visit http://www.ignitetalks.io/users/password/new to create your own password"
+
+    %h4 Admin page
+    %p Once you have chosen your password, you can access the Admin page at http://IgniteTalks.io/admin
+
     %p
       See the
       =link_to "How To", 'http://www.ignitetalks.io/howto'
