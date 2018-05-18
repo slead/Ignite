@@ -10,9 +10,9 @@
     %p You can access the Admin page at http://IgniteTalks.io/admin
     %ul
       %li= "Username: #{@user.email}"
-      %li= "Passsword: #{@user.password} (once you have logged in you may change this)"
+      %li= "Passsword: #{@user.password} (once you have logged in you may change this at http://www.ignitetalks.io/users/password/new)"
     %p
       See the
-      =link_to "How To", howto_path
+      =link_to "How To", 'http://www.ignitetalks.io/howto'
       page for detailed instructions on adding content to the site.
-    / %p Happy Igniting!
+    %p Happy Igniting!
