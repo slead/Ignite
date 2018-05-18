@@ -38,20 +38,20 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    respond_to do |format|
-      @user.password = Devise.friendly_token.first(8)
-      if @user.save
-        begin
-          NotifyMailer.new_user_email(@user).deliver_now
-        rescue
-          puts "There was a problem emailing the new user with their login"
-        end
+    @user.password = Devise.friendly_token.first(8)
+    if @user.save
+      begin
+        NotifyMailer.new_user_email(@user).deliver_now
+      rescue
+        puts "There was a problem emailing the new user with their login"
+      end
+      respond_to do |format|
         format.html { redirect_to admin_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    else
+      format.html { render :new }
+      format.json { render json: @user.errors, status: :unprocessable_entity }
     end
   end
 
