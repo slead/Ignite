@@ -40,11 +40,11 @@ class UsersController < ApplicationController
   def create
     @user.password = Devise.friendly_token.first(8)
     if @user.save
-      begin
-        NotifyMailer.new_user_email(@user).deliver_now
-      rescue
-        puts "There was a problem emailing the new user with their login"
-      end
+      # begin
+      NotifyMailer.new_user_email(@user).deliver_now
+      # rescue
+      #   puts "There was a problem emailing the new user with their login"
+      # end
       respond_to do |format|
         format.html { redirect_to admin_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
