@@ -31,7 +31,7 @@ gem 'jquery-datatables-rails', '~> 3.4'
 gem 'leaflet-rails', '~> 0.7.4'
 gem 'mail_form'
 gem "omniauth-google-oauth2"
-gem 'pg'
+gem 'pg', '0.20'
 gem 'pry'
 gem 'rack'
 gem 'rake', '~> 11.3'
